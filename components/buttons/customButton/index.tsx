@@ -12,7 +12,9 @@ export const CustomButton: FC<CustomButtonProps> = ({ text, icon }) => {
 
 	return (
 		<button className={classNames(styles.wrapper)}>
-			<Image src={icon} alt='icon' width={16} height={16}/>
+			<div className={styles.imageWrapper}>
+				<Image src={icon} alt='icon' width={16} height={16}/>
+			</div>
 			<span>{text}</span>
 		</button>
 	)

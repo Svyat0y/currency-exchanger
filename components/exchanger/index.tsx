@@ -27,6 +27,7 @@ export const Exchanger = () => {
 		if(activeCard === CARDS.sendCard) {
 			if(sendValue.length) setIsCalculatingGetValue(true)
 			if(sendValue.length === 0) {
+				setIsCalculatingGetValue(false)
 				setGetValue('')
 				return
 			}
@@ -48,6 +49,7 @@ export const Exchanger = () => {
 		if(activeCard === CARDS.getCard) {
 			if(getValue.length) setIsCalculatingSendValue(true)
 			if(getValue.length === 0) {
+				setIsCalculatingSendValue(false)
 				setSendValue('')
 				return
 			}
@@ -63,11 +65,19 @@ export const Exchanger = () => {
 		return () => clearTimeout(calculationTimeout)
 	}, [getValue, getItem])
 
+	const handleSwitch = () => {
+		setGetItem(sendItem)
+		setSendItem(getItem)
+		setSendValue(getValue)
+		setGetValue(sendValue)
+	}
+
 
 	return (
 		<div className={styles.wrapper}>
 			<ExchangerCard
 				card={CARDS.sendCard}
+				item={sendItem}
 				setActiveCard={setActiveCard}
 				cardTitle='You Send'
 				active={activeCard === CARDS.sendCard}
@@ -75,11 +85,12 @@ export const Exchanger = () => {
 				setInputState={setSendValue}
 				isCalculating={isCalculatingSendValue}
 			/>
-			<button className={styles.switchArrows}>
+			<button className={styles.switchArrows} onClick={handleSwitch}>
 				<Icon type='SWITCH_ARROWS'/>
 			</button>
 			<ExchangerCard
 				card={CARDS.getCard}
+				item={getItem}
 				setActiveCard={setActiveCard}
 				cardTitle='You Get'
 				active={activeCard === CARDS.getCard}

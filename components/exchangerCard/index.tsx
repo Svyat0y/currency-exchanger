@@ -30,6 +30,7 @@ export const ExchangerCard: FC<ExchangerCardProps> = (
 		isCalculating,
 		card,
 		setActiveCard,
+		item,
 	}) => {
 	const [isLocked, setIsLocked] = useState(false)
 
@@ -53,7 +54,7 @@ export const ExchangerCard: FC<ExchangerCardProps> = (
 			<div className={styles.content}>
 				<div className={styles.header}>
 					<span className={styles.titleDesc}>{cardTitle}</span>
-					<CustomButton text='usdt' icon={tether}/>
+					<CustomButton text={item.shortLabel} icon={item.icon}/>
 				</div>
 				<div className={styles.inputWrapper}>
 					{/*<span className={styles.border}></span>*/}
