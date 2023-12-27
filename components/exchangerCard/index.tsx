@@ -6,8 +6,7 @@ import {Input} from "@/components/input"
 import {Icon} from "@/components/icon"
 import {TooltipTrigger} from "@/components/tooltipTrigger/tooltipTrigger"
 import {TooltipFee} from "./tooltipFee"
-
-const tether = 'icons/tether.svg'
+import {Item} from "@/types/types"
 
 type ExchangerCardProps = {
 	cardTitle: string
@@ -18,6 +17,7 @@ type ExchangerCardProps = {
 	isCalculating?: boolean
 	card: number
 	setActiveCard: (card: number) => void
+	item: Item
 }
 
 export const ExchangerCard: FC<ExchangerCardProps> = (

@@ -1,3 +1,5 @@
+import {ItemGroup} from "@/types/types";
+
 const aave1 = './icons/aave1.svg'
 const avax = './icons/avax1.svg'
 const bnb1 = './icons/bnb1.svg'
@@ -16,7 +18,7 @@ const dai1 = './icons/dai1.svg'
 const dai2 = './icons/dai2.svg'
 const dai3 = './icons/dai3.svg'
 
-export const currencies = [
+export const currencies: ItemGroup[] = [
 	{
 		group: "AAVE",
 		data: [

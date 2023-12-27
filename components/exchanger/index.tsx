@@ -4,7 +4,8 @@ import styles from './exchanger.module.scss'
 import {ExchangerCard} from "../exchangerCard"
 import {useEffect, useState} from "react"
 import {Icon} from "@/components/icon"
-import {currencies} from "@/components/exchanger/data";
+import {currencies} from "@/components/exchanger/data"
+import {Item} from "@/types/types"
 
 export const CARDS = {
 	sendCard: 1,
@@ -13,8 +14,8 @@ export const CARDS = {
 
 export const Exchanger = () => {
 	const [activeCard, setActiveCard] = useState(CARDS.sendCard)
-	const [sendItem, setSendItem] = useState(currencies[0].data[0])
-	const [getItem, setGetItem] = useState(currencies[4].data[0])
+	const [sendItem, setSendItem] = useState<Item>(currencies[0].data[0])
+	const [getItem, setGetItem] = useState<Item>(currencies[4].data[0])
 	const [sendValue, setSendValue] = useState('')
 	const [getValue, setGetValue] = useState('')
 	const [wallet, setWallet] = useState('')
