@@ -1,5 +1,5 @@
 import React, {FC, useEffect, useState} from "react"
-import styles from './customToolTip.module.scss'
+import styles from './customTooltip.module.scss'
 import {createPortal} from "react-dom"
 import classNames from "classnames"
 import {TCustomToolTipProps, TToolTipPosition} from "./types"
