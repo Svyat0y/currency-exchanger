@@ -1,5 +1,3 @@
-"use client"
-
 import {FC, useState} from "react"
 import styles from './exchangeCard.module.scss'
 import classNames from "classnames"
@@ -15,6 +13,11 @@ type ExchangerCardProps = {
 	cardTitle: string
 	active: boolean
 	isTriggerTooltip?: boolean
+	value: string
+	setInputState: (value: string) => void
+	isCalculating?: boolean
+	card: number
+	setActiveCard: (card: number) => void
 }
 
 export const ExchangerCard: FC<ExchangerCardProps> = (
@@ -22,8 +25,12 @@ export const ExchangerCard: FC<ExchangerCardProps> = (
 		active,
 		cardTitle,
 		isTriggerTooltip,
+		value,
+		setInputState,
+		isCalculating,
+		card,
+		setActiveCard,
 	}) => {
-	const [inputState, setInputState] = useState('')
 	const [isLocked, setIsLocked] = useState(false)
 
 	const handleInput = (value: string) => {
@@ -31,8 +38,12 @@ export const ExchangerCard: FC<ExchangerCardProps> = (
 		setInputState(newText)
 	}
 
+	const handleCardClick = () => {
+		setActiveCard(card)
+	}
+
 	return (
-		<div className={styles.wrapper}>
+		<div className={styles.wrapper} onClick={handleCardClick}>
 			<span className={styles.border}></span>
 			<div
 				className={classNames(styles.gradientBlock, {
@@ -46,9 +57,10 @@ export const ExchangerCard: FC<ExchangerCardProps> = (
 				</div>
 				<div className={styles.inputWrapper}>
 					{/*<span className={styles.border}></span>*/}
+					{isCalculating ? <span className={styles.skeleton}></span> : ''}
 					<Input
 						id='count'
-						value={inputState}
+						value={value}
 						handleChangeInput={handleInput}
 						placeholder='Enter amount'
 						border={false}
@@ -56,10 +68,10 @@ export const ExchangerCard: FC<ExchangerCardProps> = (
 					{isTriggerTooltip &&
             <TooltipTrigger
               className={styles.lockIcon}
-	            tag='btn'
-	            setIsLocked={setIsLocked}
-	            isLocked={isLocked}
-	            tooltipContent={<TooltipFee isLocked={isLocked} isTriggerTooltip={isTriggerTooltip}/>}>
+              tag='button'
+              setIsLocked={setIsLocked}
+              isLocked={isLocked}
+              tooltipContent={<TooltipFee isLocked={isLocked} isTriggerTooltip={isTriggerTooltip}/>}>
               <Icon type={isLocked ? 'LOCK_GREEN' : 'LOCK_GRAY'}/>
             </TooltipTrigger>
 					}

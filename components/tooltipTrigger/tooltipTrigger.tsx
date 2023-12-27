@@ -25,8 +25,11 @@ export const TooltipTrigger: FC<TooltipTriggerProps> = (
 	const toolTipRef = useRef<HTMLDivElement | null>(null)
 	const tagRef = useRef<HTMLButtonElement | null>(null)
 
-	const handleToolTip = () => {
+	const handleHoverToolTip = () => {
 		setIsToolTip && setIsToolTip(true)
+	}
+
+	const handleClickOnToolTip = () => {
 		setIsLocked(!isLocked)
 	}
 
@@ -34,9 +37,13 @@ export const TooltipTrigger: FC<TooltipTriggerProps> = (
 		setIsToolTip && setIsToolTip(false)
 	}
 
-	useOnClickOutside(tagRef, handleRemoveToolTip, toolTipRef)
-
-	const Element = createElement(tag, { ref: tagRef, className: className, onClick: handleToolTip }, children)
+	const Element = createElement(tag, {
+		ref: tagRef,
+		className: className,
+		onMouseEnter: handleHoverToolTip,
+		onMouseLeave: handleRemoveToolTip,
+		onClick: handleClickOnToolTip,
+	}, children)
 
 	return (
 		<>

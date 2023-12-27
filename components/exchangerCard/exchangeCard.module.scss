@@ -92,6 +92,33 @@
   }
 }
 
+.skeleton {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, #f4f5f6, #dee0e0);
+  border-radius: 5px;
+  overflow: hidden;
+  transition: .3s ease;
+  animation: skeletonBg 2s infinite linear;
+  background-size: 400% 400%;
+}
+
+@keyframes skeletonBg {
+  0% {
+    background-position: 0% 100%;
+  }
+  50% {
+    background-position: 100% 0%;
+  }
+  100% {
+    background-position: 0% 100%;
+  }
+}
+
 @keyframes animatedgradient {
   0% {
     opacity: 1;

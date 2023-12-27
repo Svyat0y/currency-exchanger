@@ -1,6 +1,6 @@
 import {FC, useEffect, useState} from "react"
 import styles from './exchangeCard.module.scss'
-import classNames from "classnames";
+import classNames from "classnames"
 
 type TooltipFeeProps = {
 	isTriggerTooltip: boolean

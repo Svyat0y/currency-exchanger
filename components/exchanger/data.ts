@@ -16,7 +16,7 @@ import dai1 from './icons/dai1.svg'
 import dai2 from './icons/dai2.svg'
 import dai3 from './icons/dai3.svg'
 
-const currencies = [
+export const currencies = [
 	{
 		group: "AAVE",
 		data: [
