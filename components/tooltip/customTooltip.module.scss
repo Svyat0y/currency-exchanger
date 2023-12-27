@@ -1,0 +1,13 @@
+@import "styles/var";
+
+.tipsInfo {
+  position: absolute;
+  background: $black;
+  border-radius: 12px;
+  z-index: 100;
+  display: flex;
+  justify-self: center;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+}

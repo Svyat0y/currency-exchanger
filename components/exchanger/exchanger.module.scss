@@ -1,0 +1,48 @@
+@import "styles/var";
+
+
+.wrapper {
+  margin-top: 6rem;
+  display: flex;
+  justify-content: space-between;
+  //flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+}
+
+.switchArrows {
+  background: $white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 36px;
+  max-height: 28px;
+  border-radius: 10px;
+  overflow: hidden;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto auto;
+  z-index: 10;
+  border: none;
+  cursor: pointer;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  transition: $hoverTransition all;
+
+  svg {
+    transition: $hoverTransition all;
+  }
+
+  &:hover {
+    svg {
+      transform: rotate(30deg);
+    }
+  }
+
+  &:active {
+    transform: scale(.95);
+  }
+}

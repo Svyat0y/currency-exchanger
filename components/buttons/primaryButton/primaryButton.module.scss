@@ -1,0 +1,29 @@
+@import "styles/var";
+
+.wrapper {
+  padding: 12px 16px;
+  font-size: 16px;
+  color: $white;
+  border: none;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: $hoverTransition all;
+
+  &:active, &:hover {
+    transform: scale(.98);
+  }
+
+  &.black {
+    background: $black;
+  }
+
+  &.gray {
+    background: $lightGray;
+    color: $gray;
+  }
+
+  &.whiteGray {
+    background: $gray_second;
+  }
+}

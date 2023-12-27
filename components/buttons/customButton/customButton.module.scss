@@ -1,0 +1,33 @@
+@import "styles/var";
+
+.wrapper {
+  padding: 12px;
+  font-size: 16px;
+  line-height: 1;
+  color: $black;
+  border: none;
+  border-radius: 12px;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  text-transform: uppercase;
+  background: $lightGray;
+  cursor: pointer;
+  transition: $hoverTransition all;
+
+  &:active {
+    transform: scale(.98);
+  }
+
+  &:hover {
+    background: rgba(#000, .1);
+  }
+
+  span {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
