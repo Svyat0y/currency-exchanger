@@ -1,4 +1,4 @@
-import {FC, useState} from "react"
+import {FC, useEffect, useRef, useState} from "react"
 import styles from './exchangeCard.module.scss'
 import classNames from "classnames"
 import {CustomButton} from "@/components/buttons/customButton"
@@ -11,31 +11,39 @@ import {Item} from "@/types/types"
 type ExchangerCardProps = {
 	cardTitle: string
 	active: boolean
-	isTriggerTooltip?: boolean
 	value: string
 	setInputState: (value: string) => void
 	isCalculating?: boolean
 	card: number
 	setActiveCard: (card: number) => void
 	item: Item
+	disableCard: boolean
+	isFirstCard?: boolean
+	isSecondCard?: boolean
+	additionalInfo?: string
+	isCalculated?: boolean
 }
 
 export const ExchangerCard: FC<ExchangerCardProps> = (
 	{
 		active,
 		cardTitle,
-		isTriggerTooltip,
 		value,
 		setInputState,
 		isCalculating,
 		card,
 		setActiveCard,
 		item,
+		disableCard,
+		isSecondCard,
+		additionalInfo,
+		isCalculated,
 	}) => {
 	const [isLocked, setIsLocked] = useState(false)
+	const inputRef = useRef<HTMLInputElement | null>(null)
 
 	const handleInput = (value: string) => {
-		let newText = value.replace(/[^0-9]/g, '')
+		let newText = value.replace(/[^0-9.]/g, '')
 		setInputState(newText)
 	}
 
@@ -43,12 +51,24 @@ export const ExchangerCard: FC<ExchangerCardProps> = (
 		setActiveCard(card)
 	}
 
+	useEffect(() => {
+		const timeoutId = setTimeout(() => {
+			if (active && inputRef.current) {
+				inputRef.current.focus()
+			}
+		}, 0)
+
+		return () => clearTimeout(timeoutId)
+	}, [active])
+
 	return (
-		<div className={styles.wrapper} onClick={handleCardClick}>
+		<div className={classNames(styles.wrapper, {
+			[styles.disabled]: isCalculating || disableCard,
+		})} onClick={handleCardClick}>
 			<span className={styles.border}></span>
 			<div
 				className={classNames(styles.gradientBlock, {
-					[styles.active]: active
+					[styles.active]: active && !disableCard
 				})}>
 			</div>
 			<div className={styles.content}>
@@ -57,22 +77,25 @@ export const ExchangerCard: FC<ExchangerCardProps> = (
 					<CustomButton text={item.shortLabel} icon={item.icon}/>
 				</div>
 				<div className={styles.inputWrapper}>
-					{/*<span className={styles.border}></span>*/}
 					{isCalculating ? <span className={styles.skeleton}></span> : ''}
 					<Input
+						inputRef={inputRef}
 						id='count'
 						value={value}
 						handleChangeInput={handleInput}
 						placeholder='Enter amount'
 						border={false}
 					/>
-					{isTriggerTooltip &&
+					{isCalculated && isSecondCard && <span className={styles.additionalInfo}>
+						{additionalInfo}
+					</span>}
+					{isCalculated && isSecondCard &&
             <TooltipTrigger
               className={styles.lockIcon}
               tag='button'
               setIsLocked={setIsLocked}
               isLocked={isLocked}
-              tooltipContent={<TooltipFee isLocked={isLocked} isTriggerTooltip={isTriggerTooltip}/>}>
+              tooltipContent={<TooltipFee isLocked={isLocked}/>}>
               <Icon type={isLocked ? 'LOCK_GREEN' : 'LOCK_GRAY'}/>
             </TooltipTrigger>
 					}

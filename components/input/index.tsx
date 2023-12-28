@@ -1,6 +1,6 @@
 import styles from './input.module.scss'
 import classNames from "classnames"
-import {ChangeEvent, FC} from "react"
+import {ChangeEvent, FC, RefObject} from "react"
 
 type InputProps = {
 	type?: string
@@ -10,6 +10,7 @@ type InputProps = {
 	placeholder?: string
 	border: boolean
 	id: string
+	inputRef: RefObject<HTMLInputElement> | null
 }
 
 export const Input: FC<InputProps> = (
@@ -21,6 +22,7 @@ export const Input: FC<InputProps> = (
 		placeholder,
 		border = true,
 		id,
+		inputRef,
 		...rest
 	}) => {
 
@@ -34,6 +36,7 @@ export const Input: FC<InputProps> = (
 		<>
 			<label className={styles.inputLabel} htmlFor={id}></label>
 			<input
+				ref={inputRef}
 				className={classNames(styles.input, className, {
 					[styles.withBorder]: border
 				})}

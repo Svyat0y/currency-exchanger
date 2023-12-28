@@ -3,7 +3,6 @@ import styles from './exchangeCard.module.scss'
 import classNames from "classnames"
 
 type TooltipFeeProps = {
-	isTriggerTooltip: boolean
 	isLocked: boolean
 }
 
@@ -12,11 +11,11 @@ const toolTipsInfo = {
 	unlocked: '+0% fee'
 }
 
-export const TooltipFee: FC<TooltipFeeProps> = ({isTriggerTooltip, isLocked}) => {
+export const TooltipFee: FC<TooltipFeeProps> = ({isLocked}) => {
 	const [toolTipText, setToolTipText] = useState('')
 
 	useEffect(() => {
-		isTriggerTooltip && isLocked
+		isLocked
 			? setToolTipText(toolTipsInfo.locked)
 			: setToolTipText(toolTipsInfo.unlocked)
 

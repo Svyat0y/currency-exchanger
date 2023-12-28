@@ -9,6 +9,11 @@
   overflow: hidden;
   padding: 2px;
 
+  &.disabled {
+    pointer-events: none;
+    opacity: .4;
+  }
+
   .border {
     display: block;
     position: absolute;
@@ -76,6 +81,15 @@
   cursor: pointer;
   border: none;
   background: transparent;
+}
+
+.additionalInfo {
+  position: absolute;
+  font-size: 12px;
+  text-transform: uppercase;
+  bottom: -20px;
+  left: 0;
+  color: $gray_second;
 }
 
 .tooltipFee {
