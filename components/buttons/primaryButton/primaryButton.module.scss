@@ -8,9 +8,9 @@
   border-radius: 12px;
   font-weight: 700;
   cursor: pointer;
-  transition: $hoverTransition all;
+  transition: $transition ease-in-out all;
 
-  &:active, &:hover {
+  &:active {
     transform: scale(.98);
   }
 

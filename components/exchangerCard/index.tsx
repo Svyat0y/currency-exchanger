@@ -7,6 +7,7 @@ import {Icon} from "@/components/icon"
 import {TooltipTrigger} from "@/components/tooltipTrigger/tooltipTrigger"
 import {TooltipFee} from "./tooltipFee"
 import {Item} from "@/types/types"
+import {GradientBorder} from "@/components/gradientBorder"
 
 type ExchangerCardProps = {
 	cardTitle: string
@@ -53,8 +54,8 @@ export const ExchangerCard: FC<ExchangerCardProps> = (
 
 	useEffect(() => {
 		const timeoutId = setTimeout(() => {
-			if (active && inputRef.current) {
-				inputRef.current.focus()
+			if (active && inputRef?.current) {
+				inputRef?.current?.focus()
 			}
 		}, 0)
 
@@ -65,12 +66,7 @@ export const ExchangerCard: FC<ExchangerCardProps> = (
 		<div className={classNames(styles.wrapper, {
 			[styles.disabled]: isCalculating || disableCard,
 		})} onClick={handleCardClick}>
-			<span className={styles.border}></span>
-			<div
-				className={classNames(styles.gradientBlock, {
-					[styles.active]: active && !disableCard
-				})}>
-			</div>
+			<GradientBorder active={active} isCalculated={isCalculated} disabled={disableCard}/>
 			<div className={styles.content}>
 				<div className={styles.header}>
 					<span className={styles.titleDesc}>{cardTitle}</span>
@@ -84,7 +80,6 @@ export const ExchangerCard: FC<ExchangerCardProps> = (
 						value={value}
 						handleChangeInput={handleInput}
 						placeholder='Enter amount'
-						border={false}
 					/>
 					{isCalculated && isSecondCard && <span className={styles.additionalInfo}>
 						{additionalInfo}

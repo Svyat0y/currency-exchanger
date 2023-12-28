@@ -8,7 +8,6 @@ type InputProps = {
 	value: string
 	className?: string
 	placeholder?: string
-	border: boolean
 	id: string
 	inputRef: RefObject<HTMLInputElement> | null
 }
@@ -20,7 +19,6 @@ export const Input: FC<InputProps> = (
 		value,
 		className,
 		placeholder,
-		border = true,
 		id,
 		inputRef,
 		...rest
@@ -37,9 +35,7 @@ export const Input: FC<InputProps> = (
 			<label className={styles.inputLabel} htmlFor={id}></label>
 			<input
 				ref={inputRef}
-				className={classNames(styles.input, className, {
-					[styles.withBorder]: border
-				})}
+				className={classNames(styles.input, className)}
 				placeholder={placeholder}
 				type={type}
 				value={value}

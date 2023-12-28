@@ -1,0 +1,28 @@
+.border {
+  display: block;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  border-radius: 22px;
+  border: 2px solid gray;
+  z-index: 1;
+}
+
+.gradientBlock {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  overflow: hidden;
+  border-radius: 22px;
+
+  &.active {
+    background: linear-gradient(60deg, #EF633BFF, #D013AAFF);
+    animation: animatedgradient 4s linear infinite;
+    background-size: 300% 300%;
+  }
+}

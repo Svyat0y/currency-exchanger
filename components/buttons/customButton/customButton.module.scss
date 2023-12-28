@@ -15,7 +15,7 @@
   text-transform: uppercase;
   background: $lightGray;
   cursor: pointer;
-  transition: $hoverTransition all;
+  transition: $transition ease-in-out all;
 
   &:active {
     transform: scale(.98);

@@ -8,6 +8,7 @@ import {Icon} from "@/components/icon"
 import {currencies} from "@/components/exchanger/data"
 import {Item} from "@/types/types"
 import {formatNumber} from "@/utils/helpers"
+import {Wallet} from "@/components/wallet"
 
 export const CARDS = {
 	sendCard: 1,
@@ -92,37 +93,42 @@ export const Exchanger = () => {
 
 	return (
 		<div className={styles.wrapper}>
-			<ExchangerCard
-				isFirstCard
-				card={CARDS.sendCard}
-				item={sendItem}
-				setActiveCard={setActiveCard}
-				cardTitle='You Send'
-				active={activeCard === CARDS.sendCard}
-				value={sendValue}
-				setInputState={setSendValue}
-				isCalculating={isCalculatingSendValue}
-				disableCard={disableCard}
-			/>
-			<button className={classNames(styles.switchArrows, {
-				[styles.disabled]: disableCard
-			})} onClick={handleSwitch}>
-				<Icon type='SWITCH_ARROWS'/>
-			</button>
-			<ExchangerCard
-				isSecondCard
-				isCalculated={isCalculated}
-				additionalInfo={additionalInfoText}
-				card={CARDS.getCard}
-				item={getItem}
-				setActiveCard={setActiveCard}
-				cardTitle='You Get'
-				active={activeCard === CARDS.getCard}
-				value={getValue}
-				setInputState={setGetValue}
-				isCalculating={isCalculatingGetValue}
-				disableCard={disableCard}
-			/>
+			<div className={styles.cardsWrapper}>
+				<ExchangerCard
+					isFirstCard
+					isCalculated={isCalculated}
+					card={CARDS.sendCard}
+					item={sendItem}
+					setActiveCard={setActiveCard}
+					cardTitle='You Send'
+					active={activeCard === CARDS.sendCard}
+					value={sendValue}
+					setInputState={setSendValue}
+					isCalculating={isCalculatingSendValue}
+					disableCard={disableCard}
+				/>
+				<button className={classNames(styles.switchArrows, {
+					[styles.disabled]: disableCard
+				})} onClick={handleSwitch}>
+					<Icon type='SWITCH_ARROWS'/>
+				</button>
+				<ExchangerCard
+					isSecondCard
+					isCalculated={isCalculated}
+					additionalInfo={additionalInfoText}
+					card={CARDS.getCard}
+					item={getItem}
+					setActiveCard={setActiveCard}
+					cardTitle='You Get'
+					active={activeCard === CARDS.getCard}
+					value={getValue}
+					setInputState={setGetValue}
+					isCalculating={isCalculatingGetValue}
+					disableCard={disableCard}
+				/>
+			</div>
+
+			<Wallet value={wallet} setInputState={setWallet} isCalculated={isCalculated}/>
 		</div>
 	)
 }

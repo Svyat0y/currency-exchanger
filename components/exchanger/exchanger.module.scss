@@ -5,10 +5,23 @@
   margin-top: 6rem;
   display: flex;
   justify-content: space-between;
-  //flex-direction: column;
   align-items: center;
-  gap: 12px;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.cardsWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
   position: relative;
+  gap: 12px;
+
+  @include md {
+    flex-direction: row;
+  }
 }
 
 .switchArrows {
@@ -30,7 +43,7 @@
   border: none;
   cursor: pointer;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-  transition: $hoverTransition all;
+  transition: $transition ease-in-out all;
 
   &.disabled {
     pointer-events: none;
@@ -38,7 +51,7 @@
   }
 
   svg {
-    transition: $hoverTransition all;
+    transition: $transition ease-in-out all;
   }
 
   &:hover {
