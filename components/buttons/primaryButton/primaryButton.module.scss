@@ -26,4 +26,9 @@
   &.whiteGray {
     background: $gray_second;
   }
+
+  &:disabled {
+    opacity: .5;
+    pointer-events: none;
+  }
 }

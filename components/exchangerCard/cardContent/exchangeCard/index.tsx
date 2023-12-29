@@ -2,11 +2,11 @@ import styles from './exhangeCard.module.scss'
 import {CustomButton} from "@/components/buttons/customButton"
 import {Input} from "@/components/input"
 import {TooltipTrigger} from "@/components/tooltipTrigger/tooltipTrigger"
-import {TooltipFee} from "@/components/exchangerCard/tooltipFee"
+import {TooltipFee} from "./tooltipFee"
 import {Icon} from "@/components/icon"
 import {FC, useEffect, useRef, useState} from "react"
 import {CardContentProps} from "@/components/exchangerCard/cardContent"
-import classNames from "classnames";
+import classNames from "classnames"
 
 type ExchangeCardProps = CardContentProps
 

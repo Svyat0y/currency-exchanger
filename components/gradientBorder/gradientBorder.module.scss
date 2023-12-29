@@ -27,6 +27,10 @@
     animation: animatedgradient 4s linear infinite;
     background-size: 300% 300%;
   }
+
+  &.withoutAnim {
+    animation: initial;
+  }
 }
 
 @keyframes animatedgradient {

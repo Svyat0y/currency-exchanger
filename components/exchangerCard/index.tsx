@@ -19,9 +19,11 @@ type ExchangerCardProps = {
 	additionalInfo?: string
 	isCalculated?: boolean
 	setIsCardMenu: () => void
-	isOpenFirstCardMenu: boolean
-	isOpenSecondCardMenu: boolean
 	handleCloseMenu: () => void
+	isOpenMenu: boolean
+	isHided: boolean
+	isDisabled: boolean
+	cardName: string
 }
 
 export const ExchangerCard: FC<ExchangerCardProps> = (
@@ -39,9 +41,11 @@ export const ExchangerCard: FC<ExchangerCardProps> = (
 		isCalculated,
 		isFirstCard,
 		setIsCardMenu,
-		isOpenFirstCardMenu,
-		isOpenSecondCardMenu,
 		handleCloseMenu,
+		isOpenMenu,
+		isHided,
+		isDisabled,
+		cardName,
 	}) => {
 
 	const handleInput = (value: string) => {
@@ -57,7 +61,6 @@ export const ExchangerCard: FC<ExchangerCardProps> = (
 		setIsCardMenu()
 	}
 
-	const isOpenMenu = isOpenSecondCardMenu || isOpenFirstCardMenu
 	const cardProps = {
 		cardTitle,
 		handleOpenMenu,
@@ -74,15 +77,14 @@ export const ExchangerCard: FC<ExchangerCardProps> = (
 	}
 
 	return (
-		<div className={classNames(styles.wrapper, {
-			[styles.firstCard]: isFirstCard,
-			[styles.secondCard]: isSecondCard,
-			[styles.hided]: ((isFirstCard && (isOpenSecondCardMenu) || (isSecondCard && (isOpenFirstCardMenu))) && !isCalculating) || (isSecondCard && isOpenFirstCardMenu && !isCalculating),
-			[styles.disabled]: (isCalculating) || (isFirstCard && isOpenSecondCardMenu) || (isSecondCard && isOpenFirstCardMenu),
-			[styles.isMenuFirst]: isOpenFirstCardMenu && isFirstCard,
-			[styles.isMenuSecond]: isOpenSecondCardMenu && isSecondCard
+		<div className={classNames(styles.wrapper, styles[cardName], {
+			[styles.hided]: isHided,
+			[styles.disabled]: isDisabled,
+			[styles.unActive]: isCalculating,
+			[styles.isMenuFirst]: isOpenMenu && isFirstCard,
+			[styles.isMenuSecond]: isOpenMenu && isSecondCard
 		})} onClick={handleCardClick}>
-			<GradientBorder active={active}/>
+			<GradientBorder active={active} withoutAnim={isOpenMenu}/>
 			<CardContent {...cardProps}/>
 		</div>
 	)

@@ -12,6 +12,7 @@ type PrimaryButtonProps = {
 	children: ReactNode
 	type: typeof BTN_TYPES[keyof typeof BTN_TYPES]
 	onClick?: () => void
+	disabled?: boolean
 }
 
 export const PrimaryButton: FC<PrimaryButtonProps> = (
@@ -19,6 +20,7 @@ export const PrimaryButton: FC<PrimaryButtonProps> = (
 		children,
 		type,
 		onClick,
+		disabled,
 	}) => {
 	return (
 		<button
@@ -27,6 +29,7 @@ export const PrimaryButton: FC<PrimaryButtonProps> = (
 				[styles.black]: type === BTN_TYPES.black,
 				[styles.whiteGray]: type === BTN_TYPES.whiteGray,
 			})}
+			disabled={disabled}
 			onClick={onClick}
 		>
 			{children}

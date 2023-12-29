@@ -8,9 +8,10 @@ import {QrScanner} from "@/components/qrScanner"
 
 type WalletNavigationProps = {
 	setWallet: (wallet: string) => void
+	value: string
 }
 
-export const WalletNavigation: FC<WalletNavigationProps> = ({setWallet}) => {
+export const WalletNavigation: FC<WalletNavigationProps> = ({setWallet, value}) => {
 	const [showScanner, setShowScanner] = useState(false)
 
 	const handlePaste = async () => {
@@ -34,7 +35,7 @@ export const WalletNavigation: FC<WalletNavigationProps> = ({setWallet}) => {
 					<button onClick={handlePaste} className={styles.navBtn}><Icon type='PASTE'/></button>
 					<button onClick={() => setShowScanner(true)} className={styles.navBtn}><Icon type='QR_CODE'/></button>
 				</div>
-				<PrimaryButton type={'black'}>Exchange</PrimaryButton>
+				<PrimaryButton disabled={!value} type={'black'}>Exchange</PrimaryButton>
 			</div>
 			{typeof document !== 'undefined' && showScanner && createPortal(
 				<QrScanner showScanner={showScanner} setShowScanner={setShowScanner} setWallet={setWallet}/>,

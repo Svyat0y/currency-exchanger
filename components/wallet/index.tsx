@@ -52,7 +52,7 @@ export const Wallet: FC<WalletProps> = (
 					inputRef={inputRef}
 					placeholder='Enter Destination Wallet Address'
 				/>
-				<WalletNavigation setWallet={setInputState}/>
+				<WalletNavigation value={value} setWallet={setInputState}/>
 			</div>
 		</div>
 	)

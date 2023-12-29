@@ -2,9 +2,9 @@
 
 
 .wrapper {
-  margin-top: 12rem;
+  margin-top: 4rem;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   flex-direction: column;
   gap: 20px;
   transition: .6s cubic-bezier(0.86, 0.6, 0, 0.93) all;
@@ -15,6 +15,10 @@
     @include md {
       margin-top: 12rem;
     }
+  }
+
+  @include md {
+    margin-top: 12rem;
   }
 }
 

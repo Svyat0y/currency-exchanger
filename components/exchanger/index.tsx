@@ -112,11 +112,10 @@ export const Exchanger = () => {
 			<div className={styles.cardsWrapper}>
 				<ExchangerCard
 					isFirstCard
-					isOpenFirstCardMenu={isFirstMenuOpen}
-					isOpenSecondCardMenu={isSecondMenuOpen}
+					card={CARDS.sendCard}
+					cardName='sendCard'
 					isCalculated={isCalculated}
 					setIsCardMenu={handleFirsCardMenu}
-					card={CARDS.sendCard}
 					item={sendItem}
 					setActiveCard={setActiveCard}
 					cardTitle='You Send'
@@ -125,6 +124,9 @@ export const Exchanger = () => {
 					setInputState={setSendValue}
 					isCalculating={isCalculatingSendValue}
 					handleCloseMenu={handleCloseMenu}
+					isOpenMenu={isFirstMenuOpen}
+					isHided={(isSecondMenuOpen)}
+					isDisabled={isSecondMenuOpen}
 				/>
 				<button className={classNames(styles.switchArrows, {
 					[styles.disabled]: false
@@ -133,12 +135,11 @@ export const Exchanger = () => {
 				</button>
 				<ExchangerCard
 					isSecondCard
-					isOpenFirstCardMenu={isFirstMenuOpen}
-					isOpenSecondCardMenu={isSecondMenuOpen}
+					card={CARDS.getCard}
+					cardName='getCard'
 					setIsCardMenu={handleSecondCardMenu}
 					isCalculated={isCalculated}
 					additionalInfo={additionalInfoText}
-					card={CARDS.getCard}
 					item={getItem}
 					setActiveCard={setActiveCard}
 					cardTitle='You Get'
@@ -147,6 +148,9 @@ export const Exchanger = () => {
 					setInputState={setGetValue}
 					isCalculating={isCalculatingGetValue}
 					handleCloseMenu={handleCloseMenu}
+					isOpenMenu={isSecondMenuOpen}
+					isHided={isFirstMenuOpen}
+					isDisabled={isFirstMenuOpen}
 				/>
 			</div>
 			<Wallet

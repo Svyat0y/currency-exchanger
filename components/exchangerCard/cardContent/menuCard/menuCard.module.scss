@@ -8,6 +8,8 @@
   pointer-events: none;
   transition: .6s cubic-bezier(0.86, 0.6, 0, 0.93) all;
   z-index: 2;
+  display: flex;
+  justify-content: space-between;
 
   &.active {
     opacity: 1;

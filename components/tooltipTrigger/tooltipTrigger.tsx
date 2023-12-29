@@ -1,5 +1,4 @@
 import {FC, ReactNode, createElement, useState, useRef} from "react"
-import {useOnClickOutside} from "@/hooks/useOnClickOutside"
 import {createPortal} from "react-dom"
 import {CustomToolTip} from "@/components/tooltip/customTooltip"
 
