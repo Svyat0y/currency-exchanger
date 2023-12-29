@@ -15,6 +15,10 @@
     opacity: 1;
     pointer-events: all;
   }
+
+  &.hided {
+    display: none;
+  }
 }
 
 .content {

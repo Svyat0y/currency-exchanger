@@ -1,3 +1,5 @@
+@import "styles/var";
+
 .border {
   display: block;
   position: absolute;
@@ -6,7 +8,7 @@
   top: 0;
   left: 0;
   border-radius: 22px;
-  border: 2px solid gray;
+  border: 2px solid $lightGray;
   z-index: 1;
 }
 
@@ -24,5 +26,26 @@
     background: linear-gradient(60deg, #EF633BFF, #D013AAFF);
     animation: animatedgradient 4s linear infinite;
     background-size: 300% 300%;
+  }
+}
+
+@keyframes animatedgradient {
+  0% {
+    opacity: 1;
+  }
+  25% {
+    opacity: .5;
+  }
+  34% {
+    opacity: 0;
+  }
+  60% {
+    opacity: 0;
+  }
+  75% {
+    opacity: .5;
+  }
+  100% {
+    opacity: 1;
   }
 }

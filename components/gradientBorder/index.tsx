@@ -3,18 +3,16 @@ import styles from "./gradientBorder.module.scss"
 import classNames from "classnames"
 
 type GradientBorderProps = {
-	isCalculated?: boolean
 	active: boolean
-	disabled?: boolean
 }
 
-export const GradientBorder:FC<GradientBorderProps> = ({isCalculated, active, disabled}) => {
+export const GradientBorder:FC<GradientBorderProps> = ({active}) => {
 	return (
 		<>
 			<span className={styles.border}></span>
 			<div
 				className={classNames(styles.gradientBlock, {
-					[styles.active]: !isCalculated && active && !disabled
+					[styles.active]: active
 				})}>
 			</div>
 		</>

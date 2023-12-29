@@ -2,19 +2,26 @@
 
 
 .wrapper {
-  margin-top: 6rem;
+  margin-top: 12rem;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   flex-direction: column;
   gap: 20px;
+  transition: .6s cubic-bezier(0.86, 0.6, 0, 0.93) all;
+
+  &.menuIsOpen {
+    margin-top: 0;
+
+    @include md {
+      margin-top: 12rem;
+    }
+  }
 }
 
 .cardsWrapper {
   width: 100%;
   display: flex;
   justify-content: space-between;
-  align-items: center;
   flex-direction: column;
   position: relative;
   gap: 12px;

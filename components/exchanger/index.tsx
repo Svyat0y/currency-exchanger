@@ -12,7 +12,8 @@ import {Wallet} from "@/components/wallet"
 
 export const CARDS = {
 	sendCard: 1,
-	getCard: 2
+	getCard: 2,
+	wallet: 3,
 }
 
 export const Exchanger = () => {
@@ -24,14 +25,13 @@ export const Exchanger = () => {
 	const [isCalculatingGetValue, setIsCalculatingGetValue] = useState(false)
 	const [isCalculatingSendValue, setIsCalculatingSendValue] = useState(false)
 	const [isCalculated, setIsCalculated] = useState(false)
-	const [disableCard, setDisableCard] = useState(false)
 	const [wallet, setWallet] = useState('')
+	const [isFirstMenuOpen, setIsFirstMenuOpen] = useState(false)
+	const [isSecondMenuOpen, setIsSecondMenuOpen] = useState(false)
 
 	useEffect(() => {
-		if((sendValue.length && getValue.length) && (!isCalculatingGetValue && !isCalculatingSendValue)) {
-			setIsCalculated(true)
-		}
-	}, [isCalculatingGetValue, isCalculatingSendValue, sendValue, getValue])
+		isCalculated && setActiveCard(CARDS.wallet)
+	}, [isCalculated])
 
 	useEffect(() => {
 		let calculationTimeout: any
@@ -42,7 +42,6 @@ export const Exchanger = () => {
 			setIsCalculated(false)
 			return
 		}
-
 		if(activeCard === CARDS.sendCard && sendValue.length) {
 			setIsCalculatingGetValue(true)
 
@@ -51,6 +50,7 @@ export const Exchanger = () => {
 
 				setGetValue(String(calculatedValue))
 				setIsCalculatingGetValue(false)
+				setIsCalculated(true)
 			}, 2000)
 		}
 
@@ -75,6 +75,7 @@ export const Exchanger = () => {
 
 				setSendValue(String(calculatedValue))
 				setIsCalculatingSendValue(false)
+				setIsCalculated(true)
 			}, 2000)
 		}
 
@@ -86,17 +87,35 @@ export const Exchanger = () => {
 		setSendItem(getItem)
 	}
 
+	const handleFirsCardMenu = () => {
+		setIsFirstMenuOpen(true)
+	}
+
+	const handleSecondCardMenu = () => {
+		setIsSecondMenuOpen(true)
+	}
+
+	const handleCloseMenu = () => {
+		setIsFirstMenuOpen(false)
+		setIsSecondMenuOpen(false)
+	}
+
 	const formattedSendValue = formatNumber(sendValue, 6)
 	const formattedGetValue = formatNumber(getValue, 6)
 
 	const additionalInfoText = `${formattedSendValue} ${sendItem.shortLabel} = ${formattedGetValue} ${getItem.shortLabel}`
 
 	return (
-		<div className={styles.wrapper}>
+		<div className={classNames(styles.wrapper, {
+			[styles.menuIsOpen]: isFirstMenuOpen || isSecondMenuOpen
+		})}>
 			<div className={styles.cardsWrapper}>
 				<ExchangerCard
 					isFirstCard
+					isOpenFirstCardMenu={isFirstMenuOpen}
+					isOpenSecondCardMenu={isSecondMenuOpen}
 					isCalculated={isCalculated}
+					setIsCardMenu={handleFirsCardMenu}
 					card={CARDS.sendCard}
 					item={sendItem}
 					setActiveCard={setActiveCard}
@@ -105,15 +124,18 @@ export const Exchanger = () => {
 					value={sendValue}
 					setInputState={setSendValue}
 					isCalculating={isCalculatingSendValue}
-					disableCard={disableCard}
+					handleCloseMenu={handleCloseMenu}
 				/>
 				<button className={classNames(styles.switchArrows, {
-					[styles.disabled]: disableCard
+					[styles.disabled]: false
 				})} onClick={handleSwitch}>
 					<Icon type='SWITCH_ARROWS'/>
 				</button>
 				<ExchangerCard
 					isSecondCard
+					isOpenFirstCardMenu={isFirstMenuOpen}
+					isOpenSecondCardMenu={isSecondMenuOpen}
+					setIsCardMenu={handleSecondCardMenu}
 					isCalculated={isCalculated}
 					additionalInfo={additionalInfoText}
 					card={CARDS.getCard}
@@ -124,11 +146,17 @@ export const Exchanger = () => {
 					value={getValue}
 					setInputState={setGetValue}
 					isCalculating={isCalculatingGetValue}
-					disableCard={disableCard}
+					handleCloseMenu={handleCloseMenu}
 				/>
 			</div>
-
-			<Wallet value={wallet} setInputState={setWallet} isCalculated={isCalculated}/>
+			<Wallet
+				hided={isSecondMenuOpen || isFirstMenuOpen}
+				active={activeCard === CARDS.wallet}
+				setActiveCard={setActiveCard}
+				card={CARDS.wallet}
+				value={wallet} setInputState={setWallet}
+				isCalculated={isCalculated}
+			/>
 		</div>
 	)
 }

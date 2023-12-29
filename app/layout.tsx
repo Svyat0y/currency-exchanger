@@ -4,7 +4,7 @@ import '../styles/global.scss'
 
 export const metadata: Metadata = {
   title: 'SwapHub',
-  description: 'swaphub',
+  description: 'SwapHub Exchanger',
 }
 
 export default function RootLayout({

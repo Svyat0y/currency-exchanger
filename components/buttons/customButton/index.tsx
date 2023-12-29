@@ -6,12 +6,13 @@ import Image from "next/image"
 type CustomButtonProps = {
 	text: string
 	icon: string
+	onClick?: () => void
 }
 
-export const CustomButton: FC<CustomButtonProps> = ({ text, icon }) => {
+export const CustomButton: FC<CustomButtonProps> = ({ text, icon, onClick }) => {
 
 	return (
-		<button className={classNames(styles.wrapper)}>
+		<button className={classNames(styles.wrapper)} onClick={onClick}>
 			<div className={styles.imageWrapper}>
 				<Image src={icon} alt='icon' width={16} height={16}/>
 			</div>

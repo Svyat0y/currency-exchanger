@@ -1,0 +1,29 @@
+@import 'styles/var';
+
+.wrapper {
+  min-width: 40px;
+  max-width: 40px;
+  height: 40px;
+  background: $lightGray;
+  border-radius: 12px;
+  position: relative;
+  border: none;
+
+  &::before, &::after {
+    position: absolute;
+    content: '';
+    width: 15px;
+    height: 2px;
+    top: 19px;
+    left: 12px;
+    background: $black;
+  }
+
+  &::before {
+    transform: rotate(45deg);
+  }
+
+  &::after {
+    transform: rotate(-45deg);
+  }
+}
