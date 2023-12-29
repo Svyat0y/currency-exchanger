@@ -56,14 +56,14 @@
     @include md {
       position: absolute;
       max-height: 520px;
-      transform: translate(50%, -25%);
+      transform: translate(50%, -100px);
     }
   }
 
   &.isMenuSecond {
     @include md {
       right: 0;
-      transform: translate(-50%, -25%);
+      transform: translate(-50%, -100px);
     }
   }
 }
