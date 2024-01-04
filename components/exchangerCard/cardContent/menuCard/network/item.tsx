@@ -1,4 +1,4 @@
-import styles from "@/components/exchangerCard/cardContent/menuCard/menuCard.module.scss"
+import styles from './network.module.scss'
 import Image from "next/image"
 import {FC} from "react"
 

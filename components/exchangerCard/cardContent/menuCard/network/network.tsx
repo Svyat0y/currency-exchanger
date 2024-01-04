@@ -1,9 +1,9 @@
-import styles from './menuCard.module.scss'
+import styles from './network.module.scss'
 import {CustomButton} from "@/components/buttons/customButton"
 import {FC} from "react"
 import classNames from "classnames"
 import {GradientBorder} from "@/components/gradientBorder"
-import {NetworkList} from "@/components/exchangerCard/cardContent/menuCard/networkList"
+import {NetworkList} from "./networkList"
 
 type NetworkProps = {
 	networkMenuIsOpen: boolean

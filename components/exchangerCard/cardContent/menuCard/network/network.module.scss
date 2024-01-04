@@ -1,0 +1,171 @@
+@import "styles/var";
+
+.network {
+  position: relative;
+  padding: 1px;
+  max-height: max-content;
+}
+
+.content {
+  position: relative;
+  background: $white;
+  z-index: 20;
+  transition: $cubicBezier;
+}
+
+.borderWrapper {
+  position: absolute;
+  transition: $cubicBezier;
+  opacity: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  &.isOpen {
+    top: -2px;
+    right: -2px;
+    bottom: -2px;
+    left: -2px;
+    opacity: 1;
+  }
+}
+
+.leftTitle {
+  transition: $cubicBezier;
+  position: absolute;
+  z-index: 25;
+  top: -0.5rem;
+  opacity: 1;
+  color: $gray_second;
+
+  &.isOpen {
+    opacity: 0;
+  }
+}
+
+.nav {
+  transition: $cubicBezier;
+  border-radius: 10px;
+  position: relative;
+  top: -1.5rem;
+  right: -1rem;
+  background: $white;
+
+  .leftTitlePopup {
+    transition: $cubicBezier;
+    opacity: 0;
+    color: $gray_second;
+  }
+
+  &.isOpen {
+    position: relative;
+    top: -0.5rem;
+    right: 0;
+    border-radius: 10px;
+    max-height: 260px;
+    z-index: 30;
+
+    .leftTitlePopup {
+      opacity: 1;
+    }
+  }
+}
+
+.navContent {
+  position: relative;
+  border-radius: 10px;
+  padding: 1rem;
+  z-index: 20;
+  background: $white;
+  max-height: 30px;
+  transition: $cubicBezier;
+  overflow-x: hidden;
+
+  &.isOpen {
+    max-height: 260px;
+
+    .networkBtn {
+      img {
+        transform: rotate(180deg);
+      }
+    }
+  }
+}
+
+.navHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  transition: $cubicBezier;
+  margin-bottom: 1rem;
+}
+
+.networkBtn {
+  background: none;
+  flex-direction: row-reverse;
+  font-weight: 400;
+  align-items: center;
+  text-transform: capitalize;
+  color: $darkBlack;
+  cursor: pointer;
+  padding: 1px;
+
+  &:hover {
+    background: initial;
+  }
+}
+
+.networkList {
+  pointer-events: none;
+  visibility: hidden;
+  z-index: -1;
+  transition: $cubicBezier;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  img {
+    max-width: 16px;
+    min-width: 16px;
+    max-height: 16px;
+  }
+
+  &.isOpen {
+    z-index: 20;
+    pointer-events: auto;
+    visibility: visible;
+  }
+}
+
+.networkItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 16px;
+
+  .left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: inherit;
+  }
+}
+.iconWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 14px;
+  height: 14px;
+  background: linear-gradient(60deg, #EF633BFF, #D013AAFF);
+  border-radius: 50%;
+
+  img {
+    max-width: 8px;
+    min-width: 8px;
+    max-height: 8px;
+  }
+}

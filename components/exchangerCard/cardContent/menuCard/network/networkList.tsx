@@ -1,8 +1,8 @@
+import styles from './network.module.scss'
 import classNames from "classnames"
-import styles from "./menuCard.module.scss"
 import {FC} from "react"
 import {Item} from "./item"
-import {LIST} from "@/components/exchangerCard/cardContent/menuCard/index"
+import {LIST} from "@/components/exchangerCard/cardContent/menuCard"
 const check = '/icons/check.svg'
 
 type NetworkListProps = {
