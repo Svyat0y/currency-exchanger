@@ -29,11 +29,14 @@
     display: inline-flex;
     justify-content: center;
     align-items: center;
+    color: $darkBlack;
+
   }
 }
 
 .imageWrapper {
   max-width: 16px;
+  min-width: 16px;
   max-height: 16px;
   display: flex;
   justify-content: center;

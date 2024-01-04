@@ -10,6 +10,14 @@
   border-radius: 22px;
   border: 2px solid $lightGray;
   z-index: 1;
+
+  &.smallRadius {
+    border-radius: 12px;
+  }
+
+  &.withoutGrayBorder {
+    border: none;
+  }
 }
 
 .gradientBlock {
@@ -30,6 +38,10 @@
 
   &.withoutAnim {
     animation: initial;
+  }
+
+  &.smallRadius {
+    border-radius: 12px;
   }
 }
 

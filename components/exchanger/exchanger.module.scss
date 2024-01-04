@@ -7,7 +7,7 @@
   align-items: center;
   flex-direction: column;
   gap: 20px;
-  transition: .6s cubic-bezier(0.86, 0.6, 0, 0.93) all;
+  transition: $cubicBezier;
 
   &.menuIsOpen {
     margin-top: 0;

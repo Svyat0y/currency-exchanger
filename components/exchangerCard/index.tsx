@@ -4,6 +4,7 @@ import classNames from "classnames"
 import {Item} from "@/types/types"
 import {GradientBorder} from "@/components/gradientBorder"
 import {CardContent} from "./cardContent"
+import {Search} from "@/components/search";
 
 type ExchangerCardProps = {
 	cardTitle: string
@@ -24,6 +25,7 @@ type ExchangerCardProps = {
 	isHided: boolean
 	isDisabled: boolean
 	cardName: string
+	setItem: (item: Item) => void
 }
 
 export const ExchangerCard: FC<ExchangerCardProps> = (
@@ -46,6 +48,7 @@ export const ExchangerCard: FC<ExchangerCardProps> = (
 		isHided,
 		isDisabled,
 		cardName,
+		setItem,
 	}) => {
 
 	const handleInput = (value: string) => {
@@ -74,6 +77,7 @@ export const ExchangerCard: FC<ExchangerCardProps> = (
 		active,
 		isOpenMenu,
 		handleCloseMenu,
+		setItem,
 	}
 
 	return (

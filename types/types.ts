@@ -8,6 +8,7 @@ export type Item = {
 	max: number
 	icon: string
 	network: string
+	networkValue: string
 }
 
 export type ItemGroup = {

@@ -17,6 +17,8 @@ const atom1 = './icons/atom.svg'
 const dai1 = './icons/dai1.svg'
 const dai2 = './icons/dai2.svg'
 const dai3 = './icons/dai3.svg'
+const matic1 = './icons/matic1.svg'
+const eth = './icons/eth.svg'
 
 export const currencies: ItemGroup[] = [
 	{
@@ -32,6 +34,7 @@ export const currencies: ItemGroup[] = [
 				max: 5000,
 				icon: aave1,
 				network: "Ethereum ERC20",
+				networkValue: "ethereumErc20",
 			},
 		],
 	},
@@ -48,6 +51,7 @@ export const currencies: ItemGroup[] = [
 				max: 1000,
 				icon: avax,
 				network: "C-Chain",
+				networkValue: "cChain",
 			},
 		]
 	},
@@ -64,6 +68,7 @@ export const currencies: ItemGroup[] = [
 				max: 1000,
 				icon: bnb1,
 				network: "BEP2",
+				networkValue: "Bep2",
 			},
 			{
 				id: 1,
@@ -75,6 +80,7 @@ export const currencies: ItemGroup[] = [
 				max: 1000,
 				icon: bnb2,
 				network: "BEP20",
+				networkValue: "Bep20",
 			},
 		]
 	},
@@ -91,6 +97,7 @@ export const currencies: ItemGroup[] = [
 				max: 10000,
 				icon: bat1,
 				network: "ERC20",
+				networkValue: "Erc20",
 			},
 		]
 	},
@@ -107,6 +114,7 @@ export const currencies: ItemGroup[] = [
 				max: 5,
 				icon: btc1,
 				network: "BNB BEP20",
+				networkValue: "BnbBep20",
 			},
 			{
 				id: 2,
@@ -118,6 +126,7 @@ export const currencies: ItemGroup[] = [
 				max: 5,
 				icon: btc2,
 				network: "BSC BEP20",
+				networkValue: "bscBep20",
 			},
 			{
 				id: 3,
@@ -129,6 +138,7 @@ export const currencies: ItemGroup[] = [
 				max: 5,
 				icon: btc3,
 				network: "Lightning",
+				networkValue: "lightning",
 			},
 			{
 				id: 3,
@@ -140,8 +150,26 @@ export const currencies: ItemGroup[] = [
 				max: 2000,
 				icon: btc4,
 				network: "",
+				networkValue: ""
 			},
 		],
+	},
+	{
+		group: "ETH",
+		data: [
+			{
+				id: 1,
+				label: "ETH",
+				shortLabel: "ETH",
+				value: "ETH",
+				price: 2200,
+				min: 200,
+				max: 2000,
+				icon: eth,
+				network: "",
+				networkValue: ''
+			},
+		]
 	},
 	{
 		group: "ADA",
@@ -156,6 +184,7 @@ export const currencies: ItemGroup[] = [
 				max: 7000,
 				icon: ada1,
 				network: "",
+				networkValue: ''
 			},
 			{
 				id: 2,
@@ -167,6 +196,7 @@ export const currencies: ItemGroup[] = [
 				max: 7000,
 				icon: ada2,
 				network: "BNB BEP20",
+				networkValue: 'bnbBep20'
 			},
 			{
 				id: 3,
@@ -178,6 +208,7 @@ export const currencies: ItemGroup[] = [
 				max: 7000,
 				icon: ada3,
 				network: "BSC BEP20",
+				networkValue: 'bscBep20'
 			},
 		]
 	},
@@ -194,6 +225,7 @@ export const currencies: ItemGroup[] = [
 				max: 2500,
 				icon: link1,
 				network: "Ethereum ERC20",
+				networkValue: 'ethereumErc20'
 			},
 		]
 	},
@@ -210,6 +242,7 @@ export const currencies: ItemGroup[] = [
 				max: 2500,
 				icon: atom1,
 				network: "",
+				networkValue: ''
 			},
 		]
 	},
@@ -226,6 +259,7 @@ export const currencies: ItemGroup[] = [
 				max: 50000,
 				icon: dai1,
 				network: "BSC BEP20",
+				networkValue: 'bscBep20'
 			},
 			{
 				id: 2,
@@ -237,6 +271,7 @@ export const currencies: ItemGroup[] = [
 				max: 50000,
 				icon: dai2,
 				network: "Ethereum ERC20",
+				networkValue: "ethereumErc20",
 			},
 			{
 				id: 3,
@@ -248,6 +283,24 @@ export const currencies: ItemGroup[] = [
 				max: 50000,
 				icon: dai3,
 				network: "Polygon",
+				networkValue: "polygon",
+			},
+		]
+	},
+	{
+		group: "MATIC",
+		data: [
+			{
+				id: 1,
+				label: "MATIC",
+				shortLabel: "MATIC",
+				value: "MATIC",
+				price: 0.85,
+				min: 10000,
+				max: 50000,
+				icon: matic1,
+				network: "Polygon",
+				networkValue: "polygon",
 			},
 		]
 	},

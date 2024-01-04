@@ -1,7 +1,7 @@
 import React, {FC} from 'react'
 
 const type = [
-	'LOCK_GRAY', 'LOCK_GREEN', 'SWITCH_ARROWS', 'PASTE', 'QR_CODE'
+	'LOCK_GRAY', 'LOCK_GREEN', 'SWITCH_ARROWS', 'PASTE', 'QR_CODE',
 ] as const
 
 type RepeatedFieldsType = {
@@ -103,14 +103,6 @@ const ICONS: any = {
 	// 		<path d="M21.5417 18.9584H18.9583V21.5417H21.5417V18.9584Z" fill={props.fill || '#82899A'}/>
 	// 		<path d="M21.5417 13.7916H18.9583V16.375H21.5417V13.7916Z" fill={props.fill || '#82899A'}/>
 	// 		<path d="M24.125 16.375H21.5417V18.9583H24.125V16.375Z" fill={props.fill || '#82899A'}/>
-	// 	</svg>
-	// ),
-	// PASTE: (props: TSvgProps) => (
-	// 	<svg className={props.className || ''} width="21" height="25" viewBox="0 0 21 25" fill="none"
-	// 	     xmlns="http://www.w3.org/2000/svg">
-	// 		<path
-	// 			d="M18.375 2.25H13.6725C13.2 0.945 11.9625 0 10.5 0C9.0375 0 7.8 0.945 7.3275 2.25H2.625C1.3875 2.25 0.375 3.2625 0.375 4.5V22.5C0.375 23.7375 1.3875 24.75 2.625 24.75H18.375C19.6125 24.75 20.625 23.7375 20.625 22.5V4.5C20.625 3.2625 19.6125 2.25 18.375 2.25ZM10.5 2.25C11.1187 2.25 11.625 2.75625 11.625 3.375C11.625 3.99375 11.1187 4.5 10.5 4.5C9.88125 4.5 9.375 3.99375 9.375 3.375C9.375 2.75625 9.88125 2.25 10.5 2.25ZM18.375 22.5H2.625V4.5H4.875V7.875H16.125V4.5H18.375V22.5Z"
-	// 			fill={props.fill || '#82899A'}/>
 	// 	</svg>
 	// ),
 	// BOT_ICON: (props: TSvgProps) => (

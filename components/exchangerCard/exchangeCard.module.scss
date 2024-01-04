@@ -7,7 +7,7 @@
   position: relative;
   overflow: hidden;
   padding: 2px;
-  transition: .6s cubic-bezier(0.86, 0.6, 0, 0.93) all;
+  transition: $cubicBezier;
   z-index: 9;
 
   @include md {

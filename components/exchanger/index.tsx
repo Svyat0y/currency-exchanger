@@ -127,6 +127,7 @@ export const Exchanger = () => {
 					isOpenMenu={isFirstMenuOpen}
 					isHided={(isSecondMenuOpen)}
 					isDisabled={isSecondMenuOpen}
+					setItem={setSendItem}
 				/>
 				<button className={classNames(styles.switchArrows, {
 					[styles.disabled]: false
@@ -151,6 +152,7 @@ export const Exchanger = () => {
 					isOpenMenu={isSecondMenuOpen}
 					isHided={isFirstMenuOpen}
 					isDisabled={isFirstMenuOpen}
+					setItem={setGetItem}
 				/>
 			</div>
 			<Wallet
