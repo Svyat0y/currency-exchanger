@@ -1,120 +1,96 @@
 @import "styles/var";
 
 .network {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   position: relative;
-  padding: 1px;
-  max-height: max-content;
-}
 
-.content {
-  position: relative;
-  background: $white;
-  z-index: 20;
-  transition: $cubicBezier;
-}
-
-.borderWrapper {
-  position: absolute;
-  transition: $cubicBezier;
-  opacity: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-
-  &.isOpen {
-    top: -2px;
-    right: -2px;
-    bottom: -2px;
-    left: -2px;
-    opacity: 1;
-  }
-}
-
-.leftTitle {
-  transition: $cubicBezier;
-  position: absolute;
-  z-index: 25;
-  top: -0.5rem;
-  opacity: 1;
-  color: $gray_second;
-
-  &.isOpen {
-    opacity: 0;
-  }
-}
-
-.nav {
-  transition: $cubicBezier;
-  border-radius: 10px;
-  top: -1.5rem;
-  right: -1rem;
-  background: $white;
-  width: 100%;
-  position: absolute;
-
-  .leftTitlePopup {
-    transition: $cubicBezier;
-    opacity: 0;
+  .title {
     color: $gray_second;
   }
 
   &.isOpen {
-    top: -0.5rem;
-    right: 0;
-    border-radius: 10px;
-    max-height: 260px;
-    z-index: 30;
-
-    .leftTitlePopup {
-      opacity: 1;
+    .mainBtn {
+      right: 17px;
+      top: 7px;
     }
   }
-}
-
-.navContent {
-  position: relative;
-  border-radius: 10px;
-  padding: 1rem;
-  z-index: 20;
-  background: $white;
-  max-height: 30px;
-  transition: $cubicBezier;
-  overflow-x: hidden;
-
-  &.isOpen {
-    max-height: 260px;
-
-    .networkBtn {
-      img {
-        transform: rotate(180deg);
-      }
-    }
-  }
-}
-
-.navHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 24px;
-  transition: $cubicBezier;
-  margin-bottom: 1rem;
 }
 
 .networkBtn {
-  background: none;
   flex-direction: row-reverse;
-  font-weight: 400;
-  align-items: center;
+  background: none;
+  font-size: 16px;
+  font-weight: 500;
   text-transform: capitalize;
-  color: $darkBlack;
-  cursor: pointer;
-  padding: 1px;
+  padding: 0;
+  transition: $cubicBezier;
+  position: relative;
+  right: 0;
+  top: 0;
 
   &:hover {
     background: initial;
   }
+}
+
+.popup {
+  position: absolute;
+  left: 1rem;
+  right: -1rem;
+  top: -1rem;
+  overflow-x: hidden;
+  opacity: 0;
+  pointer-events: none;
+  max-height: 0;
+  z-index: 20;
+  background: #fff;
+  padding: 1rem;
+  transition: $cubicBezier;
+  border: 1px solid red;
+  border-radius: 12px;
+
+  .popupBtn {
+    img {
+      transition: $cubicBezier;
+    }
+  }
+
+  .title {
+    transition: $cubicBezier;
+    position: relative;
+    left: -2rem;
+    top: 0;
+  }
+
+  &.isOpen {
+    opacity: 1;
+    pointer-events: auto;
+    max-height: 260px;
+    right: 0;
+    top: -10px;
+    left: 0;
+
+    .popupBtn {
+      img {
+        transform: rotateX(180deg);
+      }
+    }
+
+    .title {
+      position: relative;
+      left: 0;
+      top: 0;
+    }
+  }
+}
+
+.popupHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
 }
 
 .networkList {

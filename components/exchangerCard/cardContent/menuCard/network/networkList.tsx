@@ -2,23 +2,24 @@ import styles from './network.module.scss'
 import classNames from "classnames"
 import {FC} from "react"
 import {Item} from "./item"
-import {LIST} from "@/components/exchangerCard/cardContent/menuCard"
+import {LIST, TListObj} from "@/components/exchangerCard/cardContent/menuCard"
 const check = '/icons/check.svg'
 
 type NetworkListProps = {
 	networkMenuIsOpen: boolean
 	setNetworkMenuIsOpen: (state: boolean) => void
-	selectedNetwork: string
-	setSelectedNetwork: (value: string) => void
+	selectedNetwork: TListObj
+	setSelectedNetwork: (value: TListObj) => void
 }
 
 export const NetworkList: FC<NetworkListProps> = (
-	{networkMenuIsOpen,
+	{
+		networkMenuIsOpen,
 		setNetworkMenuIsOpen, selectedNetwork,
 		setSelectedNetwork,
 	}) => {
 
-	const handleNetwork = (value: string) => {
+	const handleNetwork = (value: TListObj) => {
 		setSelectedNetwork(value)
 		setNetworkMenuIsOpen(false)
 	}
@@ -33,7 +34,7 @@ export const NetworkList: FC<NetworkListProps> = (
 						key={el.value}
 						el={el}
 						icon={check}
-						active={selectedNetwork === el.value}
+						active={selectedNetwork.value === el.value}
 						handleNetwork={handleNetwork}
 					/>
 				)

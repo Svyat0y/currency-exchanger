@@ -19,24 +19,26 @@ type MenuCard = {
 	setItem: (item: Item) => void
 }
 
-export const LIST = [
+export type TListObj = Record<string, string>
+
+type TList = TListObj[]
+
+export const LIST: TList = [
 	{value: 'allNetworks', label: 'All networks', icon: ''},
 	{value: 'ethereumErc20', label: 'Ethereum ERC 20', icon: ethIcon},
 	{value: 'tronTrc20', label: 'Tron TRC 20', icon: tronIcon},
-	{value: 'polygon', label: 'Polygon', icon: polygonIcon},
-	{value: 'polygon', label: 'Polygon', icon: polygonIcon},
 	{value: 'polygon', label: 'Polygon', icon: polygonIcon},
 ]
 
 export const MenuCard: FC<MenuCard> = ({isOpenMenu, handleCloseMenu, setItem}) => {
 	const [searchInput, setSearchInput] = useState('')
 	const [networkMenuIsOpen, setNetworkMenuIsOpen] = useState(false)
-	const [selectedNetwork, setSelectedNetwork] = useState(LIST[0].value)
+	const [selectedNetwork, setSelectedNetwork] = useState(LIST[0])
 
 	const selectedTokens = currencies.filter((token) => (
-		token.id === 1 && token.value === 'BTC' && token.network === 'BNB BEP20' ||
-		token.id === 1 && token.value === 'MATIC' && token.network === 'Polygon' ||
-		token.id === 1 && token.value === 'ETH' && token.network === ''
+		token.value === 'BTC' && token.network === 'BNB BEP20' ||
+		token.value === 'MATIC' && token.network === 'Polygon' ||
+		token.value === 'ETH' && token.network === ''
 	))
 
 	const handleChangeInput = (value: string) => {

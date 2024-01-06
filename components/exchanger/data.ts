@@ -36,7 +36,7 @@ export const currencies: Item[] = [
 		networkValue: "ethereumErc20",
 	},
 	{
-		id: 1,
+		id: 2,
 		label: "Avalanche",
 		shortLabel: "AVAX",
 		value: "AVAX",
@@ -48,7 +48,7 @@ export const currencies: Item[] = [
 		networkValue: "cChain",
 	},
 	{
-		id: 1,
+		id: 3,
 		label: "BNB Beacon Chain",
 		shortLabel: "BNB",
 		value: "BNB",
@@ -60,7 +60,7 @@ export const currencies: Item[] = [
 		networkValue: "Bep2",
 	},
 	{
-		id: 1,
+		id: 4,
 		label: "BNB Smart Chain",
 		shortLabel: "BNB",
 		value: "BNB",
@@ -72,7 +72,7 @@ export const currencies: Item[] = [
 		networkValue: "Bep20",
 	},
 	{
-		id: 1,
+		id: 5,
 		label: "Basic Attention",
 		shortLabel: "BAT",
 		value: "BAT",
@@ -84,7 +84,7 @@ export const currencies: Item[] = [
 		networkValue: "Erc20",
 	},
 	{
-		id: 1,
+		id: 6,
 		label: "Bitcoin",
 		shortLabel: "BTC",
 		value: "BTC",
@@ -96,7 +96,7 @@ export const currencies: Item[] = [
 		networkValue: "BnbBep20",
 	},
 	{
-		id: 2,
+		id: 7,
 		label: "Bitcoin",
 		shortLabel: "BTC",
 		value: "BTC",
@@ -108,7 +108,7 @@ export const currencies: Item[] = [
 		networkValue: "bscBep20",
 	},
 	{
-		id: 3,
+		id: 8,
 		label: "Bitcoin",
 		shortLabel: "BTC",
 		value: "BTC",
@@ -120,7 +120,7 @@ export const currencies: Item[] = [
 		networkValue: "lightning",
 	},
 	{
-		id: 3,
+		id: 9,
 		label: "Bitcoin Cash",
 		shortLabel: "BCH",
 		value: "BCH",
@@ -132,7 +132,7 @@ export const currencies: Item[] = [
 		networkValue: ""
 	},
 	{
-		id: 1,
+		id: 10,
 		label: "ETH",
 		shortLabel: "ETH",
 		value: "ETH",
@@ -141,10 +141,10 @@ export const currencies: Item[] = [
 		max: 2000,
 		icon: eth,
 		network: "",
-		networkValue: ''
+		networkValue: ""
 	},
 	{
-		id: 1,
+		id: 11,
 		label: "Cardano",
 		shortLabel: "ADA",
 		value: "ADA",
@@ -153,10 +153,10 @@ export const currencies: Item[] = [
 		max: 7000,
 		icon: ada1,
 		network: "",
-		networkValue: ''
+		networkValue: ""
 	},
 	{
-		id: 2,
+		id: 12,
 		label: "Cardano",
 		shortLabel: "ADA",
 		value: "ADA",
@@ -165,10 +165,10 @@ export const currencies: Item[] = [
 		max: 7000,
 		icon: ada2,
 		network: "BNB BEP20",
-		networkValue: 'bnbBep20'
+		networkValue: "bnbBep20"
 	},
 	{
-		id: 3,
+		id: 13,
 		label: "Cardano",
 		shortLabel: "ADA",
 		value: "ADA",
@@ -177,10 +177,10 @@ export const currencies: Item[] = [
 		max: 7000,
 		icon: ada3,
 		network: "BSC BEP20",
-		networkValue: 'bscBep20'
+		networkValue: "bscBep20"
 	},
 	{
-		id: 1,
+		id: 14,
 		label: "Chainlink",
 		shortLabel: "LINK",
 		value: "LINK",
@@ -189,10 +189,10 @@ export const currencies: Item[] = [
 		max: 2500,
 		icon: link1,
 		network: "Ethereum ERC20",
-		networkValue: 'ethereumErc20'
+		networkValue: "ethereumErc20"
 	},
 	{
-		id: 1,
+		id: 15,
 		label: "Cosmos",
 		shortLabel: "ATOM",
 		value: "ATOM",
@@ -201,10 +201,10 @@ export const currencies: Item[] = [
 		max: 2500,
 		icon: atom1,
 		network: "",
-		networkValue: ''
+		networkValue: ""
 	},
 	{
-		id: 1,
+		id: 16,
 		label: "DAI",
 		shortLabel: "DAI",
 		value: "DAI",
@@ -213,10 +213,10 @@ export const currencies: Item[] = [
 		max: 50000,
 		icon: dai1,
 		network: "BSC BEP20",
-		networkValue: 'bscBep20'
+		networkValue: "bscBep20",
 	},
 	{
-		id: 2,
+		id: 17,
 		label: "DAI",
 		shortLabel: "DAI",
 		value: "DAI",
@@ -228,7 +228,7 @@ export const currencies: Item[] = [
 		networkValue: "ethereumErc20",
 	},
 	{
-		id: 3,
+		id: 18,
 		label: "DAI",
 		shortLabel: "DAI",
 		value: "DAI",
@@ -240,7 +240,7 @@ export const currencies: Item[] = [
 		networkValue: "polygon",
 	},
 	{
-		id: 1,
+		id: 19,
 		label: "MATIC",
 		shortLabel: "MATIC",
 		value: "MATIC",
