@@ -15,7 +15,7 @@ type NetworkListProps = {
 export const NetworkList: FC<NetworkListProps> = (
 	{networkMenuIsOpen,
 		setNetworkMenuIsOpen, selectedNetwork,
-		setSelectedNetwork
+		setSelectedNetwork,
 	}) => {
 
 	const handleNetwork = (value: string) => {

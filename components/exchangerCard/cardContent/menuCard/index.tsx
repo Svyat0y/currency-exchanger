@@ -7,6 +7,7 @@ import {CustomButton} from "@/components/buttons/customButton"
 import {Item} from "@/types/types"
 import {Search} from "@/components/search"
 import {Network} from "./network"
+import {Tokens} from "@/components/exchangerCard/cardContent/menuCard/tokens"
 
 const ethIcon = '/icons/eth.svg'
 const polygonIcon = '/icons/polygon.svg'
@@ -20,11 +21,11 @@ type MenuCard = {
 
 export const LIST = [
 	{value: 'allNetworks', label: 'All networks', icon: ''},
-	{value: 'EthereumERC20', label: 'Ethereum ERC 20', icon: ethIcon},
-	{value: 'TronTRC20', label: 'Tron TRC 20', icon: tronIcon},
-	{value: 'polygon1', label: 'Polygon', icon: polygonIcon},
-	{value: 'polygon2', label: 'Polygon', icon: polygonIcon},
-	{value: 'polygon3', label: 'Polygon', icon: polygonIcon},
+	{value: 'ethereumErc20', label: 'Ethereum ERC 20', icon: ethIcon},
+	{value: 'tronTrc20', label: 'Tron TRC 20', icon: tronIcon},
+	{value: 'polygon', label: 'Polygon', icon: polygonIcon},
+	{value: 'polygon', label: 'Polygon', icon: polygonIcon},
+	{value: 'polygon', label: 'Polygon', icon: polygonIcon},
 ]
 
 export const MenuCard: FC<MenuCard> = ({isOpenMenu, handleCloseMenu, setItem}) => {
@@ -32,13 +33,18 @@ export const MenuCard: FC<MenuCard> = ({isOpenMenu, handleCloseMenu, setItem}) =
 	const [networkMenuIsOpen, setNetworkMenuIsOpen] = useState(false)
 	const [selectedNetwork, setSelectedNetwork] = useState(LIST[0].value)
 
-	const selectedTokens = currencies.flatMap((group) => group.data).filter((token) => (
+	const selectedTokens = currencies.filter((token) => (
 		token.id === 1 && token.value === 'BTC' && token.network === 'BNB BEP20' ||
 		token.id === 1 && token.value === 'MATIC' && token.network === 'Polygon' ||
 		token.id === 1 && token.value === 'ETH' && token.network === ''
 	))
 
-	const handleItem = (item: Item) => {
+	const handlePopularItem = (item: Item) => {
+		setItem(item)
+		handleCloseMenu()
+	}
+
+	const handleTokenItem = (item: Item) => {
 		setItem(item)
 		handleCloseMenu()
 	}
@@ -59,7 +65,7 @@ export const MenuCard: FC<MenuCard> = ({isOpenMenu, handleCloseMenu, setItem}) =
 								key={item.shortLabel}
 								text={item.shortLabel}
 								icon={item.icon}
-								onClick={() => handleItem(item)}
+								onClick={() => handlePopularItem(item)}
 							/>
 						)
 					})}
@@ -72,6 +78,7 @@ export const MenuCard: FC<MenuCard> = ({isOpenMenu, handleCloseMenu, setItem}) =
 				selectedNetwork={selectedNetwork}
 				setSelectedNetwork={setSelectedNetwork}
 			/>
+			<Tokens handleTokenItem={handleTokenItem} selectedNetwork={selectedNetwork}/>
 		</div>
 	)
 }

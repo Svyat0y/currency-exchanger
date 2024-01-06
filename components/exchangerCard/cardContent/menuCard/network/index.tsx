@@ -1,6 +1,6 @@
 import styles from './network.module.scss'
 import {CustomButton} from "@/components/buttons/customButton"
-import {FC} from "react"
+import {FC, useEffect, useState} from "react"
 import classNames from "classnames"
 import {GradientBorder} from "@/components/gradientBorder"
 import {NetworkList} from "./networkList"
@@ -13,11 +13,21 @@ type NetworkProps = {
 }
 
 export const Network: FC<NetworkProps> = (
-	{networkMenuIsOpen,
+	{
+		networkMenuIsOpen,
 		setNetworkMenuIsOpen,
 		selectedNetwork,
 		setSelectedNetwork
 	}) => {
+	const [animStateMenu, setAnimStateMenu] = useState(false)
+
+	useEffect(() => {
+		if(networkMenuIsOpen) setAnimStateMenu(true)
+		else setTimeout(() => {
+			setAnimStateMenu(false)
+		}, 600)
+
+	}, [networkMenuIsOpen])
 
 	return (
 		<div className={classNames(styles.network)}>

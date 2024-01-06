@@ -18,8 +18,8 @@ export const CARDS = {
 
 export const Exchanger = () => {
 	const [activeCard, setActiveCard] = useState(CARDS.sendCard)
-	const [sendItem, setSendItem] = useState<Item>(currencies[0].data[0])
-	const [getItem, setGetItem] = useState<Item>(currencies[4].data[0])
+	const [sendItem, setSendItem] = useState<Item>(currencies[0])
+	const [getItem, setGetItem] = useState<Item>(currencies[4])
 	const [sendValue, setSendValue] = useState('')
 	const [getValue, setGetValue] = useState('')
 	const [isCalculatingGetValue, setIsCalculatingGetValue] = useState(false)
