@@ -4,16 +4,17 @@ import { currencies } from '@/components/exchanger/data'
 import { TokenItem } from './tokenItem'
 import { Item } from '@/types/types'
 import { FC } from 'react'
-import classNames from "classnames";
+import classNames from "classnames"
 
 type TokensProps = {
 	handleTokenItem: (item: Item) => void
 	selectedNetwork: string
+	searchInput: string
 }
 
 type VisibilityMap = Record<string, boolean>;
 
-export const Tokens: FC<TokensProps> = ({ handleTokenItem, selectedNetwork }) => {
+export const Tokens: FC<TokensProps> = ({ handleTokenItem, selectedNetwork, searchInput }) => {
 	const groupedCurrencies: Record<string, Item[]> = {}
 
 	currencies.forEach((item) => {
@@ -24,7 +25,10 @@ export const Tokens: FC<TokensProps> = ({ handleTokenItem, selectedNetwork }) =>
 	})
 
 	const visibilityMap: VisibilityMap = Object.entries(groupedCurrencies).reduce((acc, [shortLabel, items]) => {
-		acc[shortLabel] = selectedNetwork === 'allNetworks' || items.some(item => item.networkValue === selectedNetwork)
+		acc[shortLabel] = items.some(item =>
+			(selectedNetwork === 'allNetworks' || item.networkValue === selectedNetwork) &&
+			(!searchInput || item.label.toLowerCase().includes(searchInput.toLowerCase()))
+		);
 		return acc;
 	}, {} as VisibilityMap)
 

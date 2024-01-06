@@ -39,6 +39,10 @@ export const MenuCard: FC<MenuCard> = ({isOpenMenu, handleCloseMenu, setItem}) =
 		token.id === 1 && token.value === 'ETH' && token.network === ''
 	))
 
+	const handleChangeInput = (value: string) => {
+		setSearchInput(value)
+	}
+
 	const handlePopularItem = (item: Item) => {
 		setItem(item)
 		handleCloseMenu()
@@ -47,6 +51,7 @@ export const MenuCard: FC<MenuCard> = ({isOpenMenu, handleCloseMenu, setItem}) =
 	const handleTokenItem = (item: Item) => {
 		setItem(item)
 		handleCloseMenu()
+		setSearchInput('')
 	}
 
 	return (
@@ -71,14 +76,18 @@ export const MenuCard: FC<MenuCard> = ({isOpenMenu, handleCloseMenu, setItem}) =
 					})}
 				</div>
 			</div>
-			<Search searchInput={searchInput} handleChangeInput={setSearchInput}/>
+			<Search searchInput={searchInput} handleChangeInput={handleChangeInput}/>
 			<Network
 				setNetworkMenuIsOpen={setNetworkMenuIsOpen}
 				networkMenuIsOpen={networkMenuIsOpen}
 				selectedNetwork={selectedNetwork}
 				setSelectedNetwork={setSelectedNetwork}
 			/>
-			<Tokens handleTokenItem={handleTokenItem} selectedNetwork={selectedNetwork}/>
+			<Tokens
+				handleTokenItem={handleTokenItem}
+				selectedNetwork={selectedNetwork}
+				searchInput={searchInput}
+			/>
 		</div>
 	)
 }
