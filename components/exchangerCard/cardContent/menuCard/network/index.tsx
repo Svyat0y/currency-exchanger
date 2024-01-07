@@ -34,21 +34,23 @@ export const Network: FC<NetworkProps> = (
 			<div className={classNames(styles.popup, {
 				[styles.isOpen]: networkMenuIsOpen
 			})}>
-				<div className={styles.popupHeader}>
-					<span className={styles.title}>Networks</span>
-					<CustomButton
-						onClick={() => setNetworkMenuIsOpen(false)}
-						className={classNames(styles.networkBtn, styles.popupBtn)}
-						text={selectedNetwork.label}
-						icon='/icons/smallArrow.svg'
+				<div className={styles.popupContent}>
+					<div className={styles.popupHeader}>
+						<span className={styles.title}>Networks</span>
+						<CustomButton
+							onClick={() => setNetworkMenuIsOpen(false)}
+							className={classNames(styles.networkBtn, styles.popupBtn)}
+							text={selectedNetwork.label}
+							icon='/icons/smallArrow.svg'
+						/>
+					</div>
+					<NetworkList
+						networkMenuIsOpen={networkMenuIsOpen}
+						setNetworkMenuIsOpen={setNetworkMenuIsOpen}
+						selectedNetwork={selectedNetwork}
+						setSelectedNetwork={setSelectedNetwork}
 					/>
 				</div>
-				<NetworkList
-					networkMenuIsOpen={networkMenuIsOpen}
-					setNetworkMenuIsOpen={setNetworkMenuIsOpen}
-					selectedNetwork={selectedNetwork}
-					setSelectedNetwork={setSelectedNetwork}
-				/>
 			</div>
 		</div>
 	)

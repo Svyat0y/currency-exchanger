@@ -8,7 +8,7 @@
   top: 0;
   left: 0;
   border-radius: 22px;
-  border: 2px solid $lightGray;
+  border: 3px solid $lightGray;
   z-index: 1;
 
   &.smallRadius {
@@ -29,11 +29,14 @@
   z-index: 1;
   overflow: hidden;
   border-radius: 22px;
+  opacity: 0;
+  transition: $cubicBezier;
+  background: linear-gradient(60deg, #EF633BFF, #D013AAFF);
+  background-size: 300% 300%;
 
   &.active {
-    background: linear-gradient(60deg, #EF633BFF, #D013AAFF);
     animation: animatedgradient 4s linear infinite;
-    background-size: 300% 300%;
+    opacity: 1;
   }
 
   &.withoutAnim {

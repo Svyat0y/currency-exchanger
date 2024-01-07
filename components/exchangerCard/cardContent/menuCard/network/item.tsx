@@ -2,6 +2,7 @@ import styles from './network.module.scss'
 import Image from "next/image"
 import {FC} from "react"
 import {TListObj} from "@/components/exchangerCard/cardContent/menuCard"
+import classNames from "classnames"
 
 type ItemProps = {
 	el: Record<string, string>
@@ -13,7 +14,9 @@ type ItemProps = {
 export const Item: FC<ItemProps> = ({el, icon, active, handleNetwork}) => {
 	return (
 		<div key={el.value} className={styles.networkItem} onClick={() => handleNetwork(el)}>
-			<button className={styles.left}>
+			<button className={classNames(styles.left, {
+				[styles.active]: active,
+			})}>
 				{el.icon ? <Image src={el.icon} alt='' width={16} height={16}/> : ''}
 				{el.label}
 			</button>

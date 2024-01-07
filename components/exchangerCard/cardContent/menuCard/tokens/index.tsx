@@ -11,9 +11,10 @@ type TokensProps = {
 	handleTokenItem: (item: Item) => void
 	selectedNetwork: TListObj
 	searchInput: string
+	className: string
 }
 
-export const Tokens: FC<TokensProps> = ({ handleTokenItem, selectedNetwork, searchInput }) => {
+export const Tokens: FC<TokensProps> = ({ handleTokenItem, selectedNetwork, searchInput, className }) => {
 	const groupedCurrencies: Record<string, Item[]> = {}
 
 	currencies.forEach((item) => {
@@ -26,7 +27,10 @@ export const Tokens: FC<TokensProps> = ({ handleTokenItem, selectedNetwork, sear
 	const visibilityMap: Record<string, Item[]> = Object.entries(groupedCurrencies).reduce<Record<string, Item[]>>((acc, [shortLabel, items]) => {
 		acc[shortLabel] = items.filter(item =>
 			(selectedNetwork.value === 'allNetworks' || item.networkValue === selectedNetwork.value) &&
-			(!searchInput || item.label.toLowerCase().includes(searchInput.toLowerCase()))
+			(!searchInput || (
+				item.label.toLowerCase().includes(searchInput.toLowerCase())) ||
+				item.shortLabel.toLowerCase().includes(searchInput.toLowerCase())
+			)
 		);
 		return acc
 	}, {})
@@ -39,7 +43,7 @@ export const Tokens: FC<TokensProps> = ({ handleTokenItem, selectedNetwork, sear
 	}
 
 	return (
-		<div className={styles.wrapper}>
+		<div className={classNames(styles.wrapper, className)}>
 			{Object.entries(visibilityMap).map(([shortLabel, visibleItems], groupIndex) => {
 				const isVisible = visibleItems.length > 0
 

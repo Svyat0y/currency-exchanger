@@ -1,10 +1,9 @@
-import {FC} from "react"
+import {FC, useState} from "react"
 import styles from './exchangeCard.module.scss'
 import classNames from "classnames"
 import {Item} from "@/types/types"
 import {GradientBorder} from "@/components/gradientBorder"
 import {CardContent} from "./cardContent"
-import {Search} from "@/components/search";
 
 type ExchangerCardProps = {
 	cardTitle: string
@@ -50,6 +49,7 @@ export const ExchangerCard: FC<ExchangerCardProps> = (
 		cardName,
 		setItem,
 	}) => {
+	const [popupIsOpen, setPopupIsOpen] = useState(false)
 
 	const handleInput = (value: string) => {
 		let newText = value.replace(/[^0-9.]/g, '')
@@ -78,6 +78,8 @@ export const ExchangerCard: FC<ExchangerCardProps> = (
 		isOpenMenu,
 		handleCloseMenu,
 		setItem,
+		setPopupIsOpen,
+		popupIsOpen,
 	}
 
 	return (
@@ -88,7 +90,7 @@ export const ExchangerCard: FC<ExchangerCardProps> = (
 			[styles.isMenuFirst]: isOpenMenu && isFirstCard,
 			[styles.isMenuSecond]: isOpenMenu && isSecondCard
 		})} onClick={handleCardClick}>
-			<GradientBorder active={active} withoutAnim={isOpenMenu}/>
+			<GradientBorder active={active && !popupIsOpen} withoutAnim={isOpenMenu}/>
 			<CardContent {...cardProps}/>
 		</div>
 	)

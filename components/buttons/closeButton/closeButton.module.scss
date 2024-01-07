@@ -8,6 +8,7 @@
   border-radius: 12px;
   border: none;
   cursor: pointer;
+  z-index: 100;
 
   &::before, &::after {
     position: absolute;

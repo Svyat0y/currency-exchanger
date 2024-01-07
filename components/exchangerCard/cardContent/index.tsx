@@ -19,20 +19,28 @@ export type CardContentProps = {
 	isOpenMenu?: boolean
 	handleCloseMenu: () => void
 	setItem: (item: Item) => void
+	setPopupIsOpen: (state: boolean) => void
+	popupIsOpen: boolean
 }
 
 export const CardContent: FC<CardContentProps> = (
 	{
 		...props
 	}) => {
-	const {isOpenMenu, handleCloseMenu, setItem} = props
+	const {isOpenMenu, handleCloseMenu, setItem, setPopupIsOpen, popupIsOpen} = props
 
 	return (
 		<div className={classNames(styles.wrapper, {
 			[styles.isOpenMenu]: isOpenMenu,
 		})}>
 			<ExchangeCard isOpenMenu={isOpenMenu} {...props}/>
-			<MenuCard setItem={setItem} handleCloseMenu={handleCloseMenu} isOpenMenu={isOpenMenu}/>
+			<MenuCard
+				setItem={setItem}
+				handleCloseMenu={handleCloseMenu}
+				isOpenMenu={isOpenMenu}
+				setPopupIsOpen={setPopupIsOpen}
+				popupIsOpen={popupIsOpen}
+			/>
 		</div>
 	)
 }

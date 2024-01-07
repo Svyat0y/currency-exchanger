@@ -40,16 +40,53 @@
   left: 1rem;
   right: -1rem;
   top: -1rem;
-  overflow-x: hidden;
   opacity: 0;
   pointer-events: none;
-  max-height: 0;
   z-index: 20;
-  background: #fff;
   padding: 1rem;
   transition: $cubicBezier;
-  border: 1px solid red;
   border-radius: 12px;
+
+  &::before {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(60deg, #EF633BFF, #D013AAFF);
+    z-index: -2;
+    border-radius: 12px;
+  }
+
+  &::after {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: calc(100% - 2px);
+    height: calc(100% - 2px);
+    background-color: #fff;
+    border-radius: 11px;
+    z-index: -1;
+  }
+
+  .popupContent {
+    height: 100%;
+    overflow-x: hidden;
+    max-height: 0;
+    transition: $cubicBezier;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
 
   .popupBtn {
     img {
@@ -67,10 +104,13 @@
   &.isOpen {
     opacity: 1;
     pointer-events: auto;
-    max-height: 260px;
     right: 0;
     top: -10px;
     left: 0;
+
+    .popupContent {
+      max-height: 240px;
+    }
 
     .popupBtn {
       img {
@@ -128,6 +168,10 @@
     gap: 8px;
     cursor: pointer;
     font-size: inherit;
+
+    &.active {
+      color: $red1;
+    }
   }
 }
 .iconWrapper {
