@@ -12,8 +12,7 @@
 
   &.isOpen {
     .mainBtn {
-      right: 17px;
-      top: 7px;
+      transform: translate(-26px, 16px);
     }
   }
 }
@@ -37,9 +36,10 @@
 
 .popup {
   position: absolute;
-  left: 1rem;
-  right: -1rem;
-  top: -1rem;
+  left: 0;
+  right: 0;
+  top: 0;
+  transform: translate(1rem, -1rem);
   opacity: 0;
   pointer-events: none;
   z-index: 20;
@@ -97,16 +97,14 @@
   .title {
     transition: $cubicBezier;
     position: relative;
-    left: -2rem;
+    transform: translateX(-2rem);
     top: 0;
   }
 
   &.isOpen {
     opacity: 1;
     pointer-events: auto;
-    right: 0;
-    top: -10px;
-    left: 0;
+    transform: translate(-10px, 0px);
 
     .popupContent {
       max-height: 240px;
@@ -120,7 +118,7 @@
 
     .title {
       position: relative;
-      left: 0;
+      transform: translateX(0);
       top: 0;
     }
   }
