@@ -2,23 +2,37 @@
 
 
 .wrapper {
-  margin-top: 4rem;
+  display: flex;
+  justify-content: center;
+  transition: $cubicBezier;
+  padding-top: 2rem;
+  height: 100%;
+
+  @include md {
+    justify-content: center;
+    align-items: center;
+  }
+
+  &.menuIsOpen {
+    padding-top: 0;
+
+    @include md {
+      padding-top: 2rem;
+    }
+  }
+}
+
+.content {
+  height: 100%;
+  width: 100%;
   display: flex;
   align-items: center;
   flex-direction: column;
   gap: 20px;
   transition: $cubicBezier;
 
-  &.menuIsOpen {
-    margin-top: 0;
-
-    @include md {
-      margin-top: 12rem;
-    }
-  }
-
   @include md {
-    margin-top: 12rem;
+    max-height: 340px;
   }
 }
 

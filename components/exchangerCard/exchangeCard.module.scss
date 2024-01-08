@@ -56,6 +56,9 @@
     @include md {
       position: absolute;
       max-height: 520px;
+      transform: translate(calc(100vw - (50vw + 50% + 16px)), -100px);
+    }
+    @media (min-width: 840px) {
       transform: translate(50%, -100px);
     }
   }
@@ -63,6 +66,9 @@
   &.isMenuSecond {
     @include md {
       right: 0;
+      transform: translate(calc(-100vw + (50vw + 50% + 16px)), -100px);
+    }
+    @media (min-width: 840px) {
       transform: translate(-50%, -100px);
     }
   }

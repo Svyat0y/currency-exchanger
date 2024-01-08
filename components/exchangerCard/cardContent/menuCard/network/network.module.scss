@@ -7,7 +7,7 @@
   position: relative;
 
   .title {
-    color: $gray_second;
+    color: $darkBlackSecond;
   }
 
   &.isOpen {
@@ -104,7 +104,7 @@
   &.isOpen {
     opacity: 1;
     pointer-events: auto;
-    transform: translate(-10px, 0px);
+    transform: translate(0px, -10px);
 
     .popupContent {
       max-height: 240px;

@@ -202,60 +202,62 @@ export const Exchanger = () => {
 		<div className={classNames(styles.wrapper, {
 			[styles.menuIsOpen]: isFirstMenuOpen || isSecondMenuOpen
 		})}>
-			<div className={styles.cardsWrapper}>
-				<ExchangerCard
-					isFirstCard
-					card={CARDS.sendCard}
-					cardName='sendCard'
-					isCalculated={isCalculated}
-					setIsCardMenu={handleFirsCardMenu}
-					item={sendItem}
+			<div className={styles.content}>
+				<div className={styles.cardsWrapper}>
+					<ExchangerCard
+						isFirstCard
+						card={CARDS.sendCard}
+						cardName='sendCard'
+						isCalculated={isCalculated}
+						setIsCardMenu={handleFirsCardMenu}
+						item={sendItem}
+						setActiveCard={setActiveCard}
+						cardTitle='You Send'
+						active={activeCard === CARDS.sendCard}
+						value={sendValue}
+						setInputState={setSendValue}
+						isCalculating={isCalculatingSendValue}
+						handleCloseMenu={handleCloseMenu}
+						isOpenMenu={isFirstMenuOpen}
+						isHided={(isSecondMenuOpen)}
+						isDisabled={isSecondMenuOpen}
+						setItem={setSendItem}
+					/>
+					<button aria-label='SWITCH_ARROWS' className={classNames(styles.switchArrows, {
+						[styles.disabled]: false
+					})} onClick={handleSwitch}>
+						<Icon type='SWITCH_ARROWS'/>
+					</button>
+					<ExchangerCard
+						isSecondCard
+						card={CARDS.getCard}
+						cardName='getCard'
+						setIsCardMenu={handleSecondCardMenu}
+						isCalculated={isCalculated}
+						additionalInfo={additionalInfoText}
+						item={getItem}
+						setActiveCard={setActiveCard}
+						cardTitle='You Get'
+						active={activeCard === CARDS.getCard}
+						value={getValue}
+						setInputState={setGetValue}
+						isCalculating={isCalculatingGetValue}
+						handleCloseMenu={handleCloseMenu}
+						isOpenMenu={isSecondMenuOpen}
+						isHided={isFirstMenuOpen}
+						isDisabled={isFirstMenuOpen}
+						setItem={setGetItem}
+					/>
+				</div>
+				<Wallet
+					hided={isSecondMenuOpen || isFirstMenuOpen}
+					active={activeCard === CARDS.wallet}
 					setActiveCard={setActiveCard}
-					cardTitle='You Send'
-					active={activeCard === CARDS.sendCard}
-					value={sendValue}
-					setInputState={setSendValue}
-					isCalculating={isCalculatingSendValue}
-					handleCloseMenu={handleCloseMenu}
-					isOpenMenu={isFirstMenuOpen}
-					isHided={(isSecondMenuOpen)}
-					isDisabled={isSecondMenuOpen}
-					setItem={setSendItem}
-				/>
-				<button aria-label='SWITCH_ARROWS' className={classNames(styles.switchArrows, {
-					[styles.disabled]: false
-				})} onClick={handleSwitch}>
-					<Icon type='SWITCH_ARROWS'/>
-				</button>
-				<ExchangerCard
-					isSecondCard
-					card={CARDS.getCard}
-					cardName='getCard'
-					setIsCardMenu={handleSecondCardMenu}
+					card={CARDS.wallet}
+					value={wallet} setInputState={setWallet}
 					isCalculated={isCalculated}
-					additionalInfo={additionalInfoText}
-					item={getItem}
-					setActiveCard={setActiveCard}
-					cardTitle='You Get'
-					active={activeCard === CARDS.getCard}
-					value={getValue}
-					setInputState={setGetValue}
-					isCalculating={isCalculatingGetValue}
-					handleCloseMenu={handleCloseMenu}
-					isOpenMenu={isSecondMenuOpen}
-					isHided={isFirstMenuOpen}
-					isDisabled={isFirstMenuOpen}
-					setItem={setGetItem}
 				/>
 			</div>
-			<Wallet
-				hided={isSecondMenuOpen || isFirstMenuOpen}
-				active={activeCard === CARDS.wallet}
-				setActiveCard={setActiveCard}
-				card={CARDS.wallet}
-				value={wallet} setInputState={setWallet}
-				isCalculated={isCalculated}
-			/>
 		</div>
 	)
 }

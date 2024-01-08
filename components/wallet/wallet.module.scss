@@ -9,15 +9,13 @@
   pointer-events: none;
   visibility: hidden;
   transition: $cubicBezier;
+  transform: translateY(-100%);
 
   &.isShow {
     visibility: visible;
     opacity: 1;
     pointer-events: all;
-
-    .content {
-      max-height: 84px;
-    }
+    transform: translateY(0);
   }
 
   &.hided {
@@ -37,8 +35,6 @@
   z-index: 2;
   gap: 12px;
   font-size: 20px;
-  transition: $cubicBezier;
-  max-height: 0;
 
   @include md {
     max-height: 80px;
