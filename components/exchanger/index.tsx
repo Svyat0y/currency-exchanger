@@ -55,11 +55,10 @@ export const Exchanger = () => {
 			}
 
 			if (prevSendItem !== sendItem) {
-				setIsCalculatingSendValue(true)
+				setIsCalculatingGetValue(true)
 				calculationTimeout = setTimeout(() => {
-					const calculatedValue = (Number(getValue) * getItem.price) / sendItem.price
-					setSendValue(String(calculatedValue))
-					setIsCalculatingSendValue(false)
+					calculateGetValue()
+					setIsCalculatingGetValue(false)
 					setIsCalculated(true)
 				}, 2000)
 			}
@@ -85,8 +84,7 @@ export const Exchanger = () => {
 			if (prevGetItem !== getItem) {
 				setIsCalculatingGetValue(true)
 				calculationTimeout = setTimeout(() => {
-					const calculatedValue = (Number(sendValue) * sendItem.price) / getItem.price
-					setGetValue(String(calculatedValue))
+					calculateGetValue()
 					setIsCalculatingGetValue(false)
 					setIsCalculated(true)
 				}, 2000)
