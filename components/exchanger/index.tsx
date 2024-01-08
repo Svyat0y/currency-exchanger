@@ -129,7 +129,7 @@ export const Exchanger = () => {
 					isDisabled={isSecondMenuOpen}
 					setItem={setSendItem}
 				/>
-				<button className={classNames(styles.switchArrows, {
+				<button aria-label='SWITCH_ARROWS' className={classNames(styles.switchArrows, {
 					[styles.disabled]: false
 				})} onClick={handleSwitch}>
 					<Icon type='SWITCH_ARROWS'/>

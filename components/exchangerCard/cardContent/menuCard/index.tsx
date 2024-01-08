@@ -94,9 +94,9 @@ export const MenuCard: FC<MenuCard> = ({isOpenMenu, handleCloseMenu, setItem, se
 					{selectedTokens.map((item) => {
 						return (
 							<CustomButton
-								key={item.shortLabel}
-								text={item.shortLabel}
-								icon={item.icon}
+								key={item?.shortLabel}
+								text={item?.shortLabel}
+								icon={item?.icon}
 								onClick={() => handlePopularItem(item)}
 							/>
 						)

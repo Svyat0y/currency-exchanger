@@ -43,13 +43,13 @@ export const ExchangeCard: FC<ExchangeCardProps> = (
 		})}>
 			<div className={styles.header}>
 				<span className={styles.titleDesc}>{cardTitle}</span>
-				<CustomButton onClick={handleOpenMenu} text={item.shortLabel} icon={item.icon}/>
+				<CustomButton onClick={handleOpenMenu} text={item?.shortLabel} icon={item?.icon}/>
 			</div>
 			<div className={styles.inputWrapper}>
 				{isCalculating ? <span className={styles.skeleton}></span> : ''}
 				<Input
 					inputRef={inputRef}
-					id={'count'}
+					id={'Amount'}
 					value={value}
 					handleChangeInput={handleInput}
 					placeholder='Enter amount'

@@ -9,6 +9,6 @@ type CloseButton = {
 
 export const CloseButton: FC<CloseButton> = ({onClick, className}) => {
 	return (
-		<button aria-label='close button' onClick={onClick} className={classNames(styles.wrapper, className)}></button>
+		<button aria-label='Close' onClick={onClick} className={classNames(styles.wrapper, className)}></button>
 	)
 }
