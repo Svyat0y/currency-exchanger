@@ -34,6 +34,7 @@ export const Input: FC<InputProps> = (
 		<>
 			<label className={styles.inputLabel} htmlFor={id}></label>
 			<input
+				aria-label={id}
 				ref={inputRef}
 				className={classNames(styles.input, className)}
 				placeholder={placeholder}
