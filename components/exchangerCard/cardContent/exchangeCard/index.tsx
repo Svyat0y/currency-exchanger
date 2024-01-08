@@ -49,7 +49,7 @@ export const ExchangeCard: FC<ExchangeCardProps> = (
 				{isCalculating ? <span className={styles.skeleton}></span> : ''}
 				<Input
 					inputRef={inputRef}
-					id='count'
+					id={cardTitle}
 					value={value}
 					handleChangeInput={handleInput}
 					placeholder='Enter amount'

@@ -13,7 +13,7 @@ type CustomButtonProps = {
 export const CustomButton: FC<CustomButtonProps> = ({ text, icon, onClick, className }) => {
 
 	return (
-		<button className={classNames(styles.wrapper, className)} onClick={onClick}>
+		<button aria-label={text} className={classNames(styles.wrapper, className)} onClick={onClick}>
 			<div className={styles.imageWrapper}>
 				<Image src={icon} alt='icon' width={16} height={16}/>
 			</div>

@@ -35,7 +35,7 @@ export const WalletNavigation: FC<WalletNavigationProps> = ({setWallet, value}) 
 					<button onClick={handlePaste} className={styles.navBtn}><Icon type='PASTE'/></button>
 					<button onClick={() => setShowScanner(true)} className={styles.navBtn}><Icon type='QR_CODE'/></button>
 				</div>
-				<PrimaryButton disabled={!value} type={'black'}>Exchange</PrimaryButton>
+				<PrimaryButton text={'Exchange'} disabled={!value} type={'black'}/>
 			</div>
 			{typeof document !== 'undefined' && showScanner && createPortal(
 				<QrScanner showScanner={showScanner} setShowScanner={setShowScanner} setWallet={setWallet}/>,

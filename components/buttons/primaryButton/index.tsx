@@ -1,4 +1,4 @@
-import {FC, ReactNode} from "react"
+import {FC} from "react"
 import styles from './primaryButton.module.scss'
 import classNames from "classnames"
 
@@ -9,21 +9,22 @@ const BTN_TYPES = {
 } as const
 
 type PrimaryButtonProps = {
-	children: ReactNode
 	type: typeof BTN_TYPES[keyof typeof BTN_TYPES]
 	onClick?: () => void
 	disabled?: boolean
+	text?: string
 }
 
 export const PrimaryButton: FC<PrimaryButtonProps> = (
 	{
-		children,
 		type,
 		onClick,
 		disabled,
+		text
 	}) => {
 	return (
 		<button
+			aria-label={text}
 			className={classNames(styles.wrapper, {
 				[styles.gray]: type === BTN_TYPES.gray,
 				[styles.black]: type === BTN_TYPES.black,
@@ -32,7 +33,7 @@ export const PrimaryButton: FC<PrimaryButtonProps> = (
 			disabled={disabled}
 			onClick={onClick}
 		>
-			{children}
+			{text}
 		</button>
 	)
 }

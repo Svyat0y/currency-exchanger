@@ -48,9 +48,7 @@ export const QrScanner: FC<TQrCodeScanner> = (
 					constraints={{facingMode: "environment"}}
 					onResult={handleScanResult}
 				/>
-				<PrimaryButton onClick={handleCloseScanner} type="black">
-					Close Scanner
-				</PrimaryButton>
+				<PrimaryButton text={'Close Scanner'} onClick={handleCloseScanner} type="black"/>
 			</div>
 		</div>
 	)
