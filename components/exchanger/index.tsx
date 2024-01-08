@@ -3,7 +3,7 @@
 import styles from './exchanger.module.scss'
 import classNames from "classnames"
 import {ExchangerCard} from "../exchangerCard"
-import {useEffect, useState} from "react"
+import {useEffect, useRef, useState} from "react"
 import {Icon} from "@/components/icon"
 import {currencies} from "@/components/exchanger/data"
 import {Item} from "@/types/types"
@@ -28,64 +28,157 @@ export const Exchanger = () => {
 	const [wallet, setWallet] = useState('')
 	const [isFirstMenuOpen, setIsFirstMenuOpen] = useState(false)
 	const [isSecondMenuOpen, setIsSecondMenuOpen] = useState(false)
+	const [isSwitching, setIsSwitching] = useState(false)
+	const prevGetItemRef = useRef(getItem)
+	const prevSendItemRef = useRef(sendItem)
+
+	const calculateGetValue = () => {
+		const calculatedValue = (Number(sendValue) * sendItem.price) / getItem.price;
+		setGetValue(String(calculatedValue));
+	}
+
+	const calculateSendValue = () => {
+		const calculatedValue = (Number(getValue) * getItem.price) / sendItem.price;
+		setSendValue(String(calculatedValue));
+	}
+
+	useEffect(() => {
+		let calculationTimeout: any
+		const prevSendItem = prevSendItemRef?.current
+
+		if(!isSwitching) {
+			if(sendValue.length === 0) {
+				setIsCalculatingGetValue(false)
+				setGetValue('')
+				setIsCalculated(false)
+				return
+			}
+
+			if (prevSendItem !== sendItem) {
+				setIsCalculatingSendValue(true)
+				calculationTimeout = setTimeout(() => {
+					const calculatedValue = (Number(getValue) * getItem.price) / sendItem.price
+					setSendValue(String(calculatedValue))
+					setIsCalculatingSendValue(false)
+					setIsCalculated(true)
+				}, 2000)
+			}
+		}
+
+		return () => clearTimeout(calculationTimeout)
+
+	}, [sendItem, prevSendItemRef?.current])
+
+
+	useEffect(() => {
+		let calculationTimeout: any
+		const prevGetItem = prevGetItemRef?.current
+
+		if(!isSwitching) {
+			if(getValue.length === 0) {
+				setIsCalculatingSendValue(false)
+				setSendValue('')
+				setIsCalculated(false)
+				return
+			}
+
+			if (prevGetItem !== getItem) {
+				setIsCalculatingGetValue(true)
+				calculationTimeout = setTimeout(() => {
+					const calculatedValue = (Number(sendValue) * sendItem.price) / getItem.price
+					setGetValue(String(calculatedValue))
+					setIsCalculatingGetValue(false)
+					setIsCalculated(true)
+				}, 2000)
+			}
+		}
+
+		return () => clearTimeout(calculationTimeout)
+
+	}, [getItem, prevGetItemRef?.current])
+
+
+
+	useEffect(() => {
+		let calculationTimeout: any
+		const prevSendItem = prevSendItemRef?.current;
+
+		if(!isSwitching) {
+			if(sendValue.length === 0) {
+				setIsCalculatingGetValue(false)
+				setGetValue('')
+				setIsCalculated(false)
+				return
+			}
+
+			if(activeCard === CARDS.sendCard && sendValue.length && (prevSendItem === sendItem)) {
+				setIsCalculatingGetValue(true)
+
+				calculationTimeout = setTimeout(() => {
+					calculateGetValue()
+					setIsCalculatingGetValue(false)
+					setIsCalculated(true)
+				}, 2000)
+			}
+		}
+
+		return () => clearTimeout(calculationTimeout)
+	}, [sendValue])
+
+	useEffect(() => {
+		let calculationTimeout: any
+		const prevGetItem = prevGetItemRef?.current;
+
+		if(!isSwitching) {
+			if(getValue.length === 0) {
+				setIsCalculatingSendValue(false)
+				setSendValue('')
+				setIsCalculated(false)
+				return
+			}
+
+			if(activeCard === CARDS.getCard && getValue.length && (prevGetItem === getItem)) {
+				setIsCalculatingSendValue(true)
+
+				calculationTimeout = setTimeout(() => {
+					calculateSendValue()
+					setIsCalculatingSendValue(false)
+					setIsCalculated(true)
+				}, 2000)
+			}
+		}
+
+		return () => clearTimeout(calculationTimeout)
+	}, [getValue])
+
 
 	useEffect(() => {
 		isCalculated && setActiveCard(CARDS.wallet)
 	}, [isCalculated])
 
-	useEffect(() => {
-		let calculationTimeout: any
 
-		if(sendValue.length === 0) {
-			setIsCalculatingGetValue(false)
-			setGetValue('')
-			setIsCalculated(false)
-			return
-		}
-		if(activeCard === CARDS.sendCard && sendValue.length) {
-			setIsCalculatingGetValue(true)
+	const handleSwitch = async () => {
+		setIsSwitching(true)
+		const switchItems = () => {
+			return new Promise<void>(resolve => {
+				setGetItem(sendItem)
+				setSendItem(getItem)
+				setSendValue(getValue)
+				setGetValue(sendValue)
 
-			calculationTimeout = setTimeout(() => {
-				const calculatedValue = (Number(sendValue) * sendItem.price) / getItem.price
-
-				setGetValue(String(calculatedValue))
-				setIsCalculatingGetValue(false)
-				setIsCalculated(true)
-			}, 2000)
+				setTimeout(() => resolve(), 0)
+			})
 		}
 
-		return () => clearTimeout(calculationTimeout)
-	}, [sendValue, sendItem])
-
-	useEffect(() => {
-		let calculationTimeout: any
-
-		if(getValue.length === 0) {
-			setIsCalculatingSendValue(false)
-			setSendValue('')
-			setIsCalculated(false)
-			return
-		}
-
-		if(activeCard === CARDS.getCard && getValue.length) {
-			setIsCalculatingSendValue(true)
-
-			calculationTimeout = setTimeout(() => {
-				const calculatedValue = (Number(getValue) * getItem.price) / sendItem.price
-
-				setSendValue(String(calculatedValue))
-				setIsCalculatingSendValue(false)
-				setIsCalculated(true)
-			}, 2000)
-		}
-
-		return () => clearTimeout(calculationTimeout)
-	}, [getValue, getItem])
-
-	const handleSwitch = () => {
-		setGetItem(sendItem)
-		setSendItem(getItem)
+		await switchItems()
+		setIsSwitching(false)
 	}
+
+	useEffect(() => {
+		prevGetItemRef.current = getItem
+		prevSendItemRef.current = sendItem
+	}, [isSwitching])
+
 
 	const handleFirsCardMenu = () => {
 		setIsFirstMenuOpen(true)
