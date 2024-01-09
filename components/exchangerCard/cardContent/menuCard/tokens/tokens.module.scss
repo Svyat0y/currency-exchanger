@@ -6,7 +6,7 @@
 
 .noItems {
   text-align: center;
-  color: $darkBlackSecond;
+  color: $second_color;
 }
 
 .group {
@@ -66,7 +66,7 @@
 }
 
 .right {
-  color: $darkBlackSecond;
+  color: $second_color;
 }
 
 .labels {
@@ -87,7 +87,7 @@
   }
 
   .label {
-    color: $darkBlackSecond;
+    color: $second_color;
   }
 }
 
@@ -95,5 +95,5 @@
   display: block;
   height: 1px;
   width: 100%;
-  background: $lightGraySecond;
+  background: $third_color;
 }

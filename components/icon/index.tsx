@@ -82,10 +82,10 @@ const ICONS: any = {
 	),
 	BURGER_MENU: (props: TSvgProps) => (
 		<svg className={props.className || ''} width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-			<path fill-rule="evenodd" clip-rule="evenodd"
+			<path fillRule="evenodd" clipRule="evenodd"
 			      d="M10 2C9.2636 2 8.66667 2.59667 8.66667 3.33333V6C8.66667 6.73667 9.2636 7.33333 10 7.33333H12.6667C13.4031 7.33333 14 6.73667 14 6V3.33333C14 2.59667 13.4031 2 12.6667 2H10ZM3.33333 8.66667C2.59693 8.66667 2 9.26333 2 10V12.6667C2 13.4033 2.59693 14 3.33333 14H6C6.7364 14 7.33333 13.4033 7.33333 12.6667V10C7.33333 9.26333 6.7364 8.66667 6 8.66667H3.33333ZM8.66667 10C8.66667 9.26333 9.2636 8.66667 10 8.66667H12.6667C13.4031 8.66667 14 9.26333 14 10V12.6667C14 13.4033 13.4031 14 12.6667 14H10C9.2636 14 8.66667 13.4033 8.66667 12.6667V10Z"
 			      fill="black"/>
-			<path fill-rule="evenodd" clip-rule="evenodd"
+			<path fillRule="evenodd" clipRule="evenodd"
 			      d="M10 2C9.2636 2 8.66667 2.59667 8.66667 3.33333V6C8.66667 6.73667 9.2636 7.33333 10 7.33333H12.6667C13.4031 7.33333 14 6.73667 14 6V3.33333C14 2.59667 13.4031 2 12.6667 2H10ZM3.33333 8.66667C2.59693 8.66667 2 9.26333 2 10V12.6667C2 13.4033 2.59693 14 3.33333 14H6C6.7364 14 7.33333 13.4033 7.33333 12.6667V10C7.33333 9.26333 6.7364 8.66667 6 8.66667H3.33333ZM8.66667 10C8.66667 9.26333 9.2636 8.66667 10 8.66667H12.6667C13.4031 8.66667 14 9.26333 14 10V12.6667C14 13.4033 13.4031 14 12.6667 14H10C9.2636 14 8.66667 13.4033 8.66667 12.6667V10Z"
 			      fill="url(#paint0_linear_347_1630)"/>
 			<path
@@ -97,13 +97,13 @@ const ICONS: any = {
 			<defs>
 				<linearGradient id="paint0_linear_347_1630" x1="2" y1="13.6962" x2="15.3846" y2="11.7202"
 				                gradientUnits="userSpaceOnUse">
-					<stop stop-color="#F06A31"/>
-					<stop offset="1" stop-color="#D10BB1"/>
+					<stop stopColor="#F06A31"/>
+					<stop offset="1" stopColor="#D10BB1"/>
 				</linearGradient>
 				<linearGradient id="paint1_linear_347_1630" x1="1.99902" y1="7.19831" x2="7.94771" y2="6.3201"
 				                gradientUnits="userSpaceOnUse">
-					<stop stop-color="#F06A31"/>
-					<stop offset="1" stop-color="#D10BB1"/>
+					<stop stopColor="#F06A31"/>
+					<stop offset="1" stopColor="#D10BB1"/>
 				</linearGradient>
 			</defs>
 		</svg>

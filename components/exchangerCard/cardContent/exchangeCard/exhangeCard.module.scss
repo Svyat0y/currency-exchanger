@@ -26,7 +26,7 @@
 }
 
 .titleDesc {
-  color: $darkBlackSecond;
+  color: $second_color;
   margin-bottom: 4px;
   font-size: 16px;
 }
@@ -51,7 +51,7 @@
   text-transform: uppercase;
   bottom: -20px;
   left: 0;
-  color: $darkBlackSecond;
+  color: $second_color;
 }
 
 .tooltipFee {
@@ -64,7 +64,7 @@
   line-height: 20px;
 
   &.active {
-    background: $green;
+    background: $sixth_color;
   }
 }
 

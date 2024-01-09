@@ -64,7 +64,7 @@ export const ExchangeCard: FC<ExchangeCardProps> = (
             setIsLocked={setIsLocked}
             isLocked={isLocked}
             tooltipContent={<TooltipFee isLocked={isLocked}/>}>
-            <Icon type={isLocked ? 'LOCK_GREEN' : 'LOCK_GRAY'}/>
+            <Icon type={isLocked ? 'LOCK' : 'LOCK'}/>
           </TooltipTrigger>
 				}
 			</div>

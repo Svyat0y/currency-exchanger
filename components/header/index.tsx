@@ -1,9 +1,9 @@
 import styles from './header.module.scss'
 import {NavigationBox} from "@/components/navigationBox/navigationBox"
-import {Icon} from "@/components/icon"
 import {LargeContainer} from "@/components/container/largeContainer"
 import {ExchangeInfo} from "@/components/header/exchangeInfo/exchangeInfo"
 import classNames from "classnames"
+import {Icon} from "@/components/icon"
 
 export const Header = () => {
 	return (

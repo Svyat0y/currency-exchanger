@@ -7,7 +7,7 @@
   position: relative;
 
   .title {
-    color: $darkBlackSecond;
+    color: $second_color;
   }
 
   &.isOpen {
@@ -168,7 +168,7 @@
     font-size: inherit;
 
     &.active {
-      color: $red1;
+      color: $seventh_color;
     }
   }
 }

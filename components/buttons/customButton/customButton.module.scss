@@ -13,7 +13,7 @@
   align-items: center;
   gap: 8px;
   text-transform: uppercase;
-  background: $lightGray;
+  background: $fourth_color;
   cursor: pointer;
   transition: $transition ease-in-out all;
 
@@ -29,7 +29,7 @@
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    color: $darkBlack;
+    color: $primary_color;
 
   }
 }

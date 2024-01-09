@@ -6,9 +6,9 @@ export const metadata: Metadata = {
 	title: 'SwapHub',
 	description: 'SwapHub Exchanger',
 	icons: {
-		icon: "/favicon.ico",
-		shortcut: "/favicon-16x16.png",
-		apple: "/apple-touch-icon.png",
+		// icon: "/favicon.ico",
+		// shortcut: "/favicon-16x16.png",
+		// apple: "/apple-touch-icon.png",
 	},
 }
 
