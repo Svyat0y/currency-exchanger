@@ -8,15 +8,19 @@ $white: #fff;
 $black: #000;
 $darkBlack: #061935;
 $darkBlackSecond: rgba(#061935, .3);
+$customGray: rgba(0, 0, 0, .3) ;
 $gray: #919191;
 $lightGray: #f2f2f2;
 $lightGraySecond: #e5e5e5;
+$lightGrayThird: #b2b2b2;
 $green: #1fa07b;
+$lightGreen: #28C600;
 $red1: #e64a5a;
 
 
 //
 $container_width: 844px;
+$largeContainer_width: 1320px;
 $transition: .2s;
 $cubicBezier: .6s cubic-bezier(0.86, 0.6, 0, 0.93) all;
 
@@ -24,6 +28,7 @@ $cubicBezier: .6s cubic-bezier(0.86, 0.6, 0, 0.93) all;
 $xs: 360px;
 $xs2: 430px;
 $sm: 576px;
+$sm2: 600px;
 $md: 768px;
 $md2: 800px;
 $lg: 1024px;
@@ -47,6 +52,12 @@ $xxl: 1720px;
 
 @mixin sm {
   @media (min-width: $sm) {
+    @content;
+  }
+}
+
+@mixin sm2 {
+  @media (min-width: $sm2) {
     @content;
   }
 }

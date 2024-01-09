@@ -1,0 +1,48 @@
+@import "styles/var";
+
+.exchangeInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+  overflow: hidden;
+  transition: $cubicBezier;
+  grid-area: exchangeInfo;
+
+  &.active {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+}
+
+.left {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: $lightGray;
+  padding: 12px;
+  flex-grow: 1;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.box {
+  display: flex;
+  align-items: center;
+  max-width: max-content;
+}
+
+.rateBox {
+  min-width: 40px;
+  padding: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: $lightGray;
+  border-radius: 12px;
+  overflow: hidden;
+}

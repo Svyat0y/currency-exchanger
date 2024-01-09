@@ -1,0 +1,63 @@
+@import "styles/var";
+
+.wrapper {
+  width: 100%;
+  transition: $cubicBezier;
+
+  &.active {
+    border-bottom: 1px solid rgba(0, 0, 0, .1);
+  }
+}
+
+.headerContent {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: 100px minmax(auto, 200px) 80px;
+  grid-template-areas:
+          'logo . navigation'
+          'exchangeInfo exchangeInfo exchangeInfo';
+  grid-template-rows: auto auto;
+  justify-content: space-between;
+  align-items: center;
+  height: max-content;
+  padding: 12px 0;
+  grid-gap: 12px;
+
+  @include sm{
+    height: 80px;
+    grid-template-areas: 'logo exchangeInfo navigation';
+    grid-template-columns: 100px minmax(auto, 380px) 80px;
+    grid-template-rows: auto;
+  }
+}
+
+.logo {
+  grid-area: logo;
+  display: flex;
+  flex-direction: column;
+}
+
+.logoTitle {
+  color: $black;
+  font-size: 24px;
+  letter-spacing: -1px;
+  font-weight: 700;
+}
+
+.logoDesc {
+  color: $lightGrayThird;
+  font-size: 12px;
+  letter-spacing: -0.5px;
+  font-weight: 700;
+}
+
+.navBtn {
+  max-width: 16px;
+  min-width: 16px;
+  max-height: 16px;
+  cursor: pointer;
+
+  &:active {
+    transform: scale(.90);
+  }
+}
