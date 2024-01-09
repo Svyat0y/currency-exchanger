@@ -4,7 +4,7 @@ import classNames from "classnames";
 
 type NavigationBoxProps = {
 	children: ReactNode
-	isShadow: boolean
+	isShadow?: boolean
 }
 
 export const NavigationBox: FC<NavigationBoxProps> = ({children, isShadow = true}) => {

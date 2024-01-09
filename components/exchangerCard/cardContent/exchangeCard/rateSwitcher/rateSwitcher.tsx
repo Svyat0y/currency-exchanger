@@ -13,8 +13,7 @@ export const RateSwitcher = () => {
 	const [rateState, setRateState] = useState(1)
 
 	return (
-		<div className={styles.cardNav}>
-
+		<div className={classNames(styles.cardNav)}>
 			<NavigationBox isShadow={false}>
 				<button onClick={() => setRateState(RATES.floating)} className={classNames(styles.navBtn, {
 					[styles.active]: rateState === RATES.floating

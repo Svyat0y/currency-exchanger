@@ -26,11 +26,26 @@
   align-items: flex-end;
 }
 
-.cardNav {
+.cardNavWrapper {
+  position: relative;
+}
+
+.navContent {
   display: flex;
   justify-content: flex-end;
   align-items: center;
   gap: 8px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(10px);
+  transition: $cubicBezier;
+
+  &.isVisible {
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+    transform: translateY(0);
+  }
 }
 
 .bottom {
@@ -94,6 +109,11 @@
   transition: .3s ease;
   animation: skeletonBg 2s infinite linear;
   background-size: 400% 400%;
+  z-index: 100;
+}
+
+.cardNavSkeleton {
+  border-radius: 12px;
 }
 
 
