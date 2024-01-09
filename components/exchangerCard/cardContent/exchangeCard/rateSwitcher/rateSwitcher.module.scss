@@ -1,0 +1,37 @@
+@import "styles/var";
+
+.navBtn {
+  transition: $cubicBezier;
+  position: relative;
+
+  svg {
+    position: relative;
+    z-index: 1;
+  }
+
+  &::after {
+    transition: $cubicBezier;
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: $fourth_color;
+    border-radius: 6px;
+    opacity: 0;
+  }
+
+  &:first-child::after  {
+    transform: translateX(30px);
+  }
+
+  &:last-child::after {
+    transform: translateX(-30px);
+  }
+
+  &:first-child.active::after, &:last-child.active::after {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

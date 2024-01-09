@@ -7,6 +7,8 @@ import {Icon} from "@/components/icon"
 import {FC, useEffect, useRef, useState} from "react"
 import {CardContentProps} from "@/components/exchangerCard/cardContent"
 import classNames from "classnames"
+import {NavigationBox} from "@/components/navigationBox/navigationBox";
+import {RateSwitcher} from "@/components/exchangerCard/cardContent/exchangeCard/rateSwitcher/rateSwitcher";
 
 type ExchangeCardProps = CardContentProps
 
@@ -42,31 +44,24 @@ export const ExchangeCard: FC<ExchangeCardProps> = (
 			[styles.isOpenMenu]: isOpenMenu
 		})}>
 			<div className={styles.header}>
-				<span className={styles.titleDesc}>{cardTitle}</span>
 				<CustomButton onClick={handleOpenMenu} text={item?.shortLabel} icon={item?.icon}/>
+				{isCalculated && isSecondCard && <div className={styles.cardNav}>
+					<span className={styles.additionalInfo}>{additionalInfo}</span>
+          <RateSwitcher/>
+        </div>}
 			</div>
-			<div className={styles.inputWrapper}>
-				{isCalculating ? <span className={styles.skeleton}></span> : ''}
-				<Input
-					inputRef={inputRef}
-					id={'Amount'}
-					value={value}
-					handleChangeInput={handleInput}
-					placeholder='Enter amount'
-				/>
-				{isCalculated && isSecondCard && <span className={styles.additionalInfo}>
-						{additionalInfo}
-					</span>}
-				{isCalculated && isSecondCard &&
-          <TooltipTrigger
-            className={styles.lockIcon}
-            tag='button'
-            setIsLocked={setIsLocked}
-            isLocked={isLocked}
-            tooltipContent={<TooltipFee isLocked={isLocked}/>}>
-            <Icon type={isLocked ? 'LOCK' : 'LOCK'}/>
-          </TooltipTrigger>
-				}
+			<div className={styles.bottom}>
+				<span className={styles.titleDesc}>{cardTitle}</span>
+				<div className={styles.inputWrapper}>
+					{isCalculating ? <span className={styles.skeleton}></span> : ''}
+					<Input
+						inputRef={inputRef}
+						id={'Amount'}
+						value={value}
+						handleChangeInput={handleInput}
+						placeholder='Enter amount'
+					/>
+				</div>
 			</div>
 		</div>
 	)

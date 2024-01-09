@@ -8,7 +8,8 @@
   flex-direction: column;
   justify-content: space-between;
   transition: $cubicBezier;
-  padding: 12px 12px 32px 32px;
+  padding: 12px 12px 20px 12px;
+  gap: 22px;
 
   &.isOpenMenu {
     padding: 0 32px;
@@ -25,16 +26,31 @@
   align-items: flex-end;
 }
 
+.cardNav {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+}
+
+.bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
 .titleDesc {
   color: $second_color;
-  margin-bottom: 4px;
   font-size: 16px;
 }
 
+.titleDesc, .inputWrapper {
+  padding-left: 20px;
+}
+
 .inputWrapper {
-  max-width: 260px;
+  max-width: 300px;
   position: relative;
-  margin-right: 20px;
   font-size: 24px;
 }
 
@@ -46,11 +62,8 @@
 }
 
 .additionalInfo {
-  position: absolute;
   font-size: 12px;
   text-transform: uppercase;
-  bottom: -20px;
-  left: 0;
   color: $second_color;
 }
 
