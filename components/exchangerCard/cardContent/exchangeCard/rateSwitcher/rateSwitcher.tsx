@@ -2,15 +2,15 @@ import styles from './rateSwitcher.module.scss'
 import {NavigationBox} from "@/components/navigationBox/navigationBox"
 import classNames from "classnames"
 import {Icon} from "@/components/icon"
-import {useState} from "react"
+import {useExchangeContext} from "@/context/exchangeContext"
 
-const RATES = {
+export const RATES = {
 	floating: 1,
 	fixed: 2
 }
 
 export const RateSwitcher = () => {
-	const [rateState, setRateState] = useState(1)
+	const {rateState, setRateState} = useExchangeContext()
 
 	return (
 		<div className={classNames(styles.cardNav)}>
@@ -23,7 +23,7 @@ export const RateSwitcher = () => {
 				<button onClick={() => setRateState(RATES.fixed)} className={classNames(styles.navBtn, {
 					[styles.active]: rateState === RATES.fixed
 				})}>
-					<Icon type='LOCK' fill={'rgba(0, 0, 0, .3)'}/>
+					<Icon type='LOCK' fill={rateState === RATES.fixed ? '#28C600' : 'rgba(0, 0, 0, .3)'}/>
 				</button>
 			</NavigationBox>
 

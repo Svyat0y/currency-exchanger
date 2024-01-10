@@ -11,6 +11,7 @@
   overflow: hidden;
   transition: $cubicBezier;
   grid-area: exchangeInfo;
+  font-family: $primary_font;
 
   &.active {
     opacity: 1;
@@ -34,6 +35,48 @@
   display: flex;
   align-items: center;
   max-width: max-content;
+  gap: 4px;
+
+  img {
+    display: inline-block;
+    max-width: 15px;
+    min-width: 15px;
+    max-height: 16px;
+    transform: translateY(-0.5px);
+  }
+}
+
+.getValueBtn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+}
+
+.icon {
+  transition: $cubicBezier;
+
+  &.success {
+    transform: rotateX(180deg);
+
+    path {
+      fill: $eighth_color;
+    }
+  }
+}
+
+.sendValue, .getValue {
+  font-size: 16px;
+  font-weight: 600;
+  font-family: $primary_font;
+}
+
+.getValue {
+  color: $tenth_color;
+
+  &.success {
+    color: $eighth_color;
+  }
 }
 
 .rateBox {

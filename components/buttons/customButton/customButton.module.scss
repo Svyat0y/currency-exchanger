@@ -16,6 +16,7 @@
   background: $fourth_color;
   cursor: pointer;
   transition: $transition ease-in-out all;
+  font-family: $primary_font;
 
   &:active {
     transform: scale(.98);

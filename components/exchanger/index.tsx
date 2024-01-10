@@ -5,11 +5,11 @@ import classNames from "classnames"
 import {ExchangerCard} from "../exchangerCard"
 import {useEffect, useRef, useState} from "react"
 import {Icon} from "@/components/icon"
-import {currencies} from "@/components/exchanger/data"
-import {Item} from "@/types/types"
+
 import {formatNumber} from "@/utils/helpers"
 import {Wallet} from "@/components/wallet"
 import {Terms} from "@/components/exchanger/terms/terms"
+import {useExchangeContext} from "@/context/exchangeContext"
 
 export const CARDS = {
 	sendCard: 1,
@@ -19,14 +19,10 @@ export const CARDS = {
 
 export const Exchanger = () => {
 	const [activeCard, setActiveCard] = useState(CARDS.sendCard)
-	const [sendItem, setSendItem] = useState<Item>(currencies[0])
-	const [getItem, setGetItem] = useState<Item>(currencies[4])
-	const [sendValue, setSendValue] = useState('')
-	const [getValue, setGetValue] = useState('')
+	const {getItem, sendItem, sendValue, getValue, setGetValue, setSendValue, setGetItem, setSendItem, wallet, setWallet} = useExchangeContext()
 	const [isCalculatingGetValue, setIsCalculatingGetValue] = useState(false)
 	const [isCalculatingSendValue, setIsCalculatingSendValue] = useState(false)
 	const [isCalculated, setIsCalculated] = useState(false)
-	const [wallet, setWallet] = useState('')
 	const [isFirstMenuOpen, setIsFirstMenuOpen] = useState(false)
 	const [isSecondMenuOpen, setIsSecondMenuOpen] = useState(false)
 	const [isSwitching, setIsSwitching] = useState(false)
@@ -258,7 +254,8 @@ export const Exchanger = () => {
 						active={activeCard === CARDS.wallet}
 						setActiveCard={setActiveCard}
 						card={CARDS.wallet}
-						value={wallet} setInputState={setWallet}
+						value={wallet}
+						setInputState={setWallet}
 						isCalculated={isCalculated}
 					/>
 					<Terms/>
