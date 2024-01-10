@@ -1,5 +1,6 @@
 import type {Metadata} from 'next'
 import '../styles/global.scss'
+import {Layout} from "@/components/layout"
 
 
 export const metadata: Metadata = {
@@ -18,10 +19,14 @@ export default function RootLayout({children}: {
 }) {
 	return (
 		<html lang="en" suppressHydrationWarning>
-			<head>
-				<title>Exchanger</title>
-			</head>
-			<body>{children}</body>
+		<head>
+			<title>Exchanger</title>
+		</head>
+		<body>
+		<Layout>
+			{children}
+		</Layout>
+		</body>
 		</html>
 	)
 }

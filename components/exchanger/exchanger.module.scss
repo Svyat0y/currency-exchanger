@@ -7,6 +7,8 @@
   transition: $cubicBezier;
   padding-top: 2rem;
   height: 100%;
+  max-width: 812px;
+  margin: 0 auto;
 
   @include md {
     justify-content: center;

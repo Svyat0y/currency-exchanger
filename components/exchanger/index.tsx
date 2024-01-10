@@ -9,7 +9,7 @@ import {currencies} from "@/components/exchanger/data"
 import {Item} from "@/types/types"
 import {formatNumber} from "@/utils/helpers"
 import {Wallet} from "@/components/wallet"
-import {Terms} from "@/components/exchanger/terms/terms";
+import {Terms} from "@/components/exchanger/terms/terms"
 
 export const CARDS = {
 	sendCard: 1,
