@@ -1,7 +1,7 @@
 import React, {FC} from 'react'
 
 const type = [
-	'LOCK_GRAY', 'LOCK', 'SWITCH_ARROWS', 'PASTE', 'QR_CODE', 'BLACK_SUN', 'BURGER_MENU', 'WATER'
+	'LOCK_GRAY', 'LOCK', 'SWITCH_ARROWS', 'PASTE', 'QR_CODE', 'BLACK_SUN', 'BURGER_MENU', 'WATER', 'CHECK'
 ] as const
 
 type RepeatedFieldsType = {
@@ -118,6 +118,11 @@ const ICONS: any = {
 					<stop offset="1" stopColor="#D10BB1"/>
 				</linearGradient>
 			</defs>
+		</svg>
+	),
+	CHECK: (props: TSvgProps) => (
+		<svg className={props.className || ''} width="10" height="7" viewBox="0 0 10 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<path d="M1 2.71429L3.90909 5L9 1" stroke={props.fill || "white"} stroke-width="2"/>
 		</svg>
 	),
 }

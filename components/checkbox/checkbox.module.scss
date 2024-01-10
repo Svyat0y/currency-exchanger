@@ -1,0 +1,41 @@
+@import "styles/var";
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+  gap: 12px;
+  cursor: pointer;
+
+  input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+    z-index: -1;
+  }
+}
+
+.box {
+  width: 20px;
+  height: 20px;
+  border: 1px solid $primary_color;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: $cubicBezier;
+
+  &.active {
+    border: none;
+    background: $black;
+  }
+}
+
+.text {
+  color: $fifth_color;
+  transition: $cubicBezier;
+
+  &.active {
+    color: $primary_color;
+  }
+}

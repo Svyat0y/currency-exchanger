@@ -11,7 +11,7 @@
   overflow: hidden;
   border: 1px solid rgba(0, 0, 0, 0.10);
   background: #FFF;
-  min-width: 72px;
+  max-width: max-content;
   grid-area: navigation;
 
   &.isShadow {

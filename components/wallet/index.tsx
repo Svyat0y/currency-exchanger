@@ -9,7 +9,6 @@ type WalletProps = {
 	value: string
 	setInputState: (value: string) => void
 	isCalculated: boolean
-	hided: boolean
 	active: boolean
 	setActiveCard: (card: number) => void
 	card: number
@@ -21,7 +20,6 @@ export const Wallet: FC<WalletProps> = (
 		setInputState,
 		active,
 		isCalculated,
-		hided,
 		setActiveCard,
 		card
 	}) => {
@@ -38,10 +36,7 @@ export const Wallet: FC<WalletProps> = (
 	}, [isCalculated])
 
 	return (
-		<div className={classNames(styles.walletWrapper, {
-			[styles.isShow]: isCalculated,
-			[styles.hided]: hided,
-		})} onClick={() => setActiveCard(card)}>
+		<div className={classNames(styles.walletWrapper)} onClick={() => setActiveCard(card)}>
 			<GradientBorder active={active}/>
 			<div className={styles.content}>
 				<Input
@@ -52,7 +47,7 @@ export const Wallet: FC<WalletProps> = (
 					inputRef={inputRef}
 					placeholder='Enter Destination Wallet Address'
 				/>
-				<WalletNavigation value={value} setWallet={setInputState}/>
+				<WalletNavigation setWallet={setInputState}/>
 			</div>
 		</div>
 	)

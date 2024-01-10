@@ -12,7 +12,7 @@
 .headerContent {
   display: grid;
   gap: 12px;
-  grid-template-columns: 100px minmax(auto, 200px) 80px;
+  grid-template-columns: 110px minmax(auto, 200px) max-content;
   grid-template-areas:
           'logo . navigation'
           'exchangeInfo exchangeInfo exchangeInfo';
@@ -26,7 +26,7 @@
   @include sm{
     height: 80px;
     grid-template-areas: 'logo exchangeInfo navigation';
-    grid-template-columns: 100px minmax(auto, 380px) 80px;
+    grid-template-columns: 110px minmax(auto, 380px) max-content;
     grid-template-rows: auto;
   }
 }

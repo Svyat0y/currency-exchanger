@@ -9,6 +9,7 @@ import {currencies} from "@/components/exchanger/data"
 import {Item} from "@/types/types"
 import {formatNumber} from "@/utils/helpers"
 import {Wallet} from "@/components/wallet"
+import {Terms} from "@/components/exchanger/terms/terms";
 
 export const CARDS = {
 	sendCard: 1,
@@ -249,14 +250,19 @@ export const Exchanger = () => {
 						setItem={setGetItem}
 					/>
 				</div>
-				<Wallet
-					hided={isSecondMenuOpen || isFirstMenuOpen}
-					active={activeCard === CARDS.wallet}
-					setActiveCard={setActiveCard}
-					card={CARDS.wallet}
-					value={wallet} setInputState={setWallet}
-					isCalculated={isCalculated}
-				/>
+				<div className={classNames(styles.exchangeFooter, {
+					[styles.isShow]: isCalculated,
+					[styles.hided]: isSecondMenuOpen || isFirstMenuOpen,
+				})}>
+					<Wallet
+						active={activeCard === CARDS.wallet}
+						setActiveCard={setActiveCard}
+						card={CARDS.wallet}
+						value={wallet} setInputState={setWallet}
+						isCalculated={isCalculated}
+					/>
+					<Terms/>
+				</div>
 			</div>
 		</div>
 	)

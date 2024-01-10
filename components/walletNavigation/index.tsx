@@ -9,10 +9,9 @@ import {NavigationBox} from "@/components/navigationBox/navigationBox"
 
 type WalletNavigationProps = {
 	setWallet: (wallet: string) => void
-	value: string
 }
 
-export const WalletNavigation: FC<WalletNavigationProps> = ({setWallet, value}) => {
+export const WalletNavigation: FC<WalletNavigationProps> = ({setWallet}) => {
 	const [showScanner, setShowScanner] = useState(false)
 
 	const handlePaste = async () => {
@@ -40,7 +39,6 @@ export const WalletNavigation: FC<WalletNavigationProps> = ({setWallet, value}) 
 						<Icon type='QR_CODE'/>
 					</button>
 				</NavigationBox>
-				<PrimaryButton text={'Exchange'} disabled={!value} type={'black'}/>
 			</div>
 			{typeof document !== 'undefined' && showScanner && createPortal(
 				<QrScanner showScanner={showScanner} setShowScanner={setShowScanner} setWallet={setWallet}/>,
