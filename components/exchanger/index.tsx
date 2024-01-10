@@ -48,6 +48,7 @@ export const Exchanger = () => {
 
 		if(!isSwitching) {
 			if(sendValue.length === 0) {
+				prevSendItemRef.current = sendItem
 				setIsCalculatingGetValue(false)
 				setGetValue('')
 				setIsCalculated(false)
@@ -75,6 +76,7 @@ export const Exchanger = () => {
 
 		if(!isSwitching) {
 			if(getValue.length === 0) {
+				prevGetItemRef.current = getItem
 				setIsCalculatingSendValue(false)
 				setSendValue('')
 				setIsCalculated(false)
