@@ -1,7 +1,7 @@
 import {FC} from "react"
 import styles from "./gradientBorder.module.scss"
 import classNames from "classnames"
-import {useExchangeContext} from "@/context/exchangeContext"
+import {useNotificationContext} from "@/context/notificationContext"
 
 type GradientBorderProps = {
 	active: boolean
@@ -17,7 +17,7 @@ export const GradientBorder:FC<GradientBorderProps> = (
 		smallRadius,
 		withoutGrayBorder,
 	}) => {
-	const {isOverlay} = useExchangeContext()
+	const {isOverlay} = useNotificationContext()
 
 	return (
 		<>

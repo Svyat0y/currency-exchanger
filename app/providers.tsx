@@ -2,6 +2,7 @@
 
 import {ReactNode} from "react"
 import {ExchangeContextProvider} from "@/context/exchangeContext"
+import {NotificationContextProvider} from "@/context/notificationContext"
 
 export interface ProvidersProps {
 	children: ReactNode;
@@ -9,8 +10,10 @@ export interface ProvidersProps {
 
 export function Providers ({children}: ProvidersProps) {
 	return (
-		<ExchangeContextProvider>
-			{children}
-		</ExchangeContextProvider>
+		<NotificationContextProvider>
+			<ExchangeContextProvider>
+				{children}
+			</ExchangeContextProvider>
+		</NotificationContextProvider>
 	)
 }

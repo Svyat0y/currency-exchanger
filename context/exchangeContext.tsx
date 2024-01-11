@@ -19,10 +19,6 @@ type TExchange = {
 	setWallet: (value: string) => void
 	rateState: number
 	setRateState: (rate: number) => void
-	isNotification: boolean
-	setIsNotification: (state: boolean) => void
-	isOverlay: boolean
-	setIsOverlay: (state: boolean) => void
 }
 
 const exchangeContext = createContext<TExchange | null>(null)
@@ -32,7 +28,7 @@ export const useExchangeContext = () => {
 	if (!context) {
 		throw new Error("ExchangeContextProvider must be used within a ExchangeContextProvider")
 	}
-	return context;
+	return context
 }
 
 export const ExchangeContextProvider = ({children}: TExchangeContext) => {
@@ -42,8 +38,6 @@ export const ExchangeContextProvider = ({children}: TExchangeContext) => {
 	const [getValue, setGetValue] = useState('')
 	const [wallet, setWallet] = useState('')
 	const [rateState, setRateState] = useState(1)
-	const [isNotification, setIsNotification] = useState(false)
-	const [isOverlay, setIsOverlay] = useState(false)
 
 	const value = {
 		sendItem,
@@ -58,10 +52,6 @@ export const ExchangeContextProvider = ({children}: TExchangeContext) => {
 		setWallet,
 		rateState,
 		setRateState,
-		isNotification,
-		setIsNotification,
-		isOverlay,
-		setIsOverlay,
 	}
 
 

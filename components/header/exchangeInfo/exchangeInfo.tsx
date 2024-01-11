@@ -10,9 +10,11 @@ import {SendValueBox} from "@/components/header/exchangeInfo/sendValueBox"
 import {Overlay} from "@/components/overlay/overlay"
 import {useState} from "react"
 import {TooltipTrigger} from "@/components/tooltipTrigger/tooltipTrigger"
+import {useNotificationContext} from "@/context/notificationContext"
 
 export const ExchangeInfo = () => {
-	const {rateState, setIsOverlay} = useExchangeContext()
+	const {rateState} = useExchangeContext()
+	const {setIsOverlay} = useNotificationContext()
 	const [isTooltip, setIsTooltip] = useState(false)
 	const isFixedRate = rateState === RATES.fixed
 	const ratesInfo = rateState === RATES.fixed ? RATES_TOOLTIP.fixedRate : RATES_TOOLTIP.floatRate

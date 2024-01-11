@@ -16,7 +16,6 @@ export const CustomToolTip: FC<CustomTooltipProps> = (
 		isTooltip,
 		children
 	}) => {
-	console.log(backgroundColor)
 
 	return (
 		<div

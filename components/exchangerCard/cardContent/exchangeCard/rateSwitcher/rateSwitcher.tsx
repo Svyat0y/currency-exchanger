@@ -5,6 +5,7 @@ import {Icon} from "@/components/icon"
 import {useExchangeContext} from "@/context/exchangeContext"
 import {Notification} from "@/components/notification/notification"
 import {createPortal} from "react-dom"
+import {useNotificationContext} from "@/context/notificationContext"
 
 export const RATES = {
 	floating: 1,
@@ -17,7 +18,8 @@ export const RATES_TOOLTIP = {
 }
 
 export const RateSwitcher = () => {
-	const {rateState, setRateState, isNotification, setIsNotification} = useExchangeContext()
+	const {rateState, setRateState} = useExchangeContext()
+	const {isNotification, setIsNotification} = useNotificationContext()
 	const isFixedRate = rateState === RATES.fixed
 	const isFloatingRate = rateState === RATES.floating
 
