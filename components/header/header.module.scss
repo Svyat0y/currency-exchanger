@@ -34,21 +34,21 @@
 .headerContent {
   display: grid;
   gap: 12px;
-  grid-template-columns: 110px minmax(auto, 200px) max-content;
+  grid-template-columns: 110px minmax(auto, 200px) 74px;
   grid-template-areas:
-          'logo . navigation'
+          'logo . .'
           'exchangeInfo exchangeInfo exchangeInfo';
   grid-template-rows: auto auto;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   height: max-content;
-  padding: 12px 0;
+  padding: 18px 0 12px;
   grid-gap: 12px;
 
   @include sm{
     height: 80px;
-    grid-template-areas: 'logo exchangeInfo navigation';
-    grid-template-columns: 110px minmax(auto, 380px) max-content;
+    grid-template-areas: 'logo exchangeInfo .';
+    grid-template-columns: 110px minmax(auto, 380px) 74px;
     grid-template-rows: auto;
   }
 }
@@ -71,10 +71,4 @@
   font-size: 12px;
   letter-spacing: -0.5px;
   font-weight: 700;
-}
-
-.navBtn {
-  &:active {
-    transform: scale(.90);
-  }
 }

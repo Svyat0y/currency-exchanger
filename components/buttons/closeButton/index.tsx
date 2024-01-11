@@ -4,7 +4,7 @@ import classNames from "classnames"
 
 type CloseButton = {
 	onClick?: () => void
-	className: string
+	className?: string
 }
 
 export const CloseButton: FC<CloseButton> = ({onClick, className}) => {

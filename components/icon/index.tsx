@@ -1,7 +1,7 @@
 import React, {FC} from 'react'
 
 const type = [
-	'LOCK_GRAY', 'LOCK', 'SWITCH_ARROWS', 'PASTE', 'QR_CODE', 'BLACK_SUN', 'BURGER_MENU', 'WATER', 'CHECK', 'POLYGON'
+	'LOCK_GRAY', 'LOCK', 'SWITCH_ARROWS', 'PASTE', 'QR_CODE', 'BLACK_SUN', 'BURGER_MENU', 'WATER', 'CHECK', 'POLYGON', 'MOON'
 ] as const
 
 type RepeatedFieldsType = {
@@ -128,6 +128,13 @@ const ICONS: any = {
 	POLYGON: (props: TSvgProps) => (
 		<svg className={props.className || ''} width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
 			<path d="M6 8L12 0H0L6 8Z" fill={props.fill || "#FF3B3B"}/>
+		</svg>
+	),
+	MOON: (props: TSvgProps) => (
+		<svg className={props.className || ''} width="13" height="14" viewBox="0 0 13 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<path
+				d="M8.01931 0.659895C7.43731 0.476562 6.93998 1.11256 7.24864 1.63922C7.73598 2.46989 7.99864 3.40723 7.99864 4.34723C7.99864 7.29255 5.61064 9.68055 2.66531 9.68055C2.11071 9.68055 1.54978 9.59055 1.04031 9.43055C0.458375 9.24722 -0.0598916 9.88321 0.248642 10.4099C1.43364 12.4312 3.59944 13.6805 5.99864 13.6805C9.68064 13.6805 12.6653 10.6959 12.6653 7.01389C12.6653 4.07989 10.7713 1.52523 8.01931 0.659895Z"
+				fill={props.fill || 'black'}/>
 		</svg>
 	),
 }

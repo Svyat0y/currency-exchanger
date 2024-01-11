@@ -1,8 +1,7 @@
 import styles from './header.module.scss'
-import {NavigationBox} from "@/components/navigationBox/navigationBox"
 import {ExchangeInfo} from "@/components/header/exchangeInfo/exchangeInfo"
 import classNames from "classnames"
-import {Icon} from "@/components/icon"
+import {Navigation} from "@/components/header/navigation/navigation"
 
 export const Header = () => {
 	return (
@@ -13,14 +12,7 @@ export const Header = () => {
 					<span className={styles.logoDesc}>Crypto Exchange</span>
 				</div>
 				<ExchangeInfo/>
-				<NavigationBox>
-					<button aria-label='black sun' className={styles.navBtn}>
-						<Icon type='BLACK_SUN'/>
-					</button>
-					<button aria-label='burger menu' className={styles.navBtn}>
-						<Icon type='BURGER_MENU'/>
-					</button>
-				</NavigationBox>
+				<Navigation/>
 			</div>
 		</div>
 	)

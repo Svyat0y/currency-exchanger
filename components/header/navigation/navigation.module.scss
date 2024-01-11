@@ -1,0 +1,81 @@
+@import "styles/var";
+
+.wrapper {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  right: 0;
+  top: 12px;
+  max-width: 100%;
+  border-radius: 12px;
+  padding: 1px;
+  transition: $cubicBezier;
+  max-height: max-content;
+  z-index: 999;
+
+  @include sm {
+    top: initial;
+  }
+
+  &.isOpen {
+
+    @include md {
+      position: absolute;
+      top: initial;
+      right: 0;
+    }
+
+    @media (max-width: $md - 1px) {
+      position: absolute;
+      top: 18px;
+      right: 0;
+      padding: 0 0 0 1px;
+      border-radius: 0;
+      transform: translate(1rem, -1rem);
+
+      .gradientBorder, .content {
+        border-radius: 0!important;
+      }
+    }
+
+    .content {
+      width: 220px;
+      height: 100vh;
+      padding: 12px;
+
+      @include md {
+        width: 220px;
+        height: 224px;
+      }
+    }
+
+    .navMenu {
+      position: relative;
+      opacity: 0;
+      pointer-events: none;
+      visibility: hidden;
+    }
+  }
+}
+
+.navMenu {
+  transition: $cubicBezier;
+}
+
+.navBtn {
+  &:active {
+    transform: scale(.90);
+  }
+}
+
+.content {
+  width: 74px;
+  height: 40px;
+  background: #fff!important;
+  border-radius: 13px;
+  z-index: 1;
+  padding: 0;
+  position: relative;
+  transition: $cubicBezier;
+
+}

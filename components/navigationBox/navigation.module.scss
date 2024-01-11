@@ -9,10 +9,12 @@
   background: $white;
   border-radius: 12px;
   overflow: hidden;
-  border: 1px solid rgba(0, 0, 0, 0.10);
   background: #FFF;
   max-width: max-content;
-  grid-area: navigation;
+
+  .isBorder {
+    border: 1px solid rgba(0, 0, 0, 0.10);
+  }
 
   &.isShadow {
     box-shadow: 0 8px 24px 0 rgba(0, 0, 0, 0.08);
