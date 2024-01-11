@@ -1,13 +1,29 @@
 @import "styles/var";
 
-.tipsInfo {
+.wrapper {
   position: absolute;
-  background: $black;
+  top: 100%;
+  left: 50%;
+  transform: translate(-80%, 0px);
+  min-width: max-content;
+  transition: $cubicBezier;
+  opacity: 0;
+  padding: 1rem;
   border-radius: 12px;
-  z-index: 100;
-  display: flex;
-  justify-self: center;
-  align-items: center;
-  text-align: center;
-  overflow: hidden;
+  color: $white;
+  pointer-events: none;
+
+  @include sm {
+    transform: translate(-50%, 0px);
+  }
+
+  &.active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(-80%, 10px);
+
+    @include sm {
+      transform: translate(-50%, 10px);
+    }
+  }
 }

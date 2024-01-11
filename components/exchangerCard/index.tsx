@@ -90,7 +90,7 @@ export const ExchangerCard: FC<ExchangerCardProps> = (
 			[styles.isMenuFirst]: isOpenMenu && isFirstCard,
 			[styles.isMenuSecond]: isOpenMenu && isSecondCard
 		})} onClick={handleCardClick}>
-			<GradientBorder active={active && !popupIsOpen} withoutAnim={isOpenMenu}/>
+			<GradientBorder active={active && !popupIsOpen && (!isCalculated || isOpenMenu)} withoutAnim={isOpenMenu}/>
 			<CardContent {...cardProps}/>
 		</div>
 	)

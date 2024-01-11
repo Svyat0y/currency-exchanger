@@ -8,10 +8,10 @@
   opacity: 0;
   transform: translateY(20px);
   pointer-events: none;
-  overflow: hidden;
   transition: $cubicBezier;
   grid-area: exchangeInfo;
   font-family: $primary_font;
+  z-index: 40;
 
   &.active {
     opacity: 1;
@@ -87,5 +87,4 @@
   align-items: center;
   background: $fourth_color;
   border-radius: 12px;
-  overflow: hidden;
 }

@@ -1,39 +1,36 @@
-import {FC, ReactNode, createElement, useState, useRef} from "react"
-import {createPortal} from "react-dom"
+import {FC, ReactNode, createElement, useRef} from "react"
 import {CustomToolTip} from "@/components/tooltip/customTooltip"
 
 type TooltipTriggerProps = {
 	children: ReactNode
 	tag: string
-	setIsLocked: (isLocked: boolean) => void
-	isLocked: boolean
 	tooltipContent: ReactNode
 	className: string
+	isTooltip: boolean
+	handleShowTooltip: () => void
+	handleRemoveTooltip: () => void
+	backgroundColor: string
 }
 
 export const TooltipTrigger: FC<TooltipTriggerProps> = (
 	{
 		children,
 		tag = 'div',
-		setIsLocked,
-		isLocked,
 		tooltipContent,
 		className,
+		isTooltip,
+		handleShowTooltip,
+		handleRemoveTooltip,
+		backgroundColor,
 	}) => {
-	const [isToolTip, setIsToolTip] = useState(false)
-	const toolTipRef = useRef<HTMLDivElement | null>(null)
-	const tagRef = useRef<HTMLButtonElement | null>(null)
+	const tagRef = useRef<HTMLDivElement | HTMLButtonElement | null>(null)
 
 	const handleHoverToolTip = () => {
-		setIsToolTip && setIsToolTip(true)
-	}
-
-	const handleClickOnToolTip = () => {
-		setIsLocked(!isLocked)
+		handleShowTooltip()
 	}
 
 	const handleRemoveToolTip = () => {
-		setIsToolTip && setIsToolTip(false)
+		handleRemoveTooltip()
 	}
 
 	const Element = createElement(tag, {
@@ -41,26 +38,17 @@ export const TooltipTrigger: FC<TooltipTriggerProps> = (
 		className: className,
 		onMouseEnter: handleHoverToolTip,
 		onMouseLeave: handleRemoveToolTip,
-		onClick: handleClickOnToolTip,
+		onTouchEnd: handleHoverToolTip,
 	}, children)
 
 	return (
-		<>
+		<div style={{position: "relative"}}>
 			{Element}
-			{Element && isToolTip &&
-				createPortal(
-					<CustomToolTip
-						toolTipRef={toolTipRef}
-						isToolTip={isToolTip}
-						triggerElement={tagRef}
-						handleRemoveToolTip={handleRemoveToolTip}
-						positionY='top'
-						width={115}
-					>
-						{tooltipContent}
-					</CustomToolTip>,
-					document.body
-				)}
-		</>
+			{Element &&
+        <CustomToolTip backgroundColor={backgroundColor} isTooltip={isTooltip}>
+	        {tooltipContent}
+        </CustomToolTip>
+			}
+		</div>
 	)
 }

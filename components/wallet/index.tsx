@@ -40,6 +40,7 @@ export const Wallet: FC<WalletProps> = (
 			<GradientBorder active={active}/>
 			<div className={styles.content}>
 				<Input
+					onFocus={() => setActiveCard(card)}
 					id={'wallet'}
 					className={styles.walletInput}
 					handleChangeInput={setInputState}

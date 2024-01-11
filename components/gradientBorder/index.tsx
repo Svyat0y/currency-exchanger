@@ -1,6 +1,7 @@
 import {FC} from "react"
 import styles from "./gradientBorder.module.scss"
 import classNames from "classnames"
+import {useExchangeContext} from "@/context/exchangeContext"
 
 type GradientBorderProps = {
 	active: boolean
@@ -16,6 +17,8 @@ export const GradientBorder:FC<GradientBorderProps> = (
 		smallRadius,
 		withoutGrayBorder,
 	}) => {
+	const {isOverlay} = useExchangeContext()
+
 	return (
 		<>
 			<span className={classNames(styles.border, {
@@ -25,6 +28,7 @@ export const GradientBorder:FC<GradientBorderProps> = (
 			<div
 				className={classNames(styles.gradientBlock, {
 					[styles.active]: active,
+					[styles.hideGradient]: active && isOverlay,
 					[styles.withoutAnim]: withoutAnim,
 					[styles.smallRadius]: smallRadius,
 				})}>

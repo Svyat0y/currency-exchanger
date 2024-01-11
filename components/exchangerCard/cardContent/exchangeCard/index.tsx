@@ -1,14 +1,10 @@
 import styles from './exhangeCard.module.scss'
 import {CustomButton} from "@/components/buttons/customButton"
 import {Input} from "@/components/input"
-import {TooltipTrigger} from "@/components/tooltipTrigger/tooltipTrigger"
-import {TooltipFee} from "./tooltipFee"
-import {Icon} from "@/components/icon"
 import {FC, useEffect, useRef, useState} from "react"
 import {CardContentProps} from "@/components/exchangerCard/cardContent"
 import classNames from "classnames"
-import {NavigationBox} from "@/components/navigationBox/navigationBox";
-import {RateSwitcher} from "@/components/exchangerCard/cardContent/exchangeCard/rateSwitcher/rateSwitcher";
+import {RateSwitcher} from "@/components/exchangerCard/cardContent/exchangeCard/rateSwitcher/rateSwitcher"
 
 type ExchangeCardProps = CardContentProps
 

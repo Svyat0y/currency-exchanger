@@ -4,6 +4,12 @@
   width: 100%;
   padding: 2px;
   position: relative;
+  transition: $cubicBezier;
+
+  &.disabled {
+    opacity: .4;
+    pointer-events: none;
+  }
 }
 
 .content {

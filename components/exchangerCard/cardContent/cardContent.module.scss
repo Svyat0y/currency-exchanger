@@ -1,13 +1,13 @@
 @import 'styles/var';
 
 .wrapper {
-  //padding: 12px 12px 32px 32px;
   width: 100%;
   height: 100%;
   background: $white;
   border-radius: 20px;
   position: relative;
   z-index: 2;
+  transition: $cubicBezier;
 
   &.isOpenMenu {
     padding: 32px 0;

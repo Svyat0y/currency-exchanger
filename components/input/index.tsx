@@ -10,6 +10,7 @@ type InputProps = {
 	placeholder?: string
 	id: string
 	inputRef: RefObject<HTMLInputElement> | null
+	onFocus?: () => void
 }
 
 export const Input: FC<InputProps> = (
@@ -20,6 +21,7 @@ export const Input: FC<InputProps> = (
 		className,
 		placeholder,
 		id,
+		onFocus,
 		inputRef,
 		...rest
 	}) => {
@@ -34,6 +36,7 @@ export const Input: FC<InputProps> = (
 		<>
 			<label className={styles.inputLabel} htmlFor={id}></label>
 			<input
+				onFocus={onFocus}
 				aria-label={id}
 				ref={inputRef}
 				className={classNames(styles.input, className)}

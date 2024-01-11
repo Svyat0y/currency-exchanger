@@ -2,10 +2,32 @@
 
 .wrapper {
   width: 100%;
+  position: relative;
   transition: $cubicBezier;
 
+  &::before, &::after {
+    position: absolute;
+    content: '';
+    bottom: 0;
+    height: 1px;
+    background: rgba(0, 0, 0, .1);
+    width: 200%;
+    opacity: 0;
+    transition: $cubicBezier;
+  }
+
+  &::before {
+    transform: translateX(-50%);
+  }
+
+  &::after {
+    transform: translateX(50%);
+  }
+
   &.active {
-    border-bottom: 1px solid rgba(0, 0, 0, .1);
+    &::before, &::after {
+      opacity: 1;
+    }
   }
 }
 
