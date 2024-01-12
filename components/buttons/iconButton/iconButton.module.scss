@@ -1,0 +1,71 @@
+@import "styles/var";
+
+.wrapper {
+  transition: $cubicBezier;
+  position: relative;
+  max-width: 28px;
+  min-width: 28px;
+  max-height: 28px;
+  padding: 12px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 6px;
+
+  svg {
+    min-width: 16px;
+    max-height: 16px;
+    max-width: 16px;
+    position: relative;
+    z-index: 2;
+  }
+
+  &:disabled {
+    pointer-events: none;
+    cursor: initial;
+
+    &::after {
+      background: none;
+      pointer-events: none;
+      z-index: -1;
+    }
+  }
+
+  &.hided {
+    opacity: 0;
+    max-width: 0;
+    padding: 0;
+    min-width: initial;
+    pointer-events: none;
+    visibility: hidden;
+  }
+
+  &::after {
+    transition: $cubicBezier;
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: $fourth_color;
+    border-radius: 6px;
+    opacity: 0;
+    z-index: -1;
+  }
+
+  &:first-child::after  {
+    transform: translateX(30px);
+  }
+
+  &:last-child::after {
+    transform: translateX(-30px);
+  }
+
+  &:first-child.active::after, &:last-child.active::after {
+    opacity: 1;
+    z-index: 1;
+    transform: translateX(0);
+  }
+}

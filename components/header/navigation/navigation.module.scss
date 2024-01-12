@@ -14,7 +14,8 @@
   z-index: 999;
 
   &.isOpen {
-    top: 16px;
+    top: 1rem;
+
     @include md {
       position: absolute;
     }
@@ -35,12 +36,12 @@
     .content {
       width: 220px;
       height: 100vh;
-      padding: 1.5rem;
+      padding: 1rem;
 
       @include md {
         width: 220px;
         height: 224px;
-        padding: 12px;
+        padding: 8px;
       }
     }
 
@@ -50,35 +51,74 @@
       pointer-events: none;
       visibility: hidden;
     }
+
+    .header {
+      padding-bottom: 12px;
+
+      &::after {
+        width: 100%;
+        opacity: 1;
+      }
+    }
   }
 }
 
-//.navMenu {
-//  transition: $cubicBezier;
-//}
+.navBtns {
+  transition: $cubicBezier;
+  box-shadow: unset!important;
+  background: transparent!important;
+  padding: 0!important;
+  border-radius: 0!important;
 
-.navIcon {
-  cursor: pointer;
-  &:active {
-    transform: scale(.90);
+  &.isCloseMenu {
+    gap: 0;
   }
-}
 
-.themeInfo {
-  display: block;
+  .navBtn {
+    position: relative;
+    transition: $cubicBezier;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4px;
+
+    svg {
+      position: relative;
+      z-index: 2;
+    }
+  }
 }
 
 .content {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
   width: 74px;
   height: 40px;
   background: #fff!important;
   border-radius: 13px;
   z-index: 1;
-  padding: 12px;
   position: relative;
+  padding: 8px;
+  transition: $cubicBezier;
+}
+
+.header {
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-width: 0;
   transition: $cubicBezier;
 
+  &::after {
+    position: absolute;
+    content: '';
+    bottom: 0;
+    left: 0;
+    height: 1px;
+    width: 0;
+    padding-bottom: 0;
+    opacity: 0;
+    background: $third_color;
+    transition: $cubicBezier;
+  }
 }

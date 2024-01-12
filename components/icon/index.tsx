@@ -1,7 +1,7 @@
 import React, {FC} from 'react'
 
 const type = [
-	'LOCK_GRAY', 'LOCK', 'SWITCH_ARROWS', 'PASTE', 'QR_CODE', 'BLACK_SUN', 'BURGER_MENU', 'WATER', 'CHECK', 'POLYGON', 'MOON'
+	'LOCK_GRAY', 'LOCK', 'SWITCH_ARROWS', 'PASTE', 'QR_CODE', 'BLACK_SUN', 'BURGER_MENU', 'WATER', 'CHECK', 'POLYGON', 'MOON',
 ] as const
 
 type RepeatedFieldsType = {
@@ -9,7 +9,7 @@ type RepeatedFieldsType = {
 }
 
 type TIConProps = {
-	type: keyof RepeatedFieldsType
+	type: keyof RepeatedFieldsType | string
 	fill?: string
 	className?: string
 }
@@ -122,7 +122,7 @@ const ICONS: any = {
 	),
 	CHECK: (props: TSvgProps) => (
 		<svg className={props.className || ''} width="10" height="7" viewBox="0 0 10 7" fill="none" xmlns="http://www.w3.org/2000/svg">
-			<path d="M1 2.71429L3.90909 5L9 1" stroke={props.fill || "white"} stroke-width="2"/>
+			<path d="M1 2.71429L3.90909 5L9 1" stroke={props.fill || "white"} strokeWidth="2"/>
 		</svg>
 	),
 	POLYGON: (props: TSvgProps) => (
@@ -131,10 +131,10 @@ const ICONS: any = {
 		</svg>
 	),
 	MOON: (props: TSvgProps) => (
-		<svg className={props.className || ''} width="13" height="14" viewBox="0 0 13 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+		<svg className={props.className || ''} width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
 			<path
-				d="M8.01931 0.659895C7.43731 0.476562 6.93998 1.11256 7.24864 1.63922C7.73598 2.46989 7.99864 3.40723 7.99864 4.34723C7.99864 7.29255 5.61064 9.68055 2.66531 9.68055C2.11071 9.68055 1.54978 9.59055 1.04031 9.43055C0.458375 9.24722 -0.0598916 9.88321 0.248642 10.4099C1.43364 12.4312 3.59944 13.6805 5.99864 13.6805C9.68064 13.6805 12.6653 10.6959 12.6653 7.01389C12.6653 4.07989 10.7713 1.52523 8.01931 0.659895Z"
-				fill={props.fill || 'black'}/>
+				d="M10.0193 1.6599C9.43731 1.47656 8.93998 2.11256 9.24864 2.63922C9.73598 3.46989 9.99864 4.40723 9.99864 5.34723C9.99864 8.29255 7.61064 10.6805 4.66531 10.6805C4.11071 10.6805 3.54978 10.5905 3.04031 10.4305C2.45838 10.2472 1.94011 10.8832 2.24864 11.4099C3.43364 13.4312 5.59944 14.6805 7.99864 14.6805C11.6806 14.6805 14.6653 11.6959 14.6653 8.01389C14.6653 5.07989 12.7713 2.52523 10.0193 1.6599Z"
+				fill={props.fill || "black"}/>
 		</svg>
 	),
 }

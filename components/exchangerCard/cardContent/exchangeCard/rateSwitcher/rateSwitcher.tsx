@@ -1,9 +1,7 @@
-import styles from './rateSwitcher.module.scss'
 import {NavigationBox} from "@/components/navigationBox/navigationBox"
-import classNames from "classnames"
-import {Icon} from "@/components/icon"
 import {useExchangeContext} from "@/context/exchangeContext"
 import {useNotificationContext} from "@/context/notificationContext"
+import {IconButton} from "@/components/buttons/iconButton/iconButton"
 
 export const RATES = {
 	floating: 1,
@@ -32,19 +30,9 @@ export const RateSwitcher = () => {
 	}
 
 	return (
-		<div className={classNames(styles.cardNav)}>
-			<NavigationBox isShadow={false}>
-				<button onClick={handleFloatRate} className={classNames(styles.navBtn, {
-					[styles.active]: isFloatingRate
-				})}>
-					<Icon type='WATER'/>
-				</button>
-				<button onClick={handleFixedRate} className={classNames(styles.navBtn, {
-					[styles.active]: isFixedRate
-				})}>
-					<Icon type='LOCK' fill={isFixedRate ? '#28C600' : 'rgba(0, 0, 0, .3)'}/>
-				</button>
-			</NavigationBox>
-		</div>
+		<NavigationBox isBorder={true}>
+			<IconButton icon="WATER" onClick={handleFloatRate} active={isFloatingRate}/>
+			<IconButton icon="LOCK" onClick={handleFixedRate} active={isFixedRate}/>
+		</NavigationBox>
 	)
 }
