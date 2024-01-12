@@ -1,8 +1,8 @@
 "use client"
 
-import {Container} from "@/components/container"
 import {FC, ReactNode} from "react"
 import {Providers} from "@/app/providers"
+import {Header} from "@/components/header"
 
 type LayoutProps = {
 	children: ReactNode
@@ -13,9 +13,10 @@ export const Layout: FC<LayoutProps> = ({children}) => {
 	return (
 		<>
 			<Providers>
-				<Container>
+				<Header/>
+				<main>
 					{children}
-				</Container>
+				</main>
 			</Providers>
 		</>
 	)

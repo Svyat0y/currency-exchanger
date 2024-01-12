@@ -1,6 +1,5 @@
 import styles from './navigation.module.scss'
 import {GradientBorder} from "@/components/gradientBorder"
-import {NavigationBox} from "@/components/navigationBox/navigationBox"
 import {Icon} from "@/components/icon"
 import {useRef, useState} from "react"
 import classNames from "classnames"
@@ -12,7 +11,7 @@ export const Navigation = () => {
 	const menuBtnRef = useRef<HTMLButtonElement | null>(null)
 
 	const handleMenuOpen = () => {
-		setIsOpenNavMenu(true)
+		setIsOpenNavMenu(!isOpenNavMenu)
 	}
 
 	const handleMenuClose = () => {
@@ -27,14 +26,12 @@ export const Navigation = () => {
 		})}>
 			<GradientBorder className={styles.gradientBorder} withoutAnim active={isOpenNavMenu} borderRadius={13}/>
 			<div className={classNames(styles.content)}>
-				<NavigationBox isBorder={!isOpenNavMenu} isShadow={!isOpenNavMenu} className={`${styles.navMenu}`}>
-					<button aria-label='black sun' className={styles.navBtn}>
-						<Icon type='BLACK_SUN'/>
-					</button>
-					<button ref={menuBtnRef} onClick={handleMenuOpen} aria-label='burger menu' className={styles.navBtn}>
-						<Icon type='BURGER_MENU'/>
-					</button>
-				</NavigationBox>
+				<span aria-label='black sun' className={styles.themeInfo}>
+					<Icon type='BLACK_SUN'/>
+				</span>
+				<button ref={menuBtnRef} onClick={handleMenuOpen} aria-label='burger menu' className={styles.navIcon}>
+					<Icon type='BURGER_MENU'/>
+				</button>
 			</div>
 		</div>
 	)

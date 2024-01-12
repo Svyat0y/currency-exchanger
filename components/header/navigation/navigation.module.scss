@@ -5,7 +5,7 @@
   display: flex;
   align-items: center;
   right: 0;
-  top: 12px;
+  top: 16px;
   max-width: 100%;
   border-radius: 12px;
   padding: 1px;
@@ -13,21 +13,15 @@
   max-height: max-content;
   z-index: 999;
 
-  @include sm {
-    top: initial;
-  }
-
   &.isOpen {
-
+    top: 16px;
     @include md {
       position: absolute;
-      top: initial;
-      right: 0;
     }
 
     @media (max-width: $md - 1px) {
       position: absolute;
-      top: 18px;
+      top: 1rem;
       right: 0;
       padding: 0 0 0 1px;
       border-radius: 0;
@@ -41,11 +35,12 @@
     .content {
       width: 220px;
       height: 100vh;
-      padding: 12px;
+      padding: 1.5rem;
 
       @include md {
         width: 220px;
         height: 224px;
+        padding: 12px;
       }
     }
 
@@ -58,23 +53,31 @@
   }
 }
 
-.navMenu {
-  transition: $cubicBezier;
-}
+//.navMenu {
+//  transition: $cubicBezier;
+//}
 
-.navBtn {
+.navIcon {
+  cursor: pointer;
   &:active {
     transform: scale(.90);
   }
 }
 
+.themeInfo {
+  display: block;
+}
+
 .content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
   width: 74px;
   height: 40px;
   background: #fff!important;
   border-radius: 13px;
   z-index: 1;
-  padding: 0;
+  padding: 12px;
   position: relative;
   transition: $cubicBezier;
 

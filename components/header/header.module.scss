@@ -1,9 +1,13 @@
 @import "styles/var";
 
 .wrapper {
-  width: 100%;
-  position: relative;
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
   transition: $cubicBezier;
+  z-index: 999;
+  background: $white;
 
   &::before, &::after {
     position: absolute;
@@ -32,6 +36,7 @@
 }
 
 .headerContent {
+  position: relative;
   display: grid;
   gap: 12px;
   grid-template-columns: 110px minmax(auto, 200px) 74px;
@@ -42,7 +47,7 @@
   justify-content: space-between;
   align-items: flex-start;
   height: max-content;
-  padding: 18px 0 12px;
+  padding: 16px 0 12px;
   grid-gap: 12px;
 
   @include sm{
