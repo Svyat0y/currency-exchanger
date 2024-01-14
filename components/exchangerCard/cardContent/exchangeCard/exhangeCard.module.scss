@@ -24,7 +24,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-right: 32px;
 }
 
 .cardNavWrapper {
@@ -34,8 +33,9 @@
 .minError {
   display: inline-block;
   color: $fifth_color;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 500;
+  padding-right: 20px;
 }
 
 .navContent {
@@ -122,6 +122,8 @@
 
 .cardNavSkeleton {
   border-radius: 12px;
+  right: 0;
+  left: initial;
 }
 
 

@@ -6,6 +6,7 @@ import {useOnClickOutside} from "@/hooks/useOnClickOutside"
 import {BurgerMenu} from "@/components/buttons/burgerMenu/burgerMenu"
 import {NavigationBox} from "@/components/navigationBox/navigationBox"
 import {IconButton} from "@/components/buttons/iconButton/iconButton"
+import {NavigationList} from "@/components/header/navigation/navigationList";
 
 const THEMES = {
 	light: 1,
@@ -57,6 +58,7 @@ export const Navigation = () => {
 					</NavigationBox>
 					<BurgerMenu menuBtnRef={menuBtnRef} handleMenuOpen={handleMenuOpen}/>
 				</div>
+				<NavigationList isVisible={isOpenNavMenu}/>
 			</div>
 		</div>
 	)

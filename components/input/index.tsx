@@ -5,7 +5,7 @@ import {ChangeEvent, FC, RefObject} from "react"
 type InputProps = {
 	type?: string
 	handleChangeInput: (value: string) => void
-	value: number | null
+	value: number | string | null
 	className?: string
 	placeholder?: string
 	id: string

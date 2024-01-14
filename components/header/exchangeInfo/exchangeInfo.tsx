@@ -13,7 +13,7 @@ import {TooltipTrigger} from "@/components/tooltipTrigger/tooltipTrigger"
 import {useNotificationContext} from "@/context/notificationContext"
 
 export const ExchangeInfo = () => {
-	const {rateState} = useExchangeContext()
+	const {rateState, secondStep} = useExchangeContext()
 	const {setIsOverlay} = useNotificationContext()
 	const [isTooltip, setIsTooltip] = useState(false)
 	const isFixedRate = rateState === RATES.fixed
@@ -32,7 +32,7 @@ export const ExchangeInfo = () => {
 	return (
 		<>
 			<div className={classNames(styles.exchangeInfo, {
-				[styles.active]: true
+				[styles.active]: secondStep
 			})}>
 				<div className={styles.left}>
 					<SendValueBox/>

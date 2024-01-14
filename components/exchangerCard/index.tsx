@@ -8,8 +8,8 @@ import {CardContent} from "./cardContent"
 type ExchangerCardProps = {
 	cardTitle: string
 	active: boolean
-	value: number | null
-	setInputState: (value: number | null) => void
+	value: number | string | null
+	setInputState: (value: number | string | null) => void
 	isCalculating?: boolean
 	card: number
 	setActiveCard: (card: number) => void
@@ -57,8 +57,8 @@ export const ExchangerCard: FC<ExchangerCardProps> = (
 	}) => {
 	const [popupIsOpen, setPopupIsOpen] = useState(false)
 
-	const handleInput = (value: string) => {
-		let newText = value.replace(/[^0-9.]/g, '')
+	const handleInput = (value: number | string | null) => {
+		let newText = String(value).replace(/[^0-9.]/g, '')
 		setInputState(Number(newText))
 	}
 

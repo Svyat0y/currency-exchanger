@@ -37,20 +37,22 @@ export const ExchangeCard: FC<ExchangeCardProps> = (
 		return () => clearTimeout(timeoutId)
 	}, [active])
 
+	console.log({isSecondCard, isCalculating})
+
 	return (
 		<div className={classNames(styles.wrapper, {
 			[styles.isOpenMenu]: isOpenMenu
 		})}>
 			<div className={styles.header}>
 				<CustomButton onClick={handleOpenMenu} text={item?.shortLabel} icon={item?.icon}/>
-				{isValueError && isTypingCard ? <span className={styles.minError}>Min {item.min} {item.shortLabel}</span>
+				{isValueError && !isSecondCard && isTypingCard ? <span className={styles.minError}>Min {item.min} {item.shortLabel}</span>
 					: <div className={classNames(styles.cardNavWrapper)}>
 						{(isCalculatingSendValue && isSecondCard || isCalculating && isSecondCard) &&
               <span className={classNames(styles.skeleton, styles.cardNavSkeleton)}></span>}
 						<div className={classNames(styles.navContent, {
 							[styles.isVisible]: isCalculated && isSecondCard,
 						})}>
-							<span className={styles.additionalInfo}>{additionalInfo}</span>
+							{!isCalculatingSendValue && !isCalculating && <span className={styles.additionalInfo}>{additionalInfo}</span>}
 							<RateSwitcher/>
 						</div>
 					</div>}

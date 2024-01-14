@@ -8,9 +8,9 @@ import {MenuCard} from "@/components/exchangerCard/cardContent/menuCard"
 export type CardContentProps = {
 	cardTitle: string
 	active: boolean
-	value: number | null
+	value: number | string | null
 	handleOpenMenu: () => void
-	handleInput: (value: string) => void
+	handleInput: (value: number | string | null) => void
 	isCalculating?: boolean
 	item: Item
 	isSecondCard?: boolean

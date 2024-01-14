@@ -6,7 +6,7 @@ import {GradientBorder} from "@/components/gradientBorder"
 import {WalletNavigation} from "@/components/walletNavigation"
 
 type WalletProps = {
-	value: string
+	value: number | string | null
 	setInputState: (value: string) => void
 	isCalculated: boolean
 	active: boolean

@@ -19,7 +19,7 @@ export const CARDS = {
 
 export const Exchanger = () => {
 	const [activeCard, setActiveCard] = useState(CARDS.sendCard)
-	const {getItem, sendItem, sendValue, getValue, setGetValue, setSendValue, setGetItem, setSendItem, wallet, setWallet} = useExchangeContext()
+	const {secondStep, getItem, sendItem, sendValue, getValue, setGetValue, setSendValue, setGetItem, setSendItem, wallet, setWallet} = useExchangeContext()
 	const [isCalculatingGetValue, setIsCalculatingGetValue] = useState(false)
 	const [isCalculatingSendValue, setIsCalculatingSendValue] = useState(false)
 	const [isCalculated, setIsCalculated] = useState(false)
@@ -31,15 +31,15 @@ export const Exchanger = () => {
 	const prevGetItemRef = useRef(getItem)
 	const prevSendItemRef = useRef(sendItem)
 
-	const calculateGetValue = (sendValue: number | null) => {
+	const calculateGetValue = (sendValue: number | string | null) => {
 		if(!sendValue) return
-		const calculatedValue = (sendValue * sendItem.price) / getItem.price;
+		const calculatedValue = (Number(sendValue) * sendItem.price) / getItem.price;
 		setGetValue(calculatedValue);
 	}
 
-	const calculateSendValue = (getValue: number | null) => {
+	const calculateSendValue = (getValue: number | string | null) => {
 		if(!getValue) return
-		const calculatedValue = (getValue * getItem.price) / sendItem.price;
+		const calculatedValue = (Number(getValue) * getItem.price) / sendItem.price;
 		setSendValue(calculatedValue);
 	}
 
@@ -109,7 +109,7 @@ export const Exchanger = () => {
 			setIsTypingCard(CARDS.sendCard)
 			if(sendValue === 0) {
 				setIsValueError(false)
-				isTypingCard === CARDS.sendCard && setGetValue(null)
+				setGetValue(null)
 				setIsCalculatingGetValue(false)
 				setIsCalculated(false)
 				return
@@ -119,7 +119,7 @@ export const Exchanger = () => {
 				setActiveCard(CARDS.sendCard)
 			}
 
-			if(sendValue && sendValue < sendItem.min) {
+			if(sendValue && Number(sendValue) < sendItem.min) {
 				setIsValueError(true)
 				setIsCalculatingGetValue(false)
 				setIsCalculated(false)
@@ -150,7 +150,7 @@ export const Exchanger = () => {
 			setIsTypingCard(CARDS.getCard)
 			if(getValue === 0) {
 				setIsValueError(false)
-				isTypingCard === CARDS.getCard && setSendValue(null)
+				isTypingCard === CARDS.getCard && setSendValue('')
 				setIsCalculatingSendValue(false)
 				setIsCalculated(false)
 				return
@@ -216,11 +216,12 @@ export const Exchanger = () => {
 	const formattedSendValue = formatNumber(sendValue, 5)
 	const formattedGetValue = formatNumber(getValue, 5)
 
-	const additionalInfoText = `${formattedSendValue} ${sendItem.shortLabel} = ${formattedGetValue} ${getItem.shortLabel}`
+	const additionalInfoText = sendValue ? `${formattedSendValue} ${sendItem.shortLabel} = ${formattedGetValue} ${getItem.shortLabel}` : ''
 
 	return (
 		<div className={classNames(styles.wrapper, {
-			[styles.menuIsOpen]: isFirstMenuOpen || isSecondMenuOpen
+			[styles.menuIsOpen]: isFirstMenuOpen || isSecondMenuOpen,
+			[styles.stepFinished]: secondStep,
 		})}>
 			<div className={styles.content}>
 				<div className={styles.cardsWrapper}>
