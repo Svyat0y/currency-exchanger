@@ -23,11 +23,19 @@
 .header {
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
+  padding-right: 32px;
 }
 
 .cardNavWrapper {
   position: relative;
+}
+
+.minError {
+  display: inline-block;
+  color: $fifth_color;
+  font-size: 14px;
+  font-weight: 500;
 }
 
 .navContent {

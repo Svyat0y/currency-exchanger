@@ -1,7 +1,7 @@
 import styles from './exhangeCard.module.scss'
 import {CustomButton} from "@/components/buttons/customButton"
 import {Input} from "@/components/input"
-import {FC, useEffect, useRef, useState} from "react"
+import {FC, useEffect, useRef} from "react"
 import {CardContentProps} from "@/components/exchangerCard/cardContent"
 import classNames from "classnames"
 import {RateSwitcher} from "@/components/exchangerCard/cardContent/exchangeCard/rateSwitcher/rateSwitcher"
@@ -21,8 +21,10 @@ export const ExchangeCard: FC<ExchangeCardProps> = (
 		additionalInfo,
 		active,
 		isOpenMenu,
+		isCalculatingSendValue,
+		isTypingCard,
+		isValueError,
 	}) => {
-	const [isLocked, setIsLocked] = useState(false)
 	const inputRef = useRef<HTMLInputElement | null>(null)
 
 	useEffect(() => {
@@ -41,15 +43,17 @@ export const ExchangeCard: FC<ExchangeCardProps> = (
 		})}>
 			<div className={styles.header}>
 				<CustomButton onClick={handleOpenMenu} text={item?.shortLabel} icon={item?.icon}/>
-				<div className={classNames(styles.cardNavWrapper)}>
-					{isCalculating && <span className={classNames(styles.skeleton, styles.cardNavSkeleton)}></span>}
-					<div className={classNames(styles.navContent, {
-						[styles.isVisible]: isCalculated && isSecondCard,
-					})}>
-						<span className={styles.additionalInfo}>{additionalInfo}</span>
-						<RateSwitcher/>
-					</div>
-				</div>
+				{isValueError && isTypingCard ? <span className={styles.minError}>Min {item.min} {item.shortLabel}</span>
+					: <div className={classNames(styles.cardNavWrapper)}>
+						{(isCalculatingSendValue && isSecondCard || isCalculating && isSecondCard) &&
+              <span className={classNames(styles.skeleton, styles.cardNavSkeleton)}></span>}
+						<div className={classNames(styles.navContent, {
+							[styles.isVisible]: isCalculated && isSecondCard,
+						})}>
+							<span className={styles.additionalInfo}>{additionalInfo}</span>
+							<RateSwitcher/>
+						</div>
+					</div>}
 			</div>
 			<div className={styles.bottom}>
 				<span className={styles.titleDesc}>{cardTitle}</span>

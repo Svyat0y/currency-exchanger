@@ -1,4 +1,5 @@
-export const formatNumber = (value: string, maxDecimals: number) => {
-	const roundedValue = Number(value).toFixed(maxDecimals)
+export const formatNumber = (value: number | null, maxDecimals: number) => {
+	if(!value) return
+	const roundedValue = value.toFixed(maxDecimals)
 	return roundedValue.replace(/\.?0*$/, '')
 }

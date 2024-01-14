@@ -36,3 +36,36 @@
   font-style: normal;
   font-display: swap;
 }
+
+@font-face {
+  font-family: 'Helvetica Now Display';
+  src: local('Helvetica Now Display Regular'), local('../public/fonts/Helvetica-Now-Display-Regular'),
+  url('../public/fonts/HelveticaNowDisplay-Regular.woff2') format('woff2'),
+  url('../public/fonts/HelveticaNowDisplay-Regular.woff') format('woff'),
+  url('../public/fonts/HelveticaNowDisplay-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Helvetica Now Display';
+  src: local('Helvetica Now Display Medium'), local('../public/fonts/Helvetica-Now-Display-Medium'),
+  url('../public/fonts/HelveticaNowDisplay-Medium.woff2') format('woff2'),
+  url('../public/fonts/HelveticaNowDisplay-Medium.woff') format('woff'),
+  url('../public/fonts/HelveticaNowDisplay-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Helvetica Now Display';
+  src: local('Helvetica Now Display Bold'), local('../public/fonts/Helvetica-Now-Display-Bold'),
+  url('../public/fonts/HelveticaNowDisplay-Bold.woff2') format('woff2'),
+  url('../public/fonts/HelveticaNowDisplay-Bold.woff') format('woff'),
+  url('../public/fonts/HelveticaNowDisplay-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}

@@ -12,6 +12,7 @@
   transition: $cubicBezier;
   max-height: max-content;
   z-index: 999;
+  box-shadow: 0 8px 24px 0 rgba(0, 0, 0, 0.08);
 
   &.isOpen {
     top: 1rem;
@@ -93,7 +94,7 @@
   width: 74px;
   height: 40px;
   background: #fff!important;
-  border-radius: 13px;
+  border-radius: 11px;
   z-index: 1;
   position: relative;
   padding: 8px;

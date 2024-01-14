@@ -34,8 +34,8 @@ export const Navigation = () => {
 		<div ref={menuRef} className={classNames(styles.wrapper, {
 			[styles.isOpen]: isOpenNavMenu
 		})}>
-			<GradientBorder className={styles.gradientBorder} withoutAnim active={isOpenNavMenu} borderRadius={13}/>
-			<div className={classNames(styles.content)}>
+			<GradientBorder withoutAnim className={styles.gradientBorder} active={isOpenNavMenu} borderRadius={12}/>
+			<div className={styles.content}>
 				<div className={styles.header}>
 					<NavigationBox isBorder={false} className={classNames(styles.navBtns, {
 						[styles.isCloseMenu]: !isOpenNavMenu,

@@ -19,7 +19,7 @@ export const GetValueBox = () => {
 				})}/>
 				<span className={classNames(styles.getValue, {
 					[styles.success]: isSuccessRate
-				})}>{`${formatNumber(getValue, 6)} ${getItem?.shortLabel}`} </span>
+				})}>{`${formatNumber(getValue, 5)} ${getItem?.shortLabel}`} </span>
 			</button>
 			<Image src={getItem?.icon} alt={''} width={16} height={16}/>
 		</div>
