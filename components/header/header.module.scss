@@ -1,0 +1,79 @@
+@import "styles/var";
+
+.wrapper {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  transition: $cubicBezier;
+  z-index: 999;
+  background: $white;
+
+  &::before, &::after {
+    position: absolute;
+    content: '';
+    bottom: 0;
+    height: 1px;
+    background: rgba(0, 0, 0, .1);
+    width: 200%;
+    opacity: 0;
+    transition: $cubicBezier;
+  }
+
+  &::before {
+    transform: translateX(-50%);
+  }
+
+  &::after {
+    transform: translateX(50%);
+  }
+
+  &.active {
+    &::before, &::after {
+      opacity: 1;
+    }
+  }
+}
+
+.headerContent {
+  position: relative;
+  display: grid;
+  gap: 12px;
+  grid-template-columns: 110px minmax(auto, 200px) 74px;
+  grid-template-areas:
+          'logo . .'
+          'exchangeInfo exchangeInfo exchangeInfo';
+  grid-template-rows: auto auto;
+  justify-content: space-between;
+  align-items: flex-start;
+  height: max-content;
+  padding: 16px 0 12px;
+  grid-gap: 12px;
+
+  @include sm{
+    height: 80px;
+    grid-template-areas: 'logo exchangeInfo .';
+    grid-template-columns: 110px minmax(auto, 380px) 74px;
+    grid-template-rows: auto;
+  }
+}
+
+.logo {
+  grid-area: logo;
+  display: flex;
+  flex-direction: column;
+}
+
+.logoTitle {
+  color: $black;
+  font-size: 24px;
+  letter-spacing: -1px;
+  font-weight: 700;
+}
+
+.logoDesc {
+  color: $fifth_color;
+  font-size: 12px;
+  letter-spacing: -0.5px;
+  font-weight: 700;
+}

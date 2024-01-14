@@ -8,26 +8,7 @@
   z-index: 2;
 }
 
-.navigationBtns {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  padding: 13px;
-  background: $white;
-  border-radius: 12px;
-  overflow: hidden;
-  border: 1px solid rgba(0, 0, 0, 0.10);
-  background: #FFF;
-  box-shadow: 0 8px 24px 0 rgba(0, 0, 0, 0.08);
-}
-
 .navBtn {
-  cursor: pointer;
-  max-width: 16px;
-  min-width: 16px;
-  height: 16px;
-
   &:active {
     transform: scale(.95);
   }

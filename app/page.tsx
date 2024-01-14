@@ -1,13 +1,13 @@
-import styles from './page.module.css'
+import styles from './page.module.scss'
 import {Exchanger} from "@/components/exchanger"
-import {Layout} from "@/components/layout"
+import {Container} from "@/components/container"
 
 export default function Home() {
   return (
-    <main className={styles.main}>
-      <Layout>
+    <div className={styles.wrapper}>
+      <Container>
         <Exchanger/>
-      </Layout>
-    </main>
+      </Container>
+    </div>
   )
 }

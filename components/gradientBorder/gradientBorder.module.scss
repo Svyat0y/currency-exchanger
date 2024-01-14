@@ -8,8 +8,9 @@
   top: 0;
   left: 0;
   border-radius: 22px;
-  border: 3px solid $lightGray;
+  border: 3px solid $fourth_color;
   z-index: 1;
+  transition: $cubicBezier;
 
   &.smallRadius {
     border-radius: 12px;
@@ -35,8 +36,8 @@
   background-size: 300% 300%;
 
   &.active {
-    animation: animatedgradient 4s linear infinite;
     opacity: 1;
+    animation: animatedGradient 4s linear infinite;
   }
 
   &.withoutAnim {
@@ -46,25 +47,40 @@
   &.smallRadius {
     border-radius: 12px;
   }
+
+  &.hideGradient {
+    opacity: 0;
+    background: linear-gradient(60deg, #EF633BFF, #D013AAFF);
+    animation: animatedTransparent .6s linear;
+  }
 }
 
-@keyframes animatedgradient {
+@keyframes animatedTransparent {
   0% {
     opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes animatedGradient {
+  0% {
+    opacity: 0;
   }
   25% {
     opacity: .5;
   }
   34% {
-    opacity: 0;
+    opacity: .75;
   }
   60% {
-    opacity: 0;
+    opacity: 1;
   }
   75% {
     opacity: .5;
   }
   100% {
-    opacity: 1;
+    opacity: 0;
   }
 }

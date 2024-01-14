@@ -8,8 +8,8 @@ import {CardContent} from "./cardContent"
 type ExchangerCardProps = {
 	cardTitle: string
 	active: boolean
-	value: string
-	setInputState: (value: string) => void
+	value: number | string | null
+	setInputState: (value: number | string | null) => void
 	isCalculating?: boolean
 	card: number
 	setActiveCard: (card: number) => void
@@ -25,6 +25,9 @@ type ExchangerCardProps = {
 	isDisabled: boolean
 	cardName: string
 	setItem: (item: Item) => void
+	isCalculatingSendValue?: boolean
+	isTypingCard: boolean
+	isValueError: boolean
 }
 
 export const ExchangerCard: FC<ExchangerCardProps> = (
@@ -48,12 +51,15 @@ export const ExchangerCard: FC<ExchangerCardProps> = (
 		isDisabled,
 		cardName,
 		setItem,
+		isCalculatingSendValue,
+		isTypingCard,
+		isValueError,
 	}) => {
 	const [popupIsOpen, setPopupIsOpen] = useState(false)
 
-	const handleInput = (value: string) => {
-		let newText = value.replace(/[^0-9.]/g, '')
-		setInputState(newText)
+	const handleInput = (value: number | string | null) => {
+		let newText = String(value).replace(/[^0-9.]/g, '')
+		setInputState(Number(newText))
 	}
 
 	const handleCardClick = () => {
@@ -73,6 +79,7 @@ export const ExchangerCard: FC<ExchangerCardProps> = (
 		handleInput,
 		isCalculated,
 		isSecondCard,
+		isFirstCard,
 		additionalInfo,
 		active,
 		isOpenMenu,
@@ -80,6 +87,9 @@ export const ExchangerCard: FC<ExchangerCardProps> = (
 		setItem,
 		setPopupIsOpen,
 		popupIsOpen,
+		isCalculatingSendValue,
+		isTypingCard,
+		isValueError,
 	}
 
 	return (
@@ -90,7 +100,7 @@ export const ExchangerCard: FC<ExchangerCardProps> = (
 			[styles.isMenuFirst]: isOpenMenu && isFirstCard,
 			[styles.isMenuSecond]: isOpenMenu && isSecondCard
 		})} onClick={handleCardClick}>
-			<GradientBorder active={active && !popupIsOpen} withoutAnim={isOpenMenu}/>
+			<GradientBorder active={active && !popupIsOpen && (!isCalculated || isOpenMenu)} withoutAnim={isOpenMenu}/>
 			<CardContent {...cardProps}/>
 		</div>
 	)

@@ -1,0 +1,90 @@
+@import "styles/var";
+
+.exchangeInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+  transition: $cubicBezier;
+  grid-area: exchangeInfo;
+  font-family: $primary_font;
+  z-index: 40;
+
+  &.active {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+}
+
+.left {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: $fourth_color;
+  padding: 12px;
+  flex-grow: 1;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.box {
+  display: flex;
+  align-items: center;
+  max-width: max-content;
+  gap: 4px;
+
+  img {
+    display: inline-block;
+    max-width: 15px;
+    min-width: 15px;
+    max-height: 16px;
+    transform: translateY(-0.5px);
+  }
+}
+
+.getValueBtn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+}
+
+.icon {
+  transition: $cubicBezier;
+
+  &.success {
+    transform: rotateX(180deg);
+
+    path {
+      fill: $eighth_color;
+    }
+  }
+}
+
+.sendValue, .getValue {
+  font-size: 16px;
+  font-weight: 600;
+  font-family: $primary_font;
+}
+
+.getValue {
+  color: $tenth_color;
+
+  &.success {
+    color: $eighth_color;
+  }
+}
+
+.rateBox {
+  min-width: 40px;
+  padding: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: $fourth_color;
+  border-radius: 12px;
+}

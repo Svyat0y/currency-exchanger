@@ -7,6 +7,8 @@ type ContainerProps = {
 
 export const Container: FC<ContainerProps> = ({children}) => {
 	return (
-		<div className={styles.wrapper}>{children}</div>
+		<div className={styles.wrapper}>
+				{children}
+		</div>
 	)
 }

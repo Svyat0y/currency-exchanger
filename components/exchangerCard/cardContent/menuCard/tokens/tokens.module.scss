@@ -6,7 +6,7 @@
 
 .noItems {
   text-align: center;
-  color: $darkBlackSecond;
+  color: $second_color;
 }
 
 .group {
@@ -39,6 +39,7 @@
   visibility: hidden;
   pointer-events: none;
   transition: $cubicBezier;
+  font-family: $primary_font;
 
   &:hover {
     .left {
@@ -66,7 +67,7 @@
 }
 
 .right {
-  color: $darkBlackSecond;
+  color: $second_color;
 }
 
 .labels {
@@ -87,7 +88,7 @@
   }
 
   .label {
-    color: $darkBlackSecond;
+    color: $second_color;
   }
 }
 
@@ -95,5 +96,5 @@
   display: block;
   height: 1px;
   width: 100%;
-  background: $lightGraySecond;
+  background: $third_color;
 }

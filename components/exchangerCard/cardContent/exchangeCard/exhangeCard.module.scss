@@ -8,7 +8,8 @@
   flex-direction: column;
   justify-content: space-between;
   transition: $cubicBezier;
-  padding: 12px 12px 32px 32px;
+  padding: 12px 12px 20px 12px;
+  gap: 22px;
 
   &.isOpenMenu {
     padding: 0 32px;
@@ -22,19 +23,57 @@
 .header {
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
+}
+
+.cardNavWrapper {
+  position: relative;
+}
+
+.minError {
+  display: inline-block;
+  color: $fifth_color;
+  font-size: 12px;
+  font-weight: 500;
+  padding-right: 20px;
+}
+
+.navContent {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(10px);
+  transition: $cubicBezier;
+
+  &.isVisible {
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+    transform: translateY(0);
+  }
+}
+
+.bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .titleDesc {
-  color: $darkBlackSecond;
-  margin-bottom: 4px;
+  color: $second_color;
   font-size: 16px;
 }
 
+.titleDesc, .inputWrapper {
+  padding-left: 20px;
+}
+
 .inputWrapper {
-  max-width: 260px;
+  max-width: 300px;
   position: relative;
-  margin-right: 20px;
   font-size: 24px;
 }
 
@@ -46,12 +85,9 @@
 }
 
 .additionalInfo {
-  position: absolute;
   font-size: 12px;
   text-transform: uppercase;
-  bottom: -20px;
-  left: 0;
-  color: $darkBlackSecond;
+  color: $second_color;
 }
 
 .tooltipFee {
@@ -64,7 +100,7 @@
   line-height: 20px;
 
   &.active {
-    background: $green;
+    background: $sixth_color;
   }
 }
 
@@ -81,6 +117,13 @@
   transition: .3s ease;
   animation: skeletonBg 2s infinite linear;
   background-size: 400% 400%;
+  z-index: 100;
+}
+
+.cardNavSkeleton {
+  border-radius: 12px;
+  right: 0;
+  left: initial;
 }
 
 

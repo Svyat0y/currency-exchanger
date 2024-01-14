@@ -13,9 +13,10 @@
   align-items: center;
   gap: 8px;
   text-transform: uppercase;
-  background: $lightGray;
+  background: $fourth_color;
   cursor: pointer;
   transition: $transition ease-in-out all;
+  font-family: $primary_font;
 
   &:active {
     transform: scale(.98);
@@ -29,7 +30,7 @@
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    color: $darkBlack;
+    color: $primary_color;
 
   }
 }

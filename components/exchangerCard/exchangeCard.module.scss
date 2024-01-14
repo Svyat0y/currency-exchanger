@@ -48,9 +48,9 @@
 
   &.isMenuFirst, &.isMenuSecond {
     position: relative;
-    z-index: 20;
+    z-index: 50;
     width: 100%;
-    height: 95dvh;
+    height: 80vh;
     margin-top: 1rem;
 
     @include md {

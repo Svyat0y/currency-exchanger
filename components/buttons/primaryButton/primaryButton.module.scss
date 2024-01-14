@@ -19,12 +19,12 @@
   }
 
   &.gray {
-    background: $lightGray;
-    color: $gray;
+    background: $fourth_color;
+    color: $fifth_color;
   }
 
   &.whiteGray {
-    background: $darkBlackSecond;
+    background: $second_color;
   }
 
   &:disabled {

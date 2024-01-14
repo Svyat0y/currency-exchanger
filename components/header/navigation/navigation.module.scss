@@ -1,0 +1,149 @@
+@import "styles/var";
+
+.wrapper {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  right: 0;
+  top: 16px;
+  max-width: 100%;
+  border-radius: 12px;
+  padding: 2px;
+  transition: $cubicBezier;
+  max-height: max-content;
+  z-index: 999;
+  box-shadow: 0 8px 24px 0 rgba(0, 0, 0, 0.08);
+
+  &.isOpen {
+    top: 1rem;
+
+    @include md {
+      position: absolute;
+    }
+
+    @media (max-width: $md - 1px) {
+      position: absolute;
+      top: 1rem;
+      right: 0;
+      padding: 0 0 0 1px;
+      border-radius: 0;
+      transform: translate(1rem, -1rem);
+
+      .gradientBorder, .content {
+        border-radius: 0!important;
+      }
+    }
+
+    .content {
+      width: 220px;
+      height: 100vh;
+      padding: 1rem;
+
+      @include md {
+        width: 220px;
+        height: 224px;
+        padding: 8px;
+      }
+    }
+
+    .navMenu {
+      position: relative;
+      opacity: 0;
+      pointer-events: none;
+      visibility: hidden;
+    }
+
+    .header {
+      padding-bottom: 12px;
+
+      &::after {
+        width: 100%;
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.navBtns {
+  transition: $cubicBezier;
+  box-shadow: unset!important;
+  background: transparent!important;
+  padding: 0!important;
+  border-radius: 0!important;
+
+  &.isCloseMenu {
+    gap: 0;
+  }
+
+  .navBtn {
+    position: relative;
+    transition: $cubicBezier;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4px;
+
+    svg {
+      position: relative;
+      z-index: 2;
+    }
+  }
+}
+
+.content {
+  width: 74px;
+  height: 40px;
+  background: #fff!important;
+  border-radius: 11px;
+  z-index: 1;
+  position: relative;
+  padding: 8px;
+  transition: $cubicBezier;
+}
+
+.header {
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-width: 0;
+  transition: $cubicBezier;
+
+  &::after {
+    position: absolute;
+    content: '';
+    bottom: 0;
+    left: 0;
+    height: 1px;
+    width: 0;
+    padding-bottom: 0;
+    opacity: 0;
+    background: $third_color;
+    transition: $cubicBezier;
+  }
+}
+
+.navListWrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 32px;
+  gap: 24px;
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  transform: translateX(-30%);
+  transition: $cubicBezier;
+
+  &.isVisible {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: auto;
+    visibility: visible;
+  }
+}
+
+.navItem {
+  font-size: 16px;
+  font-weight: 700;
+}

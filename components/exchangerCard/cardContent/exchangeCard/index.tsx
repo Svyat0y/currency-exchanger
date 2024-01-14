@@ -1,12 +1,10 @@
 import styles from './exhangeCard.module.scss'
 import {CustomButton} from "@/components/buttons/customButton"
 import {Input} from "@/components/input"
-import {TooltipTrigger} from "@/components/tooltipTrigger/tooltipTrigger"
-import {TooltipFee} from "./tooltipFee"
-import {Icon} from "@/components/icon"
-import {FC, useEffect, useRef, useState} from "react"
+import {FC, useEffect, useRef} from "react"
 import {CardContentProps} from "@/components/exchangerCard/cardContent"
 import classNames from "classnames"
+import {RateSwitcher} from "@/components/exchangerCard/cardContent/exchangeCard/rateSwitcher/rateSwitcher"
 
 type ExchangeCardProps = CardContentProps
 
@@ -23,8 +21,10 @@ export const ExchangeCard: FC<ExchangeCardProps> = (
 		additionalInfo,
 		active,
 		isOpenMenu,
+		isCalculatingSendValue,
+		isTypingCard,
+		isValueError,
 	}) => {
-	const [isLocked, setIsLocked] = useState(false)
 	const inputRef = useRef<HTMLInputElement | null>(null)
 
 	useEffect(() => {
@@ -42,31 +42,31 @@ export const ExchangeCard: FC<ExchangeCardProps> = (
 			[styles.isOpenMenu]: isOpenMenu
 		})}>
 			<div className={styles.header}>
-				<span className={styles.titleDesc}>{cardTitle}</span>
 				<CustomButton onClick={handleOpenMenu} text={item?.shortLabel} icon={item?.icon}/>
+				{isValueError && !isSecondCard && isTypingCard ? <span className={styles.minError}>Min {item.min} {item.shortLabel}</span>
+					: <div className={classNames(styles.cardNavWrapper)}>
+						{(isCalculatingSendValue && isSecondCard || isCalculating && isSecondCard) &&
+              <span className={classNames(styles.skeleton, styles.cardNavSkeleton)}></span>}
+						<div className={classNames(styles.navContent, {
+							[styles.isVisible]: isCalculated && isSecondCard,
+						})}>
+							{!isCalculatingSendValue && !isCalculating && <span className={styles.additionalInfo}>{additionalInfo}</span>}
+							<RateSwitcher/>
+						</div>
+					</div>}
 			</div>
-			<div className={styles.inputWrapper}>
-				{isCalculating ? <span className={styles.skeleton}></span> : ''}
-				<Input
-					inputRef={inputRef}
-					id={'Amount'}
-					value={value}
-					handleChangeInput={handleInput}
-					placeholder='Enter amount'
-				/>
-				{isCalculated && isSecondCard && <span className={styles.additionalInfo}>
-						{additionalInfo}
-					</span>}
-				{isCalculated && isSecondCard &&
-          <TooltipTrigger
-            className={styles.lockIcon}
-            tag='button'
-            setIsLocked={setIsLocked}
-            isLocked={isLocked}
-            tooltipContent={<TooltipFee isLocked={isLocked}/>}>
-            <Icon type={isLocked ? 'LOCK_GREEN' : 'LOCK_GRAY'}/>
-          </TooltipTrigger>
-				}
+			<div className={styles.bottom}>
+				<span className={styles.titleDesc}>{cardTitle}</span>
+				<div className={styles.inputWrapper}>
+					{isCalculating ? <span className={styles.skeleton}></span> : ''}
+					<Input
+						inputRef={inputRef}
+						id={'Amount'}
+						value={value}
+						handleChangeInput={handleInput}
+						placeholder='Enter amount'
+					/>
+				</div>
 			</div>
 		</div>
 	)

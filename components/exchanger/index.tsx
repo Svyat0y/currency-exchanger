@@ -5,10 +5,10 @@ import classNames from "classnames"
 import {ExchangerCard} from "../exchangerCard"
 import {useEffect, useRef, useState} from "react"
 import {Icon} from "@/components/icon"
-import {currencies} from "@/components/exchanger/data"
-import {Item} from "@/types/types"
 import {formatNumber} from "@/utils/helpers"
 import {Wallet} from "@/components/wallet"
+import {Terms} from "@/components/exchanger/terms/terms"
+import {useExchangeContext} from "@/context/exchangeContext"
 
 export const CARDS = {
 	sendCard: 1,
@@ -18,28 +18,28 @@ export const CARDS = {
 
 export const Exchanger = () => {
 	const [activeCard, setActiveCard] = useState(CARDS.sendCard)
-	const [sendItem, setSendItem] = useState<Item>(currencies[0])
-	const [getItem, setGetItem] = useState<Item>(currencies[4])
-	const [sendValue, setSendValue] = useState('')
-	const [getValue, setGetValue] = useState('')
+	const {secondStep, getItem, sendItem, sendValue, getValue, setGetValue, setSendValue, setGetItem, setSendItem, wallet, setWallet} = useExchangeContext()
 	const [isCalculatingGetValue, setIsCalculatingGetValue] = useState(false)
 	const [isCalculatingSendValue, setIsCalculatingSendValue] = useState(false)
 	const [isCalculated, setIsCalculated] = useState(false)
-	const [wallet, setWallet] = useState('')
 	const [isFirstMenuOpen, setIsFirstMenuOpen] = useState(false)
 	const [isSecondMenuOpen, setIsSecondMenuOpen] = useState(false)
 	const [isSwitching, setIsSwitching] = useState(false)
+	const [isTypingCard, setIsTypingCard] = useState(CARDS.sendCard)
+	const [isValueError, setIsValueError] = useState(false)
 	const prevGetItemRef = useRef(getItem)
 	const prevSendItemRef = useRef(sendItem)
 
-	const calculateGetValue = () => {
+	const calculateGetValue = (sendValue: number | string | null) => {
+		if(!sendValue) return
 		const calculatedValue = (Number(sendValue) * sendItem.price) / getItem.price;
-		setGetValue(String(calculatedValue));
+		setGetValue(calculatedValue);
 	}
 
-	const calculateSendValue = () => {
+	const calculateSendValue = (getValue: number | string | null) => {
+		if(!getValue) return
 		const calculatedValue = (Number(getValue) * getItem.price) / sendItem.price;
-		setSendValue(String(calculatedValue));
+		setSendValue(calculatedValue);
 	}
 
 	useEffect(() => {
@@ -47,18 +47,19 @@ export const Exchanger = () => {
 		const prevSendItem = prevSendItemRef?.current
 
 		if(!isSwitching) {
-			if(sendValue.length === 0) {
-				prevSendItemRef.current = sendItem
+			prevSendItemRef.current = sendItem
+			if(sendValue === 0) {
 				setIsCalculatingGetValue(false)
-				setGetValue('')
+				setGetValue(null)
 				setIsCalculated(false)
 				return
 			}
 
 			if (prevSendItem !== sendItem) {
+				setSendValue(sendItem.min)
 				setIsCalculatingGetValue(true)
 				calculationTimeout = setTimeout(() => {
-					calculateGetValue()
+					calculateGetValue(sendItem.min)
 					setIsCalculatingGetValue(false)
 					setIsCalculated(true)
 				}, 2000)
@@ -75,18 +76,19 @@ export const Exchanger = () => {
 		const prevGetItem = prevGetItemRef?.current
 
 		if(!isSwitching) {
-			if(getValue.length === 0) {
-				prevGetItemRef.current = getItem
+			prevGetItemRef.current = getItem
+			if(getValue === 0) {
 				setIsCalculatingSendValue(false)
-				setSendValue('')
+				setSendValue(null)
 				setIsCalculated(false)
 				return
 			}
 
 			if (prevGetItem !== getItem) {
 				setIsCalculatingGetValue(true)
+				setIsValueError(false)
 				calculationTimeout = setTimeout(() => {
-					calculateGetValue()
+					calculateGetValue(getValue)
 					setIsCalculatingGetValue(false)
 					setIsCalculated(true)
 				}, 2000)
@@ -98,24 +100,39 @@ export const Exchanger = () => {
 	}, [getItem, prevGetItemRef?.current])
 
 
-
 	useEffect(() => {
 		let calculationTimeout: any
 		const prevSendItem = prevSendItemRef?.current;
 
 		if(!isSwitching) {
-			if(sendValue.length === 0) {
+			setIsTypingCard(CARDS.sendCard)
+			if(sendValue === 0) {
+				prevSendItemRef.current = sendItem
+				setIsValueError(false)
+				setGetValue(null)
 				setIsCalculatingGetValue(false)
-				setGetValue('')
 				setIsCalculated(false)
 				return
 			}
 
-			if(activeCard === CARDS.sendCard && sendValue.length && (prevSendItem === sendItem)) {
+			if (isValueError) {
+				setActiveCard(CARDS.sendCard)
+			}
+
+			if(sendValue && Number(sendValue) < sendItem.min) {
+				setIsValueError(true)
+				setIsCalculatingGetValue(false)
+				setIsCalculated(false)
+				return
+			}
+
+			if(activeCard === CARDS.sendCard && sendValue && (prevSendItem === sendItem)) {
+				setIsValueError(false)
+				setIsTypingCard(CARDS.sendCard)
 				setIsCalculatingGetValue(true)
 
 				calculationTimeout = setTimeout(() => {
-					calculateGetValue()
+					calculateGetValue(sendValue)
 					setIsCalculatingGetValue(false)
 					setIsCalculated(true)
 				}, 2000)
@@ -123,25 +140,29 @@ export const Exchanger = () => {
 		}
 
 		return () => clearTimeout(calculationTimeout)
-	}, [sendValue])
+	}, [sendValue, isValueError])
 
 	useEffect(() => {
 		let calculationTimeout: any
 		const prevGetItem = prevGetItemRef?.current;
 
 		if(!isSwitching) {
-			if(getValue.length === 0) {
+			setIsTypingCard(CARDS.getCard)
+			if(getValue === 0) {
+				prevGetItemRef.current = getItem
+				setIsValueError(false)
+				isTypingCard === CARDS.getCard && setSendValue('')
 				setIsCalculatingSendValue(false)
-				setSendValue('')
 				setIsCalculated(false)
 				return
 			}
 
-			if(activeCard === CARDS.getCard && getValue.length && (prevGetItem === getItem)) {
+			if(activeCard === CARDS.getCard && getValue && (prevGetItem === getItem)) {
+				setIsTypingCard(CARDS.getCard)
 				setIsCalculatingSendValue(true)
 
 				calculationTimeout = setTimeout(() => {
-					calculateSendValue()
+					calculateSendValue(getValue)
 					setIsCalculatingSendValue(false)
 					setIsCalculated(true)
 				}, 2000)
@@ -193,19 +214,22 @@ export const Exchanger = () => {
 		setIsSecondMenuOpen(false)
 	}
 
-	const formattedSendValue = formatNumber(sendValue, 6)
-	const formattedGetValue = formatNumber(getValue, 6)
+	const formattedSendValue = formatNumber(sendValue, 5)
+	const formattedGetValue = formatNumber(getValue, 5)
 
-	const additionalInfoText = `${formattedSendValue} ${sendItem.shortLabel} = ${formattedGetValue} ${getItem.shortLabel}`
+	const additionalInfoText = sendValue ? `${formattedSendValue} ${sendItem.shortLabel} = ${formattedGetValue} ${getItem.shortLabel}` : ''
 
 	return (
 		<div className={classNames(styles.wrapper, {
-			[styles.menuIsOpen]: isFirstMenuOpen || isSecondMenuOpen
+			[styles.menuIsOpen]: isFirstMenuOpen || isSecondMenuOpen,
+			[styles.stepFinished]: secondStep,
 		})}>
 			<div className={styles.content}>
 				<div className={styles.cardsWrapper}>
 					<ExchangerCard
 						isFirstCard
+						isTypingCard={isTypingCard === CARDS.sendCard}
+						isValueError={isValueError}
 						card={CARDS.sendCard}
 						cardName='sendCard'
 						isCalculated={isCalculated}
@@ -230,6 +254,8 @@ export const Exchanger = () => {
 					</button>
 					<ExchangerCard
 						isSecondCard
+						isTypingCard={isTypingCard === CARDS.getCard}
+						isValueError={isValueError}
 						card={CARDS.getCard}
 						cardName='getCard'
 						setIsCardMenu={handleSecondCardMenu}
@@ -242,6 +268,7 @@ export const Exchanger = () => {
 						value={getValue}
 						setInputState={setGetValue}
 						isCalculating={isCalculatingGetValue}
+						isCalculatingSendValue={isCalculatingSendValue}
 						handleCloseMenu={handleCloseMenu}
 						isOpenMenu={isSecondMenuOpen}
 						isHided={isFirstMenuOpen}
@@ -249,14 +276,20 @@ export const Exchanger = () => {
 						setItem={setGetItem}
 					/>
 				</div>
-				<Wallet
-					hided={isSecondMenuOpen || isFirstMenuOpen}
-					active={activeCard === CARDS.wallet}
-					setActiveCard={setActiveCard}
-					card={CARDS.wallet}
-					value={wallet} setInputState={setWallet}
-					isCalculated={isCalculated}
-				/>
+				<div className={classNames(styles.exchangeFooter, {
+					[styles.isShow]: isCalculated,
+					[styles.hided]: isSecondMenuOpen || isFirstMenuOpen,
+				})}>
+					<Wallet
+						active={!isValueError && activeCard === CARDS.wallet}
+						setActiveCard={setActiveCard}
+						card={CARDS.wallet}
+						value={wallet}
+						setInputState={setWallet}
+						isCalculated={isCalculated}
+					/>
+					<Terms/>
+				</div>
 			</div>
 		</div>
 	)

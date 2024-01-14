@@ -1,0 +1,9 @@
+@import "styles/var";
+
+.wrapper {
+    height: calc(100dvh - 125px);
+
+    @include sm {
+        height: calc(100dvh - 90px);
+    }
+}

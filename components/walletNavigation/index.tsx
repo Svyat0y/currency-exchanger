@@ -4,14 +4,14 @@ import {Icon} from "@/components/icon"
 import {FC, useState} from "react"
 import {createPortal} from "react-dom"
 import {QrScanner} from "@/components/qrScanner"
+import {NavigationBox} from "@/components/navigationBox/navigationBox"
 
 
 type WalletNavigationProps = {
 	setWallet: (wallet: string) => void
-	value: string
 }
 
-export const WalletNavigation: FC<WalletNavigationProps> = ({setWallet, value}) => {
+export const WalletNavigation: FC<WalletNavigationProps> = ({setWallet}) => {
 	const [showScanner, setShowScanner] = useState(false)
 
 	const handlePaste = async () => {
@@ -31,11 +31,14 @@ export const WalletNavigation: FC<WalletNavigationProps> = ({setWallet, value}) 
 	return (
 		<>
 			<div className={styles.wrapper}>
-				<div className={styles.navigationBtns}>
-					<button onClick={handlePaste} className={styles.navBtn}><Icon type='PASTE'/></button>
-					<button onClick={() => setShowScanner(true)} className={styles.navBtn}><Icon type='QR_CODE'/></button>
-				</div>
-				<PrimaryButton text={'Exchange'} disabled={!value} type={'black'}/>
+				<NavigationBox>
+					<button onClick={handlePaste} className={styles.navBtn}>
+						<Icon type='PASTE'/>
+					</button>
+					<button onClick={() => setShowScanner(true)} className={styles.navBtn}>
+						<Icon type='QR_CODE'/>
+					</button>
+				</NavigationBox>
 			</div>
 			{typeof document !== 'undefined' && showScanner && createPortal(
 				<QrScanner showScanner={showScanner} setShowScanner={setShowScanner} setWallet={setWallet}/>,
