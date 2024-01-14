@@ -1,5 +1,4 @@
 import styles from './walletNavigation.module.scss'
-import {PrimaryButton} from "@/components/buttons/primaryButton"
 import {Icon} from "@/components/icon"
 import {FC, useState} from "react"
 import {createPortal} from "react-dom"
@@ -31,7 +30,7 @@ export const WalletNavigation: FC<WalletNavigationProps> = ({setWallet}) => {
 	return (
 		<>
 			<div className={styles.wrapper}>
-				<NavigationBox>
+				<NavigationBox className={styles.wallet}>
 					<button onClick={handlePaste} className={styles.navBtn}>
 						<Icon type='PASTE'/>
 					</button>

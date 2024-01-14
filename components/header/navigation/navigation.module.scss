@@ -13,6 +13,7 @@
   max-height: max-content;
   z-index: 999;
   box-shadow: 0 8px 24px 0 rgba(0, 0, 0, 0.08);
+  overflow: hidden;
 
   &.isOpen {
     top: 1rem;

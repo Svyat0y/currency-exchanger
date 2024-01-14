@@ -1,4 +1,5 @@
 import styles from './notificationContainer.module.scss'
+import {useEffect, useState} from "react"
 import {createPortal} from "react-dom"
 import {Notification} from "@/components/notification/notification"
 import classNames from "classnames"
@@ -8,9 +9,18 @@ import {useExchangeContext} from "@/context/exchangeContext"
 import {useNotificationContext} from "@/context/notificationContext"
 
 export const NotificationContainer = () => {
+	const [isMounted, setIsMounted] = useState(false)
 	const {rateState, setRateState} = useExchangeContext()
 	const {isNotification, setIsNotification} = useNotificationContext()
 	const isFixedRate = rateState === RATES.fixed
+
+	useEffect(() => {
+		setIsMounted(true)
+	}, [])
+
+	if (!isMounted) {
+		return null
+	}
 
 	return (
 		<>

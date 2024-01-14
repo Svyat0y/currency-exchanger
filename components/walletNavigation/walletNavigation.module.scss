@@ -8,7 +8,15 @@
   z-index: 2;
 }
 
+.wallet {
+  padding: 12px;
+  gap: 12px;
+}
+
 .navBtn {
+  max-height: 16px;
+  cursor: pointer;
+
   &:active {
     transform: scale(.95);
   }
