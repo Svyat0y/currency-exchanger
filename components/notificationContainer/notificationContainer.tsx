@@ -14,7 +14,7 @@ export const NotificationContainer = () => {
 
 	return (
 		<>
-			{createPortal(
+			{typeof document !== 'undefined' && createPortal(
 				<Notification isNotification={isNotification} setIsNotification={setIsNotification}>
 					<div className={classNames(styles.wrapper, {
 						[styles.active]: isNotification,
