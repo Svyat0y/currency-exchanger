@@ -8,16 +8,28 @@ import {RATES, RATES_TOOLTIP} from "@/components/exchangerCard/cardContent/excha
 import {GetValueBox} from "@/components/header/exchangeInfo/getValueBox"
 import {SendValueBox} from "@/components/header/exchangeInfo/sendValueBox"
 import {Overlay} from "@/components/overlay/overlay"
-import {useState} from "react"
+import {useEffect, useState} from "react"
 import {TooltipTrigger} from "@/components/tooltipTrigger/tooltipTrigger"
 import {useNotificationContext} from "@/context/notificationContext"
+import {useContextStatus} from "@/context/statusContext"
 
 export const ExchangeInfo = () => {
-	const {rateState, secondStep} = useExchangeContext()
-	const {setIsOverlay} = useNotificationContext()
+	const {rateState} = useExchangeContext()
+	const {states} = useContextStatus()
+	const {setIsOverlay, isOverlay} = useNotificationContext()
+	const [rateStateLs, setRateStateLs] = useState()
 	const [isTooltip, setIsTooltip] = useState(false)
-	const isFixedRate = rateState === RATES.fixed
+	const isFixedRate = rateStateLs === RATES.fixed || rateState === RATES.fixed
 	const ratesInfo = rateState === RATES.fixed ? RATES_TOOLTIP.fixedRate : RATES_TOOLTIP.floatRate
+
+	useEffect(() => {
+		const rateState = localStorage.getItem('rateState')
+
+		if (rateState) {
+			setRateStateLs(JSON.parse(rateState))
+		}
+
+	}, [rateState])
 
 	const handleShowTooltip = () => {
 		setIsTooltip(true)
@@ -32,13 +44,21 @@ export const ExchangeInfo = () => {
 	return (
 		<>
 			<div className={classNames(styles.exchangeInfo, {
-				[styles.active]: secondStep
+				[styles.active]: states?.length,
+				[styles.zIndexUp]: isOverlay
 			})}>
 				<div className={styles.left}>
 					<SendValueBox/>
-					<GetValueBox/>
+					<GetValueBox noActive={isFixedRate}/>
 				</div>
-				<TooltipTrigger className={styles.rateBox} isTooltip={isTooltip} backgroundColor={isFixedRate? '#28C600FF' : 'black'} tooltipContent={ratesInfo} tag={'button'} handleShowTooltip={handleShowTooltip} handleRemoveTooltip={handleRemoveTooltip}>
+				<TooltipTrigger
+					className={styles.rateBox}
+					isTooltip={isTooltip}
+					backgroundColor={isFixedRate? '#28C600FF' : 'black'}
+					tooltipContent={ratesInfo} tag={'button'}
+					handleShowTooltip={handleShowTooltip}
+					handleRemoveTooltip={handleRemoveTooltip}
+				>
 					<Icon type={isFixedRate ? 'LOCK' : 'WATER'} fill={isFixedRate ? '#28C600' : 'rgba(0, 0, 0, .3)'}/>
 				</TooltipTrigger>
 			</div>

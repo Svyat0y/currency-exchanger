@@ -22,10 +22,12 @@ export const RateSwitcher = () => {
 	const handleFixedRate = () => {
 		setRateState(RATES.fixed)
 		setIsNotification(true)
+		localStorage.setItem('rateState', JSON.stringify(RATES.fixed))
 	}
 
 	const handleFloatRate = () => {
 		setRateState(RATES.floating)
+		localStorage.setItem('rateState', JSON.stringify(RATES.floating))
 		setIsNotification(true)
 	}
 

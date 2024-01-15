@@ -2,17 +2,17 @@ import styles from './terms.module.scss'
 import {Checkbox} from "@/components/checkbox/checkbox"
 import {PrimaryButton} from "@/components/buttons/primaryButton"
 import {useState} from "react"
-import {useExchangeContext} from "@/context/exchangeContext"
+import {STATUS, useContextStatus, WAITING_STATUSES} from "@/context/statusContext"
 
 export const Terms = () => {
-	const {setSecondStep} = useExchangeContext()
+	const {updateState} = useContextStatus()
 	const [isChecked, setIsChecked] = useState(false)
 	const handleState = () => {
 		setIsChecked(!isChecked)
 	}
 
 	const handleNextStep = () => {
-		setSecondStep(true)
+		updateState && updateState(WAITING_STATUSES.deposit, STATUS.loading)
 	}
 
 	return (

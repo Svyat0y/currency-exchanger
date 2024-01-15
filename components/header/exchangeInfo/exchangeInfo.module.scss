@@ -11,7 +11,11 @@
   transition: $cubicBezier;
   grid-area: exchangeInfo;
   font-family: $primary_font;
-  z-index: 40;
+  z-index: 20;
+
+  &.zIndexUp {
+    z-index: 50;
+  }
 
   &.active {
     opacity: 1;
@@ -51,6 +55,11 @@
   align-items: center;
   gap: 4px;
   cursor: pointer;
+
+  &.noActive {
+    pointer-events: none;
+    cursor: initial;
+  }
 }
 
 .icon {

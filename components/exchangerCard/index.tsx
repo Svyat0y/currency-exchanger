@@ -59,7 +59,7 @@ export const ExchangerCard: FC<ExchangerCardProps> = (
 
 	const handleInput = (value: number | string | null) => {
 		let newText = String(value).replace(/[^0-9.]/g, '')
-		setInputState(String(newText))
+		setInputState(Number(newText))
 	}
 
 	const handleCardClick = () => {

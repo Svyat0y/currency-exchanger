@@ -19,8 +19,6 @@ type TExchange = {
 	setWallet: (value: number | string | null) => void
 	rateState: number
 	setRateState: (rate: number) => void
-	setSecondStep: (step: boolean) => void
-	secondStep: boolean
 }
 
 const exchangeContext = createContext<TExchange | null>(null)
@@ -36,11 +34,10 @@ export const useExchangeContext = () => {
 export const ExchangeContextProvider = ({children}: TExchangeContext) => {
 	const [sendItem, setSendItem] = useState<Item>(currencies[0])
 	const [getItem, setGetItem] = useState<Item>(currencies[4])
-	const [sendValue, setSendValue] = useState<number | string | null>(null)
-	const [getValue, setGetValue] = useState<number | string | null>(null)
+	const [sendValue, setSendValue] = useState<number | string | null>('')
+	const [getValue, setGetValue] = useState<number | string | null>('')
 	const [wallet, setWallet] = useState<number | string | null>('')
 	const [rateState, setRateState] = useState(1)
-	const [secondStep, setSecondStep] = useState(false)
 
 	const value = {
 		sendItem,
@@ -55,8 +52,6 @@ export const ExchangeContextProvider = ({children}: TExchangeContext) => {
 		setWallet,
 		rateState,
 		setRateState,
-		setSecondStep,
-		secondStep,
 	}
 
 

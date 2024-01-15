@@ -9,6 +9,7 @@ import {formatNumber} from "@/utils/helpers"
 import {Wallet} from "@/components/wallet"
 import {Terms} from "@/components/exchanger/terms/terms"
 import {useExchangeContext} from "@/context/exchangeContext"
+import {useContextStatus} from "@/context/statusContext"
 
 export const CARDS = {
 	sendCard: 1,
@@ -17,8 +18,20 @@ export const CARDS = {
 }
 
 export const Exchanger = () => {
+	const {states} = useContextStatus()
 	const [activeCard, setActiveCard] = useState(CARDS.sendCard)
-	const {secondStep, getItem, sendItem, sendValue, getValue, setGetValue, setSendValue, setGetItem, setSendItem, wallet, setWallet} = useExchangeContext()
+	const {
+		getItem,
+		sendItem,
+		sendValue,
+		getValue,
+		setGetValue,
+		setSendValue,
+		setGetItem,
+		setSendItem,
+		wallet,
+		setWallet,
+	} = useExchangeContext()
 	const [isCalculatingGetValue, setIsCalculatingGetValue] = useState(false)
 	const [isCalculatingSendValue, setIsCalculatingSendValue] = useState(false)
 	const [isCalculated, setIsCalculated] = useState(false)
@@ -30,30 +43,36 @@ export const Exchanger = () => {
 	const prevGetItemRef = useRef(getItem)
 	const prevSendItemRef = useRef(sendItem)
 
-	const calculateGetValue = (sendValue: number | string | null) => {
-		if(!sendValue) return
-		const calculatedValue = (Number(sendValue) * sendItem.price) / getItem.price;
-		setGetValue(calculatedValue);
+	const calculateGetValue = (value: number | string | null) => {
+		if (!value) return
+		const calculatedValue = (Number(value) * sendItem.price) / getItem.price
+		setGetValue(calculatedValue)
+
+		const cardsValue = {
+			getValue: calculatedValue,
+			sendValue: value
+		}
+		localStorage.setItem('cardValue', JSON.stringify(cardsValue))
 	}
 
-	const calculateSendValue = (getValue: number | string | null) => {
-		if(!getValue) return
-		const calculatedValue = (Number(getValue) * getItem.price) / sendItem.price;
-		setSendValue(calculatedValue);
+	const calculateSendValue = (value: number | string | null) => {
+		if (!value) return
+		const calculatedValue = (Number(value) * getItem.price) / sendItem.price
+		setSendValue(calculatedValue)
+
+		const cardsValue = {
+			sendValue: calculatedValue,
+			getValue: value
+		}
+		localStorage.setItem('cardValue', JSON.stringify(cardsValue))
 	}
 
 	useEffect(() => {
 		let calculationTimeout: any
 		const prevSendItem = prevSendItemRef?.current
 
-		if(!isSwitching) {
+		if (!isSwitching) {
 			prevSendItemRef.current = sendItem
-			if(sendValue === 0) {
-				setIsCalculatingGetValue(false)
-				setGetValue(null)
-				setIsCalculated(false)
-				return
-			}
 
 			if (prevSendItem !== sendItem) {
 				setSendValue(sendItem.min)
@@ -75,20 +94,13 @@ export const Exchanger = () => {
 		let calculationTimeout: any
 		const prevGetItem = prevGetItemRef?.current
 
-		if(!isSwitching) {
-			prevGetItemRef.current = getItem
-			if(getValue === 0) {
-				setIsCalculatingSendValue(false)
-				setSendValue(null)
-				setIsCalculated(false)
-				return
-			}
+		if (!isSwitching) {
 
-			if (prevGetItem !== getItem) {
+			if(prevGetItem !== getItem && Number(sendValue) > 0) {
 				setIsCalculatingGetValue(true)
 				setIsValueError(false)
 				calculationTimeout = setTimeout(() => {
-					calculateGetValue(getValue)
+					calculateGetValue(sendValue)
 					setIsCalculatingGetValue(false)
 					setIsCalculated(true)
 				}, 2000)
@@ -104,9 +116,10 @@ export const Exchanger = () => {
 		let calculationTimeout: any
 		const prevSendItem = prevSendItemRef?.current;
 
-		if(!isSwitching) {
+		if (!isSwitching) {
 			setIsTypingCard(CARDS.sendCard)
-			if(sendValue === 0) {
+
+			if (sendValue === 0) {
 				prevSendItemRef.current = sendItem
 				setIsValueError(false)
 				setGetValue(null)
@@ -119,18 +132,17 @@ export const Exchanger = () => {
 				setActiveCard(CARDS.sendCard)
 			}
 
-			if(sendValue && Number(sendValue) < sendItem.min) {
+			if (sendValue && Number(sendValue) < sendItem.min) {
 				setIsValueError(true)
 				setIsCalculatingGetValue(false)
 				setIsCalculated(false)
 				return
 			}
 
-			if(activeCard === CARDS.sendCard && sendValue && (prevSendItem === sendItem)) {
+			if (activeCard === CARDS.sendCard && sendValue && (prevSendItem === sendItem)) {
 				setIsValueError(false)
 				setIsTypingCard(CARDS.sendCard)
 				setIsCalculatingGetValue(true)
-
 				calculationTimeout = setTimeout(() => {
 					calculateGetValue(sendValue)
 					setIsCalculatingGetValue(false)
@@ -146,9 +158,9 @@ export const Exchanger = () => {
 		let calculationTimeout: any
 		const prevGetItem = prevGetItemRef?.current;
 
-		if(!isSwitching) {
+		if (!isSwitching) {
 			setIsTypingCard(CARDS.getCard)
-			if(getValue === 0) {
+			if (getValue === 0) {
 				prevGetItemRef.current = getItem
 				setIsValueError(false)
 				isTypingCard === CARDS.getCard && setSendValue('')
@@ -157,10 +169,9 @@ export const Exchanger = () => {
 				return
 			}
 
-			if(activeCard === CARDS.getCard && getValue && (prevGetItem === getItem)) {
+			if (activeCard === CARDS.getCard && getValue && (prevGetItem === getItem)) {
 				setIsTypingCard(CARDS.getCard)
 				setIsCalculatingSendValue(true)
-
 				calculationTimeout = setTimeout(() => {
 					calculateSendValue(getValue)
 					setIsCalculatingSendValue(false)
@@ -180,12 +191,14 @@ export const Exchanger = () => {
 
 	const handleSwitch = async () => {
 		setIsSwitching(true)
+
 		const switchItems = () => {
 			return new Promise<void>(resolve => {
 				setGetItem(sendItem)
 				setSendItem(getItem)
 				setSendValue(getValue)
 				setGetValue(sendValue)
+				localStorage.setItem('cardValues', JSON.stringify({getValue: sendValue, sendValue: getValue}))
 
 				setTimeout(() => resolve(), 0)
 			})
@@ -199,7 +212,6 @@ export const Exchanger = () => {
 		prevGetItemRef.current = getItem
 		prevSendItemRef.current = sendItem
 	}, [isSwitching])
-
 
 	const handleFirsCardMenu = () => {
 		setIsFirstMenuOpen(true)
@@ -222,7 +234,7 @@ export const Exchanger = () => {
 	return (
 		<div className={classNames(styles.wrapper, {
 			[styles.menuIsOpen]: isFirstMenuOpen || isSecondMenuOpen,
-			[styles.stepFinished]: secondStep,
+			[styles.stepFinished]: states?.length,
 		})}>
 			<div className={styles.content}>
 				<div className={styles.cardsWrapper}>
