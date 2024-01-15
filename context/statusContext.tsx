@@ -57,7 +57,7 @@ export const useContextStatus = () => {
 }
 
 export const StatusContextProvider = ({children}: TStatusContext) => {
-	const savedStates = JSON.parse(localStorage.getItem('states') || 'null')
+	const savedStates = typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('states') || 'null') : null
 	const [states, setStates] = useState(savedStates)
 
 	const updateState = (title: string, newState: string) => {
