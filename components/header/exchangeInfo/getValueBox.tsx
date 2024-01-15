@@ -16,7 +16,7 @@ export const GetValueBox: FC<GetValueBoxProps> = ({noActive}) => {
 	const [isSuccessRate, setIsSuccessRate] = useState(false)
 
 	useEffect(() => {
-		const cardValues = localStorage.getItem('cardValue')
+		const cardValues = localStorage.getItem('cardsValue')
 
 		if(cardValues) {
 			const {getValue} = JSON.parse(cardValues)

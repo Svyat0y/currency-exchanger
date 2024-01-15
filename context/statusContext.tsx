@@ -1,4 +1,4 @@
-import React, {createContext, ReactNode, useContext, useState} from 'react'
+import React, {createContext, ReactNode, useContext, useEffect, useState} from 'react'
 
 type TStatusContext = {
 	children: ReactNode
@@ -57,8 +57,17 @@ export const useContextStatus = () => {
 }
 
 export const StatusContextProvider = ({children}: TStatusContext) => {
-	const savedStates = typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('states') || 'null') : null
-	const [states, setStates] = useState(savedStates)
+	const [states, setStates] = useState<Array<{ id: number, title: string, state: string }>>(statesDate)
+
+
+	useEffect(() => {
+		if (typeof window !== 'undefined') {
+			const savedStates = JSON.parse(localStorage.getItem('states') || 'null')
+			if (savedStates) {
+				setStates(savedStates)
+			}
+		}
+	}, [])
 
 	const updateState = (title: string, newState: string) => {
 		const newStates = states?.length ? [...states] : [...statesDate]
@@ -88,7 +97,6 @@ export const StatusContextProvider = ({children}: TStatusContext) => {
 		states,
 		setStates,
 		updateState,
-		savedStates,
 	}
 
 	return (

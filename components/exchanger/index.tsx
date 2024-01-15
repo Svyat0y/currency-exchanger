@@ -52,7 +52,7 @@ export const Exchanger = () => {
 			getValue: calculatedValue,
 			sendValue: value
 		}
-		localStorage.setItem('cardValue', JSON.stringify(cardsValue))
+		localStorage.setItem('cardsValue', JSON.stringify(cardsValue))
 	}
 
 	const calculateSendValue = (value: number | string | null) => {
@@ -64,7 +64,7 @@ export const Exchanger = () => {
 			sendValue: calculatedValue,
 			getValue: value
 		}
-		localStorage.setItem('cardValue', JSON.stringify(cardsValue))
+		localStorage.setItem('cardsValue', JSON.stringify(cardsValue))
 	}
 
 	useEffect(() => {

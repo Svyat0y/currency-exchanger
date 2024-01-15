@@ -9,7 +9,7 @@ export const SendValueBox = () => {
 	const {sendItem, sendValue: sendValueContext} = useExchangeContext()
 
 	useEffect(() => {
-		const cardValues = localStorage.getItem('cardValue')
+		const cardValues = localStorage.getItem('cardsValue')
 
 		if(cardValues) {
 			const {sendValue} = JSON.parse(cardValues)
