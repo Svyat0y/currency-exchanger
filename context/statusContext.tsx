@@ -57,7 +57,7 @@ export const useContextStatus = () => {
 }
 
 export const StatusContextProvider = ({children}: TStatusContext) => {
-	const [states, setStates] = useState<Array<{ id: number, title: string, state: string }>>(statesDate)
+	const [states, setStates] = useState<Array<{ id: number, title: string, state: string }>>([])
 
 
 	useEffect(() => {
@@ -91,7 +91,6 @@ export const StatusContextProvider = ({children}: TStatusContext) => {
 			localStorage.removeItem('states')
 		}
 	}
-
 
 	const value = {
 		states,

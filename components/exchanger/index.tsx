@@ -188,7 +188,6 @@ export const Exchanger = () => {
 		isCalculated && setActiveCard(CARDS.wallet)
 	}, [isCalculated])
 
-
 	const handleSwitch = async () => {
 		setIsSwitching(true)
 
