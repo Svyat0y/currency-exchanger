@@ -9,7 +9,7 @@ import {formatNumber} from "@/utils/helpers"
 import {Wallet} from "@/components/wallet"
 import {Terms} from "@/components/exchanger/terms/terms"
 import {useExchangeContext} from "@/context/exchangeContext"
-import {useContextStatus} from "@/context/statusContext"
+import {STATUS, useContextStatus} from "@/context/statusContext"
 
 export const CARDS = {
 	sendCard: 1,
@@ -230,10 +230,14 @@ export const Exchanger = () => {
 
 	const additionalInfoText = sendValue ? `${formattedSendValue} ${sendItem.shortLabel} = ${formattedGetValue} ${getItem.shortLabel}` : ''
 
+	if(!states.length) return
+
+	const findLoadingStatus = states.some(obj => obj.state === STATUS.loading)
+
 	return (
 		<div className={classNames(styles.wrapper, {
 			[styles.menuIsOpen]: isFirstMenuOpen || isSecondMenuOpen,
-			[styles.stepFinished]: states?.length,
+			[styles.stepFinished]: findLoadingStatus,
 		})}>
 			<div className={styles.content}>
 				<div className={styles.cardsWrapper}>

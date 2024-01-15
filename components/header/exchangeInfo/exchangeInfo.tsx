@@ -11,7 +11,7 @@ import {Overlay} from "@/components/overlay/overlay"
 import {useEffect, useState} from "react"
 import {TooltipTrigger} from "@/components/tooltipTrigger/tooltipTrigger"
 import {useNotificationContext} from "@/context/notificationContext"
-import {useContextStatus} from "@/context/statusContext"
+import {STATUS, useContextStatus} from "@/context/statusContext"
 
 export const ExchangeInfo = () => {
 	const {rateState} = useExchangeContext()
@@ -21,6 +21,7 @@ export const ExchangeInfo = () => {
 	const [isTooltip, setIsTooltip] = useState(false)
 	const isFixedRate = rateStateLs === RATES.fixed || rateState === RATES.fixed
 	const ratesInfo = rateState === RATES.fixed ? RATES_TOOLTIP.fixedRate : RATES_TOOLTIP.floatRate
+	const findLoadingStatus = states.some(obj => obj.state === STATUS.loading)
 
 	useEffect(() => {
 		const rateState = localStorage.getItem('rateState')
@@ -44,7 +45,7 @@ export const ExchangeInfo = () => {
 	return (
 		<>
 			<div className={classNames(styles.exchangeInfo, {
-				[styles.active]: states?.length,
+				[styles.active]: findLoadingStatus,
 				[styles.zIndexUp]: isOverlay
 			})}>
 				<div className={styles.left}>

@@ -66,6 +66,9 @@ export const StatusContextProvider = ({children}: TStatusContext) => {
 			if (savedStates) {
 				setStates(savedStates)
 			}
+			else {
+				setStates(statesDate)
+			}
 		}
 	}, [])
 

@@ -2,6 +2,7 @@ import {NavigationBox} from "@/components/navigationBox/navigationBox"
 import {useExchangeContext} from "@/context/exchangeContext"
 import {useNotificationContext} from "@/context/notificationContext"
 import {IconButton} from "@/components/buttons/iconButton/iconButton"
+import {useEffect} from "react";
 
 export const RATES = {
 	floating: 1,
@@ -30,6 +31,14 @@ export const RateSwitcher = () => {
 		localStorage.setItem('rateState', JSON.stringify(RATES.floating))
 		setIsNotification(true)
 	}
+
+	useEffect(() => {
+		const rateFromLs = localStorage.getItem('rateState')
+
+		if(rateFromLs) {
+			setRateState(JSON.parse(rateFromLs))
+		}
+	}, [])
 
 	return (
 		<NavigationBox isBorder={true}>
