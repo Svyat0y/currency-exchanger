@@ -1,0 +1,18 @@
+@import "styles/var";
+
+.wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.qrBtn {
+  width: 40px;
+  height: 40px;
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid $fourth_color;
+  background: transparent;
+}

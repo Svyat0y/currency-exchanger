@@ -21,7 +21,7 @@ export const ExchangeInfo = () => {
 	const [isTooltip, setIsTooltip] = useState(false)
 	const isFixedRate = rateStateLs === RATES.fixed || rateState === RATES.fixed
 	const ratesInfo = rateState === RATES.fixed ? RATES_TOOLTIP.fixedRate : RATES_TOOLTIP.floatRate
-	const findLoadingStatus = states.some(obj => obj.state === STATUS.loading)
+	const isStatusLoading = states.some(obj => obj.state === STATUS.loading)
 
 	useEffect(() => {
 		const rateState = localStorage.getItem('rateState')
@@ -45,7 +45,7 @@ export const ExchangeInfo = () => {
 	return (
 		<>
 			<div className={classNames(styles.exchangeInfo, {
-				[styles.active]: findLoadingStatus,
+				[styles.active]: isStatusLoading,
 				[styles.zIndexUp]: isOverlay
 			})}>
 				<div className={styles.left}>

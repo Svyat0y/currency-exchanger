@@ -12,12 +12,13 @@ type TStatuses = {
 	}>;
 	setStates: React.Dispatch<React.SetStateAction<any>>
 	updateState?: (title: string, newState: string) => void
+	isExchangeStarted: boolean
 }
 
 export const WAITING_STATUSES = {
-	deposit: 'waiting for deposit',
-	confirmations: 'waiting for confirmations',
-	withdraw: 'withdraw to you',
+	deposit: 'deposited',
+	confirmations: 'confirming',
+	exchange: 'exchanging',
 }
 
 export const STATUS = {
@@ -27,7 +28,7 @@ export const STATUS = {
 }
 
 
-const statesDate = [
+export const statesDate = [
 	{
 		id: 0,
 		title: WAITING_STATUSES.deposit,
@@ -40,7 +41,7 @@ const statesDate = [
 	},
 	{
 		id: 2,
-		title: WAITING_STATUSES.withdraw,
+		title: WAITING_STATUSES.exchange,
 		state: STATUS.initial
 	}
 ]
@@ -57,20 +58,19 @@ export const useContextStatus = () => {
 }
 
 export const StatusContextProvider = ({children}: TStatusContext) => {
-	const [states, setStates] = useState<Array<{ id: number, title: string, state: string }>>([])
+	const [states, setStates] = useState<Array<{ id: number, title: string, state: string }>>(statesDate)
+	const isExchangeStarted = states.some(obj => obj.state === STATUS.loading)
 
-
-	useEffect(() => {
-		if (typeof window !== 'undefined') {
-			const savedStates = JSON.parse(localStorage.getItem('states') || 'null')
-			if (savedStates) {
-				setStates(savedStates)
-			}
-			else {
-				setStates(statesDate)
-			}
-		}
-	}, [])
+	// for saving the status after refreshing page
+	// useEffect(() => {
+	// 	const savedStates = JSON.parse(localStorage.getItem('states') || 'null')
+	// 	if (savedStates) {
+	// 		setStates(savedStates)
+	// 	}
+	// 	else {
+	// 		setStates(statesDate)
+	// 	}
+	// }, [])
 
 	const updateState = (title: string, newState: string) => {
 		const newStates = states?.length ? [...states] : [...statesDate]
@@ -90,7 +90,7 @@ export const StatusContextProvider = ({children}: TStatusContext) => {
 		setStates(newStates)
 		localStorage.setItem('states', JSON.stringify(newStates))
 
-		if(title === WAITING_STATUSES.withdraw && newState === STATUS.success) {
+		if(title === WAITING_STATUSES.exchange && newState === STATUS.success) {
 			localStorage.removeItem('states')
 		}
 	}
@@ -99,6 +99,7 @@ export const StatusContextProvider = ({children}: TStatusContext) => {
 		states,
 		setStates,
 		updateState,
+		isExchangeStarted,
 	}
 
 	return (

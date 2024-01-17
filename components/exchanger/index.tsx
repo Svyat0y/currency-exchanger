@@ -10,6 +10,7 @@ import {Wallet} from "@/components/wallet"
 import {Terms} from "@/components/exchanger/terms/terms"
 import {useExchangeContext} from "@/context/exchangeContext"
 import {STATUS, useContextStatus} from "@/context/statusContext"
+import {useMount} from "@/hooks/useMount";
 
 export const CARDS = {
 	sendCard: 1,
@@ -17,7 +18,7 @@ export const CARDS = {
 	wallet: 3,
 }
 
-export const Exchanger = () => {
+export const Exchanger = ({animStart}: {animStart: boolean}) => {
 	const {states} = useContextStatus()
 	const [activeCard, setActiveCard] = useState(CARDS.sendCard)
 	const {
@@ -230,14 +231,15 @@ export const Exchanger = () => {
 
 	const additionalInfoText = sendValue ? `${formattedSendValue} ${sendItem.shortLabel} = ${formattedGetValue} ${getItem.shortLabel}` : ''
 
-	if(!states.length) return
 
-	const findLoadingStatus = states.some(obj => obj.state === STATUS.loading)
+	const {mounted} = useMount(!animStart)
+
+	if(animStart && !mounted) return null
 
 	return (
 		<div className={classNames(styles.wrapper, {
 			[styles.menuIsOpen]: isFirstMenuOpen || isSecondMenuOpen,
-			[styles.stepFinished]: findLoadingStatus,
+			[styles.animStart]: !animStart && mounted,
 		})}>
 			<div className={styles.content}>
 				<div className={styles.cardsWrapper}>
@@ -263,7 +265,7 @@ export const Exchanger = () => {
 						setItem={setSendItem}
 					/>
 					<button aria-label='SWITCH_ARROWS' className={classNames(styles.switchArrows, {
-						[styles.disabled]: false
+						[styles.disabled]: isFirstMenuOpen || isSecondMenuOpen
 					})} onClick={handleSwitch}>
 						<Icon type='SWITCH_ARROWS'/>
 					</button>

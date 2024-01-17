@@ -1,0 +1,27 @@
+@import "styles/var";
+
+.wrapper {
+  min-height: 432px;
+  min-width: 400px;
+  width: 100%;
+  align-self: flex-start;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  transition: $cubicBezier;
+
+  @include md {
+    max-width: 400px;
+    height: 100%;
+    margin-left: 50%;
+    transform: translateX(-50%);
+  }
+
+  &.animStart {
+    @include md {
+      margin-left: 0;
+      max-width: 400px;
+      transform: translateX(0);
+    }
+  }
+}

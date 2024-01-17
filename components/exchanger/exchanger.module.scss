@@ -5,14 +5,22 @@
   display: flex;
   justify-content: center;
   transition: $cubicBezier;
-  padding-top: 2rem;
-  height: 100%;
-  max-width: 812px;
+  min-height: max-content;
+  width: 100%;
   margin: 0 auto;
+  align-self: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+  transform: translateY(-100%);
+  opacity: 0;
+  padding-top: 0;
+  pointer-events: none;
 
   @include md {
     justify-content: center;
     align-items: center;
+    max-width: 812px;
   }
 
   &.menuIsOpen {
@@ -23,12 +31,15 @@
     }
   }
 
-  &.stepFinished {
-    transform: translateY(-100%);
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    z-index: -1;
+  &.animStart {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+    padding-top: 2rem;
+  }
+
+  &.unmounted {
+    display: none;
   }
 }
 
@@ -36,13 +47,13 @@
   height: 100%;
   width: 100%;
   display: flex;
-  align-items: center;
   flex-direction: column;
   gap: 20px;
   transition: $cubicBezier;
+  max-height: max-content;
 
   @include md {
-    max-height: 440px;
+    max-height: 360px;
   }
 }
 
@@ -115,7 +126,7 @@
   &.isShow {
     visibility: visible;
     opacity: 1;
-    pointer-events: all;
+    pointer-events: auto;
     transform: translateY(0);
   }
 

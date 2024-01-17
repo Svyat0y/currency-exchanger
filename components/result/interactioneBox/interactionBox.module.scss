@@ -1,0 +1,31 @@
+@import "styles/var";
+
+.wrapper {
+  width: 100%;
+  min-height: 432px;
+  border: 1px solid red;
+  transition: $cubicBezier;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(100%);
+  align-self: flex-end;
+
+  @include md {
+    min-height: initial;
+    height: 100%;
+    width: 880px;
+    transform: translateX(100%);
+  }
+
+  &.animStart {
+    width: 100%;
+    opacity: 1;
+    transform: translateY(0);
+
+    @include md {
+      width: 880px;
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+}

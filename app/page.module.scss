@@ -1,9 +1,26 @@
 @import "styles/var";
 
 .wrapper {
-    height: calc(100dvh - 125px);
+  height: calc(100dvh - 125px);
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
 
-    @include sm {
-        height: calc(100dvh - 90px);
-    }
+  @include sm {
+    align-items: initial;
+    height: calc(100dvh - 90px);
+  }
+}
+
+.content {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 100%;
+  height: 100%;
+
+  @include md {
+    padding-top: 15vh;
+  }
 }

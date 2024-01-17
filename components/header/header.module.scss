@@ -6,7 +6,7 @@
   left: 0;
   right: 0;
   transition: $cubicBezier;
-  z-index: 999;
+  z-index: 500;
   background: $white;
 
   &::before, &::after {
@@ -50,8 +50,8 @@
   padding: 16px 0 12px;
   grid-gap: 12px;
 
-  @include sm{
-    height: 80px;
+  @include sm {
+    height: 70px;
     grid-template-areas: 'logo exchangeInfo .';
     grid-template-columns: 110px minmax(auto, 380px) 74px;
     grid-template-rows: auto;
