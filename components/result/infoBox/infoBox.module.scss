@@ -1,8 +1,6 @@
 @import "styles/var";
 
 .wrapper {
-  min-height: 432px;
-  min-width: 400px;
   width: 100%;
   align-self: flex-start;
   display: flex;
@@ -11,6 +9,8 @@
   transition: $cubicBezier;
 
   @include md {
+    min-width: 400px;
+    min-height: 432px;
     max-width: 400px;
     height: 100%;
     margin-left: 50%;

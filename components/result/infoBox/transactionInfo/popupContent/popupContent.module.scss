@@ -1,0 +1,40 @@
+@import "styles/var";
+
+.wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  padding: 2rem 0;
+  transition: $cubicBezier;
+  background: $white;
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  transform: translateY(15px);
+
+  &.active {
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+    transform: translateY(0);
+  }
+}
+
+.content {
+  max-width: 200px;
+  margin: 48px auto 0;
+}
+
+.customClose {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+}
+
+.qrBlockWrapper {
+  display: flex;
+  justify-content: center;
+}

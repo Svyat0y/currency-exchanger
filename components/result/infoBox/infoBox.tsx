@@ -28,7 +28,10 @@ export const InfoBox: FC<InfoBoxProps> = ({isConfirmationLoading}) => {
 			[styles.animStart]: isConfirmationLoading,
 		})}>
 			<HeaderInfo/>
-			<TransactionInfo sendValue={sendValue} walletAddress={walletAddress}/>
+			<TransactionInfo
+				sendValue={sendValue}
+				walletAddress={String(walletAddress)}
+			/>
 			<FooterInfo/>
 		</div>
 	)

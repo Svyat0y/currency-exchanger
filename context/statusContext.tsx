@@ -58,19 +58,19 @@ export const useContextStatus = () => {
 }
 
 export const StatusContextProvider = ({children}: TStatusContext) => {
-	const [states, setStates] = useState<Array<{ id: number, title: string, state: string }>>(statesDate)
+	const [states, setStates] = useState<Array<{ id: number, title: string, state: string }>>([])
 	const isExchangeStarted = states.some(obj => obj.state === STATUS.loading)
 
 	// for saving the status after refreshing page
-	// useEffect(() => {
-	// 	const savedStates = JSON.parse(localStorage.getItem('states') || 'null')
-	// 	if (savedStates) {
-	// 		setStates(savedStates)
-	// 	}
-	// 	else {
-	// 		setStates(statesDate)
-	// 	}
-	// }, [])
+	useEffect(() => {
+		const savedStates = JSON.parse(localStorage.getItem('states') || 'null')
+		if (savedStates) {
+			setStates(savedStates)
+		}
+		else {
+			setStates(statesDate)
+		}
+	}, [])
 
 	const updateState = (title: string, newState: string) => {
 		const newStates = states?.length ? [...states] : [...statesDate]

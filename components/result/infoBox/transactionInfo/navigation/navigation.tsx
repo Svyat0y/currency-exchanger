@@ -5,9 +5,10 @@ import {PrimaryAnimButton} from "@/components/buttons/primaryAnimButton/primaryA
 
 type NavigationProps = {
 	walletAddress: number | string | null
+	setPopupIsOpen: (state: boolean) => void
 }
 
-export const Navigation: FC<NavigationProps> = ({walletAddress}) => {
+export const Navigation: FC<NavigationProps> = ({walletAddress, setPopupIsOpen}) => {
 	const [isCopied, setIsCopied] = useState(false)
 
 	const handleCopyWallet =  async () => {
@@ -20,10 +21,14 @@ export const Navigation: FC<NavigationProps> = ({walletAddress}) => {
 		}
 	}
 
+	const handleOpenPopup = () => {
+		setPopupIsOpen(true)
+	}
+
 	return (
 		<div className={styles.wrapper}>
 			<PrimaryAnimButton onClick={handleCopyWallet} icon={'CHECK'} state={isCopied} firstLabel='Coppy address' secondLabel='Copied'/>
-			<IconButton active={false} icon={'QR_CODE_LARGE'} className={styles.qrBtn}/>
+			<IconButton onClick={handleOpenPopup} active={false} icon={'QR_CODE_LARGE'} className={styles.qrBtn}/>
 		</div>
 	)
 }
