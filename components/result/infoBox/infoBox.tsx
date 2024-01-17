@@ -4,35 +4,64 @@ import {TransactionInfo} from "./transactionInfo/transactionInfo"
 import {FooterInfo} from "./footerInfo/footerInfo"
 import classNames from "classnames"
 import {FC, useEffect, useState} from "react"
+import {STATUS, WAITING_STATUSES} from "@/context/statusContext"
 
 type InfoBoxProps = {
-	isConfirmationLoading: boolean
+	currentStatus: string
+	updateState?: (title: string, state: string) => void
 }
 
-export const InfoBox: FC<InfoBoxProps> = ({isConfirmationLoading}) => {
-	const [sendValue, setSendValue] = useState('0')
+export type TExchangeInfo = Record<string, string>
+
+export const InfoBox: FC<InfoBoxProps> = ({currentStatus, updateState}) => {
+	const isDepositStatus = currentStatus === WAITING_STATUSES.deposit
+	const isConfirmationStatus = currentStatus === WAITING_STATUSES.confirmations
+	const isExchangeStatus = currentStatus === WAITING_STATUSES.exchange
+	const isAllSuccess = currentStatus === STATUS.success
+	const [exchangeInfo, setExchangeInfo] = useState<TExchangeInfo>()
 	const walletAddress = "0xba72b008d53d3e12345678901234567890abcd"
 
 	useEffect(() => {
 		const cardValues = localStorage.getItem('cardsValue')
 
 		if(cardValues) {
-			const {sendValue} = JSON.parse(cardValues)
-			setSendValue(sendValue)
+			const {sendValue, sendLabel, getValue, getLabel} = JSON.parse(cardValues)
+			setExchangeInfo({
+				sendValue,
+				sendLabel,
+				getValue,
+				getLabel
+			})
 		}
 	}, [])
+
+	// useEffect(() => {
+	// 	let timout: any
+	//
+	// 	timout = setTimeout(() => {
+	// 		updateState && updateState(WAITING_STATUSES.confirmations, STATUS.loading)
+	// 	}, 5000)
+	//
+	// 	return () => {
+	// 		clearTimeout(timout)
+	// 	}
+	// }, [])
 
 
 	return (
 		<div className={classNames(styles.wrapper, {
-			[styles.animStart]: isConfirmationLoading,
+			[styles.animStart]: isConfirmationStatus,
 		})}>
 			<HeaderInfo/>
 			<TransactionInfo
-				sendValue={sendValue}
+				isConfirmationLoading={isConfirmationStatus}
+				isExchangeStatus={isExchangeStatus}
+				isDepositStatus={isDepositStatus}
+				exchangeInfo={exchangeInfo}
 				walletAddress={String(walletAddress)}
+				isAllSuccess={isAllSuccess}
 			/>
-			<FooterInfo/>
+			<FooterInfo active={isConfirmationStatus || isExchangeStatus}/>
 		</div>
 	)
 }

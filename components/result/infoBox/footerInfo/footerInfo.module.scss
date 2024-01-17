@@ -1,1 +1,44 @@
 @import "styles/var";
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0 12px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(-50px);
+  transition: $cubicBezier;
+
+  &.active {
+    opacity: 1;
+    padding: 0 12px;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+}
+
+.buttonWrapper {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 0;
+  border-bottom: 1px solid $fourth_color;
+  cursor: pointer;
+
+  &:last-child {
+    border: none;
+  }
+}
+
+.groupLeft {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}

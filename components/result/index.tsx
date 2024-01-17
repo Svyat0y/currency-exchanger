@@ -1,15 +1,11 @@
-"use client"
-
 import styles from './result.module.scss'
 import {InfoBox} from "./infoBox/infoBox"
 import {InteractionBox} from "./interactioneBox/interactionBox"
 import classNames from "classnames"
 import {useMount} from "@/hooks/useMount"
-import {STATUS, useContextStatus, WAITING_STATUSES} from "@/context/statusContext";
+import {useContextStatus} from "@/context/statusContext"
 export const Result = ({animStart}: {animStart: boolean}) => {
-	const {states} = useContextStatus()
-	const isConfirmStatus = states.find(obj => obj.title === WAITING_STATUSES.confirmations)
-	const isConfirmationLoading = isConfirmStatus?.state === STATUS.loading
+	const {currentStatus, updateState} = useContextStatus()
 	const {mounted} = useMount(animStart)
 
 	if(!animStart && !mounted) return null
@@ -18,8 +14,8 @@ export const Result = ({animStart}: {animStart: boolean}) => {
 		<div className={classNames(styles.wrapper, {
 			[styles.animStart]: animStart && mounted,
 		})}>
-			<InfoBox isConfirmationLoading={isConfirmationLoading}/>
-			<InteractionBox isConfirmationLoading={isConfirmationLoading}/>
+			<InfoBox updateState={updateState} currentStatus={currentStatus}/>
+			<InteractionBox currentStatus={currentStatus}/>
 		</div>
 	)
 }

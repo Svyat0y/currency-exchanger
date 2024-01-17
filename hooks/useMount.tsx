@@ -5,8 +5,6 @@ import {ANIMATION_TIME} from "@/app/const"
 export const useMount = ( animStart: boolean ) => {
 	const [mounted, setMounted] = useState(animStart)
 
-	console.log(animStart)
-
 	useEffect(() => {
 		if (animStart) {
 			setMounted(true)

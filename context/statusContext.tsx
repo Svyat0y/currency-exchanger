@@ -12,20 +12,24 @@ type TStatuses = {
 	}>;
 	setStates: React.Dispatch<React.SetStateAction<any>>
 	updateState?: (title: string, newState: string) => void
-	isExchangeStarted: boolean
+	isAnyStatusActive: boolean
+	currentStatus: string
+	setCurrentStatus: (state: string) => void
 }
 
 export const WAITING_STATUSES = {
 	deposit: 'deposited',
 	confirmations: 'confirming',
 	exchange: 'exchanging',
+	resetting: 'resetting',
 }
 
 export const STATUS = {
 	initial: 'initial',
 	loading: 'loading',
 	success: 'success',
-}
+	reset: 'reset',
+} as const
 
 
 export const statesDate = [
@@ -59,16 +63,20 @@ export const useContextStatus = () => {
 
 export const StatusContextProvider = ({children}: TStatusContext) => {
 	const [states, setStates] = useState<Array<{ id: number, title: string, state: string }>>([])
-	const isExchangeStarted = states.some(obj => obj.state === STATUS.loading)
+	const isAnyStatusActive = states.some(obj => obj.state !== STATUS.initial)
+	const [currentStatus, setCurrentStatus] = useState('')
 
 	// for saving the status after refreshing page
 	useEffect(() => {
 		const savedStates = JSON.parse(localStorage.getItem('states') || 'null')
-		if (savedStates) {
+		const currentStatus = localStorage.getItem('currentStatus') || ''
+		if (savedStates || currentStatus) {
 			setStates(savedStates)
+			setCurrentStatus(currentStatus)
 		}
 		else {
 			setStates(statesDate)
+			setCurrentStatus('')
 		}
 	}, [])
 
@@ -89,17 +97,31 @@ export const StatusContextProvider = ({children}: TStatusContext) => {
 		newStates[indexId].state = newState
 		setStates(newStates)
 		localStorage.setItem('states', JSON.stringify(newStates))
+		localStorage.setItem('currentStatus', title)
+		setCurrentStatus(title)
 
 		if(title === WAITING_STATUSES.exchange && newState === STATUS.success) {
-			localStorage.removeItem('states')
+			localStorage.setItem('currentStatus', 'success')
+			setCurrentStatus('success')
 		}
+
+		if(title === WAITING_STATUSES.resetting && newState === STATUS.reset) {
+			localStorage.removeItem('states')
+			localStorage.removeItem('cardsValue')
+			localStorage.removeItem('currentStatus')
+			setStates([])
+			setCurrentStatus('')
+		}
+
 	}
 
 	const value = {
 		states,
 		setStates,
 		updateState,
-		isExchangeStarted,
+		isAnyStatusActive,
+		setCurrentStatus,
+		currentStatus
 	}
 
 	return (

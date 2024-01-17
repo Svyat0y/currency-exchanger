@@ -1,13 +1,20 @@
 import styles from './truncate.module.scss'
 import classNames from "classnames"
+import {FC} from "react"
 
-export const Truncate = ({walletAddress ,className}: {walletAddress: string, className: string}) => {
+type TruncateProps = {
+	text: string
+	className: string
+	withoutTruncate?: boolean
+}
+
+export const Truncate: FC<TruncateProps> = ({text ,className, withoutTruncate = false}) => {
 	return (
 		<div className={classNames(styles.wrapper, className)}>
 			<div className={styles.truncateWrapper}>
-				<span className='truncate'>{walletAddress}</span>
+				<span className={`${withoutTruncate ? '' : 'truncate'}`}>{text}</span>
 			</div>
-			<span>{String(walletAddress).slice(-3)}</span>
+			{!withoutTruncate && <span>{String(text).slice(-3)}</span>}
 		</div>
 	)
 }

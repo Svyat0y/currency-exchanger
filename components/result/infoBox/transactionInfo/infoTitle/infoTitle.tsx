@@ -1,17 +1,26 @@
 import styles from './infoTitle.module.scss'
-import {FC} from "react"
+import {FC, ReactNode} from "react"
+import {TExchangeInfo} from "@/components/result/infoBox/infoBox"
 
 type InfoTitleProps = {
-	sendValue: number | string | null
+	sendInfo?: TExchangeInfo
 	isPopup?: boolean
+	renderText: ReactNode
+	subText?: string
 }
 
-export const InfoTitle: FC<InfoTitleProps> = ({sendValue, isPopup}) => {
+export const InfoTitle: FC<InfoTitleProps> = (
+	{
+		isPopup,
+		renderText,
+		subText
+	}) => {
+
 	return (
 		<>
 			<div className={styles.wrapper}>
-				<p className={styles.title}>Send <span>{sendValue} usdt</span> to the address below</p>
-				{!isPopup && <p className={styles.subTitle}>Waiting for your deposit...</p>}
+				<p className={styles.title}>{renderText}</p>
+				{!isPopup && <p className={styles.subTitle}>{subText}</p>}
 			</div>
 		</>
 	)

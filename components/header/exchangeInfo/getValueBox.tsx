@@ -10,8 +10,14 @@ type GetValueBoxProps = {
 	noActive: boolean
 }
 
+type GetInfo = {
+	value: string
+	label: string
+	icon: string
+} | undefined
+
 export const GetValueBox: FC<GetValueBoxProps> = ({noActive}) => {
-	const [getValue, setGetValue] = useState('0')
+	const [getInfo, setGetInfo] = useState<GetInfo>(undefined)
 	const {getItem, getValue: getValueContext} = useExchangeContext()
 	const [isSuccessRate, setIsSuccessRate] = useState(false)
 
@@ -19,10 +25,15 @@ export const GetValueBox: FC<GetValueBoxProps> = ({noActive}) => {
 		const cardValues = localStorage.getItem('cardsValue')
 
 		if(cardValues) {
-			const {getValue} = JSON.parse(cardValues)
-			setGetValue(getValue)
+			const {getValue, getLabel, getIcon} = JSON.parse(cardValues)
+			const obj: GetInfo = {
+				value: getValue,
+				label: getLabel,
+				icon: getIcon
+			}
+			setGetInfo(obj)
 		}
-	}, [])
+	}, [getItem, getValueContext])
 
 	return (
 		<div className={styles.box}>
@@ -35,9 +46,9 @@ export const GetValueBox: FC<GetValueBoxProps> = ({noActive}) => {
 					: ''}
 				<span className={classNames(styles.getValue, {
 					[styles.success]: noActive || isSuccessRate
-				})}>{`${formatNumber(getValueContext || getValue, 5)} ${getItem?.shortLabel}`} </span>
+				})}>{`${formatNumber(getInfo?.value || getValueContext, 5)} ${getInfo?.label || getItem?.shortLabel}`} </span>
 			</button>
-			<Image src={getItem?.icon} alt={''} width={16} height={16}/>
+			<Image src={getInfo?.icon || getItem?.icon} alt={''} width={16} height={16}/>
 		</div>
 	)
 }

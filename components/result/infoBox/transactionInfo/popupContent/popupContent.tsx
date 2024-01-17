@@ -5,11 +5,13 @@ import {CloseButton} from "@/components/buttons/closeButton"
 import {PopupHeader} from "@/components/result/infoBox/transactionInfo/popupContent/header/popupHeader"
 import {InfoTitle} from "@/components/result/infoBox/transactionInfo/infoTitle/infoTitle"
 import { QRCode } from 'react-qrcode-logo'
+import {TExchangeInfo} from "@/components/result/infoBox/infoBox"
+import {GradientText} from "@/components/gradientText/gradientText"
 
 type PopupContent = {
 	active: boolean
 	setPopupIsOpen: (state: boolean) => void
-	sendValue: string | number | null
+	exchangeInfo?: TExchangeInfo
 	walletAddress: string
 }
 
@@ -18,7 +20,7 @@ export const TABS = {
 	qrAmount: 2,
 }
 
-export const PopupContent: FC<PopupContent> = ({active, setPopupIsOpen, sendValue, walletAddress}) => {
+export const PopupContent: FC<PopupContent> = ({active, setPopupIsOpen, exchangeInfo, walletAddress}) => {
 	const [activeTab, setActiveTab] = useState(TABS.qrAddress)
 
 	const handleClickAddress = () => {
@@ -40,11 +42,11 @@ export const PopupContent: FC<PopupContent> = ({active, setPopupIsOpen, sendValu
 			<CloseButton onClick={handleClosePopup} className={styles.customClose}/>
 			<PopupHeader activeTab={activeTab} handleClickAddress={handleClickAddress} handleClickAmount={handleClickAmount}/>
 			<div className={styles.content}>
-				<InfoTitle isPopup sendValue={sendValue}/>
+				<InfoTitle isPopup sendInfo={exchangeInfo} renderText={<>Send <GradientText>{exchangeInfo?.sendValue} {exchangeInfo?.sendLabel}</GradientText> to the address below</>}/>
 				<div className={styles.qrBlockWrapper}>
 					<QRCode
 						size={200}
-						value={activeTab === TABS.qrAddress ? walletAddress : String(sendValue)}
+						value={activeTab === TABS.qrAddress ? walletAddress : String(exchangeInfo?.sendValue)}
 						eyeRadius={10}
 						qrStyle={'dots'}
 						quietZone={0}

@@ -3,13 +3,23 @@
 .wrapper {
   position: relative;
   width: 100%;
-  height: 324px;
+  min-height: 324px;
   padding: 2px;
   z-index: 1;
   transition: $cubicBezier;
+  transform: translateY(0);
 
   &.popupIsOpen {
-    height: 390px;
+    min-height: 388px;
+    transform: translateY(-64px);
+  }
+
+  &.isConfirmStatus {
+    min-height: 200px;
+  }
+
+  &.isAllSuccess {
+    min-height: 430px;
   }
 }
 
@@ -26,13 +36,9 @@
 
 .content {
   position: relative;
-  padding: 2rem 0;
   max-width: 200px;
+  height: 100%;
   margin: 0 auto;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  flex-direction: column;
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
@@ -45,6 +51,10 @@
     pointer-events: none;
     transform: translateY(15px);
   }
+
+  &.fullWidth {
+    max-width: 400px;
+  }
 }
 
 .walletWrapper {
@@ -52,5 +62,14 @@
 }
 
 .transactionTimer {
+  background: $fourth_color;
+}
+
+.successInfo {
+  font-weight: 700;
+  font-size: 14px;
+  text-align: center;
+  max-width: 200px;
+  margin: 0 auto 45px;
   background: $fourth_color;
 }

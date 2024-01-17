@@ -1,5 +1,3 @@
-"use client"
-
 import styles from './exchanger.module.scss'
 import classNames from "classnames"
 import {ExchangerCard} from "../exchangerCard"
@@ -9,8 +7,7 @@ import {formatNumber} from "@/utils/helpers"
 import {Wallet} from "@/components/wallet"
 import {Terms} from "@/components/exchanger/terms/terms"
 import {useExchangeContext} from "@/context/exchangeContext"
-import {STATUS, useContextStatus} from "@/context/statusContext"
-import {useMount} from "@/hooks/useMount";
+import {useMount} from "@/hooks/useMount"
 
 export const CARDS = {
 	sendCard: 1,
@@ -19,7 +16,6 @@ export const CARDS = {
 }
 
 export const Exchanger = ({animStart}: {animStart: boolean}) => {
-	const {states} = useContextStatus()
 	const [activeCard, setActiveCard] = useState(CARDS.sendCard)
 	const {
 		getItem,
@@ -44,28 +40,30 @@ export const Exchanger = ({animStart}: {animStart: boolean}) => {
 	const prevGetItemRef = useRef(getItem)
 	const prevSendItemRef = useRef(sendItem)
 
+	const saveCardValuesToLs = (calculatedSendValue: number | string, calculatedGetValue: number | string) => {
+		const cardsValue = {
+			sendValue: calculatedSendValue ? calculatedSendValue : sendValue,
+			getValue: calculatedGetValue ? calculatedGetValue : getValue,
+			getLabel: getItem.shortLabel,
+			getIcon: getItem.icon,
+			sendLabel: sendItem.shortLabel,
+			sendIcon: sendItem.icon,
+		}
+		localStorage.setItem('cardsValue', JSON.stringify(cardsValue))
+	}
+
 	const calculateGetValue = (value: number | string | null) => {
 		if (!value) return
 		const calculatedValue = (Number(value) * sendItem.price) / getItem.price
 		setGetValue(calculatedValue)
-
-		const cardsValue = {
-			getValue: calculatedValue,
-			sendValue: value
-		}
-		localStorage.setItem('cardsValue', JSON.stringify(cardsValue))
+		saveCardValuesToLs(value, calculatedValue)
 	}
 
 	const calculateSendValue = (value: number | string | null) => {
 		if (!value) return
 		const calculatedValue = (Number(value) * getItem.price) / sendItem.price
 		setSendValue(calculatedValue)
-
-		const cardsValue = {
-			sendValue: calculatedValue,
-			getValue: value
-		}
-		localStorage.setItem('cardsValue', JSON.stringify(cardsValue))
+		saveCardValuesToLs(calculatedValue, value)
 	}
 
 	useEffect(() => {
