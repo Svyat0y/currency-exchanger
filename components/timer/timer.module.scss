@@ -11,6 +11,14 @@
   display: flex;
   align-items: center;
   gap: 5px;
+  transition: $cubicBezier;
+  opacity: 0;
+  transform: translateY(-10px);
+
+  &.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .icon {

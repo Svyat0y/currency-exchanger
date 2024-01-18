@@ -3,35 +3,34 @@ import styles from './timer.module.scss'
 import React, { useState, useEffect } from 'react'
 import {Icon} from "@/components/icon"
 import classNames from "classnames"
+import {formatTime} from "@/utils/helpers"
+import {useMount} from "@/hooks/useMount"
 
 type TimerProps = {
 	initialMinutes: number
 	icon?: string
 	className?: string
+	active: boolean
 }
 
-const Timer: React.FC<TimerProps> = ({ initialMinutes, icon, className }) => {
+const Timer: React.FC<TimerProps> = ({ initialMinutes, icon, className, active }) => {
 	const [time, setTime] = useState(initialMinutes * 60)
+	const {mounted} = useMount(active)
 
 	useEffect(() => {
-		// Если время не истекло, продолжаем отсчет
 		const timer = time > 0 && setInterval(() => setTime(time - 1), 1000)
 
-		// Очистка таймера
 		return () => clearInterval(timer as NodeJS.Timeout)
 	}, [time])
 
-	// Форматирование времени для отображения
-	const formatTime = () => {
-		const minutes = Math.floor(time / 60)
-		const seconds = time % 60
-		return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`
-	};
+	if(!active && !mounted) return null
 
 	return (
-		<div className={classNames(styles.wrapper, className)}>
+		<div className={classNames(styles.wrapper, className, {
+			[styles.active]: active
+		})}>
 			{icon && <Icon className={styles.icon} type={icon}/>}
-			{formatTime()}
+			{formatTime(time)}
 		</div>
 	)
 }

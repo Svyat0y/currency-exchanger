@@ -35,7 +35,7 @@ export const TransactionInfo: FC<TransactionInfoProps> = (
 		})}>
 			<GradientBorder active={!isConfirmationLoading && !isExchangeStatus && !isAllSuccess} withoutAnim={true}/>
 			<div className={styles.contentWrapper}>
-				<Timer className={styles.transactionTimer} initialMinutes={30} icon='STOPWATCH'/>
+				<Timer active={!isAllSuccess} className={styles.transactionTimer} initialMinutes={30} icon='STOPWATCH'/>
 				<TransactionContent
 					popupIsOpen={popupIsOpen}
 					exchangeInfo={exchangeInfo}

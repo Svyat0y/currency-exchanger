@@ -6,9 +6,9 @@ export const useMount = ( animStart: boolean ) => {
 	const [mounted, setMounted] = useState(animStart)
 
 	useEffect(() => {
-		if (animStart) {
+		if (animStart && !mounted) {
 			setMounted(true)
-		} else {
+		} else if (!animStart && mounted) {
 			setTimeout(() => {
 				setMounted(false)
 			}, ANIMATION_TIME)
