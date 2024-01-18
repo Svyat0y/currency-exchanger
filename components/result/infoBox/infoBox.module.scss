@@ -7,10 +7,10 @@
   flex-direction: column;
   justify-content: flex-start;
   transition: $cubicBezier;
+  position: relative;
 
   @include md {
     min-width: 400px;
-    min-height: 432px;
     max-width: 400px;
     height: 100%;
     margin-left: 50%;

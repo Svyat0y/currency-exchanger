@@ -2,6 +2,9 @@ import styles from './interactionBox.module.scss'
 import classNames from "classnames"
 import {useMount} from "@/hooks/useMount"
 import {Dispatch, FC, SetStateAction} from "react"
+import {GradientBorder} from "@/components/gradientBorder"
+import {Chat} from "@/components/result/interactioneBox/chat/chat"
+import {TRexGame} from "@/components/result/interactioneBox/tRexGame/tRexGame"
 
 type InteractionBoxProps = {
 	active: boolean
@@ -25,7 +28,11 @@ export const InteractionBox: FC<InteractionBoxProps> = (
 		<div className={classNames(styles.wrapper, {
 			[styles.animStart]: active && mounted
 		})} onClick={handleFocus}>
-			game
+			<GradientBorder active={false}/>
+			<div className={styles.content}>
+				<Chat/>
+				<TRexGame/>
+			</div>
 		</div>
 	)
 }

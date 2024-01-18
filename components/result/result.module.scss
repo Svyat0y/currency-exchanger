@@ -9,9 +9,9 @@
   transform: translateY(130%);
   transition: $cubicBezier;
   padding-top: 2rem;
-  gap: 40px;
+  padding-bottom: 2rem;
+  gap: 20px;
   opacity: 0;
-  height: auto;
 
   &::-webkit-scrollbar {
     display: none;
@@ -19,7 +19,6 @@
 
   @include md {
     width: 100%;
-    min-height: 432px;
     padding-top: 0;
     flex-direction: row;
   }

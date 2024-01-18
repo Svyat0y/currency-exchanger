@@ -1,20 +1,19 @@
 @import "styles/var";
 
 .wrapper {
+  position: relative;
   width: 100%;
   min-height: 432px;
-  border: 1px solid red;
   transition: $cubicBezier;
   opacity: 0;
   transform: translateY(20%);
-  position: relative;
-  z-index: 123123213;
 
   @include md {
     min-height: initial;
     height: 100%;
     max-width: 880px;
     transform: translateX(10%);
+    min-width: max-content;
   }
 
   &.animStart {
@@ -26,5 +25,28 @@
       opacity: 1;
       transform: translateX(0);
     }
+  }
+}
+
+.content {
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: minmax(300px, auto) minmax(300px, auto);
+  grid-gap: 20px;
+  grid-template-areas: 'chat' 'game';
+
+  @include sm {
+    grid-template-rows: minmax(400px, auto) minmax(400px, auto);
+  }
+
+  @include lg2 {
+    grid-template-rows: minmax(443px, 1fr);
+    grid-template-columns: minmax(120px, 300px) minmax(400px, 1fr);
+    grid-template-areas: 'chat game';
+  }
+
+  @include xl {
+    padding: 2rem;
   }
 }

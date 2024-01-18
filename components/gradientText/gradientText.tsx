@@ -1,10 +1,19 @@
 import styles from './gradientText.module.scss'
-import {ReactNode} from "react"
+import {FC, ReactNode} from "react"
 import classNames from "classnames"
 
-export const GradientText = ({children, isUppercase}: {children: ReactNode, isUppercase?: boolean}) => {
+type GradientText = {
+	children: ReactNode
+	isUppercase?: boolean
+	noGradient?: boolean
+}
+
+export const GradientText: FC<GradientText> = ({children, isUppercase, noGradient}) => {
 	return (
-		<span className={classNames(styles.wrapper, {[styles.isUpercase]: isUppercase})}>
+		<span className={classNames(styles.wrapper, {
+			[styles.isUpercase]: isUppercase,
+			[styles.noGradient]: noGradient,
+		})}>
 			{children}
 		</span>
 	)

@@ -10,4 +10,9 @@
   &.isUppercase {
     text-transform: uppercase;
   }
+
+  &.noGradient {
+    background: initial;
+    color: $black
+  }
 }
