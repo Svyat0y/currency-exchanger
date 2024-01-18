@@ -13,7 +13,7 @@ type InfoBoxProps = {
 
 export type TExchangeInfo = Record<string, string>
 
-export const InfoBox: FC<InfoBoxProps> = ({currentStatus, updateState}) => {
+export const InfoBox: FC<InfoBoxProps> = ({currentStatus}) => {
 	const isDepositStatus = currentStatus === WAITING_STATUSES.deposit
 	const isConfirmationStatus = currentStatus === WAITING_STATUSES.confirmations
 	const isExchangeStatus = currentStatus === WAITING_STATUSES.exchange
@@ -34,19 +34,6 @@ export const InfoBox: FC<InfoBoxProps> = ({currentStatus, updateState}) => {
 			})
 		}
 	}, [])
-
-	// useEffect(() => {
-	// 	let timout: any
-	//
-	// 	timout = setTimeout(() => {
-	// 		updateState && updateState(WAITING_STATUSES.confirmations, STATUS.loading)
-	// 	}, 5000)
-	//
-	// 	return () => {
-	// 		clearTimeout(timout)
-	// 	}
-	// }, [])
-
 
 	return (
 		<div className={classNames(styles.wrapper, {

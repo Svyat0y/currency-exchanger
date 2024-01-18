@@ -6,7 +6,7 @@ type InfoTitleProps = {
 	sendInfo?: TExchangeInfo
 	isPopup?: boolean
 	renderText: ReactNode
-	subText?: string
+	subText?: string | ReactNode
 }
 
 export const InfoTitle: FC<InfoTitleProps> = (

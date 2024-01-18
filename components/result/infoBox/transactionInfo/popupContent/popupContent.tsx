@@ -7,6 +7,7 @@ import {InfoTitle} from "@/components/result/infoBox/transactionInfo/infoTitle/i
 import { QRCode } from 'react-qrcode-logo'
 import {TExchangeInfo} from "@/components/result/infoBox/infoBox"
 import {GradientText} from "@/components/gradientText/gradientText"
+import {useMount} from "@/hooks/useMount"
 
 type PopupContent = {
 	active: boolean

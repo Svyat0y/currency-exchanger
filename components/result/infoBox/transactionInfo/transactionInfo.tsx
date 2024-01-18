@@ -1,6 +1,6 @@
 import styles from './transactionInfo.module.scss'
 import {GradientBorder} from "@/components/gradientBorder"
-import {FC, useState} from "react"
+import {FC, useEffect, useState} from "react"
 import Timer from "@/components/timer/timer"
 import {PopupContent} from "./popupContent/popupContent"
 import classNames from "classnames"
@@ -27,6 +27,10 @@ export const TransactionInfo: FC<TransactionInfoProps> = (
 	}) => {
 	const [popupIsOpen, setPopupIsOpen] = useState(false)
 
+	useEffect(() => {
+		if(!isDepositStatus) setPopupIsOpen(false)
+	}, [isDepositStatus])
+
 	return (
 		<div className={classNames(styles.wrapper, {
 			[styles.popupIsOpen]: popupIsOpen,
@@ -46,7 +50,12 @@ export const TransactionInfo: FC<TransactionInfoProps> = (
 					isExchangeStatus={isExchangeStatus}
 					isAllSuccess={isAllSuccess}
 				/>
-				<PopupContent exchangeInfo={exchangeInfo} active={popupIsOpen} setPopupIsOpen={setPopupIsOpen} walletAddress={walletAddress}/>
+				<PopupContent
+					exchangeInfo={exchangeInfo}
+					active={popupIsOpen}
+					setPopupIsOpen={setPopupIsOpen}
+					walletAddress={walletAddress}
+				/>
 			</div>
 		</div>
 	)

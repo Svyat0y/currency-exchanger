@@ -7,7 +7,7 @@ export const HeaderInfo = () => {
 
 	return (
 		<div className={styles.wrapper}>
-			{states.map((item) => {
+			{states?.map((item) => {
 				return (
 					<StateItem key={item.title} item={item}/>
 				)

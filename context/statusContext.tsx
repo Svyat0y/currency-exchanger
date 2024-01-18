@@ -63,7 +63,7 @@ export const useContextStatus = () => {
 
 export const StatusContextProvider = ({children}: TStatusContext) => {
 	const [states, setStates] = useState<Array<{ id: number, title: string, state: string }>>([])
-	const isAnyStatusActive = states.some(obj => obj.state !== STATUS.initial)
+	const isAnyStatusActive = states?.some(obj => obj.state !== STATUS.initial)
 	const [currentStatus, setCurrentStatus] = useState('')
 
 	// for saving the status after refreshing page

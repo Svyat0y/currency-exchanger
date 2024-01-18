@@ -1,4 +1,4 @@
-import {FC} from "react"
+import {FC, useEffect} from "react"
 import classNames from "classnames"
 import styles from "./transactionInfo.module.scss"
 import {IconGif} from "@/components/icon/iconGif"
@@ -13,6 +13,8 @@ import {TExchangeInfo} from "@/components/result/infoBox/infoBox"
 import {GradientText} from "@/components/gradientText/gradientText"
 import {DynamicContent} from "@/components/result/infoBox/transactionInfo/contentScreens/dynamicContent"
 import {FooterInfo} from "@/components/result/infoBox/footerInfo/footerInfo"
+import {ConfirmCounter} from "./confirmCounter"
+import {STATUS, useContextStatus, WAITING_STATUSES} from "@/context/statusContext"
 
 type TransactionContentProps = {
 	popupIsOpen: boolean
@@ -36,6 +38,13 @@ export const TransactionContent: FC<TransactionContentProps> = (
 		isExchangeStatus,
 		isAllSuccess,
 	}) => {
+	const {updateState} = useContextStatus()
+
+	useEffect(() => {
+		if(isAllSuccess) {
+			updateState && updateState(WAITING_STATUSES.resetting, STATUS.reset)
+		}
+	}, [])
 
 	return (
 		<div className={classNames(styles.content, {
@@ -43,7 +52,11 @@ export const TransactionContent: FC<TransactionContentProps> = (
 			[styles.fullWidth]: isAllSuccess || isConfirmationLoading || isExchangeStatus,
 		})}>
 
-			<DynamicContent active={isDepositStatus && !isAllSuccess}>
+			<DynamicContent
+				active={isDepositStatus && !isAllSuccess}
+				currentScreen={isDepositStatus}
+				nextStep={{step: WAITING_STATUSES.confirmations, status: STATUS.loading, delay: 10000}}
+			>
 				<IconGif gif={travelExplore}/>
 				<InfoTitle
 					renderText={<>Send <GradientText isUppercase>{exchangeInfo?.sendValue} {exchangeInfo?.sendLabel}</GradientText> to the address below</>}
@@ -53,12 +66,19 @@ export const TransactionContent: FC<TransactionContentProps> = (
 				<Navigation walletAddress={walletAddress} setPopupIsOpen={setPopupIsOpen}/>
 			</DynamicContent>
 
-			<DynamicContent active={isConfirmationLoading && !isAllSuccess}>
+			<DynamicContent
+				active={isConfirmationLoading && !isAllSuccess}
+				currentScreen={isConfirmationLoading}
+			>
 				<IconGif gif={earthAnim}/>
-				<InfoTitle renderText={<>Confirming your deposit</>} subText='Confirmations 1 / 10 ...'/>
+				<InfoTitle renderText={<>Confirming your deposit</>} subText={<ConfirmCounter interval={3000}/>}/>
 			</DynamicContent>
 
-			<DynamicContent active={isExchangeStatus && !isAllSuccess}>
+			<DynamicContent
+				active={isExchangeStatus && !isAllSuccess}
+				currentScreen={isExchangeStatus}
+				nextStep={{step: WAITING_STATUSES.exchange, status: STATUS.success, delay: 10000}}
+			>
 				<IconGif gif={rocketAnim}/>
 				<InfoTitle
 					renderText={<>Sending <GradientText isUppercase>{exchangeInfo?.getLabel}</GradientText> to your wallet</>}
@@ -66,7 +86,9 @@ export const TransactionContent: FC<TransactionContentProps> = (
 				/>
 			</DynamicContent>
 
-			<DynamicContent active={isAllSuccess}>
+			<DynamicContent
+				active={isAllSuccess}
+			>
 				<IconGif gif={heartAnim}/>
 				<InfoTitle
 					renderText={<><GradientText>Yey! Exchange is done</GradientText></>}
