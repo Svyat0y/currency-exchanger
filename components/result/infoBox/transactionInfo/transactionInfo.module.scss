@@ -22,6 +22,14 @@
     min-height: 430px;
     transform: translateY(-64px);
   }
+
+  .successConfetti {
+    position: absolute;
+    top: -20px;
+    left: -30px;
+    right: -30px;
+    bottom: -20px;
+  }
 }
 
 .contentWrapper {
@@ -32,7 +40,6 @@
   padding: 0 1rem;
   background: #fff;
   z-index: 2;
-  overflow: hidden;
 }
 
 .content {

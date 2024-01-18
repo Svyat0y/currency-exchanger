@@ -6,6 +6,7 @@ import {PopupContent} from "./popupContent/popupContent"
 import classNames from "classnames"
 import {TransactionContent} from "@/components/result/infoBox/transactionInfo/transactionContent"
 import {TExchangeInfo} from "@/components/result/infoBox/infoBox"
+import {ConfettiWrapper} from "@/components/confetti/confettiWrapper"
 
 type TransactionInfoProps = {
 	exchangeInfo?: TExchangeInfo
@@ -57,6 +58,7 @@ export const TransactionInfo: FC<TransactionInfoProps> = (
 					walletAddress={walletAddress}
 				/>
 			</div>
+			<ConfettiWrapper active={isAllSuccess} width={460} className={styles.successConfetti}/>
 		</div>
 	)
 }

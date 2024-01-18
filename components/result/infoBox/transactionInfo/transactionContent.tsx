@@ -88,6 +88,7 @@ export const TransactionContent: FC<TransactionContentProps> = (
 
 			<DynamicContent
 				active={isAllSuccess}
+				currentScreen={isAllSuccess}
 			>
 				<IconGif gif={heartAnim}/>
 				<InfoTitle

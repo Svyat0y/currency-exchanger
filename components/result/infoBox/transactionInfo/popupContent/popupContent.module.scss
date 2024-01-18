@@ -14,6 +14,7 @@
   pointer-events: none;
   visibility: hidden;
   transform: translateY(15px);
+  border-radius: 20px;
 
   &.active {
     opacity: 1;

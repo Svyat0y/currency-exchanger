@@ -3,6 +3,7 @@ import styles from './dynamicScreen.module.scss'
 import {FC, ReactNode, useEffect} from "react"
 import {useMount} from "@/hooks/useMount"
 import {useContextStatus} from "@/context/statusContext"
+import Confetti from 'react-confetti'
 
 type DynamicContentProps = {
 	children: ReactNode
