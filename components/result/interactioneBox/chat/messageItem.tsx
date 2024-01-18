@@ -18,12 +18,12 @@ export const MessageItem: FC<TMessageItem> = ({item}) => {
 			[styles.botMsg]: item.accountType === ACCOUNT_TYPE.BOT,
 			[styles.userMsg]: item.accountType === ACCOUNT_TYPE.USER,
 		})}>
-			<p className={classNames(styles.item, {
+			<span className={classNames(styles.item, {
 				[styles.gradient]: item.accountType === ACCOUNT_TYPE.BOT,
 				[styles.userMsg]: item.accountType === ACCOUNT_TYPE.USER,
 			})}>
 				{item.msg}
-			</p>
+			</span>
 		</div>
 	)
 }

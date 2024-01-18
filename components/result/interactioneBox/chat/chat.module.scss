@@ -61,7 +61,8 @@
 
 
 .msgItem {
-  display: flex;
+  margin-bottom: 10px;
+  max-width: max-content;
 
   &.botMsg {
     justify-content: flex-start;
@@ -69,18 +70,18 @@
 
   &.userMsg {
     justify-content: flex-end;
+    text-align: left;
+    background: $fourth_color;
+    border-radius: 8px;
+    padding: 10px;
+    margin-left: auto;
   }
 }
 
 .item {
   display: inline-block;
   font-size: 14px;
-  padding: 10px;
-
-  &.userMsg {
-    background: $fourth_color;
-    border-radius: 8px;
-  }
+  max-width: max-content;
 
   &.gradient {
     background: linear-gradient(60deg, #EF633BFF, #D013AAFF) fixed;
