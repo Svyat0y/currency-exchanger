@@ -4,20 +4,20 @@ import {TransactionInfo} from "./transactionInfo/transactionInfo"
 import {FooterInfo} from "./footerInfo/footerInfo"
 import classNames from "classnames"
 import {FC, useEffect, useState} from "react"
-import {STATUS, WAITING_STATUSES} from "@/context/statusContext"
+import {WAITING_STATUSES} from "@/context/statusContext"
 
 type InfoBoxProps = {
 	currentStatus: string
-	updateState?: (title: string, state: string) => void
+	isAllSuccess: boolean
+	isInteractionWithRightBox: boolean
 }
 
 export type TExchangeInfo = Record<string, string>
 
-export const InfoBox: FC<InfoBoxProps> = ({currentStatus}) => {
+export const InfoBox: FC<InfoBoxProps> = ({currentStatus, isInteractionWithRightBox, isAllSuccess}) => {
 	const isDepositStatus = currentStatus === WAITING_STATUSES.deposit
 	const isConfirmationStatus = currentStatus === WAITING_STATUSES.confirmations
 	const isExchangeStatus = currentStatus === WAITING_STATUSES.exchange
-	const isAllSuccess = currentStatus === STATUS.success
 	const [exchangeInfo, setExchangeInfo] = useState<TExchangeInfo>()
 	const walletAddress = "0xba72b008d53d3e12345678901234567890abcd"
 
@@ -37,7 +37,7 @@ export const InfoBox: FC<InfoBoxProps> = ({currentStatus}) => {
 
 	return (
 		<div className={classNames(styles.wrapper, {
-			[styles.animStart]: isConfirmationStatus,
+			[styles.animStart]: isConfirmationStatus || (isInteractionWithRightBox && !isAllSuccess),
 		})}>
 			<HeaderInfo/>
 			<TransactionInfo

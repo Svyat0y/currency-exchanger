@@ -6,8 +6,9 @@
   border: 1px solid red;
   transition: $cubicBezier;
   opacity: 0;
-  pointer-events: none;
   transform: translateY(20%);
+  position: relative;
+  z-index: 123123213;
 
   @include md {
     min-height: initial;
@@ -19,6 +20,7 @@
   &.animStart {
     opacity: 1;
     transform: translateY(0);
+    pointer-events: auto;
 
     @include md {
       opacity: 1;

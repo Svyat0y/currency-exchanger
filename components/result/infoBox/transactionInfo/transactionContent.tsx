@@ -71,7 +71,7 @@ export const TransactionContent: FC<TransactionContentProps> = (
 				currentScreen={isConfirmationLoading}
 			>
 				<IconGif gif={earthAnim}/>
-				<InfoTitle renderText={<>Confirming your deposit</>} subText={<ConfirmCounter interval={3000}/>}/>
+				<InfoTitle renderText={<>Confirming your deposit</>} subText={<ConfirmCounter interval={1000}/>}/>
 			</DynamicContent>
 
 			<DynamicContent

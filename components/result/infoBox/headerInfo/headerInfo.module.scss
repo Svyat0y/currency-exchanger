@@ -15,10 +15,12 @@
   font-size: 12px;
   text-transform: capitalize;
 
-  &.loading {
+  &.loading, &.success {
     color: $black;
     font-weight: 700;
+  }
 
+  &.loading {
     .icon {
       path {
         fill: $black;
@@ -27,7 +29,6 @@
   }
 
   &.success {
-
     .iconWrapper {
       position: relative;
       border-radius: 50%;

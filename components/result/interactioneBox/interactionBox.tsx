@@ -1,22 +1,31 @@
 import styles from './interactionBox.module.scss'
 import classNames from "classnames"
 import {useMount} from "@/hooks/useMount"
-import {FC} from "react";
-import {WAITING_STATUSES} from "@/context/statusContext"
+import {Dispatch, FC, SetStateAction} from "react"
 
 type InteractionBoxProps = {
-	currentStatus: string
+	active: boolean
+	setIsInteractionWithRightBox: Dispatch<SetStateAction<boolean>>
 }
 
-export const InteractionBox: FC<InteractionBoxProps> = ({currentStatus}) => {
-	const isConfirmationStatus = currentStatus === WAITING_STATUSES.confirmations
-	const {mounted} = useMount(isConfirmationStatus)
+export const InteractionBox: FC<InteractionBoxProps> = (
+	{
+		active,
+		setIsInteractionWithRightBox
+	}) => {
+	const {mounted} = useMount(active)
 
-	if(!isConfirmationStatus && !mounted) return null
+	const handleFocus = () => {
+		setIsInteractionWithRightBox(true)
+	}
+
+	if(!active && !mounted) return null
 
 	return (
 		<div className={classNames(styles.wrapper, {
-			[styles.animStart]: isConfirmationStatus && mounted
-		})}>game</div>
+			[styles.animStart]: active && mounted
+		})} onClick={handleFocus}>
+			game
+		</div>
 	)
 }
