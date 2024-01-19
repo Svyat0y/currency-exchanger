@@ -37,9 +37,9 @@ export const InfoBox: FC<InfoBoxProps> = ({currentStatus, isInteractionWithRight
 
 	return (
 		<div className={classNames(styles.wrapper, {
-			[styles.animStart]: isConfirmationStatus || (isInteractionWithRightBox && !isAllSuccess),
+			[styles.animStart]: isConfirmationStatus || isInteractionWithRightBox,
 		})}>
-			<HeaderInfo/>
+			<HeaderInfo isAllSuccess={isAllSuccess}/>
 			<TransactionInfo
 				isConfirmationLoading={isConfirmationStatus}
 				isExchangeStatus={isExchangeStatus}

@@ -24,7 +24,7 @@ export const Result = ({animStart}: {animStart: boolean}) => {
 				isAllSuccess={isAllSuccess}
 			/>
 			<InteractionBox
-				active={currentStatus === WAITING_STATUSES.confirmations || (isInteractionWithRightBox && !isAllSuccess)}
+				active={currentStatus === WAITING_STATUSES.confirmations || isInteractionWithRightBox}
 				setIsInteractionWithRightBox={setIsInteractionWithRightBox}
 			/>
 		</div>

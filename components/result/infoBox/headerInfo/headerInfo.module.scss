@@ -5,6 +5,16 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  transition: $cubicBezier;
+
+  &.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
 }
 
 .stateItem {

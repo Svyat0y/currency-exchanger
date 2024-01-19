@@ -8,10 +8,11 @@
   z-index: 1;
   transition: $cubicBezier;
   transform: translateY(0);
+  flex: 0 0 0;
 
   &.popupIsOpen {
     min-height: 388px;
-    transform: translateY(-64px);
+    transform: translateY(-40px);
   }
 
   &.isConfirmStatus {
@@ -20,7 +21,8 @@
 
   &.isAllSuccess {
     min-height: 430px;
-    transform: translateY(-64px);
+    transform: translateY(-40px);
+    flex: 0 0 100%;
   }
 
   .successConfetti {

@@ -64,6 +64,10 @@
   margin-bottom: 10px;
   max-width: max-content;
 
+  &:first-child {
+    margin-top: 10px;
+  }
+
   &.botMsg {
     justify-content: flex-start;
   }
@@ -81,7 +85,6 @@
 .item {
   display: inline-block;
   font-size: 14px;
-  max-width: max-content;
 
   &.gradient {
     background: linear-gradient(60deg, #EF633BFF, #D013AAFF) fixed;

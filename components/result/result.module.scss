@@ -17,7 +17,7 @@
     display: none;
   }
 
-  @include md {
+  @include lg {
     width: 100%;
     padding-top: 0;
     flex-direction: row;
