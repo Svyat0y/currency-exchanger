@@ -1,22 +1,43 @@
 import styles from './footerInfo.module.scss'
 import {Icon} from "@/components/icon"
 import classNames from "classnames"
-import {FC} from "react"
+import {FC, useState} from "react"
 import {useMount} from "@/hooks/useMount"
+import {Modal} from "@/components/modal"
+import {Faqs} from "@/components/faqs"
+import {Transactions} from "@/components/transactions/transactions"
+import {Logs} from "@/components/logs"
 
 type FooterInfoProps = {
 	active: boolean
 }
 
+const MODALS = {
+	transactions: 1,
+	logs: 2,
+	faqs: 3,
+
+}
+
 const LINKS = [
-	{label: 'Transaction Details', icon: 'FILE_EARMARK_MEDICAL'},
-	{label: 'Exchange Logs', icon: 'CODE_SLASH'},
-	{label: 'FAQs', icon: 'QUESTION_CIRCLE'},
+	{label: 'Transaction Details', icon: 'FILE_EARMARK_MEDICAL', modal: MODALS.transactions},
+	{label: 'Exchange Logs', icon: 'CODE_SLASH', modal: MODALS.logs},
+	{label: 'FAQs', icon: 'QUESTION_CIRCLE', modal: MODALS.faqs},
 ]
 
 export const FooterInfo:FC<FooterInfoProps> = ({active}) => {
-
 	const {mounted} = useMount(active)
+	const [isModalOpen, setIsModalOpen] = useState(false)
+	const [currentModal, setCurrentModal] = useState(MODALS.faqs)
+
+	const handleOpenFaqs = (modal: number) => {
+		setCurrentModal(modal)
+		setIsModalOpen(true)
+	}
+
+	const handleCloseModal = () => {
+		setIsModalOpen(false)
+	}
 
 	if(!active && !mounted) return null
 	
@@ -26,7 +47,7 @@ export const FooterInfo:FC<FooterInfoProps> = ({active}) => {
 		})}>
 			{LINKS.map(item => {
 				return (
-					<button className={styles.buttonWrapper} key={item.label}>
+					<button className={styles.buttonWrapper} key={item.label} onClick={() => handleOpenFaqs(item.modal)}>
 						<span className={styles.groupLeft}>
 							<Icon type={item.icon}/>
 							{item.label}
@@ -35,6 +56,11 @@ export const FooterInfo:FC<FooterInfoProps> = ({active}) => {
 					</button>
 				)
 			})}
+			<Modal isModalOpen={isModalOpen} handleCloseModal={handleCloseModal}>
+				{currentModal === MODALS.transactions && <Transactions/>}
+				{currentModal === MODALS.logs && <Logs/>}
+				{currentModal === MODALS.faqs && <Faqs/>}
+			</Modal>
 		</div>
 	)
 }

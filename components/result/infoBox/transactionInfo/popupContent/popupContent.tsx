@@ -40,7 +40,7 @@ export const PopupContent: FC<PopupContent> = ({active, setPopupIsOpen, exchange
 		<div className={classNames(styles.wrapper, {
 			[styles.active]: active
 		})}>
-			<CloseButton onClick={handleClosePopup} className={styles.customClose}/>
+			<CloseButton onClick={handleClosePopup}/>
 			<PopupHeader activeTab={activeTab} handleClickAddress={handleClickAddress} handleClickAmount={handleClickAmount}/>
 			<div className={styles.content}>
 				<InfoTitle isPopup sendInfo={exchangeInfo} renderText={<>Send <GradientText>{exchangeInfo?.sendValue} {exchangeInfo?.sendLabel}</GradientText> to the address below</>}/>

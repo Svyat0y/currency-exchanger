@@ -1,0 +1,99 @@
+@import "styles/var";
+
+.wrapper {
+  margin-top: 1rem;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid $fourth_color;
+  overflow: hidden;
+
+  &:last-child {
+    border: none;
+  }
+}
+
+.accordionTitle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  gap: 12px;
+  padding: 20px 0;
+  transition: $cubicBezier;
+
+  &.active {
+    padding: 20px 0 0;
+  }
+}
+
+.left {
+  gap: 12px;
+  display: flex;
+  align-items: center;
+}
+
+.accContent {
+  opacity: 0;
+  max-height: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: $cubicBezier;
+  color: $eleventh_color;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 0;
+
+  &.active {
+    padding: 20px 0;
+    opacity: 1;
+    max-height: 100px;
+    visibility: visible;
+    pointer-events: auto;
+  }
+}
+
+.cross {
+  display: inline-block;
+  position: relative;
+  width: 20px;
+  min-width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  transition: $cubicBezier;
+
+  &::before, &::after {
+    position: absolute;
+    content: '';
+    top: 50%;
+    left: 50%;
+    height: 2px;
+    width: 10px;
+    background: $black;
+    transform: translate(-50%, -50%);
+    transform-origin: center;
+    transition: $cubicBezier;
+  }
+
+  &::before {
+    transform: translate(-50%, -50%) rotate(90deg);
+  }
+
+  &.active {
+    background: $black;
+
+    &::before, &::after {
+      background: $white;
+    }
+
+    &::before {
+      transform: translate(-50%, -50%) rotate(135deg);
+    }
+
+    &::after {
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+  }
+}

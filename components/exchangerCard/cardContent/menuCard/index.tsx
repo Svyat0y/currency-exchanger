@@ -88,7 +88,7 @@ export const MenuCard: FC<MenuCard> = ({isOpenMenu, handleCloseMenu, setItem, se
 			})}>
 				<div className={styles.top}>
 					<span className={styles.left}>Select a token</span>
-					<CloseButton onClick={handleCloseMenu} className={styles.closeBtn}/>
+					<CloseButton onClick={handleCloseMenu}/>
 				</div>
 				<div className={styles.tokens}>
 					{selectedTokens.map((item) => {

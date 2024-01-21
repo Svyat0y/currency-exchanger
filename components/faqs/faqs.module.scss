@@ -1,0 +1,12 @@
+@import "styles/var";
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  text-align: left;
+  font-size: 14px;
+  font-weight: 500;
+}

@@ -11,8 +11,13 @@
   pointer-events: none;
   background: rgba(255, 255, 255, 0);
   transition: $cubicBezier;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1rem;
 
   &.active {
+    pointer-events: auto;
     background: rgba(255, 255, 255, .5);
   }
 }

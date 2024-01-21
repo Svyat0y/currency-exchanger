@@ -60,7 +60,7 @@ export const ExchangeInfo = () => {
 					<Icon type={isFixedRate ? 'LOCK' : 'WATER'} fill={isFixedRate ? '#28C600' : 'rgba(0, 0, 0, .3)'}/>
 				</TooltipTrigger>
 			</div>
-			<Overlay zIndex={30}/>
+			<Overlay active={isOverlay} zIndex={30}/>
 		</>
 	)
 }

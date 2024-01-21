@@ -9,6 +9,9 @@
   border: none;
   cursor: pointer;
   z-index: 100;
+  position: absolute;
+  top: 12px;
+  right: 12px;
 
   &::before, &::after {
     position: absolute;
