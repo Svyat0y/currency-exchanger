@@ -35,8 +35,8 @@ export const Transactions = () => {
 							[styles.walletBox]: item.title === 'Recipient address'
 						})}>
 							<span className={styles.boxTitle}>{item.title}</span>
-							<span className={styles.subTitle}>
-								{item.subTitle}
+							<div className={styles.subTitle}>
+								<span className={styles.subTitleText} title={item.subTitle}>{item.subTitle}</span>
 								{item?.icon &&
                   <IconButton
                     onClick={() => handleCopyWallet(item.subTitle)}
@@ -46,7 +46,7 @@ export const Transactions = () => {
                     icon={!isCopied ? item.icon : 'CHECK'}
                     active={false}/>
 								}
-							</span>
+							</div>
 						</div>
 					)
 				})}

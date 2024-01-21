@@ -15,3 +15,19 @@
     color: $black!important;
   }
 }
+
+.box {
+  display: flex;
+  flex-direction: column;
+  width: calc(50% - 32px);
+  gap: 4px;
+
+  &.walletBox {
+    width: 100%;
+  }
+}
+
+.boxTitle {
+  font-size: 14px;
+  color: $fifth_color;
+}

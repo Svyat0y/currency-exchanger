@@ -10,6 +10,7 @@ import {Logs} from "@/components/logs"
 
 type FooterInfoProps = {
 	active: boolean
+	confirmCount?: number
 }
 
 const MODALS = {
@@ -25,7 +26,7 @@ const LINKS = [
 	{label: 'FAQs', icon: 'QUESTION_CIRCLE', modal: MODALS.faqs},
 ]
 
-export const FooterInfo:FC<FooterInfoProps> = ({active}) => {
+export const FooterInfo:FC<FooterInfoProps> = ({active, confirmCount}) => {
 	const {mounted} = useMount(active)
 	const [isModalOpen, setIsModalOpen] = useState(false)
 	const [currentModal, setCurrentModal] = useState(MODALS.faqs)
@@ -58,7 +59,7 @@ export const FooterInfo:FC<FooterInfoProps> = ({active}) => {
 			})}
 			<Modal isModalOpen={isModalOpen} handleCloseModal={handleCloseModal}>
 				{currentModal === MODALS.transactions && <Transactions/>}
-				{currentModal === MODALS.logs && <Logs/>}
+				{currentModal === MODALS.logs && <Logs confirmCount={confirmCount}/>}
 				{currentModal === MODALS.faqs && <Faqs/>}
 			</Modal>
 		</div>

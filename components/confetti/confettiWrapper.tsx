@@ -16,7 +16,7 @@ type ConfettiWrapperProps = {
 export const ConfettiWrapper: FC<ConfettiWrapperProps> = (
 	{
 		active,
-		numberOfPieces = 100,
+		numberOfPieces = 200,
 		gravity = 0.05,
 		width = 400,
 		height = 500,

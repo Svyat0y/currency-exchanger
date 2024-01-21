@@ -17,8 +17,14 @@
 .box {
   display: flex;
   flex-direction: column;
-  width: calc(50% - 32px);
+  width: 100%;
   gap: 4px;
+  align-items: center;
+
+  @include xs3 {
+    width: calc(50% - 32px);
+    align-items: initial;
+  }
 
   &.walletBox {
     width: 100%;
@@ -35,7 +41,19 @@
   font-weight: 700;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 5px;
+  width: 100%;
+
+  @include xs3 {
+    justify-content: flex-start;
+  }
+}
+
+.subTitleText {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .iconWrapper {

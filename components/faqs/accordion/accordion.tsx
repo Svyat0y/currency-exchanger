@@ -2,7 +2,7 @@ import styles from './accordion.module.scss'
 import {Icon} from "@/components/icon"
 import {useState} from "react"
 import {AccContent} from "@/components/faqs/accordion/accContent"
-import classNames from "classnames";
+import classNames from "classnames"
 
 const ACCORDIONS = [
 	{

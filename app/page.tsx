@@ -13,9 +13,9 @@ export default function Home() {
     <div className={styles.wrapper}>
       <Container>
         <div className={styles.content}>
-          <div className={styles.testStates} style={{width: '100%', display: 'flex', justifyContent: 'center', position: 'absolute', top: '0', gap: '10px', zIndex: '10000', left: '0', right: '0'}}>
+          <div className={styles.testStates} style={{width: '100%', display: 'flex', justifyContent: 'center', position: 'absolute', top: '0', gap: '5px', zIndex: '10000', left: '0', right: '0'}}>
             <button style={{border: '1px solid green'}}
-                    onClick={() => updateState && updateState(WAITING_STATUSES.deposit, STATUS.loading)}>deposit
+                    onClick={() => updateState && updateState(WAITING_STATUSES.deposit, STATUS.loading)}>confirmations
             </button>
             {' '}
             <button style={{border: '1px solid green'}}

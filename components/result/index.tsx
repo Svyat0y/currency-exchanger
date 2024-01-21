@@ -8,7 +8,7 @@ import {useState} from "react"
 
 export const Result = ({animStart}: {animStart: boolean}) => {
 	const [isInteractionWithRightBox, setIsInteractionWithRightBox] = useState(false)
-	const {currentStatus} = useContextStatus()
+	const {currentStatus, updateState} = useContextStatus()
 	const isAllSuccess = currentStatus === STATUS.success
 	const {mounted} = useMount(animStart)
 
@@ -22,6 +22,7 @@ export const Result = ({animStart}: {animStart: boolean}) => {
 				currentStatus={currentStatus}
 				isInteractionWithRightBox={isInteractionWithRightBox}
 				isAllSuccess={isAllSuccess}
+				updateState={updateState}
 			/>
 			<InteractionBox
 				active={currentStatus === WAITING_STATUSES.confirmations || isInteractionWithRightBox}

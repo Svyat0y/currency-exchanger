@@ -13,7 +13,6 @@ import {TExchangeInfo} from "@/components/result/infoBox/infoBox"
 import {GradientText} from "@/components/gradientText/gradientText"
 import {DynamicContent} from "@/components/result/infoBox/transactionInfo/contentScreens/dynamicContent"
 import {FooterInfo} from "@/components/result/infoBox/footerInfo/footerInfo"
-import {ConfirmCounter} from "./confirmCounter"
 import {STATUS, useContextStatus, WAITING_STATUSES} from "@/context/statusContext"
 
 type TransactionContentProps = {
@@ -25,6 +24,7 @@ type TransactionContentProps = {
 	isConfirmationLoading: boolean
 	isExchangeStatus: boolean
 	isAllSuccess: boolean
+	confirmCount: number
 }
 
 export const TransactionContent: FC<TransactionContentProps> = (
@@ -37,6 +37,7 @@ export const TransactionContent: FC<TransactionContentProps> = (
 		isConfirmationLoading,
 		isExchangeStatus,
 		isAllSuccess,
+		confirmCount,
 	}) => {
 	const {updateState} = useContextStatus()
 
@@ -71,7 +72,7 @@ export const TransactionContent: FC<TransactionContentProps> = (
 				currentScreen={isConfirmationLoading}
 			>
 				<IconGif gif={earthAnim}/>
-				<InfoTitle renderText={<>Confirming your deposit</>} subText={<ConfirmCounter interval={10000000}/>}/>
+				<InfoTitle renderText={<>Confirming your deposit</>} subText={<span>Confirmations {confirmCount} / 10</span>}/>
 			</DynamicContent>
 
 			<DynamicContent

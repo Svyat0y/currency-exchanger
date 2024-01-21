@@ -15,6 +15,7 @@ type TransactionInfoProps = {
 	isConfirmationLoading: boolean
 	isExchangeStatus: boolean
 	isAllSuccess: boolean
+	confirmCount: number
 }
 
 export const TransactionInfo: FC<TransactionInfoProps> = (
@@ -25,6 +26,7 @@ export const TransactionInfo: FC<TransactionInfoProps> = (
 		isConfirmationLoading,
 		isExchangeStatus,
 		isAllSuccess,
+		confirmCount,
 	}) => {
 	const [popupIsOpen, setPopupIsOpen] = useState(false)
 
@@ -50,6 +52,7 @@ export const TransactionInfo: FC<TransactionInfoProps> = (
 					isConfirmationLoading={isConfirmationLoading}
 					isExchangeStatus={isExchangeStatus}
 					isAllSuccess={isAllSuccess}
+					confirmCount={confirmCount}
 				/>
 				<PopupContent
 					exchangeInfo={exchangeInfo}

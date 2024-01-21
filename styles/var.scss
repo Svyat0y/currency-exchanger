@@ -27,6 +27,7 @@ $cubicBezier: .6s cubic-bezier(0.86, 0.6, 0, 0.93) all;
 // media sizes
 $xs: 360px;
 $xs2: 430px;
+$xs3: 480px;
 $sm: 576px;
 $sm2: 600px;
 $md: 768px;
@@ -46,6 +47,12 @@ $xxl: 1720px;
 
 @mixin xs2 {
   @media (min-width: $xs2) {
+    @content;
+  }
+}
+
+@mixin xs3 {
+  @media (min-width: $xs3) {
     @content;
   }
 }
