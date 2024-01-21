@@ -1,0 +1,17 @@
+@import "styles/var";
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 2rem;
+  gap: 2rem;
+}
+
+.getValueBox {
+  flex-direction: row-reverse;
+
+  span {
+    color: $black!important;
+  }
+}

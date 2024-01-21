@@ -8,6 +8,8 @@ import {useExchangeContext} from "@/context/exchangeContext"
 
 type GetValueBoxProps = {
 	noActive: boolean
+	className?: string
+	textColor?: string
 }
 
 type GetInfo = {
@@ -16,7 +18,7 @@ type GetInfo = {
 	icon: string
 } | undefined
 
-export const GetValueBox: FC<GetValueBoxProps> = ({noActive}) => {
+export const GetValueBox: FC<GetValueBoxProps> = ({noActive, className, textColor}) => {
 	const [getInfo, setGetInfo] = useState<GetInfo>(undefined)
 	const {getItem, getValue: getValueContext} = useExchangeContext()
 	const [isSuccessRate, setIsSuccessRate] = useState(false)
@@ -36,7 +38,7 @@ export const GetValueBox: FC<GetValueBoxProps> = ({noActive}) => {
 	}, [getItem, getValueContext])
 
 	return (
-		<div className={styles.box}>
+		<div className={classNames(styles.box, className)}>
 			<button className={classNames(styles.getValueBtn, {[styles.noActive]: noActive})} aria-label='getValueButton'
 			        onClick={() => setIsSuccessRate(!isSuccessRate)}>
 				{!noActive

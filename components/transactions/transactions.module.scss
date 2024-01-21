@@ -1,1 +1,55 @@
 @import "styles/var";
+
+.title {
+  text-align: left;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.content {
+  padding: 2rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  border-bottom: 1px solid $fourth_color;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  width: calc(50% - 32px);
+  gap: 4px;
+
+  &.walletBox {
+    width: 100%;
+  }
+}
+
+.boxTitle {
+  font-size: 14px;
+  color: $fifth_color;
+}
+
+.subTitle {
+  font-size: 1rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.iconWrapper {
+  width: 1rem;
+  max-width: 1rem;
+  min-width: 1rem;
+  max-height: 1rem;
+  padding: 8px;
+  transition: $cubicBezier;
+
+  &.copied {
+    background: green;
+    border-radius: 50%;
+    min-height: 16px;
+    pointer-events: none;
+  }
+}
