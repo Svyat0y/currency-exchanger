@@ -5,3 +5,68 @@
   font-size: 14px;
   font-weight: 500;
 }
+
+.content {
+  padding-top: 2rem;
+  transition: $cubicBezier;
+}
+
+.logItem {
+  display: grid;
+  grid-template-columns: minmax(85px, 20%) minmax(70px, 16%) 1fr;
+  grid-template-areas: 'time status desc';
+  gap: 6px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: $secondary_font;
+  opacity: 0;
+  max-height: 0;
+  transform: translateY(20px);
+  transition: $cubicBezier;
+
+  &.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  span {
+    font-size: inherit;
+    font-family: inherit;
+    font-weight: inherit;
+  }
+}
+
+.time {
+  color: $fifth_color;
+  grid-area: time;
+}
+
+.status {
+  display: inline-block;
+  font-size: 14px;
+  grid-area: status;
+
+  &.action {
+    background: linear-gradient(60deg, #EF633BFF, #D013AAFF) fixed;
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+  }
+
+  &.success {
+    color: $eighth_color;
+  }
+}
+
+.desc {
+  word-break: break-word;
+  grid-area: desc;
+
+  &.success {
+    color: $eighth_color;
+  }
+}

@@ -25,6 +25,7 @@ type TransactionContentProps = {
 	isExchangeStatus: boolean
 	isAllSuccess: boolean
 	confirmCount: number
+	handleOpenModal: (state: number) => void
 }
 
 export const TransactionContent: FC<TransactionContentProps> = (
@@ -38,6 +39,7 @@ export const TransactionContent: FC<TransactionContentProps> = (
 		isExchangeStatus,
 		isAllSuccess,
 		confirmCount,
+		handleOpenModal,
 	}) => {
 	const {updateState} = useContextStatus()
 
@@ -78,7 +80,7 @@ export const TransactionContent: FC<TransactionContentProps> = (
 			<DynamicContent
 				active={isExchangeStatus && !isAllSuccess}
 				currentScreen={isExchangeStatus}
-				nextStep={{step: WAITING_STATUSES.exchange, status: STATUS.success, delay: 10000}}
+				nextStep={{step: WAITING_STATUSES.exchange, status: STATUS.success, delay: 20000}}
 			>
 				<IconGif gif={rocketAnim}/>
 				<InfoTitle
@@ -97,7 +99,7 @@ export const TransactionContent: FC<TransactionContentProps> = (
 					subText={`${exchangeInfo?.getValue} ${exchangeInfo?.getLabel} sent to your wallet`}
 				/>
 				<Truncate withoutTruncate className={styles.successInfo} text='View on the Blockchain'/>
-				<FooterInfo active={isAllSuccess}/>
+				<FooterInfo active={isAllSuccess} handleOpenModal={handleOpenModal}/>
 			</DynamicContent>
 
 		</div>

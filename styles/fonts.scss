@@ -1,43 +1,4 @@
 @font-face {
-  font-family: 'Helvetica';
-  src: url('../public/fonts/Helvetica.eot');
-  src: local('Helvetica'),
-  url('../public/fonts/Helvetica.eot?#iefix') format('embedded-opentype'),
-  url('../public/fonts/Helvetica.woff2') format('woff2'),
-  url('../public/fonts/Helvetica.woff') format('woff'),
-  url('../public/fonts/Helvetica.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Helvetica';
-  src: url('../public/fonts/Helvetica-Light.eot');
-  src: local('Helvetica Light'), local('Helvetica-Light'),
-  url('../public/fonts/Helvetica-Light.eot?#iefix') format('embedded-opentype'),
-  url('../public/fonts/Helvetica-Light.woff2') format('woff2'),
-  url('../public/fonts/Helvetica-Light.woff') format('woff'),
-  url('../public/fonts/Helvetica-Light.ttf') format('truetype');
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Helvetica';
-  src: url('../public/fonts/Helvetica-Bold.eot');
-  src: local('Helvetica Bold'), local('Helvetica-Bold'),
-  url('../public/fonts/Helvetica-Bold.eot?#iefix') format('embedded-opentype'),
-  url('../public/fonts/Helvetica-Bold.woff2') format('woff2'),
-  url('../public/fonts/Helvetica-Bold.woff') format('woff'),
-  url('../public/fonts/Helvetica-Bold.ttf') format('truetype');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
   font-family: 'Helvetica Now Display';
   src: local('Helvetica Now Display Regular'), local('../public/fonts/Helvetica-Now-Display-Regular'),
   url('../public/fonts/HelveticaNowDisplay-Regular.woff2') format('woff2'),
@@ -66,6 +27,19 @@
   url('../public/fonts/HelveticaNowDisplay-Bold.woff') format('woff'),
   url('../public/fonts/HelveticaNowDisplay-Bold.ttf') format('truetype');
   font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Fira Code';
+  src: url('../public/fonts/FiraCode-SemiBold.eot');
+  src: local('Fira Code SemiBold'), local('FiraCode-SemiBold'),
+  url('../public/fonts/FiraCode-SemiBold.eot?#iefix') format('embedded-opentype'),
+  url('../public/fonts/FiraCode-SemiBold.woff2') format('woff2'),
+  url('../public/fonts/FiraCode-SemiBold.woff') format('woff'),
+  url('../public/fonts/FiraCode-SemiBold.ttf') format('truetype');
+  font-weight: 600;
   font-style: normal;
   font-display: swap;
 }

@@ -5,12 +5,19 @@ import {FooterInfo} from "./footerInfo/footerInfo"
 import classNames from "classnames"
 import {FC, useEffect, useState} from "react"
 import {STATUS, WAITING_STATUSES} from "@/context/statusContext"
+import {ModalContent} from "@/components/result/infoBox/modalContent/modalContent"
 
 type InfoBoxProps = {
 	currentStatus: string
 	isAllSuccess: boolean
 	isInteractionWithRightBox: boolean
 	updateState?: (wStatus: string, status: string) => void
+}
+
+export const MODALS = {
+	transactions: 1,
+	logs: 2,
+	faqs: 3,
 }
 
 export type TExchangeInfo = Record<string, string>
@@ -22,6 +29,8 @@ export const InfoBox: FC<InfoBoxProps> = ({currentStatus, isInteractionWithRight
 	const [exchangeInfo, setExchangeInfo] = useState<TExchangeInfo>()
 	const walletAddress = "0xba72b008d53d3e12345678901234567890abcd"
 	const [confirmCount, setConfirmCount] = useState(1)
+	const [isModalOpen, setIsModalOpen] = useState(false)
+	const [currentModal, setCurrentModal] = useState(MODALS.faqs)
 
 	useEffect(() => {
 		let intervalId: any = null
@@ -35,16 +44,13 @@ export const InfoBox: FC<InfoBoxProps> = ({currentStatus, isInteractionWithRight
 
 			intervalId = window.setInterval(() => {
 				setConfirmCount((prevCount) => prevCount + 1)
-			}, 10000)
+			}, 1000)
 		}
 
 		return () => {
 			if (intervalId !== null) clearInterval(intervalId)
 		}
 	}, [isConfirmationStatus, confirmCount])
-
-
-
 
 	useEffect(() => {
 		const cardValues = localStorage.getItem('cardsValue')
@@ -60,6 +66,19 @@ export const InfoBox: FC<InfoBoxProps> = ({currentStatus, isInteractionWithRight
 		}
 	}, [])
 
+	useEffect(() => {
+		if(isAllSuccess) handleCloseModal()
+	}, [isAllSuccess])
+
+	const handleOpenModal = (modal: number) => {
+		setCurrentModal(modal)
+		setIsModalOpen(true)
+	}
+
+	const handleCloseModal = () => {
+		setIsModalOpen(false)
+	}
+
 	return (
 		<div className={classNames(styles.wrapper, {
 			[styles.animStart]: isConfirmationStatus || isInteractionWithRightBox,
@@ -73,8 +92,16 @@ export const InfoBox: FC<InfoBoxProps> = ({currentStatus, isInteractionWithRight
 				exchangeInfo={exchangeInfo}
 				walletAddress={String(walletAddress)}
 				isAllSuccess={isAllSuccess}
+				handleOpenModal={handleOpenModal}
 			/>
-			<FooterInfo active={isConfirmationStatus || isExchangeStatus} confirmCount={confirmCount}/>
+			<FooterInfo active={isConfirmationStatus || isExchangeStatus} handleOpenModal={handleOpenModal}/>
+			<ModalContent
+				isModalOpen={isModalOpen}
+				currentModal={currentModal}
+				handleCloseModal={handleCloseModal}
+				isAllSuccess={isAllSuccess}
+				confirmCount={confirmCount}
+			/>
 		</div>
 	)
 }

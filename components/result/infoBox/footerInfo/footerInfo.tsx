@@ -1,23 +1,18 @@
 import styles from './footerInfo.module.scss'
 import {Icon} from "@/components/icon"
 import classNames from "classnames"
-import {FC, useState} from "react"
+import {FC} from "react"
 import {useMount} from "@/hooks/useMount"
-import {Modal} from "@/components/modal"
-import {Faqs} from "@/components/faqs"
-import {Transactions} from "@/components/transactions/transactions"
-import {Logs} from "@/components/logs"
 
 type FooterInfoProps = {
 	active: boolean
-	confirmCount?: number
+	handleOpenModal: (state: number) => void
 }
 
 const MODALS = {
 	transactions: 1,
 	logs: 2,
 	faqs: 3,
-
 }
 
 const LINKS = [
@@ -26,19 +21,8 @@ const LINKS = [
 	{label: 'FAQs', icon: 'QUESTION_CIRCLE', modal: MODALS.faqs},
 ]
 
-export const FooterInfo:FC<FooterInfoProps> = ({active, confirmCount}) => {
+export const FooterInfo:FC<FooterInfoProps> = ({active, handleOpenModal}) => {
 	const {mounted} = useMount(active)
-	const [isModalOpen, setIsModalOpen] = useState(false)
-	const [currentModal, setCurrentModal] = useState(MODALS.faqs)
-
-	const handleOpenFaqs = (modal: number) => {
-		setCurrentModal(modal)
-		setIsModalOpen(true)
-	}
-
-	const handleCloseModal = () => {
-		setIsModalOpen(false)
-	}
 
 	if(!active && !mounted) return null
 	
@@ -48,7 +32,7 @@ export const FooterInfo:FC<FooterInfoProps> = ({active, confirmCount}) => {
 		})}>
 			{LINKS.map(item => {
 				return (
-					<button className={styles.buttonWrapper} key={item.label} onClick={() => handleOpenFaqs(item.modal)}>
+					<button className={styles.buttonWrapper} key={item.label} onClick={() => handleOpenModal(item.modal)}>
 						<span className={styles.groupLeft}>
 							<Icon type={item.icon}/>
 							{item.label}
@@ -57,11 +41,6 @@ export const FooterInfo:FC<FooterInfoProps> = ({active, confirmCount}) => {
 					</button>
 				)
 			})}
-			<Modal isModalOpen={isModalOpen} handleCloseModal={handleCloseModal}>
-				{currentModal === MODALS.transactions && <Transactions/>}
-				{currentModal === MODALS.logs && <Logs confirmCount={confirmCount}/>}
-				{currentModal === MODALS.faqs && <Faqs/>}
-			</Modal>
 		</div>
 	)
 }
