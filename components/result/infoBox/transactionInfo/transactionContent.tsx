@@ -80,7 +80,7 @@ export const TransactionContent: FC<TransactionContentProps> = (
 			<DynamicContent
 				active={isExchangeStatus && !isAllSuccess}
 				currentScreen={isExchangeStatus}
-				nextStep={{step: WAITING_STATUSES.exchange, status: STATUS.success, delay: 20000}}
+				nextStep={{step: WAITING_STATUSES.exchange, status: STATUS.success, delay: 22000}}
 			>
 				<IconGif gif={rocketAnim}/>
 				<InfoTitle
