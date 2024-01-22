@@ -7,6 +7,8 @@ import {BurgerMenu} from "@/components/buttons/burgerMenu/burgerMenu"
 import {NavigationBox} from "@/components/navigationBox/navigationBox"
 import {IconButton} from "@/components/buttons/iconButton/iconButton"
 import {NavigationList} from "@/components/header/navigation/navigationList"
+import {useNotificationContext} from "@/context/notificationContext"
+import {Overlay} from "@/components/overlay/overlay"
 
 const THEMES = {
 	light: 1,
@@ -15,6 +17,7 @@ const THEMES = {
 
 export const Navigation = () => {
 	const [isOpenNavMenu, setIsOpenNavMenu] = useState(false)
+	const {setIsOverlay} = useNotificationContext()
 	const menuRef = useRef<HTMLDivElement | null>(null)
 	const menuBtnRef = useRef<HTMLButtonElement | null>(null)
 	const [activeTheme, setActiveTheme] = useState(THEMES.light)
@@ -23,43 +26,48 @@ export const Navigation = () => {
 
 	const handleMenuOpen = () => {
 		setIsOpenNavMenu(!isOpenNavMenu)
+		setIsOverlay(true)
 	}
 
 	const handleMenuClose = () => {
 		setIsOpenNavMenu(false)
+		setIsOverlay(false)
 	}
 
 	useOnClickOutside(menuRef, handleMenuClose, undefined, menuBtnRef)
 
 	return (
-		<div ref={menuRef} className={classNames(styles.wrapper, {
-			[styles.isOpen]: isOpenNavMenu
-		})}>
-			<GradientBorder withoutAnim className={styles.gradientBorder} active={isOpenNavMenu} borderRadius={12}/>
-			<div className={styles.content}>
-				<div className={styles.header}>
-					<NavigationBox isBorder={false} className={classNames(styles.navBtns, {
-						[styles.isCloseMenu]: !isOpenNavMenu,
-					})}>
-						<IconButton
-							active={isOpenNavMenu && isLightTheme}
-							onClick={() => setActiveTheme(THEMES.light)}
-							disabled={!isOpenNavMenu}
-							icon={'BLACK_SUN'}
-							hided={!isLightTheme && !isOpenNavMenu}
-							className={styles.navBtn}/>
-						<IconButton
-							active={isOpenNavMenu && isDarkTheme}
-							onClick={() => setActiveTheme(THEMES.dark)}
-							disabled={!isOpenNavMenu}
-							icon={'MOON'}
-							hided={!isDarkTheme && !isOpenNavMenu}
-							className={styles.navBtn}/>
-					</NavigationBox>
-					<BurgerMenu menuBtnRef={menuBtnRef} handleMenuOpen={handleMenuOpen} isOpenNavMenu={isOpenNavMenu}/>
+		<>
+			<div ref={menuRef} className={classNames(styles.wrapper, {
+				[styles.isOpen]: isOpenNavMenu
+			})}>
+				<GradientBorder withoutAnim isIgnoredOverlay className={styles.gradientBorder} active={isOpenNavMenu} borderRadius={12}/>
+				<div className={styles.content}>
+					<div className={styles.header}>
+						<NavigationBox isBorder={false} className={classNames(styles.navBtns, {
+							[styles.isCloseMenu]: !isOpenNavMenu,
+						})}>
+							<IconButton
+								active={isOpenNavMenu && isLightTheme}
+								onClick={() => setActiveTheme(THEMES.light)}
+								disabled={!isOpenNavMenu}
+								icon={'BLACK_SUN'}
+								hided={!isLightTheme && !isOpenNavMenu}
+								className={styles.navBtn}/>
+							<IconButton
+								active={isOpenNavMenu && isDarkTheme}
+								onClick={() => setActiveTheme(THEMES.dark)}
+								disabled={!isOpenNavMenu}
+								icon={'MOON'}
+								hided={!isDarkTheme && !isOpenNavMenu}
+								className={styles.navBtn}/>
+						</NavigationBox>
+						<BurgerMenu menuBtnRef={menuBtnRef} handleMenuOpen={handleMenuOpen} isOpenNavMenu={isOpenNavMenu}/>
+					</div>
+					<NavigationList isVisible={isOpenNavMenu}/>
 				</div>
-				<NavigationList isVisible={isOpenNavMenu}/>
 			</div>
-		</div>
+			<Overlay active={isOpenNavMenu}/>
+		</>
 	)
 }

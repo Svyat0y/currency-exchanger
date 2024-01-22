@@ -26,8 +26,6 @@ export const Exchanger = ({animStart}: {animStart: boolean}) => {
 		setSendValue,
 		setGetItem,
 		setSendItem,
-		wallet,
-		setWallet,
 	} = useExchangeContext()
 	const [isCalculatingGetValue, setIsCalculatingGetValue] = useState(false)
 	const [isCalculatingSendValue, setIsCalculatingSendValue] = useState(false)
@@ -37,6 +35,8 @@ export const Exchanger = ({animStart}: {animStart: boolean}) => {
 	const [isSwitching, setIsSwitching] = useState(false)
 	const [isTypingCard, setIsTypingCard] = useState(CARDS.sendCard)
 	const [isValueError, setIsValueError] = useState(false)
+	const [wallet, setWallet] = useState<string>('')
+	const [walletError, setWalletError] = useState('')
 	const prevGetItemRef = useRef(getItem)
 	const prevSendItemRef = useRef(sendItem)
 
@@ -302,8 +302,10 @@ export const Exchanger = ({animStart}: {animStart: boolean}) => {
 						value={wallet}
 						setInputState={setWallet}
 						isCalculated={isCalculated}
+						walletError={walletError}
+						setWalletError={setWalletError}
 					/>
-					<Terms/>
+					<Terms wallet={wallet} setWalletError={setWalletError} walletError={walletError}/>
 				</div>
 			</div>
 		</div>

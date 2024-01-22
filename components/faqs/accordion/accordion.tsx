@@ -56,7 +56,7 @@ export const Accordion = () => {
 				const activeItem = active.includes(item.id)
 
 				return (
-					<div key={item.id} className={styles.item}>
+					<div key={item.id} className={classNames(styles.item, {[styles.active]: activeItem})}>
 						<button className={classNames(styles.accordionTitle, {[styles.active]: activeItem})} onClick={() => handleOpenItem(item.id)}>
 							<div className={styles.left}>
 								<Icon type='QUESTION_CIRCLE'/>

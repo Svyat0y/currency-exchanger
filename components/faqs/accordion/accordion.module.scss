@@ -9,6 +9,12 @@
   flex-direction: column;
   border-bottom: 1px solid $fourth_color;
   overflow: hidden;
+  padding: 20px 0;
+  transition: $cubicBezier;
+
+  &.active {
+    padding: 20px 0 0;
+  }
 
   &:last-child {
     border: none;
@@ -21,12 +27,7 @@
   justify-content: space-between;
   cursor: pointer;
   gap: 12px;
-  padding: 20px 0;
   transition: $cubicBezier;
-
-  &.active {
-    padding: 20px 0 0;
-  }
 }
 
 .left {

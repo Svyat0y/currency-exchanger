@@ -6,12 +6,14 @@ import {GradientBorder} from "@/components/gradientBorder"
 import {WalletNavigation} from "@/components/walletNavigation"
 
 type WalletProps = {
-	value: number | string | null
+	value: string
 	setInputState: (value: string) => void
 	isCalculated: boolean
 	active: boolean
 	setActiveCard: (card: number) => void
 	card: number
+	walletError: string
+	setWalletError: (state: string) => void
 }
 
 export const Wallet: FC<WalletProps> = (
@@ -21,7 +23,9 @@ export const Wallet: FC<WalletProps> = (
 		active,
 		isCalculated,
 		setActiveCard,
-		card
+		card,
+		walletError,
+		setWalletError,
 	}) => {
 	const inputRef = useRef<HTMLInputElement | null>(null)
 
@@ -35,15 +39,23 @@ export const Wallet: FC<WalletProps> = (
 		return () => clearTimeout(timeoutId)
 	}, [isCalculated])
 
+	const handleWallet = (wallet: string) => {
+		setWalletError('')
+		setInputState(wallet)
+	}
+
 	return (
 		<div className={classNames(styles.walletWrapper)} onClick={() => setActiveCard(card)}>
 			<GradientBorder active={active}/>
 			<div className={styles.content}>
+				<span className={classNames(styles.walletError, {[styles.active]: !!walletError})}>
+					{walletError}
+				</span>
 				<Input
 					onFocus={() => setActiveCard(card)}
 					id={'wallet'}
 					className={styles.walletInput}
-					handleChangeInput={setInputState}
+					handleChangeInput={handleWallet}
 					value={value}
 					inputRef={inputRef}
 					placeholder='Enter Destination Wallet Address'

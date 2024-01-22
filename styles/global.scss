@@ -22,6 +22,10 @@ body {
   color: $primary_color;
   background: $primary_bg;
   font-family: $primary_font;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 h1,

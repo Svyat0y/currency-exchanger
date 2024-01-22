@@ -11,7 +11,7 @@
   padding: 2px;
   transition: $cubicBezier;
   max-height: max-content;
-  z-index: 20;
+  z-index: 31;
   box-shadow: 0 8px 24px 0 rgba(0, 0, 0, 0.08);
   overflow: hidden;
 
@@ -42,7 +42,7 @@
 
       @include md {
         width: 220px;
-        height: 224px;
+        height: 480px;
         padding: 8px;
       }
     }
@@ -100,6 +100,10 @@
   position: relative;
   padding: 8px 8px;
   transition: $cubicBezier;
+
+  &.isOpen {
+    height: auto;
+  }
 }
 
 .header {

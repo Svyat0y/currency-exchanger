@@ -44,6 +44,24 @@
   }
 }
 
+.walletError {
+  position: absolute;
+  bottom: 10px;
+  left: 20px;
+  background: linear-gradient(60deg, #EF633BFF, #D013AAFF);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: inline;
+  font-size: 14px;
+  transition: $cubicBezier;
+  opacity: 0;
+
+  &.active {
+    opacity: 1;
+  }
+}
+
 @keyframes animatedgradient {
   0% {
     opacity: 1;
