@@ -99,3 +99,22 @@
   background: $fourth_color;
   border-radius: 12px;
 }
+
+.tooltipOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100vh;
+  pointer-events: none;
+  background: rgba(255, 255, 255, 0);
+  transition: $cubicBezier;
+  padding: 0 1rem;
+  z-index: 30;
+
+  &.active {
+    background: rgba(255, 255, 255, .7);
+  }
+}

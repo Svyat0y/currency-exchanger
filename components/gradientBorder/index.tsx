@@ -10,6 +10,7 @@ type GradientBorderProps = {
 	smallRadius?: boolean
 	withoutGrayBorder?: boolean
 	borderRadius?: number
+	isIgnoredOverlay?: boolean
 }
 
 export const GradientBorder:FC<GradientBorderProps> = (
@@ -19,7 +20,8 @@ export const GradientBorder:FC<GradientBorderProps> = (
 		smallRadius,
 		withoutGrayBorder,
 		borderRadius = 22,
-		className
+		isIgnoredOverlay,
+		className,
 	}) => {
 	const {isOverlay} = useNotificationContext()
 
@@ -32,7 +34,7 @@ export const GradientBorder:FC<GradientBorderProps> = (
 			<div
 				className={classNames(styles.gradientBlock, className, {
 					[styles.active]: active,
-					[styles.hideGradient]: active && isOverlay,
+					[styles.hideGradient]: active && isOverlay && !isIgnoredOverlay,
 					[styles.withoutAnim]: withoutAnim,
 					[styles.smallRadius]: smallRadius,
 				})} style={{borderRadius: borderRadius}}>

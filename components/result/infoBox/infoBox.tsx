@@ -6,6 +6,7 @@ import classNames from "classnames"
 import {FC, useEffect, useState} from "react"
 import {STATUS, WAITING_STATUSES} from "@/context/statusContext"
 import {ModalContent} from "@/components/result/infoBox/modalContent/modalContent"
+import {useNotificationContext} from "@/context/notificationContext"
 
 type InfoBoxProps = {
 	currentStatus: string
@@ -22,7 +23,14 @@ export const MODALS = {
 
 export type TExchangeInfo = Record<string, string>
 
-export const InfoBox: FC<InfoBoxProps> = ({currentStatus, isInteractionWithRightBox, isAllSuccess, updateState}) => {
+export const InfoBox: FC<InfoBoxProps> = (
+	{
+		currentStatus,
+		isInteractionWithRightBox,
+		isAllSuccess,
+		updateState
+	}) => {
+	const {setIsOverlay} = useNotificationContext()
 	const isDepositStatus = currentStatus === WAITING_STATUSES.deposit
 	const isConfirmationStatus = currentStatus === WAITING_STATUSES.confirmations
 	const isExchangeStatus = currentStatus === WAITING_STATUSES.exchange
@@ -73,10 +81,12 @@ export const InfoBox: FC<InfoBoxProps> = ({currentStatus, isInteractionWithRight
 	const handleOpenModal = (modal: number) => {
 		setCurrentModal(modal)
 		setIsModalOpen(true)
+		setIsOverlay(true)
 	}
 
 	const handleCloseModal = () => {
 		setIsModalOpen(false)
+		setIsOverlay(false)
 	}
 
 	return (

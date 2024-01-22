@@ -24,7 +24,7 @@ export const Modal: FC<ModalProps> = ({children, isModalOpen, handleCloseModal})
 					[styles.active]: isModalOpen
 				})} ref={modalRef}>
 						<CloseButton className={styles.modalClose} onClick={handleCloseModal}/>
-						<GradientBorder withoutAnim active={true}/>
+						<GradientBorder withoutAnim isIgnoredOverlay active={true}/>
 					<div className={classNames(styles.contentWrapper)}>
 						<div className={styles.content}>
 							{children}

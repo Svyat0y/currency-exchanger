@@ -5,7 +5,6 @@ import {useExchangeContext} from "@/context/exchangeContext"
 import {RATES, RATES_TOOLTIP} from "@/components/exchangerCard/cardContent/exchangeCard/rateSwitcher/rateSwitcher"
 import {GetValueBox} from "@/components/header/exchangeInfo/getValueBox"
 import {SendValueBox} from "@/components/header/exchangeInfo/sendValueBox"
-import {Overlay} from "@/components/overlay/overlay"
 import {useEffect, useState} from "react"
 import {TooltipTrigger} from "@/components/tooltipTrigger/tooltipTrigger"
 import {useNotificationContext} from "@/context/notificationContext"
@@ -60,7 +59,9 @@ export const ExchangeInfo = () => {
 					<Icon type={isFixedRate ? 'LOCK' : 'WATER'} fill={isFixedRate ? '#28C600' : 'rgba(0, 0, 0, .3)'}/>
 				</TooltipTrigger>
 			</div>
-			<Overlay active={isOverlay} zIndex={30}/>
+			<div className={classNames(styles.tooltipOverlay, {
+				[styles.active]: isTooltip
+			})}></div>
 		</>
 	)
 }

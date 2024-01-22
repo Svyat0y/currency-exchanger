@@ -5,16 +5,17 @@ import {ExchangeInfo} from "@/components/header/exchangeInfo/exchangeInfo"
 import classNames from "classnames"
 import {Navigation} from "@/components/header/navigation/navigation"
 import {Container} from "@/components/container"
+import Link from "next/link"
 
 export const Header = () => {
 	return (
 		<div className={classNames(styles.wrapper, styles.active)}>
 			<Container>
 				<div className={styles.headerContent}>
-					<div className={styles.logo}>
+					<Link aria-label={'logo'} href={'/'} className={styles.logo}>
 						<span className={styles.logoTitle}>SwapHub</span>
 						<span className={styles.logoDesc}>Crypto Exchange</span>
-					</div>
+					</Link>
 					<ExchangeInfo/>
 					<Navigation/>
 				</div>
