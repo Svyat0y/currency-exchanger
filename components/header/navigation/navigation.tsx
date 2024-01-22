@@ -56,7 +56,7 @@ export const Navigation = () => {
 							hided={!isDarkTheme && !isOpenNavMenu}
 							className={styles.navBtn}/>
 					</NavigationBox>
-					<BurgerMenu menuBtnRef={menuBtnRef} handleMenuOpen={handleMenuOpen}/>
+					<BurgerMenu menuBtnRef={menuBtnRef} handleMenuOpen={handleMenuOpen} isOpenNavMenu={isOpenNavMenu}/>
 				</div>
 				<NavigationList isVisible={isOpenNavMenu}/>
 			</div>

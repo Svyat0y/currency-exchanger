@@ -98,7 +98,7 @@
   border-radius: 11px;
   z-index: 1;
   position: relative;
-  padding: 8px;
+  padding: 8px 8px;
   transition: $cubicBezier;
 }
 
@@ -107,7 +107,7 @@
   position: relative;
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   border-width: 0;
   transition: $cubicBezier;
 
