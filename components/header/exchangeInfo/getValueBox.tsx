@@ -42,9 +42,9 @@ export const GetValueBox: FC<GetValueBoxProps> = ({noActive, className, textColo
 			<button className={classNames(styles.getValueBtn, {[styles.noActive]: noActive})} aria-label='getValueButton'
 			        onClick={() => setIsSuccessRate(!isSuccessRate)}>
 				{!noActive
-					? <Icon type='POLYGON' className={classNames(styles.icon, {
+					? <span className={classNames(styles.icon, {
 						[styles.success]: isSuccessRate,
-					})}/>
+					})}></span>
 					: ''}
 				<span className={classNames(styles.getValue, {
 					[styles.success]: noActive || isSuccessRate

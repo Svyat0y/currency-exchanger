@@ -1,9 +1,5 @@
 @import "styles/var";
 
-#clickableForMobiles #main-frame-error {
-  padding: 0 5%!important;
-}
-
 .wrapper {
   position: absolute;
   height: 100%;
@@ -24,6 +20,18 @@
     bottom: 0;
     display: flex;
     align-items: center;
+
+    & > div {
+      padding: 0!important;
+      max-width: 800px;
+
+      & > div {
+        width: 100%!important;
+        canvas {
+          width: 100% !important;
+        }
+      }
+    }
   }
 }
 
@@ -62,6 +70,7 @@
   top: 0;
   bottom: 0;
   z-index: 10;
+  max-width: 100% !important;
 
   img {
     width: 100%;

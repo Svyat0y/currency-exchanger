@@ -38,6 +38,7 @@
 
   img {
     max-width: 100%;
+    object-position: bottom;
   }
 }
 
@@ -55,6 +56,9 @@
   font-weight: 700;
   z-index: 2;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 
   @include lg {
     font-size: 20px;

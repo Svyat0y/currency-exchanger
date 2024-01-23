@@ -137,12 +137,15 @@ const ICONS: any = {
 		</svg>
 	),
 	POLYGON: (props: TSvgProps) => (
-		<svg className={props.className || ''} width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-			<path d="M6 8L12 0H0L6 8Z" fill={props.fill || "#FF3B3B"}/>
+		<svg className={props.className || ''} width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<path
+				d="M12.3332 6L5.9332 2.33333C5.59987 2.13333 5.19987 2 4.79987 2C3.5332 2 2.5332 3 2.5332 4.26667V11.7333C2.5332 13 3.5332 14 4.79987 14C5.19987 14 5.59987 13.8667 5.9332 13.6667L12.3999 9.93333C12.7332 9.73333 12.9999 9.46667 13.1999 9.13333C13.7999 8.06667 13.4665 6.66667 12.3332 6Z"
+				fill={props.fill || 'black'}/>
 		</svg>
 	),
 	MOON: (props: TSvgProps) => (
-		<svg className={props.className || ''} width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+		<svg className={props.className || ''} width="16" height="16" viewBox="0 0 16 16" fill="none"
+		     xmlns="http://www.w3.org/2000/svg">
 			<path
 				d="M10.0193 1.6599C9.43731 1.47656 8.93998 2.11256 9.24864 2.63922C9.73598 3.46989 9.99864 4.40723 9.99864 5.34723C9.99864 8.29255 7.61064 10.6805 4.66531 10.6805C4.11071 10.6805 3.54978 10.5905 3.04031 10.4305C2.45838 10.2472 1.94011 10.8832 2.24864 11.4099C3.43364 13.4312 5.59944 14.6805 7.99864 14.6805C11.6806 14.6805 14.6653 11.6959 14.6653 8.01389C14.6653 5.07989 12.7713 2.52523 10.0193 1.6599Z"
 				fill={props.fill || "black"}/>

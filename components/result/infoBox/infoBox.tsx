@@ -52,7 +52,7 @@ export const InfoBox: FC<InfoBoxProps> = (
 
 			intervalId = window.setInterval(() => {
 				setConfirmCount((prevCount) => prevCount + 1)
-			}, 3000)
+			}, 300000)
 		}
 
 		return () => {

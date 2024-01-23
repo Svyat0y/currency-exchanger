@@ -66,13 +66,14 @@
 
 .icon {
   transition: $cubicBezier;
+  width: 13px;
+  height: 9px;
+  background: $tenth_color;
+  clip-path: polygon(50% 100%, 100% 0, 0 0);
 
   &.success {
     transform: rotateX(180deg);
-
-    path {
-      fill: $eighth_color;
-    }
+    background: $eighth_color;
   }
 }
 

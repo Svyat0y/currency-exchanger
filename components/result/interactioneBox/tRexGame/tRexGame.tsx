@@ -2,6 +2,7 @@ import styles from './tRexGame.module.scss'
 import {GradientBorder} from "@/components/gradientBorder"
 import {useEffect, useRef, useState} from "react"
 import Image from "next/image"
+import {Icon} from "@/components/icon";
 
 const dinoImg = '/media/dinoBg.jpg'
 
@@ -42,6 +43,7 @@ export const TRexGame = () => {
 							</div>
 							<button
 								className={styles.playBtn}>
+								<Icon className={styles.playIcon} type='POLYGON' fill='black'/>
 								Play
 							</button>
 						</div>}
