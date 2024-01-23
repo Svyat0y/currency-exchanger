@@ -29,4 +29,8 @@
   &::placeholder {
     color: $second_color;
   }
+
+  &.isFixed {
+    color: $eighth_color;
+  }
 }

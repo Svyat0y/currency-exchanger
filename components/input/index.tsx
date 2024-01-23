@@ -11,6 +11,7 @@ type InputProps = {
 	id: string
 	inputRef: RefObject<HTMLInputElement> | null
 	onFocus?: () => void
+	isFixedRate?: boolean
 }
 
 export const Input: FC<InputProps> = (
@@ -23,6 +24,7 @@ export const Input: FC<InputProps> = (
 		id,
 		onFocus,
 		inputRef,
+		isFixedRate,
 		...rest
 	}) => {
 
@@ -39,7 +41,7 @@ export const Input: FC<InputProps> = (
 				onFocus={onFocus}
 				aria-label={id}
 				ref={inputRef}
-				className={classNames(styles.input, className)}
+				className={classNames(styles.input, className, {[styles.isFixed]: isFixedRate})}
 				placeholder={placeholder}
 				type={type}
 				value={!value ? '' : value}

@@ -10,6 +10,7 @@ type IconButtonProps = {
 	disabled?: boolean
 	active: boolean
 	hided?: boolean
+	fill?: string
 }
 
 export const IconButton: FC<IconButtonProps> = (
@@ -20,13 +21,14 @@ export const IconButton: FC<IconButtonProps> = (
 		disabled,
 		active,
 		hided,
+		fill,
 	}) => {
 	return (
 		<button disabled={disabled} onClick={onClick} className={classNames(styles.wrapper, className, {
 			[styles.active]: active,
 			[styles.hided]: hided,
 		})}>
-			<Icon type={icon}/>
+			<Icon type={icon} fill={fill}/>
 		</button>
 	)
 }

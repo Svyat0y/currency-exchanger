@@ -1,8 +1,6 @@
 import {NavigationBox} from "@/components/navigationBox/navigationBox"
-import {useExchangeContext} from "@/context/exchangeContext"
-import {useNotificationContext} from "@/context/notificationContext"
 import {IconButton} from "@/components/buttons/iconButton/iconButton"
-import {useEffect} from "react";
+import {FC, useEffect} from "react"
 
 export const RATES = {
 	floating: 1,
@@ -14,9 +12,13 @@ export const RATES_TOOLTIP = {
 	floatRate: 'Floating Rate',
 }
 
-export const RateSwitcher = () => {
-	const {rateState, setRateState} = useExchangeContext()
-	const {setIsNotification} = useNotificationContext()
+type RateSwitcherProps = {
+	rateState: number
+	setRateState: (rate: number) => void
+	setIsNotification: (state: boolean) => void
+}
+
+export const RateSwitcher: FC<RateSwitcherProps> = ({rateState, setRateState, setIsNotification}) => {
 	const isFixedRate = rateState === RATES.fixed
 	const isFloatingRate = rateState === RATES.floating
 
@@ -43,7 +45,7 @@ export const RateSwitcher = () => {
 	return (
 		<NavigationBox isBorder={true}>
 			<IconButton icon="WATER" onClick={handleFloatRate} active={isFloatingRate}/>
-			<IconButton icon="LOCK" onClick={handleFixedRate} active={isFixedRate}/>
+			<IconButton icon="LOCK" fill={isFixedRate ? '#28C600' : ''} onClick={handleFixedRate} active={isFixedRate}/>
 		</NavigationBox>
 	)
 }

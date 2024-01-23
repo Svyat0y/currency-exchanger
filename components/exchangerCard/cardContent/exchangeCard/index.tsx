@@ -4,7 +4,9 @@ import {Input} from "@/components/input"
 import {FC, useEffect, useRef} from "react"
 import {CardContentProps} from "@/components/exchangerCard/cardContent"
 import classNames from "classnames"
-import {RateSwitcher} from "@/components/exchangerCard/cardContent/exchangeCard/rateSwitcher/rateSwitcher"
+import {RATES, RateSwitcher} from "@/components/exchangerCard/cardContent/exchangeCard/rateSwitcher/rateSwitcher"
+import {useExchangeContext} from "@/context/exchangeContext"
+import {useNotificationContext} from "@/context/notificationContext"
 
 type ExchangeCardProps = CardContentProps
 
@@ -26,6 +28,9 @@ export const ExchangeCard: FC<ExchangeCardProps> = (
 		isValueError,
 	}) => {
 	const inputRef = useRef<HTMLInputElement | null>(null)
+	const {rateState, setRateState} = useExchangeContext()
+	const {setIsNotification} = useNotificationContext()
+	const isFixedRate = rateState === RATES.fixed
 
 	useEffect(() => {
 		const timeoutId = setTimeout(() => {
@@ -51,7 +56,7 @@ export const ExchangeCard: FC<ExchangeCardProps> = (
 							[styles.isVisible]: isCalculated && isSecondCard,
 						})}>
 							{!isCalculatingSendValue && !isCalculating && <span className={styles.additionalInfo}>{additionalInfo}</span>}
-							<RateSwitcher/>
+							<RateSwitcher rateState={rateState} setRateState={setRateState} setIsNotification={setIsNotification}/>
 						</div>
 					</div>}
 			</div>
@@ -65,6 +70,7 @@ export const ExchangeCard: FC<ExchangeCardProps> = (
 						value={value}
 						handleChangeInput={handleInput}
 						placeholder='Enter amount'
+						isFixedRate={isFixedRate && isSecondCard}
 					/>
 				</div>
 			</div>

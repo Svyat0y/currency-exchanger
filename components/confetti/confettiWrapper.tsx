@@ -18,8 +18,8 @@ export const ConfettiWrapper: FC<ConfettiWrapperProps> = (
 		active,
 		numberOfPieces = 200,
 		gravity = 0.05,
-		width = 400,
-		height = 500,
+		width = 500,
+		height = 550,
 		className,
 	}) => {
 	const {mounted} = useMount(active)
@@ -30,7 +30,7 @@ export const ConfettiWrapper: FC<ConfettiWrapperProps> = (
 		<div className={classNames(styles.wrapper, className, {
 			[styles.active]: active
 		})}>
-			<Confetti recycle={false} numberOfPieces={numberOfPieces} gravity={gravity} width={width} height={height}/>
+			<Confetti initialVelocityY={{min: 1, max: 1}} recycle={true} numberOfPieces={numberOfPieces} gravity={gravity} width={width} height={height}/>
 		</div>
 	)
 }
