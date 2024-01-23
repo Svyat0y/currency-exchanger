@@ -30,7 +30,7 @@ export const ConfettiWrapper: FC<ConfettiWrapperProps> = (
 		<div className={classNames(styles.wrapper, className, {
 			[styles.active]: active
 		})}>
-			<Confetti initialVelocityY={{min: 1, max: 1}} recycle={true} numberOfPieces={numberOfPieces} gravity={gravity} width={width} height={height}/>
+			<Confetti initialVelocityY={{min: 1, max: 1}} recycle={false} numberOfPieces={numberOfPieces} gravity={gravity} width={width} height={height}/>
 		</div>
 	)
 }

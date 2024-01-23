@@ -68,8 +68,20 @@
   }
 }
 
+.walletBtn {
+  width: 100%;
+  cursor: pointer;
+
+  &:disabled {
+    pointer-events: none;
+  }
+}
+
 .walletWrapper {
   background: $fourth_color;
+  font-size: 14px;
+  font-family: $primary_font;
+  font-weight: 700;
 }
 
 .transactionTimer {

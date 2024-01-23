@@ -8,12 +8,12 @@ import rocketAnim from "./media/rocketAnim.gif"
 import heartAnim from "./media/heartAnim.gif"
 import {InfoTitle} from "@/components/result/infoBox/transactionInfo/infoTitle/infoTitle"
 import {Truncate} from "@/components/truncate/truncate"
-import {Navigation} from "@/components/result/infoBox/transactionInfo/navigation/navigation"
 import {TExchangeInfo} from "@/components/result/infoBox/infoBox"
 import {GradientText} from "@/components/gradientText/gradientText"
 import {DynamicContent} from "@/components/result/infoBox/transactionInfo/contentScreens/dynamicContent"
 import {FooterInfo} from "@/components/result/infoBox/footerInfo/footerInfo"
 import {STATUS, useContextStatus, WAITING_STATUSES} from "@/context/statusContext"
+import {WalletInfo} from "@/components/result/infoBox/transactionInfo/walletInfo"
 
 type TransactionContentProps = {
 	popupIsOpen: boolean
@@ -59,14 +59,14 @@ export const TransactionContent: FC<TransactionContentProps> = (
 				active={isDepositStatus && !isAllSuccess}
 				currentScreen={isDepositStatus}
 				nextStep={{step: WAITING_STATUSES.confirmations, status: STATUS.loading, delay: 30000}}
+				isChangeToFixedRate
 			>
 				<IconGif gif={travelExplore}/>
 				<InfoTitle
 					renderText={<>Send <GradientText isUppercase>{exchangeInfo?.sendValue} {exchangeInfo?.sendLabel}</GradientText> to the address below</>}
 					subText='Waiting for your deposit...'
 				/>
-				<Truncate className={styles.walletWrapper} text={walletAddress}/>
-				<Navigation walletAddress={walletAddress} setPopupIsOpen={setPopupIsOpen}/>
+				<WalletInfo walletAddress={walletAddress} setPopupIsOpen={setPopupIsOpen}/>
 			</DynamicContent>
 
 			<DynamicContent

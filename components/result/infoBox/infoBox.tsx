@@ -39,6 +39,7 @@ export const InfoBox: FC<InfoBoxProps> = (
 	const [confirmCount, setConfirmCount] = useState(1)
 	const [isModalOpen, setIsModalOpen] = useState(false)
 	const [currentModal, setCurrentModal] = useState(MODALS.faqs)
+	const [popupIsOpen, setPopupIsOpen] = useState(false)
 
 	useEffect(() => {
 		let intervalId: any = null
@@ -93,7 +94,7 @@ export const InfoBox: FC<InfoBoxProps> = (
 		<div className={classNames(styles.wrapper, {
 			[styles.animStart]: isConfirmationStatus || isInteractionWithRightBox,
 		})}>
-			<HeaderInfo isAllSuccess={isAllSuccess}/>
+			<HeaderInfo isAllSuccess={isAllSuccess || popupIsOpen}/>
 			<TransactionInfo
 				confirmCount={confirmCount}
 				isConfirmationLoading={isConfirmationStatus}
@@ -103,6 +104,8 @@ export const InfoBox: FC<InfoBoxProps> = (
 				walletAddress={String(walletAddress)}
 				isAllSuccess={isAllSuccess}
 				handleOpenModal={handleOpenModal}
+				popupIsOpen={popupIsOpen}
+				setPopupIsOpen={setPopupIsOpen}
 			/>
 			<FooterInfo active={isConfirmationStatus || isExchangeStatus} handleOpenModal={handleOpenModal}/>
 			<ModalContent

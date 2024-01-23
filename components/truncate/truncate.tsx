@@ -4,7 +4,7 @@ import {FC} from "react"
 
 type TruncateProps = {
 	text: string
-	className: string
+	className?: string
 	withoutTruncate?: boolean
 }
 

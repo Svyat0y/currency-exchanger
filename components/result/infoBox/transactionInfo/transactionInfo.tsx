@@ -17,6 +17,8 @@ type TransactionInfoProps = {
 	isAllSuccess: boolean
 	confirmCount: number
 	handleOpenModal: (state: number) => void
+	setPopupIsOpen: (state: boolean) => void
+	popupIsOpen: boolean
 }
 
 export const TransactionInfo: FC<TransactionInfoProps> = (
@@ -29,8 +31,9 @@ export const TransactionInfo: FC<TransactionInfoProps> = (
 		isAllSuccess,
 		confirmCount,
 		handleOpenModal,
+		popupIsOpen,
+		setPopupIsOpen,
 	}) => {
-	const [popupIsOpen, setPopupIsOpen] = useState(false)
 
 	useEffect(() => {
 		if(!isDepositStatus) setPopupIsOpen(false)

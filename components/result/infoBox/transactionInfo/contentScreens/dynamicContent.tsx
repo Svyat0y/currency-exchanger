@@ -3,13 +3,15 @@ import styles from './dynamicScreen.module.scss'
 import {FC, ReactNode, useEffect} from "react"
 import {useMount} from "@/hooks/useMount"
 import {useContextStatus} from "@/context/statusContext"
-import Confetti from 'react-confetti'
+import {useExchangeContext} from "@/context/exchangeContext"
+import {RATES} from "@/components/exchangerCard/cardContent/exchangeCard/rateSwitcher/rateSwitcher"
 
 type DynamicContentProps = {
 	children: ReactNode
 	active: boolean
 	currentScreen?: boolean
 	nextStep?: {step: string, status: string, delay: number}
+	isChangeToFixedRate?: boolean
 }
 
 export const DynamicContent: FC<DynamicContentProps> = (
@@ -17,9 +19,11 @@ export const DynamicContent: FC<DynamicContentProps> = (
 		children,
 		active,
 		currentScreen,
-		nextStep
+		nextStep,
+		isChangeToFixedRate
 	}) => {
 	const {updateState} = useContextStatus()
+	const {setRateState} = useExchangeContext()
 	const {mounted} = useMount(active)
 
 	useEffect(() => {
@@ -28,6 +32,7 @@ export const DynamicContent: FC<DynamicContentProps> = (
 		if(active && currentScreen) {
 			timout = setTimeout(() => {
 				(updateState && nextStep) && updateState(nextStep?.step, nextStep?.status)
+				isChangeToFixedRate && setRateState(RATES.fixed)
 				clearTimeout(timout)
 			}, nextStep?.delay)
 		}

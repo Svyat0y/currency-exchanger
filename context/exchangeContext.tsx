@@ -34,7 +34,6 @@ export const ExchangeContextProvider = ({children}: TExchangeContext) => {
 	const [getItem, setGetItem] = useState<Item>(currencies[4])
 	const [sendValue, setSendValue] = useState<number | string | null>('')
 	const [getValue, setGetValue] = useState<number | string | null>('')
-
 	const [rateState, setRateState] = useState(1)
 
 	const value = {
