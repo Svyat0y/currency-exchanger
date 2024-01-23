@@ -11,7 +11,7 @@
   transition: $cubicBezier;
   grid-area: exchangeInfo;
   font-family: $primary_font;
-  z-index: 20;
+  z-index: 21;
   max-height: 0;
 
   &.zIndexUp {
@@ -112,9 +112,10 @@
   background: rgba(255, 255, 255, 0);
   transition: $cubicBezier;
   padding: 0 1rem;
-  z-index: 30;
+  z-index: -1;
 
   &.active {
     background: rgba(255, 255, 255, .7);
+    z-index: 20;
   }
 }
