@@ -58,7 +58,7 @@ export const TransactionContent: FC<TransactionContentProps> = (
 			<DynamicContent
 				active={isDepositStatus && !isAllSuccess}
 				currentScreen={isDepositStatus}
-				nextStep={{step: WAITING_STATUSES.confirmations, status: STATUS.loading, delay: 10000}}
+				nextStep={{step: WAITING_STATUSES.confirmations, status: STATUS.loading, delay: 30000}}
 			>
 				<IconGif gif={travelExplore}/>
 				<InfoTitle
