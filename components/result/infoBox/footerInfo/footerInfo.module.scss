@@ -13,6 +13,7 @@
   transform: translateY(-50px);
   transition: $cubicBezier;
   max-height: 0;
+  margin-bottom: 0;
 
   &.active {
     opacity: 1;

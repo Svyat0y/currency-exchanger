@@ -7,7 +7,7 @@
   transition: $cubicBezier;
   opacity: 0;
   transform: translateY(20%);
-  box-shadow: 0px 40px 80px 0px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 40px 80px 0 rgba(0, 0, 0, 0.06);
   padding: 2px;
   border-radius: 22px;
 
@@ -34,7 +34,7 @@
 .content {
   background: #fff;
   border-radius: 20px;
-  padding: 1rem;
+  padding: 2rem 1rem;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: minmax(300px, auto) minmax(300px, auto);
@@ -43,15 +43,12 @@
 
   @include sm {
     grid-template-rows: minmax(400px, auto) minmax(400px, auto);
+    padding: 2rem;
   }
 
   @include lg3 {
     grid-template-rows: minmax(443px, 1fr);
     grid-template-columns: minmax(120px, 300px) minmax(400px, 1fr);
     grid-template-areas: 'chat game';
-  }
-
-  @include xl {
-    padding: 2rem;
   }
 }

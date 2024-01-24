@@ -5,21 +5,22 @@ import {Dispatch, FC, SetStateAction} from "react"
 import {GradientBorder} from "@/components/gradientBorder"
 import {Chat} from "@/components/result/interactioneBox/chat/chat"
 import {TRexGame} from "@/components/result/interactioneBox/tRexGame/tRexGame"
+import {CloseButton} from "@/components/buttons/closeButton"
 
 type InteractionBoxProps = {
 	active: boolean
-	setIsInteractionWithRightBox: Dispatch<SetStateAction<boolean>>
+	setIsShowRightBox: Dispatch<SetStateAction<boolean>>
 }
 
 export const InteractionBox: FC<InteractionBoxProps> = (
 	{
 		active,
-		setIsInteractionWithRightBox
+		setIsShowRightBox,
 	}) => {
 	const {mounted} = useMount(active)
 
-	const handleFocus = () => {
-		setIsInteractionWithRightBox(true)
+	const handleCloseInteractionBox = () => {
+		setIsShowRightBox(false)
 	}
 
 	if(!active && !mounted) return null
@@ -27,7 +28,8 @@ export const InteractionBox: FC<InteractionBoxProps> = (
 	return (
 		<div className={classNames(styles.wrapper, {
 			[styles.animStart]: active && mounted
-		})} onClick={handleFocus}>
+		})}>
+			<CloseButton onClick={handleCloseInteractionBox}/>
 			<GradientBorder withoutAnim active={true}/>
 			<div className={styles.content}>
 				<Chat/>

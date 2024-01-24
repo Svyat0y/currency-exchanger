@@ -3,11 +3,11 @@ import {InfoBox} from "./infoBox/infoBox"
 import {InteractionBox} from "./interactioneBox/interactionBox"
 import classNames from "classnames"
 import {useMount} from "@/hooks/useMount"
-import {STATUS, useContextStatus, WAITING_STATUSES} from "@/context/statusContext"
+import {STATUS, useContextStatus} from "@/context/statusContext"
 import {useState} from "react"
 
 export const Result = ({animStart}: {animStart: boolean}) => {
-	const [isInteractionWithRightBox, setIsInteractionWithRightBox] = useState(false)
+	const [isShowRightBox, setIsShowRightBox] = useState(false)
 	const {currentStatus, updateState} = useContextStatus()
 	const isAllSuccess = currentStatus === STATUS.success
 	const {mounted} = useMount(animStart)
@@ -20,13 +20,14 @@ export const Result = ({animStart}: {animStart: boolean}) => {
 		})}>
 			<InfoBox
 				currentStatus={currentStatus}
-				isInteractionWithRightBox={isInteractionWithRightBox}
 				isAllSuccess={isAllSuccess}
 				updateState={updateState}
+				isShowRightBox={isShowRightBox}
+				setIsShowRightBox={setIsShowRightBox}
 			/>
 			<InteractionBox
-				active={currentStatus === WAITING_STATUSES.confirmations || isInteractionWithRightBox}
-				setIsInteractionWithRightBox={setIsInteractionWithRightBox}
+				setIsShowRightBox={setIsShowRightBox}
+				active={isShowRightBox}
 			/>
 		</div>
 	)

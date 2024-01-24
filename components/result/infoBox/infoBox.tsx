@@ -3,16 +3,18 @@ import {HeaderInfo} from "./headerInfo/headerInfo"
 import {TransactionInfo} from "./transactionInfo/transactionInfo"
 import {FooterInfo} from "./footerInfo/footerInfo"
 import classNames from "classnames"
-import {FC, useEffect, useState} from "react"
+import {Dispatch, FC, SetStateAction, useEffect, useState} from "react"
 import {STATUS, WAITING_STATUSES} from "@/context/statusContext"
 import {ModalContent} from "@/components/result/infoBox/modalContent/modalContent"
 import {useNotificationContext} from "@/context/notificationContext"
+import {AiBtnWr} from "@/components/result/infoBox/aiBtnWr"
 
 type InfoBoxProps = {
 	currentStatus: string
 	isAllSuccess: boolean
-	isInteractionWithRightBox: boolean
+	isShowRightBox: boolean
 	updateState?: (wStatus: string, status: string) => void
+	setIsShowRightBox: Dispatch<SetStateAction<boolean>>
 }
 
 export const MODALS = {
@@ -26,9 +28,10 @@ export type TExchangeInfo = Record<string, string>
 export const InfoBox: FC<InfoBoxProps> = (
 	{
 		currentStatus,
-		isInteractionWithRightBox,
+		isShowRightBox,
 		isAllSuccess,
-		updateState
+		updateState,
+		setIsShowRightBox
 	}) => {
 	const {setIsOverlay} = useNotificationContext()
 	const isDepositStatus = currentStatus === WAITING_STATUSES.deposit
@@ -79,6 +82,10 @@ export const InfoBox: FC<InfoBoxProps> = (
 		if(isAllSuccess) handleCloseModal()
 	}, [isAllSuccess])
 
+	const handleOpenRightBox = () => {
+		setIsShowRightBox(true)
+	}
+
 	const handleOpenModal = (modal: number) => {
 		setCurrentModal(modal)
 		setIsModalOpen(true)
@@ -92,7 +99,7 @@ export const InfoBox: FC<InfoBoxProps> = (
 
 	return (
 		<div className={classNames(styles.wrapper, {
-			[styles.animStart]: isConfirmationStatus || isInteractionWithRightBox,
+			[styles.animStart]: isShowRightBox,
 		})}>
 			<HeaderInfo isAllSuccess={isAllSuccess || popupIsOpen}/>
 			<TransactionInfo
@@ -108,6 +115,7 @@ export const InfoBox: FC<InfoBoxProps> = (
 				setPopupIsOpen={setPopupIsOpen}
 			/>
 			<FooterInfo active={isConfirmationStatus || isExchangeStatus} handleOpenModal={handleOpenModal}/>
+			<AiBtnWr handleOpenRightBox={handleOpenRightBox} active={!isShowRightBox}/>
 			<ModalContent
 				isModalOpen={isModalOpen}
 				currentModal={currentModal}
