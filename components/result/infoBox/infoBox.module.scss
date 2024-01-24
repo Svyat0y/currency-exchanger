@@ -7,6 +7,7 @@
   justify-content: flex-start;
   transition: $cubicBezier;
   position: relative;
+  padding-top: 0;
 
   @include md {
     min-width: 400px;
@@ -21,6 +22,7 @@
 
   &.animStart {
     @include lg {
+      padding-top: 20px;
       margin-left: 0;
       transform: translateX(0);
     }

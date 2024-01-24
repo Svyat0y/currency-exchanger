@@ -25,11 +25,8 @@
       padding: 0!important;
       max-width: 800px;
 
-      & > div {
-        width: 100%!important;
-        canvas {
-          width: 100% !important;
-        }
+      & > * {
+        width: 100%;
       }
     }
   }

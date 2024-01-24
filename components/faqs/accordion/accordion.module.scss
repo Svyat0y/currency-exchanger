@@ -28,12 +28,16 @@
   cursor: pointer;
   gap: 12px;
   transition: $cubicBezier;
+  font-size: 16px;
+  font-family: $primary_font;
+  font-weight: 700;
 }
 
 .left {
   gap: 12px;
   display: flex;
   align-items: center;
+  text-align: left;
 }
 
 .accContent {
