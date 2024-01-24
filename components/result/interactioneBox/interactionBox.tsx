@@ -28,7 +28,7 @@ export const InteractionBox: FC<InteractionBoxProps> = (
 		<div className={classNames(styles.wrapper, {
 			[styles.animStart]: active && mounted
 		})} onClick={handleFocus}>
-			<GradientBorder active={false}/>
+			<GradientBorder withoutAnim active={true}/>
 			<div className={styles.content}>
 				<Chat/>
 				<TRexGame/>

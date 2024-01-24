@@ -52,13 +52,13 @@ export const TransactionContent: FC<TransactionContentProps> = (
 	return (
 		<div className={classNames(styles.content, {
 			[styles.hidden]: popupIsOpen,
-			[styles.fullWidth]: isAllSuccess || isConfirmationLoading || isExchangeStatus,
+			[styles.fullWidth]: isAllSuccess,
 		})}>
 
 			<DynamicContent
 				active={isDepositStatus && !isAllSuccess}
 				currentScreen={isDepositStatus}
-				nextStep={{step: WAITING_STATUSES.confirmations, status: STATUS.loading, delay: 30000}}
+				nextStep={{step: WAITING_STATUSES.confirmations, status: STATUS.loading, delay: 300000}}
 				isChangeToFixedRate
 			>
 				<IconGif gif={travelExplore}/>
@@ -80,7 +80,7 @@ export const TransactionContent: FC<TransactionContentProps> = (
 			<DynamicContent
 				active={isExchangeStatus && !isAllSuccess}
 				currentScreen={isExchangeStatus}
-				nextStep={{step: WAITING_STATUSES.exchange, status: STATUS.success, delay: 22000}}
+				nextStep={{step: WAITING_STATUSES.exchange, status: STATUS.success, delay: 220000}}
 			>
 				<IconGif gif={rocketAnim}/>
 				<InfoTitle

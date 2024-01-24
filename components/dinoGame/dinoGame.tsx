@@ -17,7 +17,7 @@ export const DinoGame = () => {
 		}
 		window.addEventListener("keydown", handleKeyDown)
 
-		const clickableElement = document.getElementById('clickableForMobiles');
+		const clickableElement = document.getElementById('clickableForMobiles')
 
 		if (clickableElement) {
 			clickableElement.addEventListener('touchstart', () => {

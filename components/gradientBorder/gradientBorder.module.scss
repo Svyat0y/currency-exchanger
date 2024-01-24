@@ -32,8 +32,8 @@
   border-radius: 22px;
   opacity: 0;
   transition: $cubicBezier;
-  background: linear-gradient(60deg, #EF633BFF, #D013AAFF);
-  background-size: 300% 300%;
+  background: linear-gradient(60deg, #EF633BFF, #D10BB1);
+  background-size: 200% 300%;
 
   &.active {
     opacity: 1;

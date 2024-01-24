@@ -1,6 +1,6 @@
 import styles from './transactionInfo.module.scss'
 import {GradientBorder} from "@/components/gradientBorder"
-import {FC, useEffect, useState} from "react"
+import {FC, useEffect} from "react"
 import Timer from "@/components/timer/timer"
 import {PopupContent} from "./popupContent/popupContent"
 import classNames from "classnames"
