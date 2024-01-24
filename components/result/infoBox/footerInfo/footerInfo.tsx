@@ -7,6 +7,7 @@ import {useMount} from "@/hooks/useMount"
 type FooterInfoProps = {
 	active: boolean
 	handleOpenModal: (state: number) => void
+	isAllSuccess: boolean
 }
 
 const MODALS = {
@@ -21,14 +22,15 @@ const LINKS = [
 	{label: 'FAQs', icon: 'QUESTION_CIRCLE', modal: MODALS.faqs},
 ]
 
-export const FooterInfo:FC<FooterInfoProps> = ({active, handleOpenModal}) => {
+export const FooterInfo:FC<FooterInfoProps> = ({active, handleOpenModal, isAllSuccess}) => {
 	const {mounted} = useMount(active)
 
 	if(!active && !mounted) return null
 	
 	return (
 		<div className={classNames(styles.wrapper, {
-			[styles.active]: active
+			[styles.active]: active,
+			[styles.isAllSuccess]: isAllSuccess,
 		})}>
 			{LINKS.map(item => {
 				return (

@@ -15,7 +15,6 @@ export const AiBtnWr: FC<AiBtnWr> = ({handleOpenRightBox, active, positionFixedB
 	const {mounted} = useMount(active)
 
 	if(!active && !mounted) return null
-
 	return (
 		<Portal>
 			<IconButton inlineStyles={positionFixedBtn} onClick={handleOpenRightBox} className={classNames(styles.aiBtn, {

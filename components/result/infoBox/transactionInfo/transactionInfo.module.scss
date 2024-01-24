@@ -3,16 +3,14 @@
 .wrapper {
   position: relative;
   width: 100%;
-  min-height: 324px;
+  min-height: 300px;
   padding: 2px;
   z-index: 1;
   transition: $cubicBezier;
-  transform: translateY(0);
   flex: 0 0 0;
 
   &.popupIsOpen {
     min-height: 388px;
-    transform: translateY(-40px);
   }
 
   &.isConfirmStatus {
@@ -20,8 +18,11 @@
   }
 
   &.isAllSuccess {
-    transform: translateY(-40px);
-    flex: 0 0 100%;
+    min-height: 446px;
+
+    @media (max-height: $md - 20px) {
+      min-height: 410px;
+    }
   }
 
   .successConfetti {
@@ -94,4 +95,8 @@
   max-width: 200px;
   margin: 0 auto 45px;
   background: $fourth_color;
+
+  @media (max-height: $md - 20px) {
+    margin: 0 auto 20px;
+  }
 }

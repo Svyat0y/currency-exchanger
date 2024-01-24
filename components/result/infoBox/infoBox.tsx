@@ -71,7 +71,7 @@ export const InfoBox: FC<InfoBoxProps> = (
 		}
 
 		window.addEventListener('resize', handleResize)
-		window.addEventListener('scroll', handleScroll)
+		document.body.addEventListener('scroll', handleScroll)
 
 		return () => {
 			if (parentElement) {
@@ -79,7 +79,7 @@ export const InfoBox: FC<InfoBoxProps> = (
 			}
 
 			window.removeEventListener('resize', handleResize)
-			window.removeEventListener('scroll', handleScroll)
+			document.body.removeEventListener('scroll', handleScroll)
 		};
 	}, [fakeBtnRef.current, isAllSuccess, isDepositStatus, isConfirmationStatus, isExchangeStatus])
 
@@ -156,7 +156,7 @@ export const InfoBox: FC<InfoBoxProps> = (
 					popupIsOpen={popupIsOpen}
 					setPopupIsOpen={setPopupIsOpen}
 				/>
-				<FooterInfo active={isConfirmationStatus || isExchangeStatus} handleOpenModal={handleOpenModal}/>
+				<FooterInfo isAllSuccess={isAllSuccess} active={isConfirmationStatus || isExchangeStatus} handleOpenModal={handleOpenModal}/>
 				<ModalContent
 					isModalOpen={isModalOpen}
 					currentModal={currentModal}
@@ -165,7 +165,8 @@ export const InfoBox: FC<InfoBoxProps> = (
 					confirmCount={confirmCount}
 				/>
 				<button ref={fakeBtnRef} className={classNames(styles.fakeBtn, {
-					[styles.active]: !!currentStatus && !isShowRightBox
+					[styles.active]: !!currentStatus && !isShowRightBox,
+					[styles.isAllSuccess]: isAllSuccess,
 				})}></button>
 			</div>
 			<AiBtnWr positionFixedBtn={positionFixedBtn} handleOpenRightBox={handleOpenRightBox} active={!isShowRightBox && !!currentStatus && !isDepositStatus}/>

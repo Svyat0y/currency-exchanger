@@ -8,11 +8,9 @@ import {SendValueBox} from "@/components/header/exchangeInfo/sendValueBox"
 import {useEffect, useState} from "react"
 import {TooltipTrigger} from "@/components/tooltipTrigger/tooltipTrigger"
 import {useNotificationContext} from "@/context/notificationContext"
-import {useContextStatus} from "@/context/statusContext"
 
-export const ExchangeInfo = () => {
+export const ExchangeInfo = ({active}: {active: boolean}) => {
 	const {rateState} = useExchangeContext()
-	const {currentStatus} = useContextStatus()
 	const {setIsOverlay, isOverlay} = useNotificationContext()
 	const [rateStateLs, setRateStateLs] = useState()
 	const [isTooltip, setIsTooltip] = useState(false)
@@ -41,7 +39,7 @@ export const ExchangeInfo = () => {
 	return (
 		<>
 			<div className={classNames(styles.exchangeInfo, {
-				[styles.active]: !!currentStatus,
+				[styles.active]: active,
 				[styles.zIndexUp]: isOverlay
 			})}>
 				<div className={styles.left}>

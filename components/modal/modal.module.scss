@@ -4,9 +4,9 @@
   position: relative;
   max-width: 520px;
   width: 100%;
-  max-height: calc(100% - 40px);
+  max-height: calc(100dvh - 125px);
   box-sizing: border-box;
-  transform: translateY(-50px);
+  transform: translateY(-100px);
   pointer-events: none;
   transition: $cubicBezier;
   overflow: hidden;

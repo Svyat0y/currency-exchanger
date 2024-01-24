@@ -19,7 +19,7 @@ export const ConfettiWrapper: FC<ConfettiWrapperProps> = (
 		numberOfPieces = 200,
 		gravity = 0.05,
 		width = 500,
-		height = 550,
+		height = 500,
 		className,
 	}) => {
 	const {mounted} = useMount(active)

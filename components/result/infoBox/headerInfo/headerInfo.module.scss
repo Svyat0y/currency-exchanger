@@ -4,16 +4,19 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 0;
   opacity: 0;
   pointer-events: none;
   visibility: hidden;
   transition: $cubicBezier;
+  max-height: 0;
 
   &.active {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
+    max-height: 30px;
+    margin-bottom: 20px;
   }
 }
 

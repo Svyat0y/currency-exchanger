@@ -13,11 +13,13 @@
     max-width: 400px;
     padding-top: 20px;
   }
-
   @include lg {
     height: 100%;
     margin-left: 50%;
     transform: translateX(-50%);
+  }
+  @media (max-height: $md - 20px) {
+    padding-top: 0;
   }
 
   &.animStart {
@@ -45,6 +47,11 @@
     pointer-events: none;
     visibility: hidden;
   }
+
+  &.isAllSuccess {
+    max-height: 10px;
+    margin-top: 10px;
+  }
 }
 
 .aiBtn {
@@ -59,6 +66,9 @@
   padding: 0;
   transform: translate(-50%, 0);
   transition: $cubicBezier;
+  @media screen {
+    
+  }
 
   &::before {
     position: absolute;

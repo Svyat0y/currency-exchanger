@@ -11,7 +11,6 @@ type HeaderInfoProps = {
 export const HeaderInfo:FC<HeaderInfoProps> = ({isAllSuccess}) => {
 	const {states} = useContextStatus()
 
-
 	return (
 		<div className={classNames(styles.wrapper, {
 			[styles.active]: !isAllSuccess

@@ -6,20 +6,21 @@ import classNames from "classnames"
 import {Navigation} from "@/components/header/navigation/navigation"
 import {Container} from "@/components/container"
 import Link from "next/link"
-import {useContextStatus} from "@/context/statusContext"
+import {STATUS, useContextStatus} from "@/context/statusContext"
 
 export const Header = () => {
 	const {currentStatus} = useContextStatus()
+	const isAllSuccess = currentStatus === STATUS.success
 	
 	return (
-		<div className={classNames(styles.wrapper, {[styles.active]: !!currentStatus})}>
+		<div className={classNames(styles.wrapper, {[styles.active]: !!currentStatus && !isAllSuccess})}>
 			<Container>
 				<div className={styles.headerContent}>
 					<Link aria-label={'logo'} href={'/'} className={styles.logo}>
 						<span className={styles.logoTitle}>SwapHub</span>
 						<span className={styles.logoDesc}>Crypto Exchange</span>
 					</Link>
-					<ExchangeInfo/>
+					<ExchangeInfo active={!!currentStatus && !isAllSuccess}/>
 					<Navigation/>
 				</div>
 			</Container>

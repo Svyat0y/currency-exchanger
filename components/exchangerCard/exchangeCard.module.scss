@@ -52,7 +52,9 @@
     width: 100%;
     height: 80vh;
     margin-top: 1rem;
+  }
 
+  &.isMenuFirst {
     @include md {
       position: absolute;
       max-height: 500px;
@@ -61,15 +63,23 @@
     @media (min-width: 840px) {
       transform: translate(50%, -100px);
     }
+    @media (max-height: $md - 20px) and (min-width: 840px) {
+      transform: translate(50%, 0px);
+    }
   }
 
   &.isMenuSecond {
     @include md {
       right: 0;
+      position: absolute;
+      max-height: 500px;
       transform: translate(calc(-100vw + (50vw + 50% + 16px)), -100px);
     }
     @media (min-width: 840px) {
       transform: translate(-50%, -100px);
+    }
+    @media (max-height: $md - 20px) and (min-width: 840px) {
+      transform: translate(-50%, 0px);
     }
   }
 }

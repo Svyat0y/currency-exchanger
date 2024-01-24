@@ -23,6 +23,10 @@
     transform: translateY(0);
     max-height: 200px;
   }
+
+  &.isAllSuccess {
+    max-height: 146px;
+  }
 }
 
 .buttonWrapper {

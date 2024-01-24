@@ -8,14 +8,10 @@
   flex-direction: column;
   transform: translateY(130%);
   transition: $cubicBezier;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  padding-top: 0;
   gap: 20px;
   opacity: 0;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
+  padding-bottom: 20px;
 
   @include lg {
     width: 100%;

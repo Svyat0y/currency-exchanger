@@ -99,7 +99,7 @@ export const TransactionContent: FC<TransactionContentProps> = (
 					subText={`${exchangeInfo?.getValue} ${exchangeInfo?.getLabel} sent to your wallet`}
 				/>
 				<Truncate withoutTruncate className={styles.successInfo} text='View on the Blockchain'/>
-				<FooterInfo active={isAllSuccess} handleOpenModal={handleOpenModal}/>
+				<FooterInfo active={isAllSuccess} handleOpenModal={handleOpenModal} isAllSuccess={isAllSuccess}/>
 			</DynamicContent>
 
 		</div>

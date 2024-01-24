@@ -30,7 +30,7 @@ export const InteractionBox: FC<InteractionBoxProps> = (
 			[styles.animStart]: active && mounted
 		})}>
 			<CloseButton onClick={handleCloseInteractionBox}/>
-			<GradientBorder withoutAnim active={true}/>
+			<GradientBorder withoutAnim active/>
 			<div className={styles.content}>
 				<Chat/>
 				<TRexGame/>
