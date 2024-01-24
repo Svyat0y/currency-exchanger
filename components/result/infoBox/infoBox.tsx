@@ -3,7 +3,7 @@ import {HeaderInfo} from "./headerInfo/headerInfo"
 import {TransactionInfo} from "./transactionInfo/transactionInfo"
 import {FooterInfo} from "./footerInfo/footerInfo"
 import classNames from "classnames"
-import {Dispatch, FC, SetStateAction, useEffect, useState} from "react"
+import {Dispatch, FC, SetStateAction, useEffect, useRef, useState} from "react"
 import {STATUS, WAITING_STATUSES} from "@/context/statusContext"
 import {ModalContent} from "@/components/result/infoBox/modalContent/modalContent"
 import {useNotificationContext} from "@/context/notificationContext"
@@ -43,6 +43,47 @@ export const InfoBox: FC<InfoBoxProps> = (
 	const [isModalOpen, setIsModalOpen] = useState(false)
 	const [currentModal, setCurrentModal] = useState(MODALS.faqs)
 	const [popupIsOpen, setPopupIsOpen] = useState(false)
+	const fakeBtnRef = useRef<HTMLButtonElement | null>(null);
+	const [positionFixedBtn, setPositionFixedBtn] = useState<{top: number | null}>({ top: 0 })
+
+	useEffect(() => {
+		const updatePosition = () => {
+			if (fakeBtnRef?.current) {
+				setTimeout(() => {
+					const positionTop = fakeBtnRef?.current && fakeBtnRef.current.getBoundingClientRect().top
+					setPositionFixedBtn({ top: positionTop })
+				})
+			}
+		}
+
+		const handleResize = () => {
+			updatePosition()
+		}
+
+		const handleScroll = () => {
+			updatePosition()
+		}
+
+		const parentElement = document.getElementById('parentElementId')
+
+		if (parentElement) {
+			parentElement.addEventListener('transitionend', updatePosition)
+		}
+
+		window.addEventListener('resize', handleResize)
+		window.addEventListener('scroll', handleScroll)
+
+		return () => {
+			if (parentElement) {
+				parentElement.removeEventListener('transitionend', updatePosition)
+			}
+
+			window.removeEventListener('resize', handleResize)
+			window.removeEventListener('scroll', handleScroll)
+		};
+	}, [fakeBtnRef.current, isAllSuccess, isDepositStatus, isConfirmationStatus, isExchangeStatus])
+
+
 
 	useEffect(() => {
 		let intervalId: any = null
@@ -98,31 +139,36 @@ export const InfoBox: FC<InfoBoxProps> = (
 	}
 
 	return (
-		<div className={classNames(styles.wrapper, {
-			[styles.animStart]: isShowRightBox,
-		})}>
-			<HeaderInfo isAllSuccess={isAllSuccess || popupIsOpen}/>
-			<TransactionInfo
-				confirmCount={confirmCount}
-				isConfirmationLoading={isConfirmationStatus}
-				isExchangeStatus={isExchangeStatus}
-				isDepositStatus={isDepositStatus}
-				exchangeInfo={exchangeInfo}
-				walletAddress={String(walletAddress)}
-				isAllSuccess={isAllSuccess}
-				handleOpenModal={handleOpenModal}
-				popupIsOpen={popupIsOpen}
-				setPopupIsOpen={setPopupIsOpen}
-			/>
-			<FooterInfo active={isConfirmationStatus || isExchangeStatus} handleOpenModal={handleOpenModal}/>
-			<AiBtnWr handleOpenRightBox={handleOpenRightBox} active={!isShowRightBox}/>
-			<ModalContent
-				isModalOpen={isModalOpen}
-				currentModal={currentModal}
-				handleCloseModal={handleCloseModal}
-				isAllSuccess={isAllSuccess}
-				confirmCount={confirmCount}
-			/>
-		</div>
+		<>
+			<div className={classNames(styles.wrapper, {
+				[styles.animStart]: isShowRightBox,
+			})}>
+				<HeaderInfo isAllSuccess={isAllSuccess || popupIsOpen}/>
+				<TransactionInfo
+					confirmCount={confirmCount}
+					isConfirmationLoading={isConfirmationStatus}
+					isExchangeStatus={isExchangeStatus}
+					isDepositStatus={isDepositStatus}
+					exchangeInfo={exchangeInfo}
+					walletAddress={String(walletAddress)}
+					isAllSuccess={isAllSuccess}
+					handleOpenModal={handleOpenModal}
+					popupIsOpen={popupIsOpen}
+					setPopupIsOpen={setPopupIsOpen}
+				/>
+				<FooterInfo active={isConfirmationStatus || isExchangeStatus} handleOpenModal={handleOpenModal}/>
+				<ModalContent
+					isModalOpen={isModalOpen}
+					currentModal={currentModal}
+					handleCloseModal={handleCloseModal}
+					isAllSuccess={isAllSuccess}
+					confirmCount={confirmCount}
+				/>
+				<button ref={fakeBtnRef} className={classNames(styles.fakeBtn, {
+					[styles.active]: !!currentStatus && !isShowRightBox
+				})}></button>
+			</div>
+			<AiBtnWr positionFixedBtn={positionFixedBtn} handleOpenRightBox={handleOpenRightBox} active={!isShowRightBox && !!currentStatus && !isDepositStatus}/>
+		</>
 	)
 }

@@ -70,13 +70,14 @@ export const StatusContextProvider = ({children}: TStatusContext) => {
 	useEffect(() => {
 		const savedStates = JSON.parse(localStorage.getItem('states') || 'null')
 		const currentStatus = localStorage.getItem('currentStatus') || ''
-		if (savedStates || currentStatus) {
-			setStates(savedStates)
-			setCurrentStatus(currentStatus)
-		}
-		else {
+
+		if(currentStatus === STATUS.success) {
 			setStates(statesDate)
 			setCurrentStatus('')
+		}
+		else {
+			setStates(savedStates)
+			setCurrentStatus(currentStatus)
 		}
 	}, [])
 
