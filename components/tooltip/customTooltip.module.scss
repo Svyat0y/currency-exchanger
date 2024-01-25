@@ -12,6 +12,7 @@
   border-radius: 12px;
   color: $white;
   pointer-events: none;
+  z-index: 200;
 
   @include sm {
     transform: translate(-50%, 0px);

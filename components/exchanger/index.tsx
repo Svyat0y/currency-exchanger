@@ -258,8 +258,7 @@ export const Exchanger = ({animStart}: {animStart: boolean}) => {
 						isCalculating={isCalculatingSendValue}
 						handleCloseMenu={handleCloseMenu}
 						isOpenMenu={isFirstMenuOpen}
-						isHided={(isSecondMenuOpen)}
-						isDisabled={isSecondMenuOpen}
+						isOppositeMenuOpen={isSecondMenuOpen}
 						setItem={setSendItem}
 					/>
 					<button aria-label='SWITCH_ARROWS' className={classNames(styles.switchArrows, {
@@ -286,8 +285,7 @@ export const Exchanger = ({animStart}: {animStart: boolean}) => {
 						isCalculatingSendValue={isCalculatingSendValue}
 						handleCloseMenu={handleCloseMenu}
 						isOpenMenu={isSecondMenuOpen}
-						isHided={isFirstMenuOpen}
-						isDisabled={isFirstMenuOpen}
+						isOppositeMenuOpen={isFirstMenuOpen}
 						setItem={setGetItem}
 					/>
 				</div>

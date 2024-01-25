@@ -7,10 +7,12 @@ import {Navigation} from "@/components/header/navigation/navigation"
 import {Container} from "@/components/container"
 import Link from "next/link"
 import {STATUS, useContextStatus} from "@/context/statusContext"
+import {useState} from "react";
 
 export const Header = () => {
 	const {currentStatus} = useContextStatus()
 	const isAllSuccess = currentStatus === STATUS.success
+	const [isOpenNavMenu, setIsOpenNavMenu] = useState(false)
 	
 	return (
 		<div className={classNames(styles.wrapper, {[styles.active]: !!currentStatus && !isAllSuccess})}>
@@ -20,8 +22,8 @@ export const Header = () => {
 						<span className={styles.logoTitle}>SwapHub</span>
 						<span className={styles.logoDesc}>Crypto Exchange</span>
 					</Link>
-					<ExchangeInfo active={!!currentStatus && !isAllSuccess}/>
-					<Navigation/>
+					<ExchangeInfo isOpenNavMenu={isOpenNavMenu} active={!!currentStatus && !isAllSuccess}/>
+					<Navigation setIsOpenNavMenu={setIsOpenNavMenu} isOpenNavMenu={isOpenNavMenu}/>
 				</div>
 			</Container>
 		</div>

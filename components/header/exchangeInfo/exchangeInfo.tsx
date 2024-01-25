@@ -5,17 +5,20 @@ import {useExchangeContext} from "@/context/exchangeContext"
 import {RATES, RATES_TOOLTIP} from "@/components/exchangerCard/cardContent/exchangeCard/rateSwitcher/rateSwitcher"
 import {GetValueBox} from "@/components/header/exchangeInfo/getValueBox"
 import {SendValueBox} from "@/components/header/exchangeInfo/sendValueBox"
-import {useEffect, useState} from "react"
+import {useEffect, useRef, useState} from "react"
 import {TooltipTrigger} from "@/components/tooltipTrigger/tooltipTrigger"
 import {useNotificationContext} from "@/context/notificationContext"
+import {Overlay} from "@/components/overlay/overlay"
+import {ANIMATION_TIME} from "@/app/const"
 
-export const ExchangeInfo = ({active}: {active: boolean}) => {
+export const ExchangeInfo = ({active, isOpenNavMenu}: {active: boolean, isOpenNavMenu: boolean}) => {
 	const {rateState} = useExchangeContext()
 	const {setIsOverlay, isOverlay} = useNotificationContext()
 	const [rateStateLs, setRateStateLs] = useState()
 	const [isTooltip, setIsTooltip] = useState(false)
 	const isFixedRate = rateStateLs === RATES.fixed || rateState === RATES.fixed
 	const ratesInfo = rateState === RATES.fixed ? RATES_TOOLTIP.fixedRate : RATES_TOOLTIP.floatRate
+	const originalZIndex = useRef<string | null>(null)
 
 	useEffect(() => {
 		const rateState = localStorage.getItem('rateState')
@@ -25,6 +28,26 @@ export const ExchangeInfo = ({active}: {active: boolean}) => {
 		}
 
 	}, [rateState])
+
+	useEffect(() => {
+		const element = document.getElementById('exchangeInfo')
+
+		if (isOpenNavMenu) {
+			if (element) {
+				if (originalZIndex.current === null) {
+					originalZIndex.current = element.style.zIndex;
+				}
+				element.style.zIndex = '50'
+			}
+		} else {
+			setTimeout(() => {
+				if (element && originalZIndex.current !== null) {
+					element.style.zIndex = originalZIndex.current;
+					originalZIndex.current = null
+				}
+			}, ANIMATION_TIME)
+		}
+	}, [isOpenNavMenu])
 
 	const handleShowTooltip = () => {
 		setIsTooltip(true)
@@ -38,9 +61,9 @@ export const ExchangeInfo = ({active}: {active: boolean}) => {
 
 	return (
 		<>
-			<div className={classNames(styles.exchangeInfo, {
+			<div id={'exchangeInfo'} className={classNames(styles.exchangeInfo, {
 				[styles.active]: active,
-				[styles.zIndexUp]: isOverlay
+				[styles.zIndexUp]: isOverlay,
 			})}>
 				<div className={styles.left}>
 					<SendValueBox/>
@@ -57,9 +80,7 @@ export const ExchangeInfo = ({active}: {active: boolean}) => {
 					<Icon type={isFixedRate ? 'LOCK' : 'WATER'} fill={isFixedRate ? '#28C600' : 'rgba(0, 0, 0, .3)'}/>
 				</TooltipTrigger>
 			</div>
-			<div className={classNames(styles.tooltipOverlay, {
-				[styles.active]: isTooltip
-			})}></div>
+			<Overlay active={isTooltip} zIndex={116}/>
 		</>
 	)
 }

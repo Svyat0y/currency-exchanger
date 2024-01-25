@@ -15,8 +15,8 @@ const THEMES = {
 	dark: 2
 }
 
-export const Navigation = () => {
-	const [isOpenNavMenu, setIsOpenNavMenu] = useState(false)
+export const Navigation = ({setIsOpenNavMenu, isOpenNavMenu}: {setIsOpenNavMenu: (state: boolean) => void, isOpenNavMenu: boolean}) => {
+
 	const {setIsOverlay} = useNotificationContext()
 	const menuRef = useRef<HTMLDivElement | null>(null)
 	const menuBtnRef = useRef<HTMLButtonElement | null>(null)
@@ -67,7 +67,7 @@ export const Navigation = () => {
 					<NavigationList isVisible={isOpenNavMenu}/>
 				</div>
 			</div>
-			<Overlay active={isOpenNavMenu}/>
+			<Overlay active={isOpenNavMenu} zIndex={121}/>
 		</>
 	)
 }

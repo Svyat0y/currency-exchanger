@@ -1,5 +1,6 @@
 import {FC, ReactNode, createElement, useRef} from "react"
 import {CustomToolTip} from "@/components/tooltip/customTooltip"
+import {useNotificationContext} from "@/context/notificationContext"
 
 type TooltipTriggerProps = {
 	children: ReactNode
@@ -24,13 +25,16 @@ export const TooltipTrigger: FC<TooltipTriggerProps> = (
 		backgroundColor,
 	}) => {
 	const tagRef = useRef<HTMLDivElement | HTMLButtonElement | null>(null)
+	const {setIsOverlay} = useNotificationContext()
 
 	const handleHoverToolTip = () => {
 		handleShowTooltip()
+		setIsOverlay(true)
 	}
 
 	const handleRemoveToolTip = () => {
 		handleRemoveTooltip()
+		setIsOverlay(false)
 	}
 
 	const Element = createElement(tag, {
@@ -46,7 +50,7 @@ export const TooltipTrigger: FC<TooltipTriggerProps> = (
 			{Element}
 			{Element &&
         <CustomToolTip backgroundColor={backgroundColor} isTooltip={isTooltip}>
-	        {tooltipContent}
+					{tooltipContent}
         </CustomToolTip>
 			}
 		</div>

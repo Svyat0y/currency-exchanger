@@ -21,13 +21,12 @@ type ExchangerCardProps = {
 	setIsCardMenu: () => void
 	handleCloseMenu: () => void
 	isOpenMenu: boolean
-	isHided: boolean
-	isDisabled: boolean
 	cardName: string
 	setItem: (item: Item) => void
 	isCalculatingSendValue?: boolean
 	isTypingCard: boolean
 	isValueError: boolean
+	isOppositeMenuOpen: boolean
 }
 
 export const ExchangerCard: FC<ExchangerCardProps> = (
@@ -47,13 +46,12 @@ export const ExchangerCard: FC<ExchangerCardProps> = (
 		setIsCardMenu,
 		handleCloseMenu,
 		isOpenMenu,
-		isHided,
-		isDisabled,
 		cardName,
 		setItem,
 		isCalculatingSendValue,
 		isTypingCard,
 		isValueError,
+		isOppositeMenuOpen,
 	}) => {
 	const [popupIsOpen, setPopupIsOpen] = useState(false)
 
@@ -94,8 +92,7 @@ export const ExchangerCard: FC<ExchangerCardProps> = (
 
 	return (
 		<div className={classNames(styles.wrapper, styles[cardName], {
-			[styles.hided]: isHided,
-			[styles.disabled]: isDisabled,
+			[styles.disabled]: isOppositeMenuOpen,
 			[styles.unActive]: isCalculating,
 			[styles.isMenuFirst]: isOpenMenu && isFirstCard,
 			[styles.isMenuSecond]: isOpenMenu && isSecondCard

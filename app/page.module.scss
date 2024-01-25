@@ -6,6 +6,7 @@
   align-items: flex-start;
   width: 100%;
   padding-bottom: 20px;
+  padding-top: 20px;
 
   @include sm {
     align-items: initial;
@@ -13,10 +14,10 @@
   }
 
   @include md {
-    padding-top: 13vh;
+    padding-top: 12vh;
   }
 
-  @media (max-height: $md - 20px) {
+  @media (min-width: $md) and (max-height: $md - 20px) {
     padding-top: 20px;
   }
 }

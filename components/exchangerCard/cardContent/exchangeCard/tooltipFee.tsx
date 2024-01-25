@@ -1,27 +1,21 @@
-import {FC, useEffect, useState} from "react"
+import {FC} from "react"
 import styles from './exhangeCard.module.scss'
 import classNames from "classnames"
+import {Portal} from "@/components/portal"
 
 type TooltipFeeProps = {
-	isLocked: boolean
+	active: boolean
+	toolTipText?: string
+	tooltipPosition: {top: number, left: number}
 }
 
-const toolTipsInfo = {
-	locked: '+0,5% fee',
-	unlocked: '+0% fee'
-}
+export const TooltipFee: FC<TooltipFeeProps> = ({active, toolTipText = 'Floating or Fixed rate', tooltipPosition}) => {
 
-export const TooltipFee: FC<TooltipFeeProps> = ({isLocked}) => {
-	const [toolTipText, setToolTipText] = useState('')
-
-	useEffect(() => {
-		isLocked
-			? setToolTipText(toolTipsInfo.locked)
-			: setToolTipText(toolTipsInfo.unlocked)
-
-	}, [isLocked])
-
-	return <p className={classNames(styles.tooltipFee, {
-		[styles.active]: isLocked
-	})}>{toolTipText}</p>
+	return (
+		<Portal>
+			<p className={classNames(styles.tooltipFee, {
+				[styles.active]: active
+			})} style={{top: tooltipPosition.top, left: tooltipPosition.left}}>{toolTipText}</p>
+		</Portal>
+	)
 }

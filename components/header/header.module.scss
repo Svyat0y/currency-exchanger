@@ -6,7 +6,7 @@
   left: 0;
   right: 0;
   transition: $cubicBezier;
-  z-index: 500;
+  z-index: 100;
   background: $white;
 
   &::before, &::after {

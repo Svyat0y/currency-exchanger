@@ -10,7 +10,7 @@ import {useNotificationContext} from "@/context/notificationContext"
 
 export const NotificationContainer = () => {
 	const [isMounted, setIsMounted] = useState(false)
-	const {rateState, setRateState} = useExchangeContext()
+	const {rateState} = useExchangeContext()
 	const {isNotification, setIsNotification} = useNotificationContext()
 	const isFixedRate = rateState === RATES.fixed
 

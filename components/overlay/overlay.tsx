@@ -11,13 +11,18 @@ type OverlayProps = {
 export const Overlay: FC<OverlayProps> = ({zIndex = 30, active, children}) => {
 
 	useEffect(() => {
-		if (active) {
-			const originalStyle = window.getComputedStyle(document.body).overflow
-			document.body.style.overflow = 'hidden'
+		let originalStyle: string
 
-			return () => {
-				document.body.style.overflow = originalStyle
-			}
+		if (active) {
+			originalStyle = window.getComputedStyle(document.body).overflow
+			document.body.style.overflow = 'hidden'
+		}
+		else {
+			document.body.style.overflow = 'auto'
+		}
+
+		return () => {
+			document.body.style.overflow = originalStyle
 		}
 	}, [active])
 
