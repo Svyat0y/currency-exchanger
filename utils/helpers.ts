@@ -9,3 +9,17 @@ export const formatTime = (time: number) => {
 	const seconds = time % 60
 	return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`
 }
+
+export const debounce = (func: any, wait: number) => {
+	let timeout: any
+
+	return function executedFunction(...args: any[]) {
+		const later = () => {
+			clearTimeout(timeout)
+			func(...args)
+		}
+
+		clearTimeout(timeout)
+		timeout = setTimeout(later, wait)
+	}
+}

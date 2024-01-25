@@ -63,10 +63,6 @@ export const MenuCard: FC<MenuCard> = ({isOpenMenu, handleCloseMenu, setItem, se
 		else setPopupIsOpen(false)
 	}, [networkMenuIsOpen])
 
-	const handleChangeInput = (value: string) => {
-		setSearchInput(value)
-	}
-
 	const handlePopularItem = (item: Item) => {
 		setItem(item)
 		handleCloseMenu()
@@ -105,7 +101,7 @@ export const MenuCard: FC<MenuCard> = ({isOpenMenu, handleCloseMenu, setItem, se
 			</div>
 			<Search className={classNames({
 				[styles.noActive]: popupIsOpen,
-			})} searchInput={searchInput} handleChangeInput={handleChangeInput}/>
+			})} setSearchInput={setSearchInput} parentRef={wrapperRef}/>
 			<Network
 				setNetworkMenuIsOpen={setNetworkMenuIsOpen}
 				networkMenuIsOpen={networkMenuIsOpen}

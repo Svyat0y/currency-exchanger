@@ -1,7 +1,6 @@
 import styles from './cardContent.module.scss'
 import {FC} from "react"
 import {Item} from "@/types/types"
-import classNames from "classnames"
 import {ExchangeCard} from "@/components/exchangerCard/cardContent/exchangeCard"
 import {MenuCard} from "@/components/exchangerCard/cardContent/menuCard"
 
@@ -33,9 +32,7 @@ export const CardContent: FC<CardContentProps> = (
 	const {isOpenMenu, handleCloseMenu, setItem, setPopupIsOpen, popupIsOpen} = props
 
 	return (
-		<div className={classNames(styles.wrapper, {
-			[styles.isOpenMenu]: isOpenMenu,
-		})}>
+		<div className={styles.wrapper}>
 			<ExchangeCard isOpenMenu={isOpenMenu} {...props}/>
 			<MenuCard
 				setItem={setItem}

@@ -8,8 +8,4 @@
   position: relative;
   z-index: 2;
   transition: $cubicBezier;
-
-  &.isOpenMenu {
-    padding: 32px 0;
-  }
 }

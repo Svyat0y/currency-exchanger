@@ -34,6 +34,7 @@
   flex-direction: column;
   gap: 28px 0;
   transition: $cubicBezier;
+  padding-top: 32px;
 
   .top {
     display: flex;
