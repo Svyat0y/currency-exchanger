@@ -33,7 +33,10 @@ export const NavigationBox: FC<NavigationBoxProps> = forwardRef<HTMLDivElement |
 			[styles.isShadow]: isShadow,
 			[styles.isBorder]: isBorder,
 			[styles.isNoSwitcher]: isNoSwitcher,
-		})} ref={ref} onMouseEnter={!isTouchDevice() ? handleShowTooltip : undefined} onMouseLeave={!isTouchDevice() ? handleCloseTooltip : undefined}>
+		})} ref={ref}
+		     onMouseEnter={typeof window !== 'undefined' && !isTouchDevice() ? handleShowTooltip : undefined}
+		     onMouseLeave={typeof window !== 'undefined' && !isTouchDevice() ? handleCloseTooltip : undefined}
+		>
 			{children}
 		</div>
 	)
