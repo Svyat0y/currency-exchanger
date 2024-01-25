@@ -7,6 +7,7 @@ import classNames from "classnames"
 import {RATES, RateSwitcher} from "@/components/exchangerCard/cardContent/exchangeCard/rateSwitcher/rateSwitcher"
 import {useExchangeContext} from "@/context/exchangeContext"
 import {useNotificationContext} from "@/context/notificationContext"
+import {DotLoader} from "@/components/loader/dotLoader";
 
 type ExchangeCardProps = CardContentProps
 
@@ -48,30 +49,37 @@ export const ExchangeCard: FC<ExchangeCardProps> = (
 		})}>
 			<div className={styles.header}>
 				<CustomButton onClick={handleOpenMenu} text={item?.shortLabel} icon={item?.icon}/>
-				{isValueError && !isSecondCard && isTypingCard ? <span className={styles.minError}>Min {item.min} {item.shortLabel}</span>
+				{isValueError && !isSecondCard && isTypingCard ?
+					<span className={styles.minError}>Min {item.min} {item.shortLabel}</span>
 					: <div className={classNames(styles.cardNavWrapper)}>
-						{(isCalculatingSendValue && isSecondCard || isCalculating && isSecondCard) &&
-              <span className={classNames(styles.skeleton, styles.cardNavSkeleton)}></span>}
-						<div className={classNames(styles.navContent, {
-							[styles.isVisible]: isCalculated && isSecondCard,
-						})}>
-							{!isCalculatingSendValue && !isCalculating && !isOpenMenu && <span className={styles.additionalInfo}>{additionalInfo}</span>}
-							{isSecondCard && !isOpenMenu && <RateSwitcher withTooltip rateState={rateState} setRateState={setRateState} setIsNotification={setIsNotification}/>}
-						</div>
+						{(isCalculatingSendValue && isSecondCard || isCalculating && isSecondCard)
+							? <DotLoader className={classNames(styles.loader, styles.cardNavSkeleton)}/>
+							: <div className={classNames(styles.navContent, {
+								[styles.isVisible]: isCalculated && isSecondCard,
+							})}>
+								{!isCalculatingSendValue && !isCalculating && !isOpenMenu &&
+                  <span className={styles.additionalInfo}>{additionalInfo}</span>}
+								{isSecondCard && !isOpenMenu &&
+                  <RateSwitcher withTooltip rateState={rateState} setRateState={setRateState}
+                                setIsNotification={setIsNotification}/>}
+							</div>
+						}
 					</div>}
 			</div>
 			<div className={styles.bottom}>
 				<span className={styles.titleDesc}>{cardTitle}</span>
 				<div className={styles.inputWrapper}>
-					{isCalculating ? <span className={styles.skeleton}></span> : ''}
-					<Input
-						inputRef={inputRef}
-						id={'Amount'}
-						value={value}
-						handleChangeInput={handleInput}
-						placeholder='Enter amount'
-						isFixedRate={isFixedRate && isSecondCard}
-					/>
+					{isCalculating
+						? <DotLoader className={styles.loader}/>
+						: <Input
+							inputRef={inputRef}
+							id={'Amount'}
+							value={value}
+							handleChangeInput={handleInput}
+							placeholder='Enter amount'
+							isFixedRate={isFixedRate && isSecondCard}
+						/>
+					}
 				</div>
 			</div>
 		</div>

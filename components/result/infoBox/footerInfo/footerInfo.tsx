@@ -39,7 +39,7 @@ export const FooterInfo:FC<FooterInfoProps> = ({active, handleOpenModal, isAllSu
 							<Icon type={item.icon}/>
 							{item.label}
 						</span>
-						<Icon type='ARROW_RIGHT_UP'/>
+						<span className={styles.iconWrapper}><Icon type='ARROW_RIGHT_UP'/></span>
 					</button>
 				)
 			})}

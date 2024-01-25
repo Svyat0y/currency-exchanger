@@ -13,7 +13,7 @@
   transform: translateY(-50px);
   transition: $cubicBezier;
   max-height: 0;
-  margin-bottom: 0;
+  margin-bottom: 10px;
 
   &.active {
     opacity: 1;
@@ -21,15 +21,17 @@
     visibility: visible;
     pointer-events: auto;
     transform: translateY(0);
-    max-height: 200px;
+    max-height: 160px;
   }
 
   &.isAllSuccess {
     max-height: 146px;
+    margin-bottom: 0;
   }
 }
 
 .buttonWrapper {
+  position: relative;
   display: flex;
   width: 100%;
   justify-content: space-between;
@@ -37,10 +39,65 @@
   gap: 12px;
   padding: 14px 0;
   border-bottom: 1px solid $fourth_color;
-  cursor: pointer;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 35%;
+    bottom: 0;
+    width: 30%;
+    height: 1px;
+    background-color: black;
+    opacity: 0;
+    transition: .3s ease-in-out all;
+  }
+
+  &:hover {
+    .groupLeft {
+      transform: translateY(-2px);
+    }
+
+    .iconWrapper {
+      border: 1.5px solid rgba(0, 0, 0, 1);
+      transition: .3s ease-in-out all;
+      transform: rotate(0) translateY(-2px);
+
+      path {
+        fill: rgba(0, 0, 0, 1);
+      }
+    }
+
+    &::before {
+      width: 100%;
+      left: 0;
+      opacity: 1;
+    }
+  }
 
   &:last-child {
     border: none;
+  }
+}
+
+.iconWrapper {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid rgba(0, 0, 0, 0);
+  border-radius: 50%;
+  transition: .3s ease-in-out all;
+  transform: rotate(45deg);
+
+  svg {
+    width: 16px;
+    height: 16px;
+
+    path {
+      fill: rgba(0, 0, 0, .3);
+      transition: .3s ease-in-out all;
+    }
   }
 }
 
@@ -50,4 +107,6 @@
   gap: 12px;
   font-size: 14px;
   font-weight: 700;
+  cursor: pointer;
+  transition: .3s ease-in-out all;
 }

@@ -46,14 +46,12 @@
   gap: 8px;
   opacity: 0;
   pointer-events: none;
-  transform: translateY(10px);
   transition: $cubicBezier;
 
   &.isVisible {
     opacity: 1;
     pointer-events: auto;
     visibility: visible;
-    transform: translateY(0);
   }
 }
 
@@ -76,6 +74,7 @@
   max-width: 300px;
   position: relative;
   font-size: 24px;
+  min-height: 28px;
 }
 
 .lockIcon {
@@ -113,37 +112,16 @@
   }
 }
 
-.skeleton {
+.loader {
   position: absolute;
   top: 0;
   left: 0;
-  display: block;
   height: 100%;
   width: 100%;
-  background: linear-gradient(90deg, #f4f5f6, #dee0e0);
-  border-radius: 5px;
-  overflow: hidden;
-  transition: .3s ease;
-  animation: skeletonBg 2s infinite linear;
-  background-size: 400% 400%;
   z-index: 100;
 }
 
 .cardNavSkeleton {
-  border-radius: 12px;
   right: 0;
   left: initial;
-}
-
-
-@keyframes skeletonBg {
-  0% {
-    background-position: 0% 100%;
-  }
-  50% {
-    background-position: 100% 0%;
-  }
-  100% {
-    background-position: 0% 100%;
-  }
 }

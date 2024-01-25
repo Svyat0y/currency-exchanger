@@ -15,14 +15,19 @@
   z-index: 30;
   transition: $cubicBezier;
   top: 12px;
-  margin-left: -15px;
-  max-width: 360px;
+  max-width: 100%;
+  margin-left: 0;
+
+  @include md {
+    max-width: 360px;
+  }
 
   &.isSticky {
-    max-width: 320px;
+    margin-left: -15px;
+    max-width: calc(100% - 10px);
     background: rgba(0, 0, 0, .05);
     color: black;
-    backdrop-filter: blur(4px);
+    backdrop-filter: blur(10px);
     border: none;
 
     input::placeholder {

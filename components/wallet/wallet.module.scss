@@ -46,8 +46,8 @@
 
 .walletError {
   position: absolute;
-  bottom: 10px;
-  left: 20px;
+  bottom: 50px;
+  left: 15px;
   background: linear-gradient(60deg, #EF633BFF, #D013AAFF);
   -webkit-background-clip: text;
   background-clip: text;
@@ -56,6 +56,11 @@
   font-size: 14px;
   transition: $cubicBezier;
   opacity: 0;
+
+  @include md {
+    bottom: 10px;
+    left: 20px;
+  }
 
   &.active {
     opacity: 1;
