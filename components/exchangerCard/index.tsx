@@ -91,7 +91,7 @@ export const ExchangerCard: FC<ExchangerCardProps> = (
 	}
 
 	return (
-		<div className={classNames(styles.wrapper, styles[cardName], {
+		<div id={'animCard'} className={classNames(styles.wrapper, styles[cardName], {
 			[styles.disabled]: isOppositeMenuOpen,
 			[styles.unActive]: isCalculating,
 			[styles.isMenuFirst]: isOpenMenu && isFirstCard,

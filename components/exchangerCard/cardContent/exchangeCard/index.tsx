@@ -61,7 +61,7 @@ export const ExchangeCard: FC<ExchangeCardProps> = (
                   <span className={styles.additionalInfo}>{additionalInfo}</span>}
 								{isSecondCard && !isOpenMenu &&
                   <RateSwitcher withTooltip rateState={rateState} setRateState={setRateState}
-                                setIsNotification={setIsNotification}/>}
+                                setIsNotification={setIsNotification} isOpenMenu={isOpenMenu}/>}
 							</div>
 						}
 					</div>}

@@ -36,6 +36,7 @@ export const Search: FC<SearchProps> = ({setSearchInput, className, parentRef}) 
 				placeholder='Type a currency or ticker'
 				value={localState}
 				inputRef={inputRef}
+				autocomplete={'off'}
 			/>
 		</div>
 	)

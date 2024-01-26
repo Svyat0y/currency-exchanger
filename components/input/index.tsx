@@ -12,6 +12,7 @@ type InputProps = {
 	inputRef: RefObject<HTMLInputElement> | null
 	onFocus?: () => void
 	isFixedRate?: boolean
+	autocomplete?: string
 }
 
 export const Input: FC<InputProps> = (
@@ -25,6 +26,7 @@ export const Input: FC<InputProps> = (
 		onFocus,
 		inputRef,
 		isFixedRate,
+		autocomplete,
 		...rest
 	}) => {
 
@@ -39,6 +41,7 @@ export const Input: FC<InputProps> = (
 			<label className={styles.inputLabel} htmlFor={id}></label>
 			<input
 				onFocus={onFocus}
+				autoComplete={autocomplete}
 				aria-label={id}
 				ref={inputRef}
 				className={classNames(styles.input, className, {[styles.isFixed]: isFixedRate})}

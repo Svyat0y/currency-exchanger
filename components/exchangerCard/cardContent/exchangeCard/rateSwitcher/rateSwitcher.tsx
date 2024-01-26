@@ -3,6 +3,7 @@ import {IconButton} from "@/components/buttons/iconButton/iconButton"
 import {FC, useEffect, useRef, useState} from "react"
 import {TooltipFee} from "@/components/exchangerCard/cardContent/exchangeCard/tooltipFee"
 import {useNotificationContext} from "@/context/notificationContext"
+import {ANIMATION_TIME} from "@/app/const"
 
 export const RATES = {
 	floating: 1,
@@ -19,15 +20,25 @@ type RateSwitcherProps = {
 	setRateState: (rate: number) => void
 	setIsNotification: (state: boolean) => void
 	withTooltip?: boolean
+	isOpenMenu?: boolean
 }
 
-export const RateSwitcher: FC<RateSwitcherProps> = ({rateState, setRateState, setIsNotification, withTooltip = false}) => {
+export const RateSwitcher: FC<RateSwitcherProps> = ({rateState, setRateState, setIsNotification, withTooltip = false, isOpenMenu}) => {
 	const isFixedRate = rateState === RATES.fixed
 	const isFloatingRate = rateState === RATES.floating
 	const {setIsOverlay} = useNotificationContext()
 	const [isTooltip, setIsTooltip] = useState(false)
 	const navBoxRef = useRef<HTMLDivElement | null>(null)
 	const [tooltipPosition, setTooltipPosition] = useState({top: 0, left: 0})
+	const [cardIsClosed, setCardIsClosed] = useState(false)
+
+	useEffect(() => {
+		if(!isOpenMenu) {
+			setTimeout(() => {
+				setCardIsClosed(true)
+			}, ANIMATION_TIME)
+		}
+	})
 
 	const handleFixedRate = () => {
 		setRateState(RATES.fixed)
@@ -77,7 +88,7 @@ export const RateSwitcher: FC<RateSwitcherProps> = ({rateState, setRateState, se
 			window.removeEventListener('resize', handleResizeOrScroll)
 			document.body.removeEventListener('scroll', handleResizeOrScroll)
 		}
-	}, [navBoxRef])
+	}, [cardIsClosed])
 
 	useEffect(() => {
 		const rateFromLs = localStorage.getItem('rateState')
@@ -93,7 +104,7 @@ export const RateSwitcher: FC<RateSwitcherProps> = ({rateState, setRateState, se
 				<IconButton icon="WATER" onClick={handleFloatRate} active={isFloatingRate}/>
 				<IconButton icon="LOCK" fill={isFixedRate ? '#28C600' : ''} onClick={handleFixedRate} active={isFixedRate}/>
 			</NavigationBox>
-			<TooltipFee active={isTooltip} tooltipPosition={tooltipPosition}/>
+			<TooltipFee active={isTooltip && cardIsClosed} tooltipPosition={tooltipPosition}/>
 		</>
 	)
 }
