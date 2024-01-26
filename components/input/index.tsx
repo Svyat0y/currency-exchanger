@@ -26,7 +26,7 @@ export const Input: FC<InputProps> = (
 		onFocus,
 		inputRef,
 		isFixedRate,
-		autocomplete,
+		autocomplete = 'on',
 		...rest
 	}) => {
 
