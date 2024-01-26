@@ -13,9 +13,8 @@
 
   &.isOpen {
     transform: scale(.90);
-
-    width: 16px;
-    height: 16px;
+    width: 26px;
+    height: 26px;
 
     .burgerBox {
       &:nth-child(1), &:nth-child(3) {
@@ -24,13 +23,13 @@
         transform-origin: left;
       }
       &:nth-child(1) {
-        transform: rotate(45deg) translateY(-3px) translateX(1px);
+        transform: rotate(45deg) translateY(-4px) translateX(.5px);
       }
       &:nth-child(2), &:nth-child(4) {
         display: none;
       }
       &:nth-child(3) {
-        transform: rotate(-45deg) translateY(3px) translateX(1px);
+        transform: rotate(-45deg) translateY(4px) translateX(.5px);
       }
     }
   }
