@@ -18,6 +18,9 @@
     padding-top: 0;
     flex-direction: row;
   }
+  @include lg3 {
+    align-items: flex-start;
+  }
 
   &.animStart {
     opacity: 1;

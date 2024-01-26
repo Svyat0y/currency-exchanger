@@ -97,7 +97,7 @@ export const InfoBox: FC<InfoBoxProps> = (
 
 			intervalId = window.setInterval(() => {
 				setConfirmCount((prevCount) => prevCount + 1)
-			}, 300000)
+			}, 3000)
 		}
 
 		return () => {
@@ -156,7 +156,7 @@ export const InfoBox: FC<InfoBoxProps> = (
 					popupIsOpen={popupIsOpen}
 					setPopupIsOpen={setPopupIsOpen}
 				/>
-				<FooterInfo isAllSuccess={isAllSuccess} active={isConfirmationStatus || isExchangeStatus} handleOpenModal={handleOpenModal}/>
+				{!isAllSuccess && <FooterInfo isAllSuccess={isAllSuccess} active={isConfirmationStatus || isExchangeStatus} handleOpenModal={handleOpenModal}/>}
 				<ModalContent
 					isModalOpen={isModalOpen}
 					currentModal={currentModal}

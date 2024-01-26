@@ -58,7 +58,7 @@ export const TransactionContent: FC<TransactionContentProps> = (
 			<DynamicContent
 				active={isDepositStatus && !isAllSuccess}
 				currentScreen={isDepositStatus}
-				nextStep={{step: WAITING_STATUSES.confirmations, status: STATUS.loading, delay: 300000}}
+				nextStep={{step: WAITING_STATUSES.confirmations, status: STATUS.loading, delay: 30000}}
 				isChangeToFixedRate
 			>
 				<IconGif gif={travelExplore}/>
@@ -80,7 +80,7 @@ export const TransactionContent: FC<TransactionContentProps> = (
 			<DynamicContent
 				active={isExchangeStatus && !isAllSuccess}
 				currentScreen={isExchangeStatus}
-				nextStep={{step: WAITING_STATUSES.exchange, status: STATUS.success, delay: 220000}}
+				nextStep={{step: WAITING_STATUSES.exchange, status: STATUS.success, delay: 22000}}
 			>
 				<IconGif gif={rocketAnim}/>
 				<InfoTitle
