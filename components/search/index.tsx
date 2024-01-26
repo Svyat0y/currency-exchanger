@@ -10,9 +10,10 @@ type SearchProps = {
 	setSearchInput: (value: string) => void
 	className: string
 	parentRef: Ref<HTMLDivElement> | null
+	cardTitle: string
 }
 
-export const Search: FC<SearchProps> = ({setSearchInput, className, parentRef}) => {
+export const Search: FC<SearchProps> = ({setSearchInput, className, parentRef, cardTitle}) => {
 	const inputRef = useRef<HTMLInputElement | null>(null)
 	const container = useSticky<HTMLDivElement>(parentRef, 60)
 	const [localState, setLocalState] = useState('')
@@ -31,7 +32,7 @@ export const Search: FC<SearchProps> = ({setSearchInput, className, parentRef}) 
 		})}>
 			<Image src={'./icons/search.svg'} alt={''} width={16} height={16}/>
 			<Input
-				id='search'
+				id={cardTitle + 'search'}
 				handleChangeInput={handleInputChange}
 				placeholder='Type a currency or ticker'
 				value={localState}

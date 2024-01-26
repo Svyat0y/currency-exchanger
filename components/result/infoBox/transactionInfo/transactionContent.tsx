@@ -61,7 +61,7 @@ export const TransactionContent: FC<TransactionContentProps> = (
 				nextStep={{step: WAITING_STATUSES.confirmations, status: STATUS.loading, delay: 30000}}
 				isChangeToFixedRate
 			>
-				<IconGif gif={travelExplore}/>
+				<IconGif gif={travelExplore} alt={'travelExplore'}/>
 				<InfoTitle
 					renderText={<>Send <GradientText isUppercase>{exchangeInfo?.sendValue} {exchangeInfo?.sendLabel}</GradientText> to the address below</>}
 					subText='Waiting for your deposit...'
@@ -73,7 +73,7 @@ export const TransactionContent: FC<TransactionContentProps> = (
 				active={isConfirmationLoading && !isAllSuccess}
 				currentScreen={isConfirmationLoading}
 			>
-				<IconGif gif={earthAnim}/>
+				<IconGif gif={earthAnim} alt={'earthAnim'}/>
 				<InfoTitle renderText={<>Confirming your deposit</>} subText={<span>Confirmations {confirmCount} / 10</span>}/>
 			</DynamicContent>
 
@@ -82,7 +82,7 @@ export const TransactionContent: FC<TransactionContentProps> = (
 				currentScreen={isExchangeStatus}
 				nextStep={{step: WAITING_STATUSES.exchange, status: STATUS.success, delay: 22000}}
 			>
-				<IconGif gif={rocketAnim}/>
+				<IconGif gif={rocketAnim} alt={'rocketAnim'}/>
 				<InfoTitle
 					renderText={<>Sending <GradientText isUppercase>{exchangeInfo?.getLabel}</GradientText> to your wallet</>}
 					subText='It usually takes 2-5 minutes'
@@ -93,7 +93,7 @@ export const TransactionContent: FC<TransactionContentProps> = (
 				active={isAllSuccess}
 				currentScreen={isAllSuccess}
 			>
-				<IconGif gif={heartAnim}/>
+				<IconGif gif={heartAnim} alt={'heartAnim'}/>
 				<InfoTitle
 					renderText={<><GradientText>Yey! Exchange is done</GradientText></>}
 					subText={`${exchangeInfo?.getValue} ${exchangeInfo?.getLabel} sent to your wallet`}

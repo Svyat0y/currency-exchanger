@@ -29,7 +29,7 @@ export const CardContent: FC<CardContentProps> = (
 	{
 		...props
 	}) => {
-	const {isOpenMenu, handleCloseMenu, setItem, setPopupIsOpen, popupIsOpen} = props
+	const {isOpenMenu, handleCloseMenu, setItem, setPopupIsOpen, popupIsOpen, cardTitle} = props
 
 	return (
 		<div className={styles.wrapper}>
@@ -40,6 +40,7 @@ export const CardContent: FC<CardContentProps> = (
 				isOpenMenu={isOpenMenu}
 				setPopupIsOpen={setPopupIsOpen}
 				popupIsOpen={popupIsOpen}
+				cardTitle={cardTitle}
 			/>
 		</div>
 	)

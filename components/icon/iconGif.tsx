@@ -4,12 +4,13 @@ import {FC} from "react"
 
 type IconGifProps = {
 	gif: StaticImageData
+	alt: string
 }
 
-export const IconGif: FC<IconGifProps> = ({gif}) => {
+export const IconGif: FC<IconGifProps> = ({gif, alt }) => {
 	return (
 		<div className={styles.wrapper}>
-			<Image src={gif} alt={'travelExplore'}/>
+			<Image src={gif} alt={alt}/>
 		</div>
 	)
 }

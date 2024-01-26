@@ -19,6 +19,7 @@ type MenuCard = {
 	setItem: (item: Item) => void
 	setPopupIsOpen: (state: boolean) => void
 	popupIsOpen: boolean
+	cardTitle: string
 }
 
 export type TListObj = Record<string, string>
@@ -32,7 +33,7 @@ export const LIST: TList = [
 	{value: 'tronTrc20', label: 'Tron TRC 20', icon: tronIcon},
 ]
 
-export const MenuCard: FC<MenuCard> = ({isOpenMenu, handleCloseMenu, setItem, setPopupIsOpen, popupIsOpen}) => {
+export const MenuCard: FC<MenuCard> = ({isOpenMenu, handleCloseMenu, setItem, setPopupIsOpen, popupIsOpen, cardTitle}) => {
 	const [searchInput, setSearchInput] = useState('')
 	const [networkMenuIsOpen, setNetworkMenuIsOpen] = useState(false)
 	const [selectedNetwork, setSelectedNetwork] = useState(LIST[0])
@@ -101,7 +102,7 @@ export const MenuCard: FC<MenuCard> = ({isOpenMenu, handleCloseMenu, setItem, se
 			</div>
 			<Search className={classNames({
 				[styles.noActive]: popupIsOpen,
-			})} setSearchInput={setSearchInput} parentRef={wrapperRef}/>
+			})} setSearchInput={setSearchInput} parentRef={wrapperRef} cardTitle={cardTitle}/>
 			<Network
 				setNetworkMenuIsOpen={setNetworkMenuIsOpen}
 				networkMenuIsOpen={networkMenuIsOpen}

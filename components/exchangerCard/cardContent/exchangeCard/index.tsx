@@ -73,7 +73,7 @@ export const ExchangeCard: FC<ExchangeCardProps> = (
 						? <DotLoader className={styles.loader}/>
 						: <Input
 							inputRef={inputRef}
-							id={'Amount'}
+							id={cardTitle}
 							value={value}
 							handleChangeInput={handleInput}
 							placeholder='Enter amount'
