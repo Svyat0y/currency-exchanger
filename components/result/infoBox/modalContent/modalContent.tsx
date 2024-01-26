@@ -55,7 +55,7 @@ export const ModalContent: FC<ModalContentProps> = ({isModalOpen, handleCloseMod
 	if(!mounted && !isModalOpen) return null
 
 	return (
-		<Modal isModalOpen={isModalOpen && mounted} handleCloseModal={handleCloseModal}>
+		<Modal isModalOpen={isModalOpen && mounted} handleCloseModal={handleCloseModal} isNoScroll={currentModal !== MODALS.faqs}>
 			{currentModal === MODALS.transactions && <Transactions/>}
 			{currentModal === MODALS.logs && <Logs displayedLogs={displayedLogs} isAllSuccess={isAllSuccess} confirmCount={confirmCount}/>}
 			{currentModal === MODALS.faqs && <Faqs/>}

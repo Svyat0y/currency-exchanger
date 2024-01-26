@@ -28,11 +28,13 @@
   background: $white;
   height: auto;
   border-radius: 20px;
-  overflow-y: auto;
+  overflow-x: hidden;
   padding: 2rem;
 
-  &::-webkit-scrollbar {
-    display: none;
+  &.isNoScroll {
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 }
 

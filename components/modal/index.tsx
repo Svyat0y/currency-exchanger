@@ -11,9 +11,10 @@ type ModalProps = {
 	children: ReactNode
 	isModalOpen: boolean
 	handleCloseModal: () => void
+	isNoScroll: boolean
 }
 
-export const Modal: FC<ModalProps> = ({children, isModalOpen, handleCloseModal}) => {
+export const Modal: FC<ModalProps> = ({children, isModalOpen, handleCloseModal, isNoScroll}) => {
 	const modalRef = useRef<HTMLDivElement | null>(null)
 	useOnClickOutside(modalRef, handleCloseModal)
 
@@ -25,7 +26,7 @@ export const Modal: FC<ModalProps> = ({children, isModalOpen, handleCloseModal})
 				})} ref={modalRef}>
 						<CloseButton className={styles.modalClose} onClick={handleCloseModal}/>
 						<GradientBorder withoutAnim isIgnoredOverlay active={true}/>
-					<div className={classNames(styles.contentWrapper)}>
+					<div className={classNames(styles.contentWrapper, {[styles.isNoScroll]: isNoScroll})}>
 						<div className={styles.content}>
 							{children}
 						</div>
