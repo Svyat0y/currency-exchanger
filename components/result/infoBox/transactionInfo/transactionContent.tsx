@@ -58,7 +58,7 @@ export const TransactionContent: FC<TransactionContentProps> = (
 			<DynamicContent
 				active={isDepositStatus && !isAllSuccess}
 				currentScreen={isDepositStatus}
-				nextStep={{step: WAITING_STATUSES.confirmations, status: STATUS.loading, delay: 30000}}
+				nextStep={{step: WAITING_STATUSES.confirmations, status: STATUS.loading, delay: 3000000}}
 				isChangeToFixedRate
 			>
 				<IconGif gif={travelExplore} alt={'travelExplore'}/>
@@ -74,7 +74,7 @@ export const TransactionContent: FC<TransactionContentProps> = (
 				currentScreen={isConfirmationLoading}
 			>
 				<IconGif gif={earthAnim} alt={'earthAnim'}/>
-				<InfoTitle renderText={<>Confirming your deposit</>} subText={<span>Confirmations {confirmCount} / 10</span>}/>
+				<InfoTitle renderText={<>Confirming your deposit</>} subText={<span>Confirmations {confirmCount} / 10{' '}...</span>}/>
 			</DynamicContent>
 
 			<DynamicContent

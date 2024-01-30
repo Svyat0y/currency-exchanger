@@ -224,8 +224,8 @@ export const Exchanger = ({animStart}: {animStart: boolean}) => {
 		setIsSecondMenuOpen(false)
 	}
 
-	const formattedSendValue = formatNumber(sendValue, 5)
-	const formattedGetValue = formatNumber(getValue, 5)
+	const formattedSendValue = formatNumber(sendValue, 4)
+	const formattedGetValue = formatNumber(getValue, 4)
 
 	const additionalInfoText = sendValue ? `${formattedSendValue} ${sendItem.shortLabel} = ${formattedGetValue} ${getItem.shortLabel}` : ''
 

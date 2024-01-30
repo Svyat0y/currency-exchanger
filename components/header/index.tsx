@@ -7,7 +7,7 @@ import {Navigation} from "@/components/header/navigation/navigation"
 import {Container} from "@/components/container"
 import Link from "next/link"
 import {STATUS, useContextStatus} from "@/context/statusContext"
-import {useState} from "react";
+import {useState} from "react"
 
 export const Header = () => {
 	const {currentStatus} = useContextStatus()
@@ -17,7 +17,7 @@ export const Header = () => {
 	return (
 		<div className={classNames(styles.wrapper, {[styles.active]: !!currentStatus && !isAllSuccess})}>
 			<Container>
-				<div className={styles.headerContent}>
+				<div className={classNames(styles.headerContent, {[styles.active]: !!currentStatus && !isAllSuccess})}>
 					<Link aria-label={'logo'} href={'/'} className={styles.logo}>
 						<span className={styles.logoTitle}>SwapHub</span>
 						<span className={styles.logoDesc}>Crypto Exchange</span>

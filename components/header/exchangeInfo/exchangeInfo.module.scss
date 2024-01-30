@@ -26,18 +26,23 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: $fourth_color;
   padding: 12px;
   flex-grow: 1;
   border-radius: 12px;
   overflow: hidden;
+  border: 1px solid $fourth_color;
+
+  &.isFixed {
+    background: $fourth_color;
+    border: navajowhite;
+  }
 }
 
 .box {
   display: flex;
   align-items: center;
   max-width: max-content;
-  gap: 4px;
+  gap: 8px;
 
   img {
     display: inline-block;
@@ -51,7 +56,7 @@
 .getValueBtn {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 8px;
   cursor: pointer;
 
   &.noActive {
@@ -74,8 +79,8 @@
 }
 
 .sendValue, .getValue {
-  font-size: 16px;
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 700;
   font-family: $primary_font;
 }
 
@@ -93,7 +98,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: $fourth_color;
   border-radius: 12px;
   position: relative;
+  border: 1px solid $fourth_color;
 }

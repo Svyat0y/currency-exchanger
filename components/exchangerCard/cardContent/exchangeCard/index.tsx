@@ -7,7 +7,7 @@ import classNames from "classnames"
 import {RATES, RateSwitcher} from "@/components/exchangerCard/cardContent/exchangeCard/rateSwitcher/rateSwitcher"
 import {useExchangeContext} from "@/context/exchangeContext"
 import {useNotificationContext} from "@/context/notificationContext"
-import {DotLoader} from "@/components/loader/dotLoader";
+import {DotLoader} from "@/components/loader/dotLoader"
 
 type ExchangeCardProps = CardContentProps
 
@@ -58,7 +58,7 @@ export const ExchangeCard: FC<ExchangeCardProps> = (
 								[styles.isVisible]: isCalculated && isSecondCard,
 							})}>
 								{!isCalculatingSendValue && !isCalculating && !isOpenMenu &&
-                  <span className={styles.additionalInfo}>{additionalInfo}</span>}
+                  <span className={classNames(styles.additionalInfo, {[styles.isFixed]: isFixedRate})}>{additionalInfo}</span>}
 								{isSecondCard && !isOpenMenu &&
                   <RateSwitcher withTooltip rateState={rateState} setRateState={setRateState}
                                 setIsNotification={setIsNotification} isOpenMenu={isOpenMenu}/>}

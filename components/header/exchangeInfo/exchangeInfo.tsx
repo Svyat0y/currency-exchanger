@@ -5,13 +5,20 @@ import {useExchangeContext} from "@/context/exchangeContext"
 import {RATES, RATES_TOOLTIP} from "@/components/exchangerCard/cardContent/exchangeCard/rateSwitcher/rateSwitcher"
 import {GetValueBox} from "@/components/header/exchangeInfo/getValueBox"
 import {SendValueBox} from "@/components/header/exchangeInfo/sendValueBox"
-import {useEffect, useRef, useState} from "react"
+import {FC, useEffect, useRef, useState} from "react"
 import {TooltipTrigger} from "@/components/tooltipTrigger/tooltipTrigger"
 import {useNotificationContext} from "@/context/notificationContext"
 import {Overlay} from "@/components/overlay/overlay"
 import {ANIMATION_TIME} from "@/app/const"
+import {useMount} from "@/hooks/useMount"
 
-export const ExchangeInfo = ({active, isOpenNavMenu}: {active: boolean, isOpenNavMenu: boolean}) => {
+type ExchangeInfoProps = {
+	active: boolean,
+	isOpenNavMenu: boolean
+	style?: string
+}
+
+export const ExchangeInfo: FC<ExchangeInfoProps> = ({active, isOpenNavMenu, style = ''}) => {
 	const {rateState} = useExchangeContext()
 	const {setIsOverlay, isOverlay} = useNotificationContext()
 	const [rateStateLs, setRateStateLs] = useState()
@@ -59,25 +66,31 @@ export const ExchangeInfo = ({active, isOpenNavMenu}: {active: boolean, isOpenNa
 		setIsOverlay(false)
 	}
 
+	const {mounted} = useMount(active)
+
+	if(!active && !mounted) return null
+
 	return (
 		<>
 			<div id={'exchangeInfo'} className={classNames(styles.exchangeInfo, {
-				[styles.active]: active,
+				[styles.active]: active && mounted,
 				[styles.zIndexUp]: isOverlay,
 			})}>
-				<div className={styles.left}>
+				<div className={classNames(styles.left, {
+					[styles.isFixed]: isFixedRate,
+				})}>
 					<SendValueBox/>
 					<GetValueBox noActive={isFixedRate}/>
 				</div>
 				<TooltipTrigger
-					className={styles.rateBox}
+					className={classNames(styles.rateBox, {[styles.isFixed]: isFixedRate})}
 					isTooltip={isTooltip}
-					backgroundColor={isFixedRate? '#28C600FF' : 'black'}
+					backgroundColorTooltip={isFixedRate? '#28C600FF' : 'black'}
 					tooltipContent={ratesInfo} tag={'button'}
 					handleShowTooltip={handleShowTooltip}
 					handleRemoveTooltip={handleRemoveTooltip}
 				>
-					<Icon type={isFixedRate ? 'LOCK' : 'WATER'} fill={isFixedRate ? '#28C600' : 'rgba(0, 0, 0, .3)'}/>
+					<Icon type={isFixedRate ? 'LOCK' : 'WATER'} fill={isFixedRate ? '#28C600' : 'black'}/>
 				</TooltipTrigger>
 			</div>
 			<Overlay active={isTooltip} zIndex={116}/>

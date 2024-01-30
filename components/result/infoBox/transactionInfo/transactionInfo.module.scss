@@ -3,7 +3,7 @@
 .wrapper {
   position: relative;
   width: 100%;
-  min-height: 320px;
+  min-height: 336px;
   padding: 2px;
   z-index: 1;
   transition: $cubicBezier;
@@ -14,15 +14,20 @@
   }
 
   &.isConfirmStatus {
-    min-height: 200px;
+    min-height: 222px;
   }
 
   &.isAllSuccess {
     min-height: 446px;
+  }
 
-    @media (max-height: $md - 20px) {
+  @media (max-height: $md - 20px) {
+    min-height: 316px;
+
+    &.isAllSuccess {
       min-height: 410px;
     }
+
   }
 
   .successConfetti {
@@ -82,6 +87,8 @@
   font-size: 14px;
   font-family: $primary_font;
   font-weight: 700;
+  margin-bottom: 8px;
+  border-radius: 12px;
 }
 
 .transactionTimer {

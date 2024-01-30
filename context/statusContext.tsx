@@ -1,5 +1,7 @@
 import React, {createContext, ReactNode, useContext, useEffect, useState} from 'react'
 
+export type StatusKey = 'depositing' | 'confirming' | 'exchanging';
+
 type TStatusContext = {
 	children: ReactNode
 }
@@ -18,10 +20,16 @@ type TStatuses = {
 }
 
 export const WAITING_STATUSES = {
-	deposit: 'deposited',
+	deposit: 'depositing',
 	confirmations: 'confirming',
 	exchange: 'exchanging',
 	resetting: 'resetting',
+}
+
+export const SUCCESS_STATUSES: Record<StatusKey, string> = {
+	depositing: 'deposited',
+	confirming: 'confirmed',
+	exchanging: 'exchanged',
 }
 
 export const STATUS = {

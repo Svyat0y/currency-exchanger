@@ -32,7 +32,10 @@ export const DynamicContent: FC<DynamicContentProps> = (
 		if(active && currentScreen) {
 			timout = setTimeout(() => {
 				(updateState && nextStep) && updateState(nextStep?.step, nextStep?.status)
-				isChangeToFixedRate && setRateState(RATES.fixed)
+				if(isChangeToFixedRate) {
+					setRateState(RATES.fixed)
+					localStorage.setItem('rateState', JSON.stringify(RATES.fixed))
+				}
 				clearTimeout(timout)
 			}, nextStep?.delay)
 		}

@@ -100,9 +100,14 @@ export const RateSwitcher: FC<RateSwitcherProps> = ({rateState, setRateState, se
 
 	return (
 		<>
-			<NavigationBox ref={navBoxRef} isBorder={true} handleShowTooltip={handleShowTooltip} handleCloseTooltip={handleCloseTooltip}>
-				<IconButton icon="WATER" onClick={handleFloatRate} active={isFloatingRate}/>
-				<IconButton icon="LOCK" fill={isFixedRate ? '#28C600' : ''} onClick={handleFixedRate} active={isFixedRate}/>
+			<NavigationBox
+				ref={navBoxRef} isBorder={true}
+				handleShowTooltip={handleShowTooltip}
+				handleCloseTooltip={handleCloseTooltip}
+				isShadow={false}
+			>
+				<IconButton icon="WATER" fill={isFloatingRate ? '#000' : 'rgba(0, 0, 0, .3)'} onClick={handleFloatRate} active={isFloatingRate}/>
+				<IconButton icon="LOCK" fill={isFixedRate ? '#28C600' : 'rgba(0, 0, 0, .3)'} onClick={handleFixedRate} active={isFixedRate}/>
 			</NavigationBox>
 			<TooltipFee active={isTooltip && cardIsClosed} tooltipPosition={tooltipPosition}/>
 		</>

@@ -23,10 +23,10 @@ export const NavigationBox: FC<NavigationBoxProps> = forwardRef<HTMLDivElement |
 		handleShowTooltip,
 		handleCloseTooltip,
 	}, ref) => {
+
 	const isTouchDevice = () => {
 		return 'ontouchstart' in window || navigator.maxTouchPoints > 0
 	}
-
 
 	return (
 		<div className={classNames(styles.navigationBtns, className, {

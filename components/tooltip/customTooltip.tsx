@@ -6,14 +6,14 @@ import {useMount} from "@/hooks/useMount"
 type CustomTooltipProps = {
 	children: ReactNode
 	className?: string
-	backgroundColor: string
+	backgroundColorTooltip: string
 	isTooltip: boolean
 }
 
 export const CustomToolTip: FC<CustomTooltipProps> = (
 	{
 		className,
-		backgroundColor,
+		backgroundColorTooltip,
 		isTooltip,
 		children
 	}) => {
@@ -26,7 +26,7 @@ export const CustomToolTip: FC<CustomTooltipProps> = (
 		<div
 			className={classNames(styles.wrapper, className, {
 				[styles.active]: isTooltip && mounted
-			})} style={{backgroundColor: backgroundColor}}>
+			})} style={{backgroundColor: backgroundColorTooltip}}>
 			{children}
 		</div>
 	)

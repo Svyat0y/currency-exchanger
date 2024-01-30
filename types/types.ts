@@ -10,8 +10,3 @@ export type Item = {
 	network: string
 	networkValue: string
 }
-
-export type ItemGroup = {
-	group: string
-	data: Item[]
-}

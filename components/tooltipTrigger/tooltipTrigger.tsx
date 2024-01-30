@@ -10,7 +10,7 @@ type TooltipTriggerProps = {
 	isTooltip: boolean
 	handleShowTooltip: () => void
 	handleRemoveTooltip: () => void
-	backgroundColor: string
+	backgroundColorTooltip: string
 }
 
 export const TooltipTrigger: FC<TooltipTriggerProps> = (
@@ -22,7 +22,7 @@ export const TooltipTrigger: FC<TooltipTriggerProps> = (
 		isTooltip,
 		handleShowTooltip,
 		handleRemoveTooltip,
-		backgroundColor,
+		backgroundColorTooltip,
 	}) => {
 	const tagRef = useRef<HTMLDivElement | HTMLButtonElement | null>(null)
 	const {setIsOverlay} = useNotificationContext()
@@ -49,7 +49,7 @@ export const TooltipTrigger: FC<TooltipTriggerProps> = (
 		<div style={{position: "relative"}}>
 			{Element}
 			{Element &&
-        <CustomToolTip backgroundColor={backgroundColor} isTooltip={isTooltip}>
+        <CustomToolTip backgroundColorTooltip={backgroundColorTooltip} isTooltip={isTooltip}>
 					{tooltipContent}
         </CustomToolTip>
 			}

@@ -83,8 +83,6 @@ export const InfoBox: FC<InfoBoxProps> = (
 		};
 	}, [fakeBtnRef.current, isAllSuccess, isDepositStatus, isConfirmationStatus, isExchangeStatus])
 
-
-
 	useEffect(() => {
 		let intervalId: any = null
 
@@ -97,7 +95,7 @@ export const InfoBox: FC<InfoBoxProps> = (
 
 			intervalId = window.setInterval(() => {
 				setConfirmCount((prevCount) => prevCount + 1)
-			}, 3000)
+			}, 300000)
 		}
 
 		return () => {

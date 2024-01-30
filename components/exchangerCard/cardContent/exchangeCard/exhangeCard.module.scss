@@ -6,9 +6,9 @@
   display: flex;
   max-height: 158px;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   transition: $cubicBezier;
-  padding: 12px 12px 20px 12px;
+  padding: 12px 12px 32px 12px;
   gap: 22px;
 
   &.isOpenMenu {
@@ -32,7 +32,7 @@
 
 .minError {
   display: inline-block;
-  color: $fifth_color;
+  color: red;
   font-size: 12px;
   font-weight: 500;
   padding-right: 20px;
@@ -43,7 +43,7 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  gap: 8px;
+  gap: 16px;
   opacity: 0;
   pointer-events: none;
   transition: $cubicBezier;
@@ -63,7 +63,7 @@
 
 .titleDesc {
   color: $second_color;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .titleDesc, .inputWrapper {
@@ -74,7 +74,9 @@
   max-width: 300px;
   position: relative;
   font-size: 24px;
-  min-height: 28px;
+  max-height: 20px;
+  line-height: 20px;
+  font-family: $primary_font;
 }
 
 .lockIcon {
@@ -88,6 +90,10 @@
   font-size: 12px;
   text-transform: uppercase;
   color: $second_color;
+
+  &.isFixed {
+    color: $black;
+  }
 }
 
 .tooltipFee {
