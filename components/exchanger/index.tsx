@@ -4,10 +4,10 @@ import {ExchangerCard} from "../exchangerCard"
 import {useEffect, useRef, useState} from "react"
 import {Icon} from "@/components/icon"
 import {formatNumber} from "@/utils/helpers"
-import {Wallet} from "@/components/wallet"
-import {Terms} from "@/components/exchanger/terms/terms"
 import {useExchangeContext} from "@/context/exchangeContext"
 import {useMount} from "@/hooks/useMount"
+import {ExchangeFooter} from "@/components/exchanger/exchangeFooter"
+import {Container} from "@/components/container"
 
 export const CARDS = {
 	sendCard: 1,
@@ -239,73 +239,69 @@ export const Exchanger = ({animStart}: {animStart: boolean}) => {
 			[styles.menuIsOpen]: isFirstMenuOpen || isSecondMenuOpen,
 			[styles.animStart]: !animStart && mounted,
 		})}>
-			<div className={styles.content}>
-				<div className={styles.cardsWrapper}>
-					<ExchangerCard
-						isFirstCard
-						isTypingCard={isTypingCard === CARDS.sendCard}
-						isValueError={isValueError}
-						card={CARDS.sendCard}
-						cardName='sendCard'
-						isCalculated={isCalculated}
-						setIsCardMenu={handleFirsCardMenu}
-						item={sendItem}
-						setActiveCard={setActiveCard}
-						cardTitle='You Send'
-						active={activeCard === CARDS.sendCard}
-						value={sendValue}
-						setInputState={setSendValue}
-						isCalculating={isCalculatingSendValue}
-						handleCloseMenu={handleCloseMenu}
-						isOpenMenu={isFirstMenuOpen}
-						isOppositeMenuOpen={isSecondMenuOpen}
-						setItem={setSendItem}
-					/>
-					<button aria-label='SWITCH_ARROWS' className={classNames(styles.switchArrows, {
-						[styles.disabled]: isFirstMenuOpen || isSecondMenuOpen
-					})} onClick={handleSwitch}>
-						<Icon type='SWITCH_ARROWS'/>
-					</button>
-					<ExchangerCard
-						isSecondCard
-						isTypingCard={isTypingCard === CARDS.getCard}
-						isValueError={isValueError}
-						card={CARDS.getCard}
-						cardName='getCard'
-						setIsCardMenu={handleSecondCardMenu}
-						isCalculated={isCalculated}
-						additionalInfo={additionalInfoText}
-						item={getItem}
-						setActiveCard={setActiveCard}
-						cardTitle='You Get'
-						active={activeCard === CARDS.getCard}
-						value={getValue}
-						setInputState={setGetValue}
-						isCalculating={isCalculatingGetValue}
-						isCalculatingSendValue={isCalculatingSendValue}
-						handleCloseMenu={handleCloseMenu}
-						isOpenMenu={isSecondMenuOpen}
-						isOppositeMenuOpen={isFirstMenuOpen}
-						setItem={setGetItem}
-					/>
-				</div>
-				<div className={classNames(styles.exchangeFooter, {
-					[styles.isShow]: isCalculated,
-					[styles.hided]: isSecondMenuOpen || isFirstMenuOpen,
-				})}>
-					<Wallet
-						active={!isValueError && activeCard === CARDS.wallet}
+			<Container overflow={'initial'}>
+				<div className={styles.content}>
+					<div className={styles.cardsWrapper}>
+						<ExchangerCard
+							isFirstCard
+							isTypingCard={isTypingCard === CARDS.sendCard}
+							isValueError={isValueError}
+							card={CARDS.sendCard}
+							cardName='sendCard'
+							isCalculated={isCalculated}
+							setIsCardMenu={handleFirsCardMenu}
+							item={sendItem}
+							setActiveCard={setActiveCard}
+							cardTitle='You Send'
+							active={activeCard === CARDS.sendCard}
+							value={sendValue}
+							setInputState={setSendValue}
+							isCalculating={isCalculatingSendValue}
+							handleCloseMenu={handleCloseMenu}
+							isOpenMenu={isFirstMenuOpen}
+							isOppositeMenuOpen={isSecondMenuOpen}
+							setItem={setSendItem}
+						/>
+						<button aria-label='SWITCH_ARROWS' className={classNames(styles.switchArrows, {
+							[styles.disabled]: isFirstMenuOpen || isSecondMenuOpen
+						})} onClick={handleSwitch}>
+							<Icon type='SWITCH_ARROWS'/>
+						</button>
+						<ExchangerCard
+							isSecondCard
+							isTypingCard={isTypingCard === CARDS.getCard}
+							isValueError={isValueError}
+							card={CARDS.getCard}
+							cardName='getCard'
+							setIsCardMenu={handleSecondCardMenu}
+							isCalculated={isCalculated}
+							additionalInfo={additionalInfoText}
+							item={getItem}
+							setActiveCard={setActiveCard}
+							cardTitle='You Get'
+							active={activeCard === CARDS.getCard}
+							value={getValue}
+							setInputState={setGetValue}
+							isCalculating={isCalculatingGetValue}
+							isCalculatingSendValue={isCalculatingSendValue}
+							handleCloseMenu={handleCloseMenu}
+							isOpenMenu={isSecondMenuOpen}
+							isOppositeMenuOpen={isFirstMenuOpen}
+							setItem={setGetItem}
+						/>
+					</div>
+					<ExchangeFooter
+						active={!isValueError}
 						setActiveCard={setActiveCard}
 						card={CARDS.wallet}
-						value={wallet}
+						wallet={wallet}
 						setInputState={setWallet}
 						isCalculated={isCalculated}
 						walletError={walletError}
 						setWalletError={setWalletError}
 					/>
-					<Terms wallet={wallet} setWalletError={setWalletError} walletError={walletError}/>
 				</div>
-			</div>
+			</Container>
 		</div>
 	)
 }

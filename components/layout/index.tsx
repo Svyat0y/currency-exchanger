@@ -12,7 +12,7 @@ type LayoutProps = {
 export const Layout: FC<LayoutProps> = ({children}) => {
 
 	return (
-		<>
+		<div style={{display: "flex", flexDirection: 'column', minHeight: '100vh'}}>
 			<Providers>
 				<Header/>
 				<main>
@@ -20,6 +20,6 @@ export const Layout: FC<LayoutProps> = ({children}) => {
 				</main>
 				<NotificationContainer/>
 			</Providers>
-		</>
+		</div>
 	)
 }

@@ -7,6 +7,7 @@
   justify-content: flex-start;
   transition: $cubicBezier;
   position: relative;
+  padding-top: 0;
 
   @include md {
     min-width: 400px;
@@ -17,13 +18,12 @@
     height: 100%;
     margin-left: 50%;
     transform: translateX(-50%);
-  }
-  @media (max-height: $md - 20px) {
-    padding-top: 0;
+    min-height: 512px;
   }
 
   &.animStart {
     @include lg {
+      top: 0;
       margin-left: 0;
       transform: translateX(0);
     }

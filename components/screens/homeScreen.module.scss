@@ -1,0 +1,20 @@
+@import "styles/var";
+
+.wrapper {
+  height: 100%;
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  transition: $cubicBezier;
+  flex-grow: 1;
+  flex-direction: column;
+  overflow-x: hidden;
+
+  @include sm {
+    align-items: initial;
+  }
+
+  @include md {
+    flex-direction: row;
+  }
+}

@@ -167,7 +167,7 @@ export const InfoBox: FC<InfoBoxProps> = (
 					[styles.isAllSuccess]: isAllSuccess,
 				})}></button>
 			</div>
-			<AiBtnWr positionFixedBtn={positionFixedBtn} handleOpenRightBox={handleOpenRightBox} active={!isShowRightBox && !!currentStatus && !isDepositStatus}/>
+				<AiBtnWr positionFixedBtn={positionFixedBtn} handleOpenRightBox={handleOpenRightBox} active={!isShowRightBox && !!currentStatus && !isDepositStatus}/>
 		</>
 	)
 }

@@ -15,8 +15,8 @@ export const Header = () => {
 	const [isOpenNavMenu, setIsOpenNavMenu] = useState(false)
 	
 	return (
-		<div className={classNames(styles.wrapper, {[styles.active]: !!currentStatus && !isAllSuccess})}>
-			<Container>
+		<div id={'header'} className={classNames(styles.wrapper, {[styles.active]: !!currentStatus && !isAllSuccess})}>
+			<Container overflow={'initial'}>
 				<div className={classNames(styles.headerContent, {[styles.active]: !!currentStatus && !isAllSuccess})}>
 					<Link aria-label={'logo'} href={'/'} className={styles.logo}>
 						<span className={styles.logoTitle}>SwapHub</span>

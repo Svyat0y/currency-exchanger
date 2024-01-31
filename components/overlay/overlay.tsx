@@ -18,7 +18,7 @@ export const Overlay: FC<OverlayProps> = ({zIndex = 30, active, children}) => {
 			document.body.style.overflow = 'hidden'
 		}
 		else {
-			document.body.style.overflow = 'auto'
+			document.body.style.overflowX = 'hidden'
 		}
 
 		return () => {

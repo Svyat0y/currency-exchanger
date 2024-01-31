@@ -14,13 +14,12 @@
   right: 0;
   transform: translateY(-100%);
   opacity: 0;
-  padding-top: 0;
   pointer-events: none;
 
   @include md {
     justify-content: center;
     align-items: center;
-    max-width: 812px;
+    max-width: 844px;
   }
 
   &.menuIsOpen {
@@ -59,14 +58,16 @@
 
 .cardsWrapper {
   width: 100%;
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas: 'sendCard' 'getCard';
   position: relative;
   gap: 12px;
 
   @include md {
     flex-direction: row;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 'sendCard getCard';
   }
 }
 
@@ -120,6 +121,7 @@
   opacity: 0;
   pointer-events: none;
   visibility: hidden;
+  max-height: 0;
   transition: $cubicBezier;
   transform: translateY(-100%);
 
@@ -128,6 +130,7 @@
     opacity: 1;
     pointer-events: auto;
     transform: translateY(0);
+    max-height: 200px;
   }
 
   &.hided {

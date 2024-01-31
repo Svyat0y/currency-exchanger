@@ -1,4 +1,4 @@
-import {FC, useState} from "react"
+import {FC, useEffect, useState} from "react"
 import styles from './exchangeCard.module.scss'
 import classNames from "classnames"
 import {Item} from "@/types/types"
@@ -54,6 +54,8 @@ export const ExchangerCard: FC<ExchangerCardProps> = (
 		isOppositeMenuOpen,
 	}) => {
 	const [popupIsOpen, setPopupIsOpen] = useState(false)
+	// const [isAbsolute, setIsAbsolute] = useState(false);
+
 
 	const handleInput = (value: number | string | null) => {
 		let newText = String(value).replace(/[^0-9.]/g, '')
@@ -67,6 +69,17 @@ export const ExchangerCard: FC<ExchangerCardProps> = (
 	const handleOpenMenu = () => {
 		setIsCardMenu()
 	}
+
+	// useEffect(() => {
+	// 	if (isOpenMenu && (isFirstCard || isSecondCard)) {
+	// 		setIsAbsolute(true);
+	// 	} else if (!isOpenMenu) {
+	// 		setTimeout(() => {
+	// 			setIsAbsolute(false);
+	// 		}, 600); // Задержка в 600 мс
+	// 	}
+	// }, [isOpenMenu, isFirstCard, isSecondCard]);
+
 
 	const cardProps = {
 		cardTitle,

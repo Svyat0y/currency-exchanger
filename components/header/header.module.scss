@@ -3,12 +3,11 @@
 .wrapper {
   position: sticky;
   top: 0;
-  left: 0;
-  right: 0;
   transition: $cubicBezier;
   z-index: 100;
   background: $white;
   padding: 20px 0;
+  width: 100%;
 
   &::before, &::after {
     position: absolute;

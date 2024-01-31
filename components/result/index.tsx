@@ -4,10 +4,10 @@ import {InteractionBox} from "./interactioneBox/interactionBox"
 import classNames from "classnames"
 import {useMount} from "@/hooks/useMount"
 import {STATUS, useContextStatus} from "@/context/statusContext"
-import {useEffect, useState} from "react"
+import {useEffect} from "react"
+import {Container} from "@/components/container"
 
-export const Result = ({animStart}: {animStart: boolean}) => {
-	const [isShowRightBox, setIsShowRightBox] = useState(false)
+export const Result = ({animStart, setIsShowRightBox, isShowRightBox}: {animStart: boolean, setIsShowRightBox: any, isShowRightBox: boolean}) => {
 	const {currentStatus, updateState} = useContextStatus()
 	const isAllSuccess = currentStatus === STATUS.success
 	const {mounted} = useMount(animStart)
@@ -34,17 +34,21 @@ export const Result = ({animStart}: {animStart: boolean}) => {
 		<div id='parentElementId' className={classNames(styles.wrapper, {
 			[styles.animStart]: animStart && mounted,
 		})}>
-			<InfoBox
-				currentStatus={currentStatus}
-				isAllSuccess={isAllSuccess}
-				updateState={updateState}
-				isShowRightBox={isShowRightBox}
-				setIsShowRightBox={setIsShowRightBox}
-			/>
-			<InteractionBox
-				setIsShowRightBox={setIsShowRightBox}
-				active={isShowRightBox}
-			/>
+			<Container>
+				<div className={styles.boxesWrapper}>
+					<InfoBox
+						currentStatus={currentStatus}
+						isAllSuccess={isAllSuccess}
+						updateState={updateState}
+						isShowRightBox={isShowRightBox}
+						setIsShowRightBox={setIsShowRightBox}
+					/>
+					<InteractionBox
+						setIsShowRightBox={setIsShowRightBox}
+						active={isShowRightBox}
+					/>
+				</div>
+			</Container>
 		</div>
 	)
 }
