@@ -3,7 +3,7 @@ import {InfoBox} from "./infoBox/infoBox"
 import {InteractionBox} from "./interactioneBox/interactionBox"
 import classNames from "classnames"
 import {useMount} from "@/hooks/useMount"
-import {STATUS, useContextStatus} from "@/context/statusContext"
+import {STATUS, useContextStatus, WAITING_STATUSES} from "@/context/statusContext"
 import {useEffect} from "react"
 import {Container} from "@/components/container"
 
@@ -21,11 +21,11 @@ export const Result = ({animStart, setIsShowRightBox, isShowRightBox}: {animStar
 			})
 		}
 
-		if (!isShowRightBox) {
+		if (!isShowRightBox || currentStatus === WAITING_STATUSES.deposit) {
 			scrollTo(window.top)
 		}
 
-	}, [isShowRightBox])
+	}, [isShowRightBox, currentStatus])
 
 
 	if(!animStart && !mounted) return null
@@ -35,7 +35,9 @@ export const Result = ({animStart, setIsShowRightBox, isShowRightBox}: {animStar
 			[styles.animStart]: animStart && mounted,
 		})}>
 			<Container>
-				<div className={styles.boxesWrapper}>
+				<div className={classNames(styles.boxesWrapper, {
+					[styles.isAllSuccess]: isAllSuccess,
+				})}>
 					<InfoBox
 						currentStatus={currentStatus}
 						isAllSuccess={isAllSuccess}
