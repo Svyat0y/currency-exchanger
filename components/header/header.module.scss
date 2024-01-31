@@ -1,7 +1,7 @@
 @import "styles/var";
 
 .wrapper {
-  position: sticky;
+  position: fixed;
   top: 0;
   transition: $cubicBezier;
   z-index: 100;

@@ -22,7 +22,7 @@ export const Result = ({animStart, setIsShowRightBox, isShowRightBox}: {animStar
 		}
 
 		if (!isShowRightBox) {
-			scrollTo(document.body)
+			scrollTo(window.top)
 		}
 
 	}, [isShowRightBox])

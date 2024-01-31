@@ -9,11 +9,10 @@
   gap: 20px;
   opacity: 0;
   position: absolute;
-  top: var(--header-height);
+  top: 0;
   transform: translate(-50%, 350%);
   left: 50%;
   right: 0;
-  padding-bottom: 20px;
 
   @include lg {
     flex-direction: row;
@@ -22,7 +21,7 @@
   &.animStart {
     opacity: 1;
     transform: translate(-50%, 0);
-    top: var(--header-height);
+    top: 0;
 
     @include lg3 {
       top: 50%;
@@ -30,7 +29,7 @@
     }
 
     @media (max-height: $md - 20px) {
-      top: var(--header-height);
+      top: 0;
       transform: translate(-50%, 0%);
     }
   }
@@ -47,7 +46,11 @@
   justify-content: flex-start;
   gap: 0 40px;
   height: 100%;
-  padding-top: 20px;
+  padding-top: 156px;
+
+  @include sm {
+    padding-top: 102px;
+  }
 
   @include lg {
     flex-direction: row;

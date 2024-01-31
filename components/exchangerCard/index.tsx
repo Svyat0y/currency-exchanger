@@ -4,6 +4,8 @@ import classNames from "classnames"
 import {Item} from "@/types/types"
 import {GradientBorder} from "@/components/gradientBorder"
 import {CardContent} from "./cardContent"
+import {ANIMATION_TIME} from "@/app/const";
+import useMediaQuery from "@/hooks/useMediaQuery";
 
 type ExchangerCardProps = {
 	cardTitle: string
@@ -54,8 +56,6 @@ export const ExchangerCard: FC<ExchangerCardProps> = (
 		isOppositeMenuOpen,
 	}) => {
 	const [popupIsOpen, setPopupIsOpen] = useState(false)
-	// const [isAbsolute, setIsAbsolute] = useState(false);
-
 
 	const handleInput = (value: number | string | null) => {
 		let newText = String(value).replace(/[^0-9.]/g, '')
@@ -70,15 +70,18 @@ export const ExchangerCard: FC<ExchangerCardProps> = (
 		setIsCardMenu()
 	}
 
-	// useEffect(() => {
-	// 	if (isOpenMenu && (isFirstCard || isSecondCard)) {
-	// 		setIsAbsolute(true);
-	// 	} else if (!isOpenMenu) {
-	// 		setTimeout(() => {
-	// 			setIsAbsolute(false);
-	// 		}, 600); // Задержка в 600 мс
-	// 	}
-	// }, [isOpenMenu, isFirstCard, isSecondCard]);
+	const isDesktop = useMediaQuery('(min-width: 768px)')
+
+	useEffect(() => {
+		const cardElem = document.getElementById(cardTitle)
+		if(cardElem && isDesktop) {
+			if(isOpenMenu) {
+				cardElem.style.position = 'absolute'
+			}
+			else setTimeout(() => cardElem.style.position = 'relative', ANIMATION_TIME)
+		}
+
+	},[isOpenMenu])
 
 
 	const cardProps = {
@@ -104,7 +107,7 @@ export const ExchangerCard: FC<ExchangerCardProps> = (
 	}
 
 	return (
-		<div id={'animCard'} className={classNames(styles.wrapper, styles[cardName], {
+		<div id={cardTitle} className={classNames(styles.wrapper, styles[cardName], {
 			[styles.disabled]: isOppositeMenuOpen,
 			[styles.unActive]: isCalculating,
 			[styles.isMenuFirst]: isOpenMenu && isFirstCard,
