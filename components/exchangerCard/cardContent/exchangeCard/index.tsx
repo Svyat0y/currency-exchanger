@@ -35,7 +35,7 @@ export const ExchangeCard: FC<ExchangeCardProps> = (
 
 	useEffect(() => {
 		const timeoutId = setTimeout(() => {
-			if (active && inputRef?.current) {
+			if (active && !isOpenMenu && inputRef?.current) {
 				inputRef?.current?.focus()
 			}
 		}, 0)
