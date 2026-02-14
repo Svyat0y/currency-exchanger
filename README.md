@@ -6,4 +6,6 @@ This is a simulation of a small currency exchange app. After selecting a currenc
 
 Statuses change every 30 seconds (programmed).
 
+To reset the states, refresh the page.
+
 You can see it at the link - https://minicurrencychanger.netlify.app/
